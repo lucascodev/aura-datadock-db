@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: datadock-postgres
+    environment:
+      POSTGRES_USER: datadock
+      POSTGRES_PASSWORD: datadock
+      POSTGRES_DB: shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docs/seed/postgres.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+
+  mysql:
+    image: mysql:8.4
+    container_name: datadock-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: datadock
+      MYSQL_DATABASE: shop
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docs/seed/mysql.sql:/docker-entrypoint-initdb.d/seed.sql:ro

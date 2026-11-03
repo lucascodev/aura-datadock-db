@@ -1,0 +1,256 @@
+{
+  "name": "aura-datadock",
+  "displayName": "Aura DataDock: Docker Database Explorer with AI",
+  "description": "Find databases running in Docker containers, connect with zero configuration, run queries and let AI agents explore your schema.",
+  "version": "0.1.0",
+  "publisher": "lucascodev",
+  "author": {
+    "name": "Lucas Pereira dos Reis"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucascodev/aura-datadock"
+  },
+  "bugs": {
+    "url": "https://github.com/lucascodev/aura-datadock/issues"
+  },
+  "keywords": [
+    "docker",
+    "database",
+    "postgres",
+    "mysql",
+    "mariadb",
+    "sql",
+    "mcp",
+    "ai"
+  ],
+  "categories": [
+    "Other",
+    "Data Science",
+    "AI"
+  ],
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "auraDataDock",
+          "title": "Aura DataDock",
+          "icon": "$(database)"
+        }
+      ]
+    },
+    "views": {
+      "auraDataDock": [
+        {
+          "id": "auraDataDock.connections",
+          "name": "Containers"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "auraDataDock.connections",
+        "contents": "No database containers found.\nStart a Postgres, MySQL or MariaDB container and refresh.\n[Refresh](command:auraDataDock.refresh)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "auraDataDock.refresh",
+        "title": "Refresh",
+        "category": "Aura DataDock",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "auraDataDock.selectConnection",
+        "title": "Select Active Connection",
+        "category": "Aura DataDock",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "auraDataDock.newQuery",
+        "title": "New Query",
+        "category": "Aura DataDock",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "auraDataDock.runQuery",
+        "title": "Run Query",
+        "category": "Aura DataDock",
+        "icon": "$(play)"
+      },
+      {
+        "command": "auraDataDock.openTable",
+        "title": "Open Table",
+        "category": "Aura DataDock",
+        "icon": "$(table)"
+      },
+      {
+        "command": "auraDataDock.setPassword",
+        "title": "Set Password",
+        "category": "Aura DataDock",
+        "icon": "$(key)"
+      },
+      {
+        "command": "auraDataDock.generateSql",
+        "title": "Generate SQL with AI",
+        "category": "Aura DataDock",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "auraDataDock.setAiApiKey",
+        "title": "Set AI Provider API Key",
+        "category": "Aura DataDock"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "auraDataDock.refresh",
+          "when": "view == auraDataDock.connections",
+          "group": "navigation"
+        },
+        {
+          "command": "auraDataDock.generateSql",
+          "when": "view == auraDataDock.connections",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "auraDataDock.newQuery",
+          "when": "view == auraDataDock.connections && viewItem =~ /^container/",
+          "group": "inline"
+        },
+        {
+          "command": "auraDataDock.setPassword",
+          "when": "view == auraDataDock.connections && viewItem =~ /^container/"
+        },
+        {
+          "command": "auraDataDock.openTable",
+          "when": "view == auraDataDock.connections && viewItem == table",
+          "group": "inline"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "auraDataDock.runQuery",
+          "when": "editorLangId == sql",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "auraDataDock.openTable",
+          "when": "false"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "auraDataDock.runQuery",
+        "key": "ctrl+enter",
+        "mac": "cmd+enter",
+        "when": "editorTextFocus && editorLangId == sql"
+      }
+    ],
+    "configuration": {
+      "title": "Aura DataDock",
+      "properties": {
+        "auraDataDock.readOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Block every statement that writes to the database."
+        },
+        "auraDataDock.confirmDestructiveQueries": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask for confirmation before DROP, TRUNCATE, ALTER and DELETE/UPDATE without WHERE."
+        },
+        "auraDataDock.maxRows": {
+          "type": "number",
+          "default": 500,
+          "minimum": 1,
+          "description": "Maximum number of rows shown in the results panel."
+        },
+        "auraDataDock.dockerHost": {
+          "type": "string",
+          "default": "",
+          "description": "Docker Engine endpoint. Leave empty to use DOCKER_HOST or the platform default (unix socket or Windows named pipe)."
+        },
+        "auraDataDock.ai.provider": {
+          "type": "string",
+          "enum": [
+            "vscode",
+            "anthropic",
+            "openai",
+            "ollama"
+          ],
+          "enumDescriptions": [
+            "Language models available in VS Code (for example GitHub Copilot). No API key needed.",
+            "Anthropic API with your own key.",
+            "OpenAI API with your own key.",
+            "Local models through Ollama."
+          ],
+          "default": "vscode",
+          "description": "Which AI provider powers the AI features."
+        },
+        "auraDataDock.ai.model": {
+          "type": "string",
+          "default": "",
+          "description": "Model id for the selected provider. Leave empty to use the provider default."
+        },
+        "auraDataDock.ai.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Base URL of the Ollama server."
+        },
+        "auraDataDock.mcp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Expose discovered databases to AI agents through a read-only MCP server."
+        }
+      }
+    },
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "auraDataDock.mcp",
+        "label": "Aura DataDock"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build -- --production",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "package": "vsce package --no-dependencies",
+    "publish:vsce": "vsce publish --no-dependencies",
+    "publish:ovsx": "ovsx publish --no-dependencies"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "mysql2": "^3.14.0",
+    "pg": "^8.16.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/pg": "^8.15.0",
+    "@types/vscode": "^1.101.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "ovsx": "^0.10.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.2.0"
+  }
+}
