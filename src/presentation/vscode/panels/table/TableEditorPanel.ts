@@ -54,6 +54,7 @@ export class TableEditorPanel {
       title: this.baseTitle(),
       scriptPath: ['dist', 'webview', 'table.js'],
       stylePath: ['media', 'webview', 'table.css'],
+      allowsEditorStyles: true,
     });
     this.panel.webview.onDidReceiveMessage((message: TableEditorWebviewMessage) => this.handleMessage(message));
     this.updateTitle();
