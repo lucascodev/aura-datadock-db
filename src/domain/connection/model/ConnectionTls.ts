@@ -5,5 +5,3 @@ export interface ConnectionTls {
   readonly caFile?: string;
   readonly serverName?: string;
 }
-
-export const TLS_OFF: ConnectionTls = { mode: 'off' };
