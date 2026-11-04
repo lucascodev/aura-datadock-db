@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import { resolveProtectionSetting } from '../../../../application/settings/resolveProtectionSetting';
 import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
-import type { QueryClassification } from '../../../../application/query/analysis/QueryClassification';
+import type { QueryClassification } from '../../../../application/query/model/QueryClassification';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { runStatements } from '../../../../application/query/execution/runStatements';
-import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
+import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import { summarizeOutcomes } from '../../../../application/query/execution/summarizeOutcomes';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';

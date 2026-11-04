@@ -1,7 +1,7 @@
 import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { buildRelationships } from '../../schema/relationships/buildRelationships';
-import type { Relationship } from '../../schema/relationships/Relationship';
+import type { Relationship } from '../../schema/model/Relationship';
 import {
   BADGE_WIDTH,
   BOTTOM_PADDING,
@@ -14,8 +14,8 @@ import {
   MAX_TYPE_CHARACTERS,
   MIN_TABLE_WIDTH,
   ROW_HEIGHT,
-} from '../layout/diagramMetrics';
-import type { DiagramColumn, DiagramDetail, DiagramEdge, DiagramModel, DiagramTable } from './DiagramModel';
+} from '../constants/diagramMetrics';
+import type { DiagramColumn, DiagramDetail, DiagramEdge, DiagramModel, DiagramTable } from '../model/DiagramModel';
 
 export function buildDiagram(schema: NamespaceSchema, detail: DiagramDetail): DiagramModel {
   const relationships = buildRelationships(schema);

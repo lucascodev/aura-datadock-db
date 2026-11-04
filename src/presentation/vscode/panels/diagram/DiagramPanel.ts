@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import type { DiagramPositions } from '../../../../application/diagram/model/DiagramModel';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
-import type { SchemaExportFormatId } from '../../../../application/schema/rendering/SchemaExportFormat';
-import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/rendering/schemaExportFormats';
+import type { SchemaExportFormatId } from '../../../../application/schema/model/SchemaExportFormat';
+import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/constants/schemaExportFormats';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { saveImageFile } from '../shared/saveImageFile';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';

@@ -1,5 +1,5 @@
-import { SQL_KEYWORDS } from './sqlKeywords';
-import type { TableReference } from './TableReference';
+import { SQL_KEYWORDS } from '../constants/sqlKeywords';
+import type { TableReference } from '../model/TableReference';
 
 const IDENTIFIER = '(?:"[^"]+"|`[^`]+`|[A-Za-z_][\\w$]*)';
 const TABLE_REFERENCE = new RegExp(

@@ -2,7 +2,7 @@ import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSche
 import type { TableColumn } from '../../../domain/schema/model/TableColumn';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { buildRelationships } from '../relationships/buildRelationships';
-import type { Relationship } from '../relationships/Relationship';
+import type { Relationship } from '../model/Relationship';
 
 const NON_WORD_CHARACTERS = /\W+/g;
 const INDENT = '  ';

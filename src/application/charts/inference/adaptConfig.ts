@@ -1,7 +1,7 @@
-import { getChartKind } from '../model/chartKinds';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { ChartKind } from '../model/ChartKind';
-import type { ColumnInfo } from '../model/ColumnKind';
+import { getChartKind } from '../support/chartKinds';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { ChartKind } from '../model/config/ChartKind';
+import type { ColumnInfo } from '../model/config/ColumnKind';
 
 function namesOfKind(columns: readonly ColumnInfo[], kind: ColumnInfo['kind']): string[] {
   return columns.filter((column) => column.kind === kind).map((column) => column.name);

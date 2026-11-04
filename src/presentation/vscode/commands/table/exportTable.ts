@@ -1,9 +1,9 @@
 import { open, rm } from 'node:fs/promises';
 import * as vscode from 'vscode';
 import { writeRowBatches } from '../../../../application/export/encoders/encodeRows';
-import type { WriteRowBatchesResult } from '../../../../application/export/encoders/WriteRowBatchesResult';
-import type { RowExportFormat } from '../../../../application/export/formats/RowExportFormat';
-import { ROW_EXPORT_FORMATS } from '../../../../application/export/formats/rowExportFormats';
+import type { WriteRowBatchesResult } from '../../../../application/export/model/WriteRowBatchesResult';
+import type { RowExportFormat } from '../../../../application/export/model/RowExportFormat';
+import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
 import { buildTableSelect } from '../../../../application/editing/browsing/buildTablePageQuery';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';

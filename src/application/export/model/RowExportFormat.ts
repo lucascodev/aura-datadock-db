@@ -1,6 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { TableRef } from '../../../domain/schema/model/TableRef';
-import type { RowEncoder } from '../encoders/RowEncoder';
+import type { RowEncoder } from './RowEncoder';
 
 export type RowExportFormatId = 'csv' | 'json' | 'ndjson' | 'markdown' | 'sql';
 

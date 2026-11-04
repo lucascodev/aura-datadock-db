@@ -1,4 +1,4 @@
-import type { RowEncoder } from './RowEncoder';
+import type { RowEncoder } from '../model/RowEncoder';
 import { toExportText } from './toExportValue';
 
 const LINE_BREAK = '\r\n';

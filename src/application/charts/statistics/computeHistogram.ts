@@ -1,5 +1,5 @@
 import { quantile } from './quantile';
-import type { HistogramBin } from './HistogramBin';
+import type { HistogramBin } from '../model/statistics/HistogramBin';
 
 const MAX_AUTOMATIC_BINS = 50;
 const MAX_BINS = 200;

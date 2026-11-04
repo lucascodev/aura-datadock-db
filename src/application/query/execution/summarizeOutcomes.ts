@@ -1,6 +1,6 @@
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
-import type { QueryHistoryEntry } from '../history/QueryHistoryEntry';
-import type { StatementOutcome } from './StatementOutcome';
+import type { QueryHistoryEntry } from '../model/QueryHistoryEntry';
+import type { StatementOutcome } from '../model/StatementOutcome';
 
 export function summarizeOutcomes(
   sql: string,

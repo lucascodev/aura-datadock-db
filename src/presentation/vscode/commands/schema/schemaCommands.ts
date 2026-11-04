@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
-import type { SchemaExportFormatId } from '../../../../application/schema/rendering/SchemaExportFormat';
-import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/rendering/schemaExportFormats';
+import type { SchemaExportFormatId } from '../../../../application/schema/model/SchemaExportFormat';
+import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/constants/schemaExportFormats';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
 import { ConnectionNode } from '../../tree/nodes/ConnectionNode';

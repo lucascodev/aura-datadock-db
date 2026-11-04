@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { RowChange } from '../../../../application/editing/rows/RowChange';
+import type { RowChange } from '../../../../application/editing/model/RowChange';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import { TableEditorPanel } from './TableEditorPanel';

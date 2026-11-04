@@ -1,6 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { quoteIfNeeded } from '../../sql/quoteIfNeeded';
-import type { FilterSuggestion, FilterCompletions } from './FilterCompletions';
+import { quoteIfNeeded } from '../../sql/building/quoteIfNeeded';
+import type { FilterSuggestion, FilterCompletions } from '../model/FilterCompletions';
 
 interface FilterColumn {
   readonly name: string;

@@ -4,9 +4,9 @@ import type { TableDefinition } from '../../../domain/schema/model/TableDefiniti
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
 import { describeEditability, isColumnEditable } from './describeEditability';
-import type { CellValues, RowChange } from './RowChange';
-import { bound, joinParts, toStatement } from '../../sql/statementTemplate';
-import type { TemplatePart } from '../../sql/TemplatePart';
+import type { CellValues, RowChange } from '../model/RowChange';
+import { bound, joinParts, toStatement } from '../../sql/building/statementTemplate';
+import type { TemplatePart } from '../../sql/model/TemplatePart';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const SINGLE_ROW = 1;

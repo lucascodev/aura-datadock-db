@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { buildChartData } from '../../../../src/application/charts/builders/buildChartData';
-import type { ChartConfig } from '../../../../src/application/charts/model/ChartConfig';
-import type { ChartData } from '../../../../src/application/charts/model/ChartData';
-import type { ChartCell, ChartInput } from '../../../../src/application/charts/model/ChartInput';
-import type { ChartNoticeKind } from '../../../../src/application/charts/model/ChartNotice';
+import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';
+import type { ChartData } from '../../../../src/application/charts/model/data/ChartData';
+import type { ChartCell, ChartInput } from '../../../../src/application/charts/model/config/ChartInput';
+import type { ChartNoticeKind } from '../../../../src/application/charts/model/data/ChartNotice';
 
 function input(columns: string[], rows: ChartCell[][], isTruncated = false): ChartInput {
   return { columns, rows, isTruncated };

@@ -1,10 +1,10 @@
 import { inferColumnKind } from '../inference/inferColumnKind';
-import { getChartKind } from '../model/chartKinds';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { ChartData } from '../model/ChartData';
-import type { ChartInput } from '../model/ChartInput';
-import type { ChartNotice } from '../model/ChartNotice';
-import type { ColumnKind } from '../model/ColumnKind';
+import { getChartKind } from '../support/chartKinds';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { ChartData } from '../model/data/ChartData';
+import type { ChartInput } from '../model/config/ChartInput';
+import type { ChartNotice } from '../model/data/ChartNotice';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { columnIndex } from '../support/columnAccess';
 import { buildBoxplotData } from './buildBoxplotData';
 import { buildCartesianData } from './buildCartesianData';

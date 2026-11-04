@@ -2,7 +2,7 @@ import { BarChart, BoxplotChart, HeatmapChart, LineChart, PieChart, ScatterChart
 import { DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
-import type { DrawableChartData } from '../../../../application/charts/model/ChartData';
+import type { DrawableChartData } from '../../../../application/charts/model/data/ChartData';
 import { LIGHT_PALETTE } from '../palette/chartPalettes';
 import { readLivePalette } from '../palette/readLivePalette';
 import type { ChartRenderer } from '../renderer/ChartRenderer';

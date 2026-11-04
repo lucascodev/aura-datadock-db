@@ -1,8 +1,8 @@
 import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { EmptyChartData, HeatmapChartData } from '../model/ChartData';
-import type { ChartInput } from '../model/ChartInput';
-import type { ColumnKind } from '../model/ColumnKind';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { EmptyChartData, HeatmapChartData } from '../model/data/ChartData';
+import type { ChartInput } from '../model/config/ChartInput';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { orderLabels } from '../support/compareAxisValues';
 import { createTally, tallyNotices } from '../support/createRowTally';

@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 import { encodeRows } from '../../../../application/export/encoders/encodeRows';
-import { ROW_EXPORT_FORMATS } from '../../../../application/export/formats/rowExportFormats';
-import type { RowExportFormatId } from '../../../../application/export/formats/RowExportFormat';
-import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
+import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
+import type { RowExportFormatId } from '../../../../application/export/model/RowExportFormat';
+import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import type { DriverId } from '../../../../domain/driver/model/DriverId';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import { saveImageFile } from '../shared/saveImageFile';

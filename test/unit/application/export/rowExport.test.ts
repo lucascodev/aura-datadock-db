@@ -4,7 +4,7 @@ import { createJsonEncoder, createNdjsonEncoder } from '../../../../src/applicat
 import { createMarkdownEncoder } from '../../../../src/application/export/encoders/createMarkdownEncoder';
 import { createSqlInsertEncoder } from '../../../../src/application/export/encoders/createSqlInsertEncoder';
 import { encodeRows, writeRowBatches } from '../../../../src/application/export/encoders/encodeRows';
-import { ROW_EXPORT_FORMATS } from '../../../../src/application/export/formats/rowExportFormats';
+import { ROW_EXPORT_FORMATS } from '../../../../src/application/export/constants/rowExportFormats';
 import { uniqueColumnNames } from '../../../../src/application/format/uniqueColumnNames';
 import type { RowBatch } from '../../../../src/domain/database/model/RowBatch';
 

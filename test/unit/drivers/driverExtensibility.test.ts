@@ -5,11 +5,11 @@ import { SavedConnections } from '../../../src/application/connections/saved/Sav
 import { buildRowChangeStatements } from '../../../src/application/editing/rows/buildRowChangeStatements';
 import { buildTablePageQuery } from '../../../src/application/editing/browsing/buildTablePageQuery';
 import { buildRenameTable } from '../../../src/application/editing/structure/buildStructureChange';
-import { toSqlLiteral } from '../../../src/application/sql/toSqlLiteral';
+import { toSqlLiteral } from '../../../src/application/sql/building/toSqlLiteral';
 import { renderDdl } from '../../../src/application/schema/rendering/renderDdl';
 import { chooseDefaultNamespace } from '../../../src/application/schema/loading/chooseDefaultNamespace';
 import { scanStatements } from '../../../src/application/query/analysis/splitStatements';
-import { suggestCompletions } from '../../../src/application/completion/suggestCompletions';
+import { suggestCompletions } from '../../../src/application/completion/suggestions/suggestCompletions';
 import { detectDatabaseKind } from '../../../src/infrastructure/docker/discovery/detectDatabaseKind';
 import { resolveCredentials } from '../../../src/infrastructure/docker/discovery/resolveCredentials';
 import { listDrivers } from '../../../src/drivers/catalog/driverCatalog';

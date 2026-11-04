@@ -1,7 +1,7 @@
 import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { EmptyChartData, PieChartData } from '../model/ChartData';
-import type { ChartInput } from '../model/ChartInput';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { EmptyChartData, PieChartData } from '../model/data/ChartData';
+import type { ChartInput } from '../model/config/ChartInput';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { foldByWeight, otherLabel } from '../support/foldByWeight';
 import { createTally, tallyNotices } from '../support/createRowTally';

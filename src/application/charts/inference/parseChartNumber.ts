@@ -1,4 +1,4 @@
-import type { ChartCell } from '../model/ChartInput';
+import type { ChartCell } from '../model/config/ChartInput';
 
 const NUMBER_PATTERN = /^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
 const INTEGER_PATTERN = /^[+-]?\d+$/;

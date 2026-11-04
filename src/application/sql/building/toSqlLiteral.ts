@@ -1,5 +1,5 @@
-import type { DriverId } from '../../domain/driver/model/DriverId';
-import { getDriver } from '../../drivers/catalog/driverCatalog';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import { getDriver } from '../../../drivers/catalog/driverCatalog';
 
 export function toSqlLiteral(kind: DriverId, value: unknown): string {
   if (value === null || value === undefined) {

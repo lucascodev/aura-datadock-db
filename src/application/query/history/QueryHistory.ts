@@ -1,4 +1,4 @@
-import type { QueryHistoryEntry } from './QueryHistoryEntry';
+import type { QueryHistoryEntry } from '../model/QueryHistoryEntry';
 import type { KeyValueStore } from '../ports/KeyValueStore';
 
 const STORAGE_KEY = 'auraDataDockDb.queryHistory';

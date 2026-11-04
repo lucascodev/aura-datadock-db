@@ -1,4 +1,4 @@
-import type { ChartConfig } from '../../../application/charts/model/ChartConfig';
+import type { ChartConfig } from '../../../application/charts/model/config/ChartConfig';
 import { summarizeSql } from '../../../application/query/analysis/summarizeSql';
 import type { ExportFormatView, ResultSetView, ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../contracts/ResultsMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';

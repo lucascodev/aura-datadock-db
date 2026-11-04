@@ -1,8 +1,8 @@
 import type * as vscode from 'vscode';
-import type { AiProvider } from '../application/ai/AiProvider';
-import type { AiProviderKind } from '../application/ai/AiProviderKind';
+import type { AiProvider } from '../application/ai/ports/AiProvider';
+import type { AiProviderKind } from '../application/ai/model/AiProviderKind';
 import { AnthropicProvider } from '../infrastructure/ai/AnthropicProvider';
-import { apiKeySecretName } from '../application/ai/apiKeySecretName';
+import { apiKeySecretName } from '../application/ai/secrets/apiKeySecretName';
 import { OllamaProvider } from '../infrastructure/ai/OllamaProvider';
 import { OpenAiProvider } from '../infrastructure/ai/OpenAiProvider';
 import { VsCodeLmProvider } from '../presentation/vscode/ai/VsCodeLmProvider';

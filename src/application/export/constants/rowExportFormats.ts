@@ -2,7 +2,7 @@ import { createCsvEncoder } from '../encoders/createCsvEncoder';
 import { createJsonEncoder, createNdjsonEncoder } from '../encoders/createJsonEncoder';
 import { createMarkdownEncoder } from '../encoders/createMarkdownEncoder';
 import { createSqlInsertEncoder } from '../encoders/createSqlInsertEncoder';
-import type { RowExportFormat } from './RowExportFormat';
+import type { RowExportFormat } from '../model/RowExportFormat';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export const ROW_EXPORT_FORMATS: readonly RowExportFormat[] = [

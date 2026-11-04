@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import type { QueryHistory } from '../../../../application/query/history/QueryHistory';
-import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
+import type { QueryHistoryEntry } from '../../../../application/query/model/QueryHistoryEntry';
 import { summarizeSql } from '../../../../application/query/analysis/summarizeSql';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

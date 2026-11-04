@@ -1,4 +1,4 @@
-import type { ConnectionInput } from '../../../application/connections/saved/ConnectionInput';
+import type { ConnectionInput } from '../../../application/connections/model/ConnectionInput';
 import { parseConnectionString } from '../../../application/connections/saved/parseConnectionString';
 import { suggestProtection } from '../../../application/connections/guidance/suggestProtection';
 import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';

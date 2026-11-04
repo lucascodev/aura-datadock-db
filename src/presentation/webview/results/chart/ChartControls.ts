@@ -1,7 +1,7 @@
-import { CHART_KINDS, getChartKind } from '../../../../application/charts/model/chartKinds';
-import type { ChartConfig } from '../../../../application/charts/model/ChartConfig';
-import type { ChartKind } from '../../../../application/charts/model/ChartKind';
-import type { ColumnInfo } from '../../../../application/charts/model/ColumnKind';
+import { CHART_KINDS, getChartKind } from '../../../../application/charts/support/chartKinds';
+import type { ChartConfig } from '../../../../application/charts/model/config/ChartConfig';
+import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
+import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
 import { createElement } from '../../shared/createElement';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

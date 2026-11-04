@@ -1,4 +1,4 @@
-import type { ColumnKind } from '../model/ColumnKind';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { parseChartNumber } from '../inference/parseChartNumber';
 import { parseChartTemporal } from '../inference/parseChartTemporal';
 

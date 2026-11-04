@@ -2,11 +2,11 @@ import { buildChartData } from '../../../../application/charts/builders/buildCha
 import { adaptConfig } from '../../../../application/charts/inference/adaptConfig';
 import { describeColumns } from '../../../../application/charts/inference/inferColumnKind';
 import { suggestChart } from '../../../../application/charts/inference/suggestChart';
-import type { ChartConfig } from '../../../../application/charts/model/ChartConfig';
-import type { ChartData, DrawableChartData } from '../../../../application/charts/model/ChartData';
-import type { ChartInput } from '../../../../application/charts/model/ChartInput';
-import type { ChartKind } from '../../../../application/charts/model/ChartKind';
-import type { ColumnInfo } from '../../../../application/charts/model/ColumnKind';
+import type { ChartConfig } from '../../../../application/charts/model/config/ChartConfig';
+import type { ChartData, DrawableChartData } from '../../../../application/charts/model/data/ChartData';
+import type { ChartInput } from '../../../../application/charts/model/config/ChartInput';
+import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
+import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
 import { createElement } from '../../shared/createElement';
 import type { ChartRenderer } from '../../chart/renderer/ChartRenderer';
 import { renderChartControls } from './ChartControls';

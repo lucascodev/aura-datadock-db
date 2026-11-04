@@ -1,4 +1,4 @@
-import type { DiagramPalette } from './DiagramPalette';
+import type { DiagramPalette } from '../model/DiagramPalette';
 
 export const EXPORT_PALETTE: DiagramPalette = {
   background: '#ffffff',

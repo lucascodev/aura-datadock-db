@@ -1,11 +1,11 @@
 import { randomUUID } from 'node:crypto';
 import * as vscode from 'vscode';
-import type { ConnectionInput } from '../../../../application/connections/saved/ConnectionInput';
+import type { ConnectionInput } from '../../../../application/connections/model/ConnectionInput';
 import { explainConnectionFailure } from '../../../../application/connections/guidance/explainConnectionFailure';
 import type { SavedConnections } from '../../../../application/connections/saved/SavedConnections';
 import { toConnectionTarget } from '../../../../application/connections/saved/toConnectionTarget';
 import { validateConnectionInput } from '../../../../application/connections/saved/validateConnectionInput';
-import type { ConnectionValidation } from '../../../../application/connections/saved/ConnectionValidation';
+import type { ConnectionValidation } from '../../../../application/connections/model/ConnectionValidation';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
 import type { SavedConnection } from '../../../../domain/connection/model/SavedConnection';

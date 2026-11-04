@@ -9,9 +9,9 @@ import {
   MAX_LABEL_CHARACTERS,
   MAX_TYPE_CHARACTERS,
   ROW_HEIGHT,
-} from '../layout/diagramMetrics';
+} from '../constants/diagramMetrics';
 import type { DiagramColumn, DiagramEdge, DiagramModel, DiagramPositions, DiagramTable } from '../model/DiagramModel';
-import type { DiagramPalette } from './DiagramPalette';
+import type { DiagramPalette } from '../model/DiagramPalette';
 import { routeEdge } from '../layout/routeEdge';
 import { truncateLabel } from '../layout/truncateLabel';
 

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ConnectionInput } from '../../../../src/application/connections/saved/ConnectionInput';
+import type { ConnectionInput } from '../../../../src/application/connections/model/ConnectionInput';
 import { SavedConnections } from '../../../../src/application/connections/saved/SavedConnections';
 import type { ConnectionTarget } from '../../../../src/domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../src/domain/database/ports/DatabaseAdapter';

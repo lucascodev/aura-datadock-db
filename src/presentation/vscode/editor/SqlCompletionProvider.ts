@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import type { CompletionSuggestion, CompletionSuggestionKind } from '../../../application/completion/CompletionSuggestion';
-import { suggestCompletions } from '../../../application/completion/suggestCompletions';
+import type { CompletionSuggestion, CompletionSuggestionKind } from '../../../application/completion/model/CompletionSuggestion';
+import { suggestCompletions } from '../../../application/completion/suggestions/suggestCompletions';
 import { chooseDefaultNamespace } from '../../../application/schema/loading/chooseDefaultNamespace';
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';

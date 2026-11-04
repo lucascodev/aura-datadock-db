@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
+import type { QueryHistoryEntry } from '../../../../application/query/model/QueryHistoryEntry';
 import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
 import type { ColumnNode } from '../../tree/nodes/ColumnNode';
 import type { NamespaceNode } from '../../tree/nodes/NamespaceNode';

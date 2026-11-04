@@ -1,7 +1,7 @@
-import { renderDbml } from './renderDbml';
-import { renderDdl } from './renderDdl';
-import { renderMermaidEr } from './renderMermaidEr';
-import type { SchemaExportFormat } from './SchemaExportFormat';
+import { renderDbml } from '../rendering/renderDbml';
+import { renderDdl } from '../rendering/renderDdl';
+import { renderMermaidEr } from '../rendering/renderMermaidEr';
+import type { SchemaExportFormat } from '../model/SchemaExportFormat';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export const SCHEMA_EXPORT_FORMATS: readonly SchemaExportFormat[] = [

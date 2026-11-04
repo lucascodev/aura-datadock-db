@@ -1,5 +1,5 @@
 import { renderTextTable } from '../../../application/editing/browsing/renderTextTable';
-import type { FilterOperatorId } from '../../../application/editing/browsing/tableFilters';
+import type { FilterOperatorId } from '../../../application/editing/model/tableFilters';
 import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage } from '../../contracts/TableEditorMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';

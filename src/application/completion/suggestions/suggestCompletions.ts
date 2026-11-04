@@ -1,13 +1,13 @@
-import type { DriverId } from '../../domain/driver/model/DriverId';
-import type { NamespaceSchema } from '../../domain/schema/model/NamespaceSchema';
-import type { TableDefinition } from '../../domain/schema/model/TableDefinition';
-import { quoteIfNeeded } from '../sql/quoteIfNeeded';
-import { statementAtOffset } from '../query/analysis/statementAtOffset';
-import { scanStatements } from '../query/analysis/splitStatements';
-import type { CompletionSuggestion } from './CompletionSuggestion';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
+import { quoteIfNeeded } from '../../sql/building/quoteIfNeeded';
+import { statementAtOffset } from '../../query/analysis/statementAtOffset';
+import { scanStatements } from '../../query/analysis/splitStatements';
+import type { CompletionSuggestion } from '../model/CompletionSuggestion';
 import { parseTableReferences, unquote } from './parseTableReferences';
-import type { TableReference } from './TableReference';
-import { SQL_KEYWORDS } from './sqlKeywords';
+import type { TableReference } from '../model/TableReference';
+import { SQL_KEYWORDS } from '../constants/sqlKeywords';
 
 interface CompletionRequest {
   readonly sql: string;

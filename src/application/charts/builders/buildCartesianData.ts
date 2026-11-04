@@ -1,13 +1,13 @@
 import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { CartesianAxisType, CartesianChartData, CartesianSeriesKind, EmptyChartData } from '../model/ChartData';
-import type { ChartInput } from '../model/ChartInput';
-import type { ColumnKind } from '../model/ColumnKind';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { CartesianAxisType, CartesianChartData, CartesianSeriesKind, EmptyChartData } from '../model/data/ChartData';
+import type { ChartInput } from '../model/config/ChartInput';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { axisPosition, orderLabels } from '../support/compareAxisValues';
 import { foldByWeight, otherLabel } from '../support/foldByWeight';
 import { createTally, tallyNotices } from '../support/createRowTally';
-import type { RowTally } from '../support/RowTally';
+import type { RowTally } from '../model/data/RowTally';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const MAX_SERIES = 8;

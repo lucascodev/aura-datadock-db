@@ -4,9 +4,9 @@ import { describeColumns, inferColumnKind } from '../../../../src/application/ch
 import { losesPrecision, parseChartNumber } from '../../../../src/application/charts/inference/parseChartNumber';
 import { parseChartTemporal } from '../../../../src/application/charts/inference/parseChartTemporal';
 import { suggestChart } from '../../../../src/application/charts/inference/suggestChart';
-import type { ChartConfig } from '../../../../src/application/charts/model/ChartConfig';
-import { CHART_KINDS } from '../../../../src/application/charts/model/chartKinds';
-import type { ColumnInfo } from '../../../../src/application/charts/model/ColumnKind';
+import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';
+import { CHART_KINDS } from '../../../../src/application/charts/support/chartKinds';
+import type { ColumnInfo } from '../../../../src/application/charts/model/config/ColumnKind';
 
 const number = (name: string): ColumnInfo => ({ name, kind: 'number' });
 const temporal = (name: string): ColumnInfo => ({ name, kind: 'temporal' });

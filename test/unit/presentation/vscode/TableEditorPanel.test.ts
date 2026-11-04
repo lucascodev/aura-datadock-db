@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { RowChange } from '../../../../src/application/editing/rows/RowChange';
+import type { RowChange } from '../../../../src/application/editing/model/RowChange';
 import type { ConnectionTarget } from '../../../../src/domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../src/domain/database/ports/DatabaseAdapter';
 import { TableEditors } from '../../../../src/presentation/vscode/panels/table/TableEditors';

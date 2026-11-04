@@ -1,6 +1,6 @@
-import type { ChartKind } from './ChartKind';
+import type { ChartKind } from '../model/config/ChartKind';
 import { l10n } from '../../../domain/i18n/translation/l10n';
-import type { ChartKindDefinition } from './ChartKindDefinition';
+import type { ChartKindDefinition } from '../model/config/ChartKindDefinition';
 
 export const CHART_KINDS: readonly ChartKindDefinition[] = [
   { id: 'line', label: () => l10n.t('Line'), x: 'any', y: 'many', group: 'optional', groupLabel: () => l10n.t('Series') },

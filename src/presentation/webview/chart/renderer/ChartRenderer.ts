@@ -1,4 +1,4 @@
-import type { DrawableChartData } from '../../../../application/charts/model/ChartData';
+import type { DrawableChartData } from '../../../../application/charts/model/data/ChartData';
 
 export interface ChartRenderer {
   render(data: DrawableChartData): void;

@@ -1,4 +1,4 @@
-import { HEADER_HEIGHT, ROW_HEIGHT } from './diagramMetrics';
+import { HEADER_HEIGHT, ROW_HEIGHT } from '../constants/diagramMetrics';
 import type { DiagramEdge, DiagramPoint, DiagramPositions, DiagramTable } from '../model/DiagramModel';
 
 const MIN_CONTROL_OFFSET = 44;

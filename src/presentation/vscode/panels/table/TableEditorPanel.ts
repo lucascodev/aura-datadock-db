@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
-import { selectTableNeighborhood } from '../../../../application/diagram/model/selectTableNeighborhood';
+import { selectTableNeighborhood } from '../../../../application/diagram/building/selectTableNeighborhood';
 import { buildRowChangeStatements } from '../../../../application/editing/rows/buildRowChangeStatements';
 import { buildTablePageQuery, buildTableSelect } from '../../../../application/editing/browsing/buildTablePageQuery';
 import { describeEditability, isColumnEditable } from '../../../../application/editing/rows/describeEditability';
-import type { RowChange } from '../../../../application/editing/rows/RowChange';
-import type { TablePageRequest, TableRowSelection } from '../../../../application/editing/browsing/tableFilters';
+import type { RowChange } from '../../../../application/editing/model/RowChange';
+import type { TablePageRequest, TableRowSelection } from '../../../../application/editing/model/tableFilters';
 import { formatValue } from '../../../../application/format/formatValue';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';

@@ -1,4 +1,4 @@
-import type { CellValue } from '../../domain/database/model/ParameterizedStatement';
+import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
 
 export interface BoundValue {
   readonly value: CellValue;

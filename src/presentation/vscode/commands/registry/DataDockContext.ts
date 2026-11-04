@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { AiProvider } from '../../../../application/ai/AiProvider';
+import type { AiProvider } from '../../../../application/ai/ports/AiProvider';
 import type { SavedConnections } from '../../../../application/connections/saved/SavedConnections';
 import type { ConnectionManager } from '../../../../application/connections/lifecycle/ConnectionManager';
 import type { QueryDocumentBindings } from '../../../../application/query/documents/QueryDocumentBindings';

@@ -5,7 +5,7 @@ import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAda
 import { explainConnectionFailure } from '../guidance/explainConnectionFailure';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { PasswordStore } from '../ports/PasswordStore';
-import type { ConnectionManagerOptions } from './ConnectionManagerOptions';
+import type { ConnectionManagerOptions } from '../ports/ConnectionManagerOptions';
 import { MissingPasswordError } from '../errors/MissingPasswordError';
 
 type Listener = () => void;

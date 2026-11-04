@@ -3,7 +3,7 @@ import { buildExplain } from '../../../../src/application/query/analysis/buildEx
 import { QueryDocumentBindings } from '../../../../src/application/query/documents/QueryDocumentBindings';
 import { QueryHistory } from '../../../../src/application/query/history/QueryHistory';
 import type { KeyValueStore } from '../../../../src/application/query/ports/KeyValueStore';
-import type { QueryHistoryEntry } from '../../../../src/application/query/history/QueryHistoryEntry';
+import type { QueryHistoryEntry } from '../../../../src/application/query/model/QueryHistoryEntry';
 import { QueryRunTracker } from '../../../../src/application/query/execution/QueryRunTracker';
 import { runStatements } from '../../../../src/application/query/execution/runStatements';
 import { summarizeOutcomes } from '../../../../src/application/query/execution/summarizeOutcomes';

@@ -1,7 +1,7 @@
-import type { ChartNotice } from '../model/ChartNotice';
+import type { ChartNotice } from '../model/data/ChartNotice';
 import { otherLabel } from './foldByWeight';
 import { l10n } from '../../../domain/i18n/translation/l10n';
-import type { RowTally } from './RowTally';
+import type { RowTally } from '../model/data/RowTally';
 
 export function createTally(): RowTally {
   return { unusable: 0, merged: 0, folded: 0, isApproximate: false };

@@ -3,9 +3,9 @@ import type { ParameterizedStatement } from '../../../domain/database/model/Para
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
-import { bound, joinParts, toStatement } from '../../sql/statementTemplate';
-import type { TemplatePart } from '../../sql/TemplatePart';
-import type { TableFilter, TablePageRequest, TableRowSelection } from './tableFilters';
+import { bound, joinParts, toStatement } from '../../sql/building/statementTemplate';
+import type { TemplatePart } from '../../sql/model/TemplatePart';
+import type { TableFilter, TablePageRequest, TableRowSelection } from '../model/tableFilters';
 import { validateWhereExpression } from './validateWhereExpression';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 

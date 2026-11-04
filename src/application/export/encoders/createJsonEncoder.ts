@@ -1,5 +1,5 @@
 import { uniqueColumnNames } from '../../format/uniqueColumnNames';
-import type { RowEncoder } from './RowEncoder';
+import type { RowEncoder } from '../model/RowEncoder';
 import { toExportValue } from './toExportValue';
 
 export function toJsonRow(columnNames: readonly string[], row: readonly unknown[]): Record<string, unknown> {

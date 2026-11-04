@@ -1,5 +1,5 @@
-import type { RowChange } from '../../../../application/editing/rows/RowChange';
-import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
+import type { RowChange } from '../../../../application/editing/model/RowChange';
+import type { QueryHistoryEntry } from '../../../../application/query/model/QueryHistoryEntry';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
 import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';

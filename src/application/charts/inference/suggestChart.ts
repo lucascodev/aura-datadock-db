@@ -1,5 +1,5 @@
-import type { ChartConfig } from '../model/ChartConfig';
-import type { ColumnInfo, ColumnKind } from '../model/ColumnKind';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { ColumnInfo, ColumnKind } from '../model/config/ColumnKind';
 
 const SINGLE_VALUE = 1;
 

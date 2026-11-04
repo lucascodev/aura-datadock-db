@@ -1,8 +1,8 @@
-import type { DriverId } from '../../domain/driver/model/DriverId';
-import type { CellValue, ParameterizedStatement } from '../../domain/database/model/ParameterizedStatement';
-import { getDriver } from '../../drivers/catalog/driverCatalog';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { CellValue, ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
+import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { toSqlLiteral } from './toSqlLiteral';
-import type { BoundValue, TemplatePart } from './TemplatePart';
+import type { BoundValue, TemplatePart } from '../model/TemplatePart';
 
 export function bound(value: CellValue): BoundValue {
   return { value };
