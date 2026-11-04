@@ -24,7 +24,7 @@ const connections = new ConnectionManager(
   { readOnly: () => true, openAdapter },
 );
 
-const server = new McpServer({ name: 'aura-datadock-db', version: '0.1.0' });
+const server = new McpServer({ name: 'aura-datadock-db', version: '0.1.1' });
 
 server.registerTool(
   'list_databases',
