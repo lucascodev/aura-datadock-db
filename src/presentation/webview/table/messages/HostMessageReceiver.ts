@@ -30,6 +30,9 @@ export class HostMessageReceiver {
         this.screen.showStatus(l10n.t('The SQL was sent. See the outcome in the results panel.'), 'success');
         this.screen.loadPage();
         return;
+      case 'chartFinished':
+        this.finishChart();
+        return;
       case 'failed':
         this.fail(message.message);
         return;
@@ -76,6 +79,12 @@ export class HostMessageReceiver {
   private showCustomResult(result: Extract<TableEditorHostMessage, { type: 'customResult' }>['result']): void {
     this.screen.state.applyCustomResult(result);
     this.screen.showStatus('', 'success');
+    this.screen.render();
+  }
+
+  private finishChart(): void {
+    this.screen.showStatus(l10n.t('The SQL was sent. See the outcome in the results panel.'), 'success');
+    this.screen.state.isBusy = false;
     this.screen.render();
   }
 

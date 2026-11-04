@@ -31,6 +31,7 @@ export class FilterBar {
     this.input.placeholder = l10n.t('Enter an SQL expression to filter the rows (use Ctrl+Space)');
     this.input.spellcheck = false;
     this.input.setAttribute('aria-label', l10n.t('SQL expression to filter the rows'));
+    this.input.addEventListener('input', () => this.forgetFilterWhenEmptied());
     this.input.addEventListener('keydown', (event) => this.handleKeyDown(event));
     this.input.addEventListener('blur', () => this.hideSuggestions());
     this.suggestionList.hidden = true;
@@ -69,6 +70,12 @@ export class FilterBar {
       });
     }));
     this.chips.hidden = this.state.filters.length === 0;
+  }
+
+  private forgetFilterWhenEmptied(): void {
+    if (!this.input.value.trim()) {
+      this.state.whereExpression = '';
+    }
   }
 
   private apply(): void {

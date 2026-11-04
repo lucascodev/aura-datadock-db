@@ -221,7 +221,7 @@ export class TableEditorPanel {
         return;
       }
       const hasRun = await this.dependencies.runChart(this.target, sql);
-      this.post(hasRun ? { type: 'scriptFinished' } : { type: 'failed', message: '' });
+      this.post(hasRun ? { type: 'chartFinished' } : { type: 'failed', message: '' });
     } catch (error) {
       this.post({ type: 'failed', message: toMessage(error) });
     }
