@@ -9,6 +9,7 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 ### Adicionado
 
 - Capturas de tela no README, com dados fictícios.
+- Política de segurança, com o caminho para relatar uma vulnerabilidade em privado.
 
 ### Corrigido
 

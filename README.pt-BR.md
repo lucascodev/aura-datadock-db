@@ -244,6 +244,8 @@ Chaves de API são salvas com o comando **Aura DataDock DB: Definir chave de API
 - Nos exports em CSV, uma célula de texto que uma planilha executaria como fórmula começa com `'`. Os outros formatos mantêm o valor exato.
 - O modo TLS **Obrigatório** criptografa sem validar o certificado, então use **Verificado** fora de uma rede confiável. Um endpoint Docker `tcp://` não é criptografado.
 
+Para relatar uma vulnerabilidade, veja [SECURITY.pt-BR.md](SECURITY.pt-BR.md).
+
 ## Usando o servidor MCP fora do VS Code
 
 No VS Code, ligue `auraDataDockDb.mcp.enabled` nas configurações de usuário para registrar o servidor. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows, em que `0.1.1` é a versão instalada:

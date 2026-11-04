@@ -244,6 +244,8 @@ API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** comman
 - In CSV exports, a text cell that a spreadsheet would run as a formula starts with `'`. Other formats keep the exact value.
 - The TLS mode **Required** encrypts without validating the certificate, so use **Verified** outside a trusted network. A `tcp://` Docker endpoint is not encrypted.
 
+To report a vulnerability, see [SECURITY.md](SECURITY.md).
+
 ## Using the MCP server outside VS Code
 
 In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows, where `0.1.1` is the installed version:

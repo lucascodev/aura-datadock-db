@@ -9,6 +9,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 ### Added
 
 - Screenshots in the README, with fictional data.
+- Security policy, with how to report a vulnerability in private.
 
 ### Fixed
 
