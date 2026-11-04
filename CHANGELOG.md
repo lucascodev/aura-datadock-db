@@ -8,6 +8,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ### Added
 
+- Brand identity: extension icon, activity bar icon, Marketplace banner color, README logo and GitHub social preview, in `docs/brand`.
 - Interface and documentation in English and Brazilian Portuguese.
 - `THIRD_PARTY_NOTICES.md`, with the licenses of the packages included in the extension, generated on every production build from what goes into the bundles.
 - **DB Schema** section, with schemas, tables, columns, indexes and foreign keys of the selected connection, table filter and menu actions.
@@ -39,6 +40,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ### Changed
 
+- ER diagram exports (SVG and PNG) use the brand colors.
 - Settings that choose where the extension connects or sends data only apply from user settings, and a repository can no longer turn off `readOnly` or `confirmDestructiveQueries`.
 - The MCP server is off by default. The extension does not run in untrusted workspaces.
 - Read-only mode is stricter: conditional comments count as SQL, functions that act on the server count as writes, and on Postgres each read runs in a read-only transaction.

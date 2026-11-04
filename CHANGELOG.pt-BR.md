@@ -8,6 +8,7 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 
 ### Adicionado
 
+- Identidade visual: ícone da extensão, ícone da barra de atividades, cor do banner do Marketplace, logo do README e imagem de compartilhamento do GitHub, em `docs/brand`.
 - Interface e documentação em inglês e em português do Brasil.
 - `THIRD_PARTY_NOTICES.md`, com as licenças dos pacotes incluídos na extensão, gerado a cada build de produção a partir do que entra nos bundles.
 - Seção **DB Schema**, com schemas, tabelas, colunas, índices e chaves estrangeiras da conexão selecionada, filtro de tabelas e ações por menu.
@@ -39,6 +40,7 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 
 ### Alterado
 
+- O diagrama ER exportado (SVG e PNG) usa as cores da marca.
 - As configurações que escolhem onde a extensão conecta ou envia dados só valem nas configurações de usuário, e um repositório não consegue mais desligar `readOnly` nem `confirmDestructiveQueries`.
 - O servidor MCP vem desligado por padrão. A extensão não roda em workspaces não confiáveis.
 - O modo somente leitura ficou mais rígido: comentários condicionais contam como SQL, funções que agem no servidor contam como escrita e, no Postgres, cada leitura roda em uma transação somente leitura.
