@@ -1,6 +1,7 @@
 {
   "(default)": "(padrão)",
   "(null)": "(null)",
+  "This field only takes a condition, such as id > 10. To run a whole query, use Show SQL.": "Este campo aceita só uma condição, como id > 10. Para executar uma query inteira, use Mostrar SQL.",
   "{0} · AI: {1}": "{0} · IA: {1}",
   "{0} ({1})": "{0} ({1})",
   "{0} ({1}) · Ctrl+Enter runs the selection or the statement under the cursor, Ctrl+Shift+Enter runs the file": "{0} ({1}) · Ctrl+Enter executa a seleção ou o comando sob o cursor, Ctrl+Shift+Enter executa o arquivo",
