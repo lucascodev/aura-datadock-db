@@ -1,18 +1,7 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { ResolvedCredentials } from '../../../domain/connection/model/ResolvedCredentials';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import { l10n } from '../../../domain/i18n/translation/l10n';
-
-export function parseEnv(entries: readonly string[] = []): Record<string, string> {
-  const env: Record<string, string> = {};
-  for (const entry of entries) {
-    const index = entry.indexOf('=');
-    if (index > 0) {
-      env[entry.slice(0, index)] = entry.slice(index + 1);
-    }
-  }
-  return env;
-}
 
 export function resolveCredentials(kind: DriverId, env: Record<string, string>): ResolvedCredentials {
   const docker = getDriver(kind).docker;

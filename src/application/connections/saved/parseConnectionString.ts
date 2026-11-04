@@ -1,6 +1,6 @@
 import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { findDriverByScheme } from '../../../drivers/catalog/driverCatalog';
+import { findDriverByScheme } from '../../../drivers/catalog/findDriverByScheme';
 
 interface ParsedConnectionString {
   readonly kind: DriverId;

@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { selectTableNeighborhood } from '../../../../src/application/diagram/building/selectTableNeighborhood';
-import { buildTablePageQuery, buildTableSelect } from '../../../../src/application/editing/browsing/buildTablePageQuery';
-import { duplicateRowValues } from '../../../../src/application/editing/rows/duplicateRow';
+import { buildTablePageQuery } from '../../../../src/application/editing/tableQuery/buildTablePageQuery';
+import { buildTableSelect } from '../../../../src/application/editing/tableQuery/buildTableSelect';
+import { duplicateRowValues } from '../../../../src/application/editing/rows/duplicateRowValues';
 import { renderTextTable } from '../../../../src/application/editing/browsing/renderTextTable';
-import { applyFilterCompletion, suggestFilterCompletions } from '../../../../src/application/editing/browsing/suggestFilterCompletions';
+import { applyFilterCompletion } from '../../../../src/application/editing/browsing/applyFilterCompletion';
+import { suggestFilterCompletions } from '../../../../src/application/editing/browsing/suggestFilterCompletions';
 import { validateWhereExpression } from '../../../../src/application/editing/browsing/validateWhereExpression';
 import { findIncomingReferences } from '../../../../src/application/schema/relationships/findIncomingReferences';
 import { orders, shopSchema } from '../../../fixtures/shopSchema';

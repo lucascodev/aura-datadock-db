@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { adaptConfig } from '../../../../src/application/charts/inference/adaptConfig';
-import { describeColumns, inferColumnKind } from '../../../../src/application/charts/inference/inferColumnKind';
-import { losesPrecision, parseChartNumber } from '../../../../src/application/charts/inference/parseChartNumber';
+import { describeColumns } from '../../../../src/application/charts/inference/describeColumns';
+import { inferColumnKind } from '../../../../src/application/charts/inference/inferColumnKind';
+import { losesPrecision } from '../../../../src/application/charts/inference/losesPrecision';
+import { parseChartNumber } from '../../../../src/application/charts/inference/parseChartNumber';
 import { parseChartTemporal } from '../../../../src/application/charts/inference/parseChartTemporal';
 import { suggestChart } from '../../../../src/application/charts/inference/suggestChart';
 import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';

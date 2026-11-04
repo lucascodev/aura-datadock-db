@@ -1,28 +1,25 @@
 import { describe, expect, it } from 'vitest';
 import { buildRowChangeStatements } from '../../../../src/application/editing/rows/buildRowChangeStatements';
-import {
-  buildAddColumn,
-  buildCreateIndex,
-  buildCreateTable,
-  buildDropColumn,
-  buildDropTable,
-  buildRenameColumn,
-  buildRenameTable,
-  buildTruncateTable,
-} from '../../../../src/application/editing/structure/buildStructureChange';
-import { buildTablePageQuery } from '../../../../src/application/editing/browsing/buildTablePageQuery';
-import { describeEditability, isColumnEditable } from '../../../../src/application/editing/rows/describeEditability';
-import {
-  addInsert,
-  clearInsertValue,
-  editCell,
-  editInsert,
-  findUpdate,
-  isMarkedForDeletion,
-  removeInsert,
-  rowKeyId,
-  toggleDeletion,
-} from '../../../../src/application/editing/rows/pendingChanges';
+import { buildAddColumn } from '../../../../src/application/editing/structure/buildAddColumn';
+import { buildCreateIndex } from '../../../../src/application/editing/structure/buildCreateIndex';
+import { buildCreateTable } from '../../../../src/application/editing/structure/buildCreateTable';
+import { buildDropColumn } from '../../../../src/application/editing/structure/buildDropColumn';
+import { buildDropTable } from '../../../../src/application/editing/structure/buildDropTable';
+import { buildRenameColumn } from '../../../../src/application/editing/structure/buildRenameColumn';
+import { buildRenameTable } from '../../../../src/application/editing/structure/buildRenameTable';
+import { buildTruncateTable } from '../../../../src/application/editing/structure/buildTruncateTable';
+import { buildTablePageQuery } from '../../../../src/application/editing/tableQuery/buildTablePageQuery';
+import { describeEditability } from '../../../../src/application/editing/rows/describeEditability';
+import { isColumnEditable } from '../../../../src/application/editing/rows/isColumnEditable';
+import { addInsert } from '../../../../src/application/editing/pendingInserts/addInsert';
+import { clearInsertValue } from '../../../../src/application/editing/pendingInserts/clearInsertValue';
+import { editCell } from '../../../../src/application/editing/pendingUpdates/editCell';
+import { editInsert } from '../../../../src/application/editing/pendingInserts/editInsert';
+import { findUpdate } from '../../../../src/application/editing/pendingUpdates/findUpdate';
+import { isMarkedForDeletion } from '../../../../src/application/editing/pendingUpdates/isMarkedForDeletion';
+import { removeInsert } from '../../../../src/application/editing/pendingInserts/removeInsert';
+import { rowKeyId } from '../../../../src/application/editing/pendingUpdates/rowKeyId';
+import { toggleDeletion } from '../../../../src/application/editing/pendingUpdates/toggleDeletion';
 import type { TableDefinition } from '../../../../src/domain/schema/model/TableDefinition';
 import { assertExpectedRows } from '../../../../src/domain/database/rules/assertExpectedRows';
 import { auditLog, customers, orderItems, orders, paidOrders } from '../../../fixtures/shopSchema';

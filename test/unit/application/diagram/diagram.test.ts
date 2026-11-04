@@ -3,7 +3,8 @@ import { buildDiagram } from '../../../../src/application/diagram/building/build
 import type { DiagramModel, DiagramPositions } from '../../../../src/application/diagram/model/DiagramModel';
 import { EXPORT_PALETTE } from '../../../../src/application/diagram/constants/exportPalette';
 import { layoutDiagram } from '../../../../src/application/diagram/layout/layoutDiagram';
-import { measureDiagram, renderDiagramSvg } from '../../../../src/application/diagram/render/renderDiagramSvg';
+import { measureDiagram } from '../../../../src/application/diagram/render/measureDiagram';
+import { renderDiagramSvg } from '../../../../src/application/diagram/render/renderDiagramSvg';
 import { routeEdge } from '../../../../src/application/diagram/layout/routeEdge';
 import type { NamespaceSchema } from '../../../../src/domain/schema/model/NamespaceSchema';
 import { shopSchema } from '../../../fixtures/shopSchema';

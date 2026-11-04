@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { parseEnv, resolveCredentials } from '../../../../src/infrastructure/docker/discovery/resolveCredentials';
+import { parseEnv } from '../../../../src/infrastructure/docker/discovery/parseEnv';
+import { resolveCredentials } from '../../../../src/infrastructure/docker/discovery/resolveCredentials';
 
 describe('parseEnv', () => {
   it('keeps values that contain equals signs', () => {

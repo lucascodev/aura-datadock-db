@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildChartData } from '../../src/application/charts/builders/buildChartData';
-import { describeColumns } from '../../src/application/charts/inference/inferColumnKind';
+import { describeColumns } from '../../src/application/charts/inference/describeColumns';
 import { suggestChart } from '../../src/application/charts/inference/suggestChart';
 import type { ChartInput } from '../../src/application/charts/model/config/ChartInput';
 import { toConnectionTarget } from '../../src/application/connections/saved/toConnectionTarget';

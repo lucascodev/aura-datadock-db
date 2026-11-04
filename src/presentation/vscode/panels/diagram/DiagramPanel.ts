@@ -5,10 +5,12 @@ import type { SchemaExportFormatId } from '../../../../application/schema/model/
 import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/constants/schemaExportFormats';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { saveImageFile } from '../shared/saveImageFile';
-import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
+import { renderWebviewHtml } from '../shared/renderWebviewHtml';
+import { webviewResourceRoots } from '../shared/webviewResourceRoots';
 import type { DiagramHostMessage, DiagramImageFormat, DiagramWebviewMessage } from '../../../contracts/DiagramMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { DiagramPanelDependencies } from '../model/DiagramPanelDependencies';
+import { diagramPositionsPrefix } from './diagramPositionsPrefix';
 
 const VIEW_TYPE = 'auraDataDockDb.diagram';
 
@@ -133,8 +135,4 @@ export class DiagramPanel {
   private positionsKey(namespace: string): string {
     return `${diagramPositionsPrefix(this.target)}${namespace}`;
   }
-}
-
-export function diagramPositionsPrefix(target: Pick<ConnectionTarget, 'key'>): string {
-  return `auraDataDockDb.diagram.${target.key}.`;
 }

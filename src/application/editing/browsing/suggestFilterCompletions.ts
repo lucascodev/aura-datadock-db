@@ -8,6 +8,7 @@ interface FilterColumn {
 }
 
 const WORD_CHARACTER = /[\w$]/;
+
 const OPERATORS = ['IS NULL', 'IS NOT NULL', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'AND', 'OR', 'NOT'];
 
 export function suggestFilterCompletions(kind: DriverId, text: string, cursor: number, columns: readonly FilterColumn[]): FilterCompletions {
@@ -21,14 +22,6 @@ export function suggestFilterCompletions(kind: DriverId, text: string, cursor: n
   const operatorSuggestions = OPERATORS.filter((operator) => operator.toLowerCase().startsWith(typed)).map((operator): FilterSuggestion => ({ label: operator, insertText: operator }));
 
   return { wordStart, wordEnd, suggestions: [...columnSuggestions, ...operatorSuggestions] };
-}
-
-export function applyFilterCompletion(text: string, completions: Pick<FilterCompletions, 'wordStart' | 'wordEnd'>, suggestion: FilterSuggestion): { text: string; cursor: number } {
-  const insert = `${suggestion.insertText} `;
-  return {
-    text: `${text.slice(0, completions.wordStart)}${insert}${text.slice(completions.wordEnd).trimStart()}`,
-    cursor: completions.wordStart + insert.length,
-  };
 }
 
 function findWordStart(text: string, cursor: number): number {

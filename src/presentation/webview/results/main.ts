@@ -4,7 +4,7 @@ import type { ExportFormatView, ResultSetView, ResultsHostMessage, ResultsViewSt
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/host/readL10nCatalog';
 import { createElement } from '../shared/dom/createElement';
-import { connectToHost } from '../shared/host/vscodeApi';
+import { connectToHost } from '../shared/host/connectToHost';
 import { ChartView } from './chart/ChartView';
 import { ResultGrid } from './grid/ResultGrid';
 

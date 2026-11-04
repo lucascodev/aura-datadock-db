@@ -2,9 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { chooseDefaultNamespace } from '../../../../src/application/schema/loading/chooseDefaultNamespace';
 import type { DiagramEdge } from '../../../../src/application/diagram/model/DiagramModel';
 import { toResultSetView } from '../../../../src/presentation/vscode/panels/results/toResultSetView';
-import { centerOn, clampScale, fitToView, zoomAt } from '../../../../src/presentation/webview/diagram/canvas/Viewport';
-import { relatedEdges, relatedTableNames } from '../../../../src/presentation/webview/diagram/canvas/relatedTables';
-import { filterRows, nextSort, sortRows } from '../../../../src/presentation/webview/results/grid/orderRows';
+import { centerOn } from '../../../../src/presentation/webview/diagram/canvas/centerOn';
+import { clampScale } from '../../../../src/presentation/webview/diagram/canvas/clampScale';
+import { fitToView } from '../../../../src/presentation/webview/diagram/canvas/fitToView';
+import { zoomAt } from '../../../../src/presentation/webview/diagram/canvas/zoomAt';
+import { relatedEdges } from '../../../../src/presentation/webview/diagram/canvas/relatedEdges';
+import { relatedTableNames } from '../../../../src/presentation/webview/diagram/canvas/relatedTableNames';
+import { filterRows } from '../../../../src/presentation/webview/results/grid/filterRows';
+import { nextSort } from '../../../../src/presentation/webview/results/grid/nextSort';
+import { sortRows } from '../../../../src/presentation/webview/results/grid/sortRows';
 
 describe('orderRows', () => {
   const rows = [['b', '10'], ['a', '9'], [null, '100']];

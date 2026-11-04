@@ -73,6 +73,8 @@ Dentro de uma camada, as pastas seguem contexto e depois tipo. `application/quer
 
 Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Cada classe de erro tem um arquivo com o nome dela. Uma constante usada em um arquivo fica perto do uso, e a compartilhada por vários arquivos vai para `constants/`, para que a mesma informação tenha uma única origem.
 
+Um arquivo exporta uma função, com o nome do arquivo, para que o caminho diga o que ela faz. As exceções são `main/extension.ts`, porque o VS Code espera `activate` e `deactivate` juntos, e o módulo de tradução, em que `l10n` e `useL10nCatalog` compartilham o catálogo ativo.
+
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 
 Quando a camada de dentro precisa de algo de fora, ela recebe por injeção, e só o `main` conhece a implementação. O `ConnectionManager` recebe `openAdapter`, o `ConnectionFormPanel` também, e os comandos pedem o provedor de IA por `DataDockContext.createAiProvider`.

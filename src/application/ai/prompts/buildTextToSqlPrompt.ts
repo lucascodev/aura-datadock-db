@@ -1,5 +1,5 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import type { AiRequest } from '../ports/AiProvider';
 
 export function buildTextToSqlPrompt(kind: DriverId, schema: string, question: string): Omit<AiRequest, 'signal'> {
@@ -13,9 +13,4 @@ export function buildTextToSqlPrompt(kind: DriverId, schema: string, question: s
     ].join('\n'),
     prompt: `Schema:\n${schema}\n\nRequest:\n${question}`,
   };
-}
-
-export function extractSql(answer: string): string {
-  const fenced = /```(?:sql)?\s*([\s\S]*?)```/i.exec(answer);
-  return (fenced ? fenced[1] : answer).trim();
 }

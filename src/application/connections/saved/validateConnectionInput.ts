@@ -3,13 +3,9 @@ import type { SshSettings } from '../../../domain/connection/model/SshSettings';
 import type { ConnectionInput } from '../model/ConnectionInput';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { ConnectionFieldErrors, ConnectionValidation } from '../model/ConnectionValidation';
+import { isSafeCommandValue } from './isSafeCommandValue';
 
 const MAX_PORT = 65535;
-const HAS_WHITESPACE = /\s/;
-
-export function isSafeCommandValue(value: string): boolean {
-  return value.length > 0 && !value.startsWith('-') && !HAS_WHITESPACE.test(value);
-}
 
 export function validateConnectionInput(input: ConnectionInput, takenNames: readonly string[]): ConnectionValidation {
   const errors: ConnectionFieldErrors = {

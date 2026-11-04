@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { listDrivers } from '../../src/drivers/catalog/driverCatalog';
+import { listDrivers } from '../../src/drivers/catalog/listDrivers';
 import { listSourceFiles, toSourcePath } from '../fixtures/sourceTree';
 
 const DRIVER_SPECIFIC_FOLDERS = ['drivers/', 'infrastructure/database/'];

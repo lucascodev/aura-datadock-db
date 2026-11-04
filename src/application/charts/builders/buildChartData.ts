@@ -1,11 +1,11 @@
 import { inferColumnKind } from '../inference/inferColumnKind';
-import { getChartKind } from '../support/getChartKind';
+import { getChartKind } from '../support/kinds/getChartKind';
 import type { ChartConfig } from '../model/config/ChartConfig';
 import type { ChartData } from '../model/data/ChartData';
 import type { ChartInput } from '../model/config/ChartInput';
 import type { ChartNotice } from '../model/data/ChartNotice';
 import type { ColumnKind } from '../model/config/ColumnKind';
-import { columnIndex } from '../support/columnAccess';
+import { columnIndex } from '../support/columns/columnIndex';
 import { buildBoxplotData } from './buildBoxplotData';
 import { buildCartesianData } from './buildCartesianData';
 import { buildHeatmapData } from './buildHeatmapData';

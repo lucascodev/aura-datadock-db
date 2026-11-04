@@ -5,7 +5,7 @@ import type { SchemaCache } from '../../../../application/schema/loading/SchemaC
 import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import { ColumnNode } from '../nodes/ColumnNode';
-import { toErrorNode } from './describeConnectionError';
+import { toErrorNode } from './toErrorNode';
 import { MessageNode } from '../nodes/MessageNode';
 import { NamespaceNode } from '../nodes/NamespaceNode';
 import { TableNode } from '../nodes/TableNode';

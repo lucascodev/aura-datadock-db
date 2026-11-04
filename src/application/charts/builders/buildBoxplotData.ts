@@ -1,11 +1,15 @@
-import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
+import { losesPrecision } from '../inference/losesPrecision';
+import { parseChartNumber } from '../inference/parseChartNumber';
 import type { ChartConfig } from '../model/config/ChartConfig';
 import type { BoxplotChartData, BoxplotGroup, EmptyChartData } from '../model/data/ChartData';
 import type { ChartInput } from '../model/config/ChartInput';
 import { computeBoxplot } from '../statistics/computeBoxplot';
-import { columnIndex, labelOf } from '../support/columnAccess';
-import { foldByWeight, otherLabel } from '../support/foldByWeight';
-import { createTally, tallyNotices } from '../support/createRowTally';
+import { columnIndex } from '../support/columns/columnIndex';
+import { labelOf } from '../support/columns/labelOf';
+import { foldByWeight } from '../support/folding/foldByWeight';
+import { otherLabel } from '../support/folding/otherLabel';
+import { createTally } from '../support/tally/createTally';
+import { tallyNotices } from '../support/tally/tallyNotices';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const MAX_GROUPS = 30;

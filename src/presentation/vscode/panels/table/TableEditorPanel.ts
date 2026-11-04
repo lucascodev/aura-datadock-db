@@ -2,35 +2,31 @@ import * as vscode from 'vscode';
 import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
 import { selectTableNeighborhood } from '../../../../application/diagram/building/selectTableNeighborhood';
 import { buildRowChangeStatements } from '../../../../application/editing/rows/buildRowChangeStatements';
-import { buildTablePageQuery, buildTableSelect } from '../../../../application/editing/browsing/buildTablePageQuery';
-import { describeEditability, isColumnEditable } from '../../../../application/editing/rows/describeEditability';
+import { buildTablePageQuery } from '../../../../application/editing/tableQuery/buildTablePageQuery';
+import { buildTableSelect } from '../../../../application/editing/tableQuery/buildTableSelect';
+import { describeEditability } from '../../../../application/editing/rows/describeEditability';
+import { isColumnEditable } from '../../../../application/editing/rows/isColumnEditable';
 import type { RowChange } from '../../../../application/editing/model/RowChange';
 import type { TablePageRequest, TableRowSelection } from '../../../../application/editing/model/tableFilters';
 import { formatValue } from '../../../../application/format/text/formatValue';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
-import { scanStatements } from '../../../../application/query/analysis/splitStatements';
+import { scanStatements } from '../../../../application/query/analysis/scanStatements';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
 import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
 import type { CellValue, ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
 import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
-import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
+import { renderWebviewHtml } from '../shared/renderWebviewHtml';
+import { webviewResourceRoots } from '../shared/webviewResourceRoots';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage, TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { TableEditorDependencies, TableEditorOptions } from '../model/TableEditorDependencies';
+import { findTable } from './findTable';
 
 const VIEW_TYPE = 'auraDataDockDb.tableEditor';
 const PENDING_TITLE_PREFIX = '● ';
-
-export function findTable(schema: NamespaceSchema, tableName: string): TableDefinition {
-  const table = schema.tables.find((candidate) => candidate.name === tableName);
-  if (!table) {
-    throw new Error(l10n.t('The table {0} was not found. Refresh the view.', tableName));
-  }
-  return table;
-}
 
 export class TableEditorPanel {
   private readonly panel: vscode.WebviewPanel;

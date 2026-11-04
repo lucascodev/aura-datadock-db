@@ -1,5 +1,5 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 
 export function chooseDefaultNamespace(kind: DriverId, database: string | undefined, namespaces: readonly string[]): string | undefined {
   const preferred = getDriver(kind).defaultNamespace ?? database;

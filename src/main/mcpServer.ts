@@ -6,7 +6,7 @@ import { describeSchema } from '../application/schema/loading/describeSchema';
 import { classifyQuery } from '../application/query/analysis/classifyQuery';
 import { formatValue } from '../application/format/text/formatValue';
 import { uniqueColumnNames } from '../application/format/text/uniqueColumnNames';
-import { scanStatements } from '../application/query/analysis/splitStatements';
+import { scanStatements } from '../application/query/analysis/scanStatements';
 import { type ConnectionTarget } from '../domain/connection/model/ConnectionTarget';
 import { isReachable } from '../domain/connection/rules/isReachable';
 import { ContainerDiscovery } from '../infrastructure/docker/discovery/ContainerDiscovery';

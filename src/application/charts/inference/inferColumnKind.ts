@@ -1,5 +1,5 @@
-import type { ChartCell, ChartInput } from '../model/config/ChartInput';
-import type { ColumnInfo, ColumnKind } from '../model/config/ColumnKind';
+import type { ChartCell } from '../model/config/ChartInput';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { parseChartNumber } from './parseChartNumber';
 import { parseChartTemporal } from './parseChartTemporal';
 
@@ -12,8 +12,4 @@ export function inferColumnKind(cells: readonly ChartCell[]): ColumnKind {
     return 'number';
   }
   return present.every((cell) => parseChartTemporal(cell) !== undefined) ? 'temporal' : 'category';
-}
-
-export function describeColumns(input: ChartInput): ColumnInfo[] {
-  return input.columns.map((name, index) => ({ name, kind: inferColumnKind(input.rows.map((row) => row[index])) }));
 }

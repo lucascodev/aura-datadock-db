@@ -1,5 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
+import { listDrivers } from '../../../drivers/catalog/listDrivers';
 import { splitStatements } from './splitStatements';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { QueryRisk, QueryClassification } from '../model/QueryClassification';

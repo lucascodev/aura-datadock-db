@@ -9,10 +9,11 @@ import { assertExpectedRows } from '../../../../domain/database/rules/assertExpe
 import type { QueryResult } from '../../../../domain/database/model/QueryResult';
 import type { RowBatch } from '../../../../domain/database/model/RowBatch';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
-import { quoteTable } from '../../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../../drivers/catalog/quoteTable';
 import { LIST_COLUMNS_SQL, LIST_FOREIGN_KEYS_SQL, LIST_INDEXES_SQL, LIST_TABLES_SQL } from '../constants/mysqlCatalogQueries';
 import type { MysqlColumnRow, MysqlForeignKeyRow, MysqlIndexRow, MysqlTableRow } from '../model/mysqlSchemaRows';
-import { isBaseTable, toMysqlSchema } from './toMysqlSchema';
+import { isBaseTable } from './isBaseTable';
+import { toMysqlSchema } from './toMysqlSchema';
 import { toMysqlSsl } from './toMysqlSsl';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { CONNECT_TIMEOUT_MS } from '../../constants/connectTimeout';

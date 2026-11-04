@@ -1,6 +1,13 @@
 import type { TableEditability } from '../../../../../application/editing/model/TableEditability';
-import { duplicateRowValues } from '../../../../../application/editing/rows/duplicateRow';
-import { addInsert, clearInsertValue, editCell, editInsert, findUpdate, isMarkedForDeletion, removeInsert, toggleDeletion } from '../../../../../application/editing/rows/pendingChanges';
+import { duplicateRowValues } from '../../../../../application/editing/rows/duplicateRowValues';
+import { addInsert } from '../../../../../application/editing/pendingInserts/addInsert';
+import { clearInsertValue } from '../../../../../application/editing/pendingInserts/clearInsertValue';
+import { editCell } from '../../../../../application/editing/pendingUpdates/editCell';
+import { editInsert } from '../../../../../application/editing/pendingInserts/editInsert';
+import { findUpdate } from '../../../../../application/editing/pendingUpdates/findUpdate';
+import { isMarkedForDeletion } from '../../../../../application/editing/pendingUpdates/isMarkedForDeletion';
+import { removeInsert } from '../../../../../application/editing/pendingInserts/removeInsert';
+import { toggleDeletion } from '../../../../../application/editing/pendingUpdates/toggleDeletion';
 import type { CellValues, RowChange } from '../../../../../application/editing/model/RowChange';
 import type { TableFilter, TablePageRequest, TableRowSelection, TableSort } from '../../../../../application/editing/model/tableFilters';
 import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';

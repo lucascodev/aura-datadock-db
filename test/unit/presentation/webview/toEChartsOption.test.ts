@@ -3,7 +3,9 @@ import { buildChartData } from '../../../../src/application/charts/builders/buil
 import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';
 import type { DrawableChartData } from '../../../../src/application/charts/model/data/ChartData';
 import type { ChartCell } from '../../../../src/application/charts/model/config/ChartInput';
-import { createAxisFormatter, formatAxisNumber, formatFullNumber } from '../../../../src/presentation/webview/chart/echarts/formatChartNumber';
+import { createAxisFormatter } from '../../../../src/presentation/webview/chart/formatting/createAxisFormatter';
+import { formatAxisNumber } from '../../../../src/presentation/webview/chart/formatting/formatAxisNumber';
+import { formatFullNumber } from '../../../../src/presentation/webview/chart/formatting/formatFullNumber';
 import { toEChartsOption } from '../../../../src/presentation/webview/chart/echarts/toEChartsOption';
 import type { EChartsOptionRecord } from '../../../../src/presentation/webview/chart/model/EChartsOptionRecord';
 import { DARK_PALETTE, LIGHT_PALETTE } from '../../../../src/presentation/webview/chart/constants/chartPalettes';

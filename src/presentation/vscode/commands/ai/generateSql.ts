@@ -1,9 +1,10 @@
 import * as vscode from 'vscode';
-import { buildTextToSqlPrompt, extractSql } from '../../../../application/ai/prompts/buildTextToSqlPrompt';
+import { buildTextToSqlPrompt } from '../../../../application/ai/prompts/buildTextToSqlPrompt';
+import { extractSql } from '../../../../application/ai/prompts/extractSql';
 import { describeSchema } from '../../../../application/schema/loading/describeSchema';
 import type { DataDockContext } from '../model/DataDockContext';
-import { openBoundDocument } from '../query/newQuery';
-import { resolveConnection } from '../registry/pickConnection';
+import { openBoundDocument } from '../query/editor/openBoundDocument';
+import { resolveConnection } from '../registry/resolveConnection';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const MAX_SCHEMA_TABLES = 80;
