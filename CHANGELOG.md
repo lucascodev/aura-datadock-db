@@ -39,6 +39,11 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ### Changed
 
+- Settings that choose where the extension connects or sends data only apply from user settings, and a repository can no longer turn off `readOnly` or `confirmDestructiveQueries`.
+- The MCP server is off by default. The extension does not run in untrusted workspaces.
+- Read-only mode is stricter: conditional comments count as SQL, functions that act on the server count as writes, and on Postgres each read runs in a read-only transaction.
+- Passwords stored for a container belong to its Docker endpoint, and a container published on another machine counts as remote.
+- CSV exports neutralize text cells that a spreadsheet would run as a formula.
 - Databases are described in a driver registry, so adding a new one does not require touching the rest of the code.
 - Code reorganized into layers (`domain`, `drivers`, `application`, `infrastructure`, `presentation` and `main`) and into subfolders by subject, with tests that prevent outward dependencies and crowded folders.
 - Clicking a table opens the data editor, and clicking a connection selects it instead of expanding it.

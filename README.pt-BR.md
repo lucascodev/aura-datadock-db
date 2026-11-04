@@ -18,7 +18,7 @@ Extensão open source para VS Code que conecta aos seus bancos Postgres, MySQL e
 - **Export**: resultados e tabelas inteiras em CSV, JSON, NDJSON, Markdown e SQL `INSERT`; schema em DDL, Mermaid, DBML e JSON; diagrama em SVG e PNG.
 - **Proteções**: somente leitura global ou por conexão, confirmação antes de `DROP`, `TRUNCATE`, `ALTER` e de `DELETE` ou `UPDATE` sem `WHERE`, e confirmação de qualquer escrita em banco remoto.
 - **IA para gerar SQL**: descreva o que precisa e a extensão escreve a query a partir do schema real, incluindo as chaves estrangeiras. Funciona com os modelos do VS Code (GitHub Copilot), Anthropic, OpenAI ou Ollama local.
-- **Servidor MCP somente leitura**: agentes como o modo agente do VS Code, Claude Code e Cursor conseguem listar bancos, ler o schema e rodar consultas de leitura.
+- **Servidor MCP para leitura, desligado por padrão**: agentes como o modo agente do VS Code, Claude Code e Cursor conseguem listar bancos, ler o schema e rodar consultas de leitura.
 - **Interface em português e inglês**: a interface está disponível em inglês e em português do Brasil e segue o idioma de exibição do VS Code.
 
 ## Requisitos
@@ -209,7 +209,7 @@ O DDL é gerado a partir do catálogo do banco e inclui colunas, chaves primári
 | `auraDataDockDb.ai.provider` | `vscode` | `vscode`, `anthropic`, `openai` ou `ollama` |
 | `auraDataDockDb.ai.model` | vazio | Modelo do provedor; vazio usa o padrão |
 | `auraDataDockDb.ai.ollamaUrl` | `http://localhost:11434` | Endereço do Ollama |
-| `auraDataDockDb.mcp.enabled` | `true` | Expõe os bancos para agentes via MCP |
+| `auraDataDockDb.mcp.enabled` | `false` | Expõe os bancos para agentes via MCP. Só vale nas configurações de usuário |
 
 Chaves de API são salvas com o comando **Aura DataDock DB: Definir chave de API do provedor de IA** e, como as senhas, ficam no cofre do sistema, nunca no `settings.json`.
 
@@ -220,9 +220,18 @@ Chaves de API são salvas com o comando **Aura DataDock DB: Definir chave de API
 - O histórico guarda o texto das queries localmente, no armazenamento do VS Code. Use `auraDataDockDb.history.maxEntries` igual a `0` se elas puderem conter dados sensíveis.
 - A extensão não coleta telemetria.
 
+## Segurança
+
+- As configurações que decidem onde a extensão conecta ou envia dados (`dockerHost`, `connections`, `ai.provider`, `ai.model`, `ai.ollamaUrl` e `mcp.enabled`) só valem nas configurações de usuário. Um repositório não consegue defini-las.
+- Um repositório pode ligar `readOnly` e `confirmDestructiveQueries`, mas não pode desligá-las.
+- A extensão não roda em um workspace que você não marcou como confiável.
+- O modo somente leitura bloqueia escritas e funções conhecidas que agem no servidor, e no Postgres cada leitura roda em uma transação somente leitura que é desfeita. Isso reduz o risco, mas não substitui permissões: em um banco sensível, conecte com um usuário que só possa ler o necessário.
+- Nos exports em CSV, uma célula de texto que uma planilha executaria como fórmula começa com `'`. Os outros formatos mantêm o valor exato.
+- O modo TLS **Obrigatório** criptografa sem validar o certificado, então use **Verificado** fora de uma rede confiável. Um endpoint Docker `tcp://` não é criptografado.
+
 ## Usando o servidor MCP fora do VS Code
 
-No VS Code o servidor é registrado automaticamente. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows:
+No VS Code, ligue `auraDataDockDb.mcp.enabled` nas configurações de usuário para registrar o servidor. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows:
 
 ```bash
 claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.0\dist\mcp-server.js"
@@ -236,7 +245,7 @@ Ferramentas disponíveis:
 | `describe_schema` | Retorna tabelas, colunas e chaves estrangeiras de um banco |
 | `run_query` | Executa uma consulta de leitura por vez e devolve as linhas em JSON |
 
-O servidor recusa qualquer comando de escrita e ainda abre a sessão do banco em modo somente leitura. Ele só enxerga bancos em containers Docker: as conexões salvas não ficam disponíveis para agentes.
+O servidor recusa o que classifica como escrita e lê dentro de uma sessão somente leitura. Os agentes veem todas as linhas que leem e usam as credenciais do container, que muitas vezes são de administrador. Use com dados de desenvolvimento. Ele só enxerga bancos em containers Docker: as conexões salvas não ficam disponíveis para agentes.
 
 ## Desenvolvimento
 

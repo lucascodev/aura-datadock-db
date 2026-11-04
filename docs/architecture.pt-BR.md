@@ -219,6 +219,12 @@ O servidor MCP é gerado como um bundle próprio (`dist/mcp-server.js`) para que
 
 A saída padrão do processo é reservada ao protocolo, por isso os logs vão para `stderr`.
 
+### Camadas da proteção de somente leitura
+
+O somente leitura tem duas camadas, porque nenhuma basta sozinha. O `classifyQuery` decide antes de enviar: lê como SQL o conteúdo dos comentários condicionais do MySQL e do MariaDB, já que o servidor os executa, e trata como escrita as funções listadas em `serverSideFunctions` de cada dialeto. O banco garante o resto: a sessão é somente leitura e, no Postgres, cada leitura roda em `BEGIN TRANSACTION READ ONLY` seguido de `ROLLBACK`, que também desfaz qualquer configuração que o comando tenha alterado.
+
+A lista de funções não cobre funções criadas por usuários, e superusuários podem ler arquivos do servidor por caminhos que ela não conhece. Por isso a documentação orienta conectar a bancos sensíveis com um usuário limitado.
+
 ### IA com o modelo que o usuário já tem
 
 `application/ai` define um contrato único (`AiProvider`) com quatro implementações. A padrão usa a API de modelos do VS Code, que aproveita a assinatura do Copilot sem chave de API. Como essa API não existe em editores derivados como Cursor, os provedores com chave própria e o Ollama garantem que a IA funcione em qualquer lugar.
