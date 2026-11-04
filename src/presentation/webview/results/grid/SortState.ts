@@ -1,4 +1,4 @@
-export type SortDirection = 'ascending' | 'descending';
+type SortDirection = 'ascending' | 'descending';
 
 export interface SortState {
   readonly columnIndex: number;

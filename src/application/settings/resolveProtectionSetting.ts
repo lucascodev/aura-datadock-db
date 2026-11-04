@@ -1,4 +1,4 @@
-export interface ProtectionSettingLevels {
+interface ProtectionSettingLevels {
   readonly defaultValue?: boolean;
   readonly globalValue?: boolean;
   readonly workspaceValue?: boolean;

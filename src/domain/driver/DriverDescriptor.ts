@@ -2,7 +2,7 @@ import type { DriverId } from './DriverId';
 import type { ResolvedCredentials } from '../connection/ResolvedCredentials';
 import type { SqlDialect } from './SqlDialect';
 
-export interface DriverDockerSupport {
+interface DriverDockerSupport {
   readonly imagePatterns: readonly RegExp[];
   resolveCredentials(env: Readonly<Record<string, string>>): ResolvedCredentials;
 }

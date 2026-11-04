@@ -2,7 +2,7 @@ import { createElement } from '../../../shared/createElement';
 import { l10n } from '../../../../../domain/i18n/l10n';
 import type { DataTabState } from '../state/DataTabState';
 
-export interface BottomBarCallbacks {
+interface BottomBarCallbacks {
   onRefresh(): void;
   onSave(): void;
   onCancelChanges(): void;

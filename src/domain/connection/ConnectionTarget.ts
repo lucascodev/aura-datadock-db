@@ -2,7 +2,7 @@ import type { ConnectionTls } from './ConnectionTls';
 import type { DriverId } from '../driver/DriverId';
 import type { SshSettings } from './SshSettings';
 
-export type CredentialSource = 'container-env' | 'secret-storage' | 'missing';
+type CredentialSource = 'container-env' | 'secret-storage' | 'missing';
 
 export type ConnectionSourceKind = 'docker' | 'saved';
 

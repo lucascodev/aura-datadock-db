@@ -4,7 +4,7 @@ import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarg
 import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import type { DriverId } from '../../../domain/driver/DriverId';
 
-export type AdapterFactory = (target: ConnectionTarget) => DatabaseAdapter;
+type AdapterFactory = (target: ConnectionTarget) => DatabaseAdapter;
 
 export const ADAPTER_FACTORIES: Readonly<Record<DriverId, AdapterFactory>> = {
   postgres: (target) => new PostgresAdapter(target),

@@ -6,7 +6,7 @@ export function encodeRows(encoder: RowEncoder, { columns, rows }: RowBatch): st
   return [encoder.begin(columns), ...rows.map((row) => encoder.encode(row)), encoder.end()].join('');
 }
 
-export interface WriteRowBatchesOptions {
+interface WriteRowBatchesOptions {
   readonly signal?: AbortSignal;
   readonly onProgress?: (rowCount: number) => void;
 }

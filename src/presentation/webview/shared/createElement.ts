@@ -1,4 +1,4 @@
-export interface ElementOptions {
+interface ElementOptions {
   readonly className?: string;
   readonly text?: string;
   readonly title?: string;

@@ -5,7 +5,7 @@ import { l10n } from '../../../domain/i18n/l10n';
 
 const MAX_STATEMENT_LENSES = 200;
 
-export interface SqlCodeLensDependencies {
+interface SqlCodeLensDependencies {
   isEnabled(): boolean;
   connectionFor(document: vscode.TextDocument): ConnectionTarget | undefined;
 }

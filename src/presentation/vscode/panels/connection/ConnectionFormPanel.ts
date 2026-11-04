@@ -16,7 +16,7 @@ import { l10n } from '../../../../domain/i18n/l10n';
 const VIEW_TYPE = 'auraDataDockDb.connectionForm';
 const TEST_CONNECTION_ID = 'connection-test';
 
-export interface ConnectionFormDependencies {
+interface ConnectionFormDependencies {
   readonly extensionUri: vscode.Uri;
   readonly saved: SavedConnections;
   openAdapter(target: ConnectionTarget): Promise<DatabaseAdapter>;

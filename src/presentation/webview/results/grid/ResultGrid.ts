@@ -15,12 +15,12 @@ const COLUMN_PADDING = 28;
 const ROW_NUMBER_WIDTH = 56;
 const NULL_LABEL = 'NULL';
 
-export interface CellSelection {
+interface CellSelection {
   readonly rowIndex: number;
   readonly columnIndex: number;
 }
 
-export interface ResultGridCallbacks {
+interface ResultGridCallbacks {
   readonly onSelectionChange: (selection: CellSelection | undefined) => void;
   readonly onOpenValue: (text: string) => void;
   readonly onCountChange: (visibleRows: number) => void;

@@ -1,7 +1,7 @@
 import type { ViewportTransform } from './ViewportTransform';
 
 
-export interface ContentBounds {
+interface ContentBounds {
   readonly left: number;
   readonly top: number;
   readonly right: number;

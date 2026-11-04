@@ -2,7 +2,7 @@ import { createElement } from '../../../shared/createElement';
 import { l10n } from '../../../../../domain/i18n/l10n';
 import type { DataTabState } from '../state/DataTabState';
 
-export interface SqlPanelCallbacks {
+interface SqlPanelCallbacks {
   onRun(sql: string): void;
   onOpenInEditor(sql: string): void;
   onCopy(sql: string): void;

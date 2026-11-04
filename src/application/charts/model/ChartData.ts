@@ -6,12 +6,12 @@ import type { ChartNotice } from './ChartNotice';
 export type CartesianAxisType = 'category' | 'time' | 'value';
 export type CartesianSeriesKind = 'line' | 'area' | 'bar';
 
-export interface CartesianSeries {
+interface CartesianSeries {
   readonly name: string;
   readonly values: readonly (number | null)[];
 }
 
-export interface ScatterSeries {
+interface ScatterSeries {
   readonly name: string;
   readonly points: readonly (readonly [number, number])[];
 }
@@ -75,7 +75,7 @@ export interface HeatmapChartData extends ChartDataBase {
   readonly max: number;
 }
 
-export interface StatChartData extends ChartDataBase {
+interface StatChartData extends ChartDataBase {
   readonly form: 'stat';
   readonly label: string;
   readonly value: string;

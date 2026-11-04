@@ -9,7 +9,7 @@ import { parseTableReferences, unquote } from './parseTableReferences';
 import type { TableReference } from './TableReference';
 import { SQL_KEYWORDS } from './sqlKeywords';
 
-export interface CompletionRequest {
+interface CompletionRequest {
   readonly sql: string;
   readonly offset: number;
   readonly kind: DriverId;

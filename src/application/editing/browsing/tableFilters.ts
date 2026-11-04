@@ -2,7 +2,7 @@ import { l10n } from '../../../domain/i18n/l10n';
 
 export type FilterOperatorId = 'equals' | 'notEquals' | 'contains' | 'startsWith' | 'greaterThan' | 'lessThan' | 'isNull' | 'isNotNull';
 
-export interface FilterOperator {
+interface FilterOperator {
   readonly id: FilterOperatorId;
   readonly label: () => string;
   readonly needsValue: boolean;

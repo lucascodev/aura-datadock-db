@@ -11,7 +11,7 @@ const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const CLICK_MOVE_TOLERANCE = 4;
 const SEARCH_FOCUS_SCALE = 1;
 
-export interface DiagramCanvasCallbacks {
+interface DiagramCanvasCallbacks {
   readonly onTableMoved: (tableName: string, position: DiagramPoint) => void;
   readonly onTableOpened: (tableName: string) => void;
   readonly onZoomChanged: (scale: number) => void;

@@ -7,7 +7,7 @@ import type { CellPosition } from '../model/CellPosition';
 const JSON_START = /^[[{]/;
 const JSON_INDENT = 2;
 
-export interface ValuePanelCallbacks {
+interface ValuePanelCallbacks {
   onCommit(position: CellPosition, value: CellValue): void;
   onSetNull(): void;
 }

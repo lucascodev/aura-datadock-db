@@ -1,10 +1,10 @@
 import type { ChartKind } from './ChartKind';
 
-export type XRole = 'any' | 'number' | 'none';
+type XRole = 'any' | 'number' | 'none';
 
-export type YRole = 'many' | 'one' | 'none';
+type YRole = 'many' | 'one' | 'none';
 
-export type GroupRole = 'optional' | 'required' | 'none';
+type GroupRole = 'optional' | 'required' | 'none';
 
 export interface ChartKindDefinition {
   readonly id: ChartKind;

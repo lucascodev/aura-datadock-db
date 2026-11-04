@@ -6,7 +6,7 @@ import { createElement } from '../../../shared/createElement';
 import { l10n } from '../../../../../domain/i18n/l10n';
 import type { DataTabState } from '../state/DataTabState';
 
-export interface FilterBarCallbacks {
+interface FilterBarCallbacks {
   onApply(): void;
   onToggleSql(): void;
   onToggleValue(): void;

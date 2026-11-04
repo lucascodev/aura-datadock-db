@@ -1,7 +1,7 @@
 import type { CellValue } from '../../../domain/database/ParameterizedStatement';
 import type { CellValues } from './RowChange';
 
-export interface DuplicableColumn {
+interface DuplicableColumn {
   readonly name: string;
   readonly isEditable: boolean;
   readonly isPrimaryKey: boolean;

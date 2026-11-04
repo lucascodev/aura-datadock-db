@@ -28,7 +28,7 @@ const LEGEND_FROM_SERIES = 2;
 const MIN_LABELED_SHARE = 5;
 const DEFAULT_LEFT_MARGIN = 16;
 
-export interface OptionContext {
+interface OptionContext {
   readonly palette: ChartPalette;
   readonly isExport: boolean;
   renderTooltip(content: TooltipContent): unknown;

@@ -1,7 +1,7 @@
 import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import type { StatementOutcome } from './StatementOutcome';
 
-export interface RunStatementsOptions {
+interface RunStatementsOptions {
   readonly maxRows: number;
   readonly signal?: AbortSignal;
 }

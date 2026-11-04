@@ -1,8 +1,8 @@
 import type { QueryRisk } from '../analysis/QueryClassification';
 
-export type QueryGuardDecision = 'allow' | 'confirm' | 'block';
+type QueryGuardDecision = 'allow' | 'confirm' | 'block';
 
-export interface QueryGuardContext {
+interface QueryGuardContext {
   readonly isReadOnly: boolean;
   readonly isRemote: boolean;
   readonly confirmsDestructive: boolean;

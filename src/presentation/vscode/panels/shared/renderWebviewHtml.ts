@@ -2,7 +2,7 @@ import { randomBytes } from 'node:crypto';
 import * as vscode from 'vscode';
 import { escapeMarkup } from '../../../../application/format/escapeMarkup';
 
-export interface WebviewPage {
+interface WebviewPage {
   readonly title: string;
   readonly scriptPath: readonly string[];
   readonly stylePath: readonly string[];

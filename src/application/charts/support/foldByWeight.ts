@@ -4,7 +4,7 @@ export function otherLabel(): string {
   return l10n.t('Other');
 }
 
-export interface FoldResult {
+interface FoldResult {
   readonly foldedCount: number;
   resolve(name: string): string;
 }

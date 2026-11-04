@@ -9,7 +9,7 @@ import type { TableFilter, TablePageRequest, TableRowSelection } from './tableFi
 import { validateWhereExpression } from './validateWhereExpression';
 import { l10n } from '../../../domain/i18n/l10n';
 
-export interface TablePageQuery {
+interface TablePageQuery {
   readonly page: ParameterizedStatement;
   readonly count: ParameterizedStatement;
 }

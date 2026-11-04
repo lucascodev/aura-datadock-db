@@ -2,7 +2,7 @@ import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import type { ForeignKey } from '../../../domain/schema/ForeignKey';
 import type { TableDefinition } from '../../../domain/schema/TableDefinition';
 
-export interface DescribeSchemaOptions {
+interface DescribeSchemaOptions {
   readonly maxTables: number;
   readonly namespace?: string;
 }

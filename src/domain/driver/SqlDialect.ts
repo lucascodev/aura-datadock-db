@@ -1,4 +1,4 @@
-export type BackslashEscapes = 'all-strings' | 'escape-strings-only';
+type BackslashEscapes = 'all-strings' | 'escape-strings-only';
 
 export interface SqlDialect {
   readonly identifierQuote: string;

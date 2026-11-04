@@ -2,7 +2,7 @@ import type { DriverId } from '../../../domain/driver/DriverId';
 import { quoteIfNeeded } from '../../sql/quoteIfNeeded';
 import type { FilterSuggestion, FilterCompletions } from './FilterCompletions';
 
-export interface FilterColumn {
+interface FilterColumn {
   readonly name: string;
   readonly dataType: string;
 }

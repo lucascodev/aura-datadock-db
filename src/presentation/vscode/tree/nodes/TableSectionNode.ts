@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import type { TableDefinition } from '../../../../domain/schema/TableDefinition';
 import { l10n } from '../../../../domain/i18n/l10n';
 
-export type TableSection = 'columns' | 'indexes' | 'foreignKeys';
+type TableSection = 'columns' | 'indexes' | 'foreignKeys';
 
 const SECTION_LABELS: Readonly<Record<TableSection, () => string>> = {
   columns: () => l10n.t('Columns'),
