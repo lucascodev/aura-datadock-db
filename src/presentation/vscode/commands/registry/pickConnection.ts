@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { type ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { isReachable } from '../../../../domain/connection/rules/isReachable';
-import type { DataDockContext } from './DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function resolveConnection(context: DataDockContext): Promise<ConnectionTarget | undefined> {

@@ -15,7 +15,7 @@ import { getDriver } from '../../../../drivers/catalog/driverCatalog';
 import type { ColumnNode } from '../../tree/nodes/ColumnNode';
 import type { NamespaceNode } from '../../tree/nodes/NamespaceNode';
 import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

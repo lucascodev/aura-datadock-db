@@ -5,8 +5,8 @@ import type { DrawableChartData } from '../../../../src/application/charts/model
 import type { ChartCell } from '../../../../src/application/charts/model/config/ChartInput';
 import { createAxisFormatter, formatAxisNumber, formatFullNumber } from '../../../../src/presentation/webview/chart/echarts/formatChartNumber';
 import { toEChartsOption } from '../../../../src/presentation/webview/chart/echarts/toEChartsOption';
-import type { EChartsOptionRecord } from '../../../../src/presentation/webview/chart/echarts/EChartsOptionRecord';
-import { DARK_PALETTE, LIGHT_PALETTE } from '../../../../src/presentation/webview/chart/palette/chartPalettes';
+import type { EChartsOptionRecord } from '../../../../src/presentation/webview/chart/model/EChartsOptionRecord';
+import { DARK_PALETTE, LIGHT_PALETTE } from '../../../../src/presentation/webview/chart/constants/chartPalettes';
 
 function draw(columns: string[], rows: ChartCell[][], config: Partial<ChartConfig>, isExport = false, renderTooltip: (content: unknown) => unknown = (content) => content) {
   const data = buildChartData({ columns, rows, isTruncated: false }, { kind: 'bar', y: [], showRegression: false, ...config }) as DrawableChartData;

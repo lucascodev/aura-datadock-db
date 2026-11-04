@@ -1,5 +1,5 @@
-import { DARK_PALETTE, LIGHT_PALETTE } from './chartPalettes';
-import type { ChartPalette } from './ChartPalette';
+import { DARK_PALETTE, LIGHT_PALETTE } from '../constants/chartPalettes';
+import type { ChartPalette } from '../model/ChartPalette';
 
 const LIGHT_THEME_CLASSES = ['vscode-light', 'vscode-high-contrast-light'];
 

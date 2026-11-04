@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { pickConnection } from '../registry/pickConnection';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

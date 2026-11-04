@@ -8,7 +8,7 @@ import type { StatementOutcome } from '../../../../application/query/model/State
 import { summarizeOutcomes } from '../../../../application/query/execution/summarizeOutcomes';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function executeQuery(context: DataDockContext, target: ConnectionTarget, sql: string): Promise<boolean> {

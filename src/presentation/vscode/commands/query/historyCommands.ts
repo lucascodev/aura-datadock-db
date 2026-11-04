@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import type { QueryHistoryEntry } from '../../../../application/query/model/QueryHistoryEntry';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from './newQuery';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

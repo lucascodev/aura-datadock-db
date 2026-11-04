@@ -1,4 +1,4 @@
-import type { ViewportTransform } from './ViewportTransform';
+import type { ViewportTransform } from '../model/ViewportTransform';
 
 
 interface ContentBounds {

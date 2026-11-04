@@ -8,11 +8,11 @@ import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceS
 import { ConnectionNode } from '../../tree/nodes/ConnectionNode';
 import { NamespaceNode } from '../../tree/nodes/NamespaceNode';
 import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
 import { resolveConnection } from '../registry/pickConnection';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
-import type { SchemaCommandArgument } from './SchemaCommandArgument';
+import type { SchemaCommandArgument } from '../model/SchemaCommandArgument';
 
 interface SchemaLocation {
   readonly target: ConnectionTarget;

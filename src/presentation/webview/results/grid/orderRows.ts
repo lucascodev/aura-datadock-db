@@ -1,5 +1,5 @@
-import type { SortState } from './SortState';
-import type { ResultRow } from './ResultRow';
+import type { SortState } from '../model/SortState';
+import type { ResultRow } from '../model/ResultRow';
 
 
 export function filterRows(rows: readonly ResultRow[], filter: string): ResultRow[] {

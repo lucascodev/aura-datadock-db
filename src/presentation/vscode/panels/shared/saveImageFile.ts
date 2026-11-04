@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { ImageFormat } from './ImageFormat';
+import type { ImageFormat } from '../model/ImageFormat';
 
 export async function saveImageFile(defaultName: string, format: ImageFormat, content: string): Promise<vscode.Uri | undefined> {
   const uri = await vscode.window.showSaveDialog({

@@ -9,7 +9,7 @@ import type { ConnectionTarget } from '../../../../domain/connection/model/Conne
 import type { ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const BATCH_SIZE = 1000;

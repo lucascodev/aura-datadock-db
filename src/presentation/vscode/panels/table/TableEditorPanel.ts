@@ -19,7 +19,7 @@ import type { TableDefinition } from '../../../../domain/schema/model/TableDefin
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage, TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
-import type { TableEditorDependencies, TableEditorOptions } from './TableEditorDependencies';
+import type { TableEditorDependencies, TableEditorOptions } from '../model/TableEditorDependencies';
 
 const VIEW_TYPE = 'auraDataDockDb.tableEditor';
 const PENDING_TITLE_PREFIX = '● ';

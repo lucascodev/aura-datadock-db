@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 
 export async function openTable(context: DataDockContext, node: TableNode, shouldAddRow = false): Promise<void> {
   const target = context.connections.getTarget(node.targetId);

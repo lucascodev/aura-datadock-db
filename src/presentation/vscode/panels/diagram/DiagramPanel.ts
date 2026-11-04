@@ -8,7 +8,7 @@ import { saveImageFile } from '../shared/saveImageFile';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { DiagramHostMessage, DiagramImageFormat, DiagramWebviewMessage } from '../../../contracts/DiagramMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
-import type { DiagramPanelDependencies } from './DiagramPanelDependencies';
+import type { DiagramPanelDependencies } from '../model/DiagramPanelDependencies';
 
 const VIEW_TYPE = 'auraDataDockDb.diagram';
 

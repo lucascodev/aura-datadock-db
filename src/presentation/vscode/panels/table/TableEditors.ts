@@ -3,7 +3,7 @@ import type { RowChange } from '../../../../application/editing/model/RowChange'
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import { TableEditorPanel } from './TableEditorPanel';
-import type { TableEditorDependencies, TableEditorOptions } from './TableEditorDependencies';
+import type { TableEditorDependencies, TableEditorOptions } from '../model/TableEditorDependencies';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type TableLocation = Pick<TableRef, 'namespace' | 'name'>;

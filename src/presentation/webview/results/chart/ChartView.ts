@@ -8,7 +8,7 @@ import type { ChartInput } from '../../../../application/charts/model/config/Cha
 import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
 import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
 import { createElement } from '../../shared/createElement';
-import type { ChartRenderer } from '../../chart/renderer/ChartRenderer';
+import type { ChartRenderer } from '../../chart/ports/ChartRenderer';
 import { renderChartControls } from './ChartControls';
 import { loadChartModule } from './loadChartModule';
 import { l10n } from '../../../../domain/i18n/translation/l10n';

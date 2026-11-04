@@ -1,4 +1,4 @@
-import type { ChartPalette } from './ChartPalette';
+import type { ChartPalette } from '../model/ChartPalette';
 
 const SYSTEM_FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
 

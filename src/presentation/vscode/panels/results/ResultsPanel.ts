@@ -6,7 +6,7 @@ import type { StatementOutcome } from '../../../../application/query/model/State
 import type { DriverId } from '../../../../domain/driver/model/DriverId';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import { saveImageFile } from '../shared/saveImageFile';
-import type { ImageFormat } from '../shared/ImageFormat';
+import type { ImageFormat } from '../model/ImageFormat';
 import type { ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../../contracts/ResultsMessages';
 import { toResultSetView } from './toResultSetView';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
