@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseDockerHost, resolveDockerEndpoint } from '../src/docker/resolveDockerEndpoint';
+import { parseDockerHost, resolveDockerEndpoint } from '../../../../src/infrastructure/docker/client/resolveDockerEndpoint';
 
 describe('parseDockerHost', () => {
   it('parses unix sockets', () => {

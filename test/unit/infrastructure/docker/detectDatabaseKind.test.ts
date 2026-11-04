@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { detectDatabaseKind } from '../src/docker/detectDatabaseKind';
+import { detectDatabaseKind } from '../../../../src/infrastructure/docker/discovery/detectDatabaseKind';
 
 describe('detectDatabaseKind', () => {
   it.each([
@@ -8,8 +8,9 @@ describe('detectDatabaseKind', () => {
     ['timescale/timescaledb:latest-pg16', 'postgres'],
     ['pgvector/pgvector:pg17', 'postgres'],
     ['mysql:8.4', 'mysql'],
-    ['bitnami/mariadb:11', 'mysql'],
-    ['mariadb@sha256:abc', 'mysql'],
+    ['percona:8', 'mysql'],
+    ['bitnami/mariadb:11', 'mariadb'],
+    ['mariadb@sha256:abc', 'mariadb'],
   ])('detects %s as %s', (image, kind) => {
     expect(detectDatabaseKind(image)).toBe(kind);
   });

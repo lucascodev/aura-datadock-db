@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { classifyQuery } from '../src/core/classifyQuery';
+import { classifyQuery } from '../../../../src/application/query/analysis/classifyQuery';
 
 describe('classifyQuery', () => {
   it.each([

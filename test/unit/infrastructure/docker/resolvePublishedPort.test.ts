@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolvePublishedPort } from '../src/docker/resolvePublishedPort';
+import { resolvePublishedPort } from '../../../../src/infrastructure/docker/discovery/resolvePublishedPort';
 
 describe('resolvePublishedPort', () => {
   it('maps wildcard bindings to loopback', () => {
