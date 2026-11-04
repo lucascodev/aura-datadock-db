@@ -1,7 +1,8 @@
 import { useL10nCatalog } from '../../../domain/i18n/translation/l10n';
-import { readL10nCatalog } from '../shared/readL10nCatalog';
+import { readL10nCatalog } from '../shared/host/readL10nCatalog';
 import { EChartsRenderer } from './echarts/EChartsRenderer';
-import { CHART_MODULE_GLOBAL, type ChartModule } from './ports/ChartRenderer';
+import { type ChartModule } from './ports/ChartRenderer';
+import { CHART_MODULE_GLOBAL } from './constants/chartModuleGlobal';
 
 useL10nCatalog(readL10nCatalog());
 

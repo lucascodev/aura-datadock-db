@@ -1,18 +1,18 @@
 import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { TableColumnView } from '../../../../contracts/TableEditorMessages';
-import { createElement } from '../../../shared/createElement';
+import { createElement } from '../../../shared/dom/createElement';
 import { columnTypeBadge } from './columnTypeBadge';
 import type { DataTabState } from '../state/DataTabState';
 import type { RowSelectionGesture } from '../model/RowSelectionGesture';
 import type { DisplayRow } from '../model/DisplayRow';
 import type { CellPosition } from '../model/CellPosition';
 import { NULL_PLACEHOLDER } from '../../../../../application/format/constants/displayText';
+import { CHARACTER_WIDTH } from '../../../shared/constants/gridMetrics';
 
 const ROW_NUMBER_WIDTH = 52;
 const MIN_COLUMN_WIDTH = 70;
 const MAX_INITIAL_COLUMN_WIDTH = 320;
-const CHARACTER_WIDTH = 7.6;
 const COLUMN_PADDING = 64;
 const WIDTH_SAMPLE_ROWS = 50;
 const PAGE_ROWS = 10;

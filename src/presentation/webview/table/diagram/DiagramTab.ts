@@ -3,9 +3,9 @@ import { layoutDiagram } from '../../../../application/diagram/layout/layoutDiag
 import type { TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { DiagramCanvas } from '../../diagram/canvas/DiagramCanvas';
-import { createElement } from '../../shared/createElement';
+import { createElement } from '../../shared/dom/createElement';
+import { ZOOM_STEP } from '../../diagram/constants/zoomStep';
 
-const ZOOM_STEP = 1.25;
 
 export class DiagramTab {
   readonly element: HTMLElement;

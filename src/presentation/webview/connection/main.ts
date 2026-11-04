@@ -6,10 +6,10 @@ import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
 import type { ConnectionFileField, ConnectionFormHostMessage, ConnectionFormWebviewMessage } from '../../contracts/ConnectionFormMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
-import { readL10nCatalog } from '../shared/readL10nCatalog';
-import { createElement } from '../shared/createElement';
-import { connectToHost } from '../shared/vscodeApi';
-import { Tabs } from '../shared/Tabs';
+import { readL10nCatalog } from '../shared/host/readL10nCatalog';
+import { createElement } from '../shared/dom/createElement';
+import { connectToHost } from '../shared/host/vscodeApi';
+import { Tabs } from '../shared/dom/Tabs';
 
 useL10nCatalog(readL10nCatalog());
 

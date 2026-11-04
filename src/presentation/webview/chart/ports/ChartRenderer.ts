@@ -11,5 +11,3 @@ export interface ChartRenderer {
 export interface ChartModule {
   createRenderer(element: HTMLElement): ChartRenderer;
 }
-
-export const CHART_MODULE_GLOBAL = 'auraDataDockDbChart';

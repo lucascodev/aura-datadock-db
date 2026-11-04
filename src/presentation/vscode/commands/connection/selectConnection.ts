@@ -2,8 +2,8 @@ import * as vscode from 'vscode';
 import type { DataDockContext } from '../model/DataDockContext';
 import { pickConnection } from '../registry/pickConnection';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
+import { SQL_LANGUAGE_ID } from '../../constants/sqlLanguageId';
 
-const SQL_LANGUAGE_ID = 'sql';
 
 export async function selectConnection(context: DataDockContext): Promise<void> {
   const picked = await pickConnection(context);

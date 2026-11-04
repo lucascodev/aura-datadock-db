@@ -1,14 +1,14 @@
 import type { ResultColumnView } from '../../../contracts/ResultsMessages';
-import { createElement } from '../../shared/createElement';
+import { createElement } from '../../shared/dom/createElement';
 import { filterRows, nextSort, sortRows } from './orderRows';
 import type { ResultRow } from '../model/ResultRow';
 import type { SortState } from '../model/SortState';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { NULL_TEXT } from '../../../../application/format/constants/displayText';
+import { CHARACTER_WIDTH } from '../../shared/constants/gridMetrics';
 
 const ROW_HEIGHT = 24;
 const OVERSCAN_ROWS = 20;
-const CHARACTER_WIDTH = 7.6;
 const MIN_COLUMN_WIDTH = 72;
 const MAX_COLUMN_WIDTH = 420;
 const WIDTH_SAMPLE_ROWS = 200;

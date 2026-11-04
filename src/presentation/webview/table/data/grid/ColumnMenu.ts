@@ -1,4 +1,4 @@
-import { createElement } from '../../../shared/createElement';
+import { createElement } from '../../../shared/dom/createElement';
 
 interface ColumnMenuItem {
   readonly label: string;

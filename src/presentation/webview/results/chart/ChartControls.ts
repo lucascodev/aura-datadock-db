@@ -3,7 +3,7 @@ import { CHART_KINDS } from '../../../../application/charts/constants/chartKinds
 import type { ChartConfig } from '../../../../application/charts/model/config/ChartConfig';
 import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
 import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
-import { createElement } from '../../shared/createElement';
+import { createElement } from '../../shared/dom/createElement';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const NO_COLUMN = '';

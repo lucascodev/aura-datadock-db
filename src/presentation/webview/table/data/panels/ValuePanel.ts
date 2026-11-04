@@ -1,5 +1,5 @@
 import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
-import { createElement } from '../../../shared/createElement';
+import { createElement } from '../../../shared/dom/createElement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { DataTabState } from '../state/DataTabState';
 import type { CellPosition } from '../model/CellPosition';

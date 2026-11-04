@@ -3,10 +3,10 @@ import type { FilterOperatorId } from '../../../application/editing/model/tableF
 import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage } from '../../contracts/TableEditorMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
-import { readL10nCatalog } from '../shared/readL10nCatalog';
-import { createElement } from '../shared/createElement';
-import { Tabs } from '../shared/Tabs';
-import { connectToHost } from '../shared/vscodeApi';
+import { readL10nCatalog } from '../shared/host/readL10nCatalog';
+import { createElement } from '../shared/dom/createElement';
+import { Tabs } from '../shared/dom/Tabs';
+import { connectToHost } from '../shared/host/vscodeApi';
 import { BottomBar } from './data/toolbar/BottomBar';
 import { showColumnMenu } from './data/grid/ColumnMenu';
 import { DataGrid } from './data/grid/DataGrid';
