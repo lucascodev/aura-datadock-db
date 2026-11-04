@@ -1,7 +1,8 @@
 import { spawn, type ChildProcess } from 'node:child_process';
 import { connect, createServer } from 'node:net';
 import type { SshSettings } from '../../../domain/connection/model/SshSettings';
-import { buildSshArgs, LOOPBACK_ADDRESS } from './buildSshArgs';
+import { buildSshArgs } from './buildSshArgs';
+import { LOOPBACK_ADDRESS } from '../constants/loopbackAddress';
 import type { TunnelEndpoint } from '../model/TunnelEndpoint';
 import { explainSshFailure } from './explainSshFailure';
 import { l10n } from '../../../domain/i18n/translation/l10n';

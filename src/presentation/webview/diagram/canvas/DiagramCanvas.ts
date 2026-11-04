@@ -1,7 +1,7 @@
 import type { DiagramEdge, DiagramModel, DiagramPoint, DiagramPositions, DiagramTable } from '../../../../application/diagram/model/DiagramModel';
 import { measureDiagram, renderDiagramMarkup } from '../../../../application/diagram/render/renderDiagramSvg';
 import { routeEdge } from '../../../../application/diagram/layout/routeEdge';
-import { LIVE_PALETTE } from './livePalette';
+import { LIVE_PALETTE } from '../constants/livePalette';
 import { relatedEdges, relatedTableNames } from './relatedTables';
 import { centerOn, fitToView, zoomAt } from './Viewport';
 import type { ViewportTransform } from '../model/ViewportTransform';

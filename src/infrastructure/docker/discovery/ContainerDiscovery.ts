@@ -1,7 +1,7 @@
 import { isLocalHost } from '../../../application/connections/guidance/isLocalHost';
 import type { ConnectionSource } from '../../../domain/connection/ports/ConnectionSource';
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
-import { TLS_OFF } from '../../../domain/connection/model/ConnectionTls';
+import { TLS_OFF } from '../../../domain/connection/constants/tlsOff';
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import type { DockerContainerSummary } from '../model/DockerContainer';

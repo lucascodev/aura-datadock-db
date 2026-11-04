@@ -5,7 +5,7 @@ import { losesPrecision, parseChartNumber } from '../../../../src/application/ch
 import { parseChartTemporal } from '../../../../src/application/charts/inference/parseChartTemporal';
 import { suggestChart } from '../../../../src/application/charts/inference/suggestChart';
 import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';
-import { CHART_KINDS } from '../../../../src/application/charts/support/chartKinds';
+import { CHART_KINDS } from '../../../../src/application/charts/constants/chartKinds';
 import type { ColumnInfo } from '../../../../src/application/charts/model/config/ColumnKind';
 
 const number = (name: string): ColumnInfo => ({ name, kind: 'number' });

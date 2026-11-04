@@ -7,7 +7,7 @@ import type { ChartData, DrawableChartData } from '../../../../application/chart
 import type { ChartInput } from '../../../../application/charts/model/config/ChartInput';
 import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
 import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
-import { createElement } from '../../shared/createElement';
+import { createElement } from '../../shared/dom/createElement';
 import type { ChartRenderer } from '../../chart/ports/ChartRenderer';
 import { renderChartControls } from './ChartControls';
 import { loadChartModule } from './loadChartModule';

@@ -1,19 +1,19 @@
 import type { ResultColumnView } from '../../../contracts/ResultsMessages';
-import { createElement } from '../../shared/createElement';
+import { createElement } from '../../shared/dom/createElement';
 import { filterRows, nextSort, sortRows } from './orderRows';
 import type { ResultRow } from '../model/ResultRow';
 import type { SortState } from '../model/SortState';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
+import { NULL_TEXT } from '../../../../application/format/constants/displayText';
+import { CHARACTER_WIDTH } from '../../shared/constants/gridMetrics';
 
 const ROW_HEIGHT = 24;
 const OVERSCAN_ROWS = 20;
-const CHARACTER_WIDTH = 7.6;
 const MIN_COLUMN_WIDTH = 72;
 const MAX_COLUMN_WIDTH = 420;
 const WIDTH_SAMPLE_ROWS = 200;
 const COLUMN_PADDING = 28;
 const ROW_NUMBER_WIDTH = 56;
-const NULL_LABEL = 'NULL';
 
 interface CellSelection {
   readonly rowIndex: number;
@@ -94,7 +94,7 @@ export class ResultGrid {
 
   private measureColumn(column: ResultColumnView, index: number): number {
     const sample = this.rows.slice(0, WIDTH_SAMPLE_ROWS);
-    const longest = Math.max(column.name.length + 2, ...sample.map((row) => (row[index] ?? NULL_LABEL).length));
+    const longest = Math.max(column.name.length + 2, ...sample.map((row) => (row[index] ?? NULL_TEXT).length));
     return Math.min(MAX_COLUMN_WIDTH, Math.max(MIN_COLUMN_WIDTH, longest * CHARACTER_WIDTH + COLUMN_PADDING));
   }
 
@@ -159,7 +159,7 @@ export class ResultGrid {
 
     const cell = createElement('td', {
       className: classes.join(' '),
-      text: value ?? NULL_LABEL,
+      text: value ?? NULL_TEXT,
       title: value ?? undefined,
       onClick: () => this.setSelection({ rowIndex, columnIndex }),
     });

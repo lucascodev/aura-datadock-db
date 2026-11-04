@@ -1,4 +1,5 @@
-import { CHART_MODULE_GLOBAL, type ChartModule } from '../../chart/ports/ChartRenderer';
+import { type ChartModule } from '../../chart/ports/ChartRenderer';
+import { CHART_MODULE_GLOBAL } from '../../chart/constants/chartModuleGlobal';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const ownNonce = (document.currentScript as HTMLScriptElement | null)?.nonce ?? '';

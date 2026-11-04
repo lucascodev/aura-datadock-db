@@ -8,11 +8,11 @@ import { readLivePalette } from '../palette/readLivePalette';
 import type { ChartRenderer } from '../ports/ChartRenderer';
 import { createTooltipContent } from './createTooltipContent';
 import { toEChartsOption } from './toEChartsOption';
+import { PNG_DATA_PREFIX } from '../../shared/constants/pngDataPrefix';
 
 const EXPORT_WIDTH = 1200;
 const EXPORT_HEIGHT = 700;
 const EXPORT_PIXEL_RATIO = 2;
-const PNG_DATA_PREFIX = 'data:image/png;base64,';
 
 echarts.use([BarChart, BoxplotChart, HeatmapChart, LineChart, PieChart, ScatterChart, DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent, CanvasRenderer, SVGRenderer]);
 

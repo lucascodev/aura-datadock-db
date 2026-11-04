@@ -32,11 +32,11 @@ import { ResultsPanel } from '../presentation/vscode/panels/results/ResultsPanel
 import { TableEditors } from '../presentation/vscode/panels/table/TableEditors';
 import { DataDockTreeProvider } from '../presentation/vscode/tree/providers/DataDockTreeProvider';
 import { SchemaTreeProvider } from '../presentation/vscode/tree/providers/SchemaTreeProvider';
+import { SQL_LANGUAGE_ID } from '../presentation/vscode/constants/sqlLanguageId';
 
 const AUTO_REFRESH_MS = 15_000;
 const SQL_SELECTOR: vscode.DocumentSelector = { language: 'sql' };
 const COMPLETION_TRIGGER_CHARACTER = '.';
-const SQL_LANGUAGE_ID = 'sql';
 const CONNECTIONS_SETTING = 'connections';
 const REMOTE_STATUS_BACKGROUND = new vscode.ThemeColor('statusBarItem.warningBackground');
 

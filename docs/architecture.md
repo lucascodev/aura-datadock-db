@@ -71,7 +71,7 @@ In folders:
 
 Inside a layer, folders follow context and then kind. `application/query/model/` holds contracts, `ports/` holds interfaces to the outside, in the layer that declares them, `errors/` holds error classes and `constants/` holds shared data. Other folders are named after a subject, like `analysis/`, and hold logic. The layer comes first so a path shows who may depend on whom, and the context comes before the kind so a change to one subject stays in one place.
 
-A file that exports a function or a class exports no types: a type used elsewhere has a file of its own, and a type used only in its file stays private. Each error class has a file with its name.
+A file that exports a function or a class exports no types: a type used elsewhere has a file of its own, and a type used only in its file stays private. Each error class has a file with its name. A constant used in one file stays beside its use, and one shared by several files goes to `constants/`, so the same information has a single source.
 
 The tests in `test/architecture/` read the imports of all of `src` and fail if any of these rules is broken, including in `import type`, because an imported type also couples.
 

@@ -58,8 +58,8 @@ vi.mock('../../../src/drivers/catalog/driverDescriptors', async (importOriginal)
   return { DRIVER_DESCRIPTORS: [...original.DRIVER_DESCRIPTORS, fakeDriver] };
 });
 
-vi.mock('../../../src/infrastructure/database/factory/adapterFactories', async (importOriginal) => {
-  const original = await importOriginal<typeof import('../../../src/infrastructure/database/factory/adapterFactories')>();
+vi.mock('../../../src/infrastructure/database/constants/adapterFactories', async (importOriginal) => {
+  const original = await importOriginal<typeof import('../../../src/infrastructure/database/constants/adapterFactories')>();
   return { ADAPTER_FACTORIES: { ...original.ADAPTER_FACTORIES, fakedb: () => FAKE_ADAPTER } };
 });
 

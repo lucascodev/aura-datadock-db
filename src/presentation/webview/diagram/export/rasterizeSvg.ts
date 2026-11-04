@@ -1,8 +1,8 @@
 import { l10n } from '../../../../domain/i18n/translation/l10n';
+import { PNG_DATA_PREFIX } from '../../shared/constants/pngDataPrefix';
 
 const MAX_CANVAS_SIZE = 16000;
 const PREFERRED_SCALE = 2;
-const PNG_DATA_PREFIX = 'data:image/png;base64,';
 
 export async function rasterizeSvg(svg: string, width: number, height: number): Promise<string> {
   const image = await loadImage(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`);

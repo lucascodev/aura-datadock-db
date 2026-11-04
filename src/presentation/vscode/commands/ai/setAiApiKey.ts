@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { API_KEY_PROVIDERS } from '../../../../application/ai/model/AiProviderKind';
+import { API_KEY_PROVIDERS } from '../../../../application/ai/constants/apiKeyProviders';
 import { apiKeySecretName } from '../../../../application/ai/secrets/apiKeySecretName';
 import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';

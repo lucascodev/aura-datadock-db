@@ -1,9 +1,9 @@
 import { quantile } from './quantile';
 import type { BoxplotStats } from '../model/statistics/BoxplotStats';
+import { LOWER_QUARTILE } from '../constants/quartiles';
+import { UPPER_QUARTILE } from '../constants/quartiles';
 
-const LOWER_QUARTILE = 0.25;
 const MEDIAN = 0.5;
-const UPPER_QUARTILE = 0.75;
 const WHISKER_RANGE = 1.5;
 
 export function computeBoxplot(values: readonly number[]): BoxplotStats | undefined {

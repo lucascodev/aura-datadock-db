@@ -1,12 +1,11 @@
-import { SQL_KEYWORDS } from '../constants/sqlKeywords';
 import type { TableReference } from '../model/TableReference';
+import { IDENTIFIER } from '../constants/sqlIdentifierPattern';
+import { RESERVED_WORDS } from '../../sql/constants/reservedWords';
 
-const IDENTIFIER = '(?:"[^"]+"|`[^`]+`|[A-Za-z_][\\w$]*)';
 const TABLE_REFERENCE = new RegExp(
   `\\b(?:from|join|update|into)\\s+(${IDENTIFIER})(?:\\s*\\.\\s*(${IDENTIFIER}))?(?:\\s+(?:as\\s+)?(${IDENTIFIER}))?`,
   'gi',
 );
-const RESERVED_WORDS = new Set(SQL_KEYWORDS.map((keyword) => keyword.toLowerCase()));
 
 export function parseTableReferences(sql: string): TableReference[] {
   return [...sql.matchAll(TABLE_REFERENCE)].map((match) => {

@@ -1,6 +1,6 @@
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
-import { ADAPTER_FACTORIES } from './adapterFactories';
+import { ADAPTER_FACTORIES } from '../constants/adapterFactories';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function createAdapter(target: ConnectionTarget): DatabaseAdapter {

@@ -1,18 +1,18 @@
 import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { TableColumnView } from '../../../../contracts/TableEditorMessages';
-import { createElement } from '../../../shared/createElement';
+import { createElement } from '../../../shared/dom/createElement';
 import { columnTypeBadge } from './columnTypeBadge';
 import type { DataTabState } from '../state/DataTabState';
 import type { RowSelectionGesture } from '../model/RowSelectionGesture';
 import type { DisplayRow } from '../model/DisplayRow';
 import type { CellPosition } from '../model/CellPosition';
+import { NULL_PLACEHOLDER } from '../../../../../application/format/constants/displayText';
+import { CHARACTER_WIDTH } from '../../../shared/constants/gridMetrics';
 
-const NULL_LABEL = '[NULL]';
 const ROW_NUMBER_WIDTH = 52;
 const MIN_COLUMN_WIDTH = 70;
 const MAX_INITIAL_COLUMN_WIDTH = 320;
-const CHARACTER_WIDTH = 7.6;
 const COLUMN_PADDING = 64;
 const WIDTH_SAMPLE_ROWS = 50;
 const PAGE_ROWS = 10;
@@ -68,7 +68,7 @@ export class DataGrid {
       return stored;
     }
     const index = this.state.displayColumns.indexOf(column);
-    const longest = Math.max(column.name.length, column.dataType.length, ...rows.slice(0, WIDTH_SAMPLE_ROWS).map((row) => (row.values[index] ?? NULL_LABEL).length));
+    const longest = Math.max(column.name.length, column.dataType.length, ...rows.slice(0, WIDTH_SAMPLE_ROWS).map((row) => (row.values[index] ?? NULL_PLACEHOLDER).length));
     return Math.min(MAX_INITIAL_COLUMN_WIDTH, Math.max(MIN_COLUMN_WIDTH, longest * CHARACTER_WIDTH + COLUMN_PADDING));
   }
 
@@ -311,5 +311,5 @@ function displayValue(value: CellValue | undefined): string {
   if (value === undefined) {
     return l10n.t('default');
   }
-  return value ?? NULL_LABEL;
+  return value ?? NULL_PLACEHOLDER;
 }

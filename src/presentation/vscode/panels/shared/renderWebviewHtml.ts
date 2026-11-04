@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 import * as vscode from 'vscode';
-import { escapeMarkup } from '../../../../application/format/escapeMarkup';
+import { escapeMarkup } from '../../../../application/format/text/escapeMarkup';
 
 interface WebviewPage {
   readonly title: string;

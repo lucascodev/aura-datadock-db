@@ -1,4 +1,4 @@
-import { escapeMarkup } from '../../format/escapeMarkup';
+import { escapeMarkup } from '../../format/text/escapeMarkup';
 import {
   BADGE_WIDTH,
   CORNER_RADIUS,

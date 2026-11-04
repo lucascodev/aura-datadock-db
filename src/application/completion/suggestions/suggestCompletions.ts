@@ -7,7 +7,8 @@ import { scanStatements } from '../../query/analysis/splitStatements';
 import type { CompletionSuggestion } from '../model/CompletionSuggestion';
 import { parseTableReferences, unquote } from './parseTableReferences';
 import type { TableReference } from '../model/TableReference';
-import { SQL_KEYWORDS } from '../constants/sqlKeywords';
+import { SQL_KEYWORDS } from '../../sql/constants/sqlKeywords';
+import { IDENTIFIER } from '../constants/sqlIdentifierPattern';
 
 interface CompletionRequest {
   readonly sql: string;
@@ -17,7 +18,6 @@ interface CompletionRequest {
   readonly defaultNamespace?: string;
 }
 
-const IDENTIFIER = '(?:"[^"]+"|`[^`]+`|[A-Za-z_][\\w$]*)';
 const QUALIFIED_TAIL = new RegExp(`(?:(${IDENTIFIER})\\s*\\.\\s*)?(${IDENTIFIER})\\s*\\.\\s*[\\w$]*$`);
 const TABLE_POSITION_TAIL = /\b(?:from|join|update|into|table)\s+[\w$]*$/i;
 

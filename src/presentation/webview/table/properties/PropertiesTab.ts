@@ -1,7 +1,7 @@
 import type { TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
-import { createElement } from '../../shared/createElement';
-import { Tabs } from '../../shared/Tabs';
+import { createElement } from '../../shared/dom/createElement';
+import { Tabs } from '../../shared/dom/Tabs';
 
 type PropertiesSection = 'columns' | 'indexes' | 'references' | 'ddl';
 

@@ -6,15 +6,15 @@ import { measureExportSize, renderDiagramSvg } from '../../../application/diagra
 import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 import type { DiagramHostMessage, DiagramWebviewMessage, SchemaExportFormatView } from '../../contracts/DiagramMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
-import { readL10nCatalog } from '../shared/readL10nCatalog';
-import { createElement } from '../shared/createElement';
-import { connectToHost } from '../shared/vscodeApi';
+import { readL10nCatalog } from '../shared/host/readL10nCatalog';
+import { createElement } from '../shared/dom/createElement';
+import { connectToHost } from '../shared/host/vscodeApi';
 import { DiagramCanvas } from './canvas/DiagramCanvas';
 import { rasterizeSvg } from './export/rasterizeSvg';
+import { ZOOM_STEP } from './constants/zoomStep';
 
 useL10nCatalog(readL10nCatalog());
 
-const ZOOM_STEP = 1.25;
 
 function getImageExports() {
   return [

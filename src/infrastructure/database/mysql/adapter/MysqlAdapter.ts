@@ -15,8 +15,8 @@ import type { MysqlColumnRow, MysqlForeignKeyRow, MysqlIndexRow, MysqlTableRow }
 import { isBaseTable, toMysqlSchema } from './toMysqlSchema';
 import { toMysqlSsl } from './toMysqlSsl';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
+import { CONNECT_TIMEOUT_MS } from '../../constants/connectTimeout';
 
-const CONNECT_TIMEOUT_MS = 10_000;
 const SYSTEM_DATABASES = new Set(['information_schema', 'mysql', 'performance_schema', 'sys']);
 const RESET_SELECT_LIMIT_SQL = 'SET SESSION sql_select_limit = DEFAULT';
 const READ_ONLY_SESSION_SQL = 'SET SESSION TRANSACTION READ ONLY';

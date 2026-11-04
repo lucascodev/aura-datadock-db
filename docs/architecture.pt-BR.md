@@ -71,7 +71,7 @@ Nas pastas:
 
 Dentro de uma camada, as pastas seguem contexto e depois tipo. `application/query/model/` guarda contratos, `ports/` guarda interfaces para o lado de fora, na camada que as declara, `errors/` guarda classes de erro e `constants/` guarda dados compartilhados. As demais pastas têm nome de assunto, como `analysis/`, e guardam lógica. A camada vem primeiro para que o caminho mostre quem pode depender de quem, e o contexto vem antes do tipo para que a mudança em um assunto fique em um só lugar.
 
-Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Cada classe de erro tem um arquivo com o nome dela.
+Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Cada classe de erro tem um arquivo com o nome dela. Uma constante usada em um arquivo fica perto do uso, e a compartilhada por vários arquivos vai para `constants/`, para que a mesma informação tenha uma única origem.
 
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 
