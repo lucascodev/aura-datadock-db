@@ -156,6 +156,9 @@ export class MysqlAdapter implements DatabaseAdapter {
 
   async *streamRows(statement: ParameterizedStatement, batchSize: number): AsyncIterable<RowBatch> {
     const dedicated = createStreamingConnection(this.connectionOptions);
+    if (this.isSessionReadOnly) {
+      dedicated.query(READ_ONLY_SESSION_SQL);
+    }
     const query = dedicated.query({ sql: statement.sql, values: [...statement.params], rowsAsArray: true });
     const stream = query.stream({ highWaterMark: batchSize });
     dedicated.once('error', (error) => stream.destroy(error));

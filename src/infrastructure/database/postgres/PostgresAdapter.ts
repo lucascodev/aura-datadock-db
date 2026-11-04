@@ -24,6 +24,8 @@ import { isViewRelation, toPostgresSchema } from './toPostgresSchema';
 const CONNECT_TIMEOUT_MS = 10_000;
 const APPLICATION_NAME = 'Aura DataDock DB';
 const READ_ONLY_SESSION_SQL = 'SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY';
+const READ_ONLY_TRANSACTION_SQL = 'BEGIN TRANSACTION READ ONLY';
+const ROLLBACK_SQL = 'ROLLBACK';
 const RAW_TEXT_TYPE_IDS = new Set<number>([types.builtins.DATE, types.builtins.TIMESTAMP, types.builtins.TIMESTAMPTZ]);
 
 const SINGLE_STATEMENT_PROTOCOL = { queryMode: 'extended' };
@@ -43,6 +45,7 @@ export class PostgresAdapter implements DatabaseAdapter {
   private backendPid?: number;
   private runningQueries = 0;
   private isSessionReadOnly = false;
+  private readOnlyQueue: Promise<unknown> = Promise.resolve();
   private disconnectListener?: () => void;
 
   constructor(target: ConnectionTarget) {
@@ -105,7 +108,11 @@ export class PostgresAdapter implements DatabaseAdapter {
     });
   }
 
-  async runQuery(sql: string, maxRows: number): Promise<QueryResult> {
+  runQuery(sql: string, maxRows: number): Promise<QueryResult> {
+    return this.readWithinSessionMode(() => this.readThroughCursor(sql, maxRows));
+  }
+
+  private async readThroughCursor(sql: string, maxRows: number): Promise<QueryResult> {
     const startedAt = Date.now();
     const cursor = this.client.query(createArrayCursor(sql));
     this.runningQueries++;
@@ -127,7 +134,11 @@ export class PostgresAdapter implements DatabaseAdapter {
     }
   }
 
-  async queryPage(statement: ParameterizedStatement): Promise<QueryResult> {
+  queryPage(statement: ParameterizedStatement): Promise<QueryResult> {
+    return this.readWithinSessionMode(() => this.readPage(statement));
+  }
+
+  private async readPage(statement: ParameterizedStatement): Promise<QueryResult> {
     const startedAt = Date.now();
     const result = await this.client.query<unknown[]>({
       text: statement.sql,
@@ -179,6 +190,9 @@ export class PostgresAdapter implements DatabaseAdapter {
   async *streamRows(statement: ParameterizedStatement, batchSize: number): AsyncIterable<RowBatch> {
     const client = this.createDedicatedClient();
     await client.connect();
+    if (this.isSessionReadOnly) {
+      await client.query(READ_ONLY_TRANSACTION_SQL);
+    }
     const cursor = client.query(createArrayCursor(statement.sql, statement.params));
 
     try {
@@ -203,6 +217,24 @@ export class PostgresAdapter implements DatabaseAdapter {
 
   buildSelectPreview(table: TableRef, limit: number): string {
     return `SELECT * FROM ${quoteTable('postgres', table)} LIMIT ${limit};`;
+  }
+
+  private readWithinSessionMode<T>(read: () => Promise<T>): Promise<T> {
+    if (!this.isSessionReadOnly) {
+      return read();
+    }
+    const pending = this.readOnlyQueue.then(() => this.readInReadOnlyTransaction(read));
+    this.readOnlyQueue = pending.catch(ignoreDropOutsideQuery);
+    return pending;
+  }
+
+  private async readInReadOnlyTransaction<T>(read: () => Promise<T>): Promise<T> {
+    await this.client.query(READ_ONLY_TRANSACTION_SQL);
+    try {
+      return await read();
+    } finally {
+      await this.client.query(ROLLBACK_SQL).catch(ignoreDropOutsideQuery);
+    }
   }
 
   private createDedicatedClient(): Client {
