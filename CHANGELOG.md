@@ -9,6 +9,7 @@ All notable changes to this project are recorded here. The format follows [Keep 
 ### Added
 
 - Link to GitHub Sponsors in the repository, in the README and on the extension page.
+- A whole query typed in the filter field now moves to the **Show SQL** panel and runs from it.
 
 ### Fixed
 

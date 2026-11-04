@@ -124,7 +124,7 @@ Nothing is written until **Save**, which applies everything in one transaction: 
 - Anything else follows the path of a normal query, with the same confirmations, and the result appears in the results panel.
 - **Chart** runs a single read statement and opens the result as a chart in the results panel.
 
-The filter expression is only the condition of a `WHERE`, such as `id > 10`, without `SELECT` or `;`. To run a whole query, use **Show SQL**. The condition is SQL you write, and it can only read. That check analyzes the text and does not see the effect of a function called inside the expression. On a read-only connection, the database itself blocks writes; on the others, the risk is the same as writing the query in the editor.
+The filter expression is only the condition of a `WHERE`, such as `id > 10`, without `SELECT` or `;`. A whole query typed there moves to the **Show SQL** panel and runs from it. The condition is SQL you write, and it can only read. That check analyzes the text and does not see the effect of a function called inside the expression. On a read-only connection, the database itself blocks writes; on the others, the risk is the same as writing the query in the editor.
 
 Each row is identified by its primary key, and each change must affect exactly one row. If someone else removed the row, nothing is saved. On the other hand, if two people edit the same row, the last write wins.
 

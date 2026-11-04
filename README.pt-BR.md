@@ -124,7 +124,7 @@ Nada é gravado até **Salvar**, que aplica tudo em uma transação: se uma alte
 - Qualquer outra coisa segue o caminho de uma query normal, com as mesmas confirmações, e o resultado aparece no painel de resultados.
 - **Gráfico** roda uma única query de leitura e abre o resultado como gráfico no painel de resultados.
 
-A expressão do filtro é só a condição de um `WHERE`, como `id > 10`, sem `SELECT` nem `;`. Para rodar uma query inteira, use **Mostrar SQL**. A condição é SQL escrito por você, e só pode ler. Essa checagem analisa o texto e não enxerga o efeito de uma função chamada dentro da expressão. Em uma conexão somente leitura, o próprio banco bloqueia a escrita; nas demais, o risco é o mesmo de escrever a query no editor.
+A expressão do filtro é só a condição de um `WHERE`, como `id > 10`, sem `SELECT` nem `;`. Uma query inteira digitada ali vai para o painel de **Mostrar SQL** e roda a partir dele. A condição é SQL escrito por você, e só pode ler. Essa checagem analisa o texto e não enxerga o efeito de uma função chamada dentro da expressão. Em uma conexão somente leitura, o próprio banco bloqueia a escrita; nas demais, o risco é o mesmo de escrever a query no editor.
 
 Cada linha é identificada pela chave primária, e cada alteração precisa afetar exatamente uma linha. Se outra pessoa tiver removido a linha, nada é salvo. Por outro lado, se duas pessoas editarem a mesma linha, vale a última gravação.
 

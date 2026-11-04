@@ -77,6 +77,12 @@ export class TableScreen {
     this.host.postMessage({ type: 'loadPage', request: this.state.view.request(offset) });
   }
 
+  runWholeQuery(sql: string): void {
+    this.state.isSqlPanelOpen = true;
+    this.sqlPanel.runText(sql);
+    this.render();
+  }
+
   setBusy(): void {
     this.state.isBusy = true;
     this.renderDetails();

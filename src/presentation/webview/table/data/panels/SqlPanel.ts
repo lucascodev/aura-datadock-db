@@ -53,6 +53,12 @@ export class SqlPanel {
     }
   }
 
+  runText(sql: string): void {
+    this.isEdited = true;
+    this.editor.value = sql;
+    this.run();
+  }
+
   private run(): void {
     if (this.editor.value.trim()) {
       this.callbacks.onRun(this.editor.value);

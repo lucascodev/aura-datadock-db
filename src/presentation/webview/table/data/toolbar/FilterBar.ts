@@ -1,4 +1,5 @@
 import { applyFilterCompletion } from '../../../../../application/editing/browsing/applyFilterCompletion';
+import { isWholeQuery } from '../../../../../application/editing/browsing/isWholeQuery';
 import { suggestFilterCompletions } from '../../../../../application/editing/browsing/suggestFilterCompletions';
 import type { FilterCompletions, FilterSuggestion } from '../../../../../application/editing/model/FilterCompletions';
 import { FILTER_OPERATORS } from '../../../../../application/editing/constants/filterOperators';
@@ -9,6 +10,7 @@ import type { DataTabState } from '../state/DataTabState';
 
 interface FilterBarCallbacks {
   onApply(): void;
+  onWholeQuery(sql: string): void;
   onToggleSql(): void;
   onToggleValue(): void;
 }
@@ -80,7 +82,14 @@ export class FilterBar {
 
   private apply(): void {
     this.hideSuggestions();
-    this.state.whereExpression = this.input.value.trim();
+    const text = this.input.value.trim();
+    if (isWholeQuery(this.kind, text)) {
+      this.input.value = '';
+      this.state.whereExpression = '';
+      this.callbacks.onWholeQuery(text);
+      return;
+    }
+    this.state.whereExpression = text;
     this.callbacks.onApply();
   }
 
