@@ -10,7 +10,7 @@ import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAd
 import type { DriverId } from '../../src/domain/driver/model/DriverId';
 import type { NamespaceSchema } from '../../src/domain/schema/model/NamespaceSchema';
 import type { ParameterizedStatement } from '../../src/domain/database/model/ParameterizedStatement';
-import { quoteTable } from '../../src/drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../src/drivers/catalog/quoteTable';
 import type { RowBatch } from '../../src/domain/database/model/RowBatch';
 
 interface Engine {

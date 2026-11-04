@@ -1,8 +1,9 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
-import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
+import { getDriver } from '../../../drivers/catalog/getDriver';
+import { quoteIdentifier } from '../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../drivers/catalog/quoteTable';
 import { describeEditability } from './describeEditability';
 import { isColumnEditable } from './isColumnEditable';
 import type { CellValues, RowChange } from '../model/RowChange';

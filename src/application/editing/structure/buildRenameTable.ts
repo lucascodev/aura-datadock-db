@@ -1,6 +1,7 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
-import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
+import { getDriver } from '../../../drivers/catalog/getDriver';
+import { quoteIdentifier } from '../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../drivers/catalog/quoteTable';
 import type { TableLocation } from '../model/TableLocation';
 
 export function buildRenameTable(kind: DriverId, table: TableLocation, newName: string): string {

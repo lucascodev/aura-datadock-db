@@ -3,11 +3,12 @@ import type { ConnectionSource } from '../../../domain/connection/ports/Connecti
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import { TLS_OFF } from '../../../domain/connection/constants/tlsOff';
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import type { DockerContainerSummary } from '../model/DockerContainer';
 import { detectDatabaseKind } from './detectDatabaseKind';
 import type { DockerClient } from '../client/DockerClient';
-import { parseEnv, resolveCredentials } from './resolveCredentials';
+import { parseEnv } from './parseEnv';
+import { resolveCredentials } from './resolveCredentials';
 import { resolvePublishedPort } from './resolvePublishedPort';
 
 interface DatabaseContainer {

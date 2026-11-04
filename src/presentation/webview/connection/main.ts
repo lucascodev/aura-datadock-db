@@ -3,7 +3,8 @@ import { parseConnectionString } from '../../../application/connections/saved/pa
 import { suggestProtection } from '../../../application/connections/guidance/suggestProtection';
 import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
+import { listDrivers } from '../../../drivers/catalog/listDrivers';
 import type { ConnectionFileField, ConnectionFormHostMessage, ConnectionFormWebviewMessage } from '../../contracts/ConnectionFormMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/host/readL10nCatalog';

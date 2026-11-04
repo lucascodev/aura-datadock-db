@@ -1,7 +1,7 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import { quoteTable } from '../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../drivers/catalog/quoteTable';
 import { toStatement } from '../../sql/building/toStatement';
 import type { TablePageRequest } from '../model/tableFilters';
 import { l10n } from '../../../domain/i18n/translation/l10n';

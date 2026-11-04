@@ -12,7 +12,7 @@ import { scanStatements } from '../../../src/application/query/analysis/scanStat
 import { suggestCompletions } from '../../../src/application/completion/suggestions/suggestCompletions';
 import { detectDatabaseKind } from '../../../src/infrastructure/docker/discovery/detectDatabaseKind';
 import { resolveCredentials } from '../../../src/infrastructure/docker/discovery/resolveCredentials';
-import { listDrivers } from '../../../src/drivers/catalog/driverCatalog';
+import { listDrivers } from '../../../src/drivers/catalog/listDrivers';
 import type { ConnectionTarget } from '../../../src/domain/connection/model/ConnectionTarget';
 import type { DriverDescriptor } from '../../../src/domain/driver/model/DriverDescriptor';
 import type { SavedConnection } from '../../../src/domain/connection/model/SavedConnection';

@@ -1,6 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { TableEditability } from '../model/TableEditability';
 

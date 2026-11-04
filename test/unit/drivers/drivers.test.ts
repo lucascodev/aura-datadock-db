@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { detectDatabaseKind } from '../../../src/infrastructure/docker/discovery/detectDatabaseKind';
 import { resolveCredentials } from '../../../src/infrastructure/docker/discovery/resolveCredentials';
-import { findDriver, findDriverByImage, findDriverByScheme, getDriver, listDrivers } from '../../../src/drivers/catalog/driverCatalog';
+import { findDriver } from '../../../src/drivers/catalog/findDriver';
+import { findDriverByImage } from '../../../src/drivers/catalog/findDriverByImage';
+import { findDriverByScheme } from '../../../src/drivers/catalog/findDriverByScheme';
+import { getDriver } from '../../../src/drivers/catalog/getDriver';
+import { listDrivers } from '../../../src/drivers/catalog/listDrivers';
 import { ADAPTER_FACTORIES } from '../../../src/infrastructure/database/constants/adapterFactories';
-import { quoteIdentifier, quoteTable } from '../../../src/drivers/catalog/quoteIdentifier';
+import { quoteIdentifier } from '../../../src/drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../src/drivers/catalog/quoteTable';
 
 describe('driver catalog', () => {
   it('lists the supported drivers', () => {

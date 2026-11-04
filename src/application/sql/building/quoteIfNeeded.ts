@@ -1,5 +1,5 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import { quoteIdentifier } from '../../../drivers/catalog/quoteIdentifier';
 import { RESERVED_WORDS } from '../constants/reservedWords';
 

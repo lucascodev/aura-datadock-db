@@ -1,6 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import { bound } from '../../sql/building/bound';
 import { joinParts } from '../../sql/building/joinParts';
 import type { TemplatePart } from '../../sql/model/TemplatePart';

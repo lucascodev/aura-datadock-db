@@ -1,6 +1,6 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import type { CellValue, ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import { toSqlLiteral } from './toSqlLiteral';
 import type { TemplatePart } from '../model/TemplatePart';
 

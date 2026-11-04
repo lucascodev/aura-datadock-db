@@ -1,5 +1,5 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../drivers/catalog/getDriver';
 import type { AiRequest } from '../ports/AiProvider';
 
 export function buildTextToSqlPrompt(kind: DriverId, schema: string, question: string): Omit<AiRequest, 'signal'> {

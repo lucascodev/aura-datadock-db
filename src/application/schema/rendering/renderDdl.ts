@@ -4,7 +4,8 @@ import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSche
 import type { TableColumn } from '../../../domain/schema/model/TableColumn';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import type { TableIndex } from '../../../domain/schema/model/TableIndex';
-import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
+import { quoteIdentifier } from '../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../drivers/catalog/quoteTable';
 
 const SEQUENCE_DEFAULT = /nextval\('([^']+)'/;
 

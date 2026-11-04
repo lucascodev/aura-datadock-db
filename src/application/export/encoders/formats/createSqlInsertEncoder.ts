@@ -1,4 +1,5 @@
-import { quoteIdentifier, quoteTable } from '../../../../drivers/catalog/quoteIdentifier';
+import { quoteIdentifier } from '../../../../drivers/catalog/quoteIdentifier';
+import { quoteTable } from '../../../../drivers/catalog/quoteTable';
 import { toSqlLiteral } from '../../../sql/building/toSqlLiteral';
 import type { RowEncoder } from '../../model/RowEncoder';
 import type { RowExportContext } from '../../model/RowExportFormat';

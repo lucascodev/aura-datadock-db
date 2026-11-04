@@ -5,16 +5,15 @@ import type { TableDefinition } from '../../../../domain/schema/model/TableDefin
 import type { TableIndex } from '../../../../domain/schema/model/TableIndex';
 import type { MysqlForeignKeyRow, MysqlIndexRow, MysqlSchemaRows } from '../model/mysqlSchemaRows';
 import { normalizeMysqlDefault } from './normalizeMysqlDefault';
+import { isBaseTable } from './isBaseTable';
 
 const PRIMARY_INDEX_NAME = 'PRIMARY';
-const AUTO_INCREMENT = 'auto_increment';
-const AUTO_INCREMENT_CLAUSE = 'AUTO_INCREMENT';
-const BASE_TABLE_TYPE = 'BASE TABLE';
-const COMPUTED_COLUMN = /\b(VIRTUAL|STORED|PERSISTENT)\b/i;
 
-export function isBaseTable(tableType: string): boolean {
-  return tableType === BASE_TABLE_TYPE;
-}
+const AUTO_INCREMENT = 'auto_increment';
+
+const AUTO_INCREMENT_CLAUSE = 'AUTO_INCREMENT';
+
+const COMPUTED_COLUMN = /\b(VIRTUAL|STORED|PERSISTENT)\b/i;
 
 export function toMysqlSchema(kind: DriverId, namespace: string, rows: MysqlSchemaRows): NamespaceSchema {
   const tables = rows.tables.map((table): TableDefinition => {

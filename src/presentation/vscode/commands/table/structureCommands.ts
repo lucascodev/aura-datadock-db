@@ -9,7 +9,7 @@ import { buildRenameTable } from '../../../../application/editing/structure/buil
 import { buildTruncateTable } from '../../../../application/editing/structure/buildTruncateTable';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
-import { getDriver } from '../../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../../drivers/catalog/getDriver';
 import type { ColumnNode } from '../../tree/nodes/ColumnNode';
 import type { NamespaceNode } from '../../tree/nodes/NamespaceNode';
 import type { TableNode } from '../../tree/nodes/TableNode';

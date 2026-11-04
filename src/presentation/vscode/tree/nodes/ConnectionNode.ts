@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { type ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { isReachable } from '../../../../domain/connection/rules/isReachable';
-import { getDriver } from '../../../../drivers/catalog/driverCatalog';
+import { getDriver } from '../../../../drivers/catalog/getDriver';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export class ConnectionNode extends vscode.TreeItem {

@@ -1,7 +1,7 @@
 import type { ConnectionSource } from '../../../domain/connection/ports/ConnectionSource';
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
-import { findDriver } from '../../../drivers/catalog/driverCatalog';
+import { findDriver } from '../../../drivers/catalog/findDriver';
 import { toConnectionTarget } from './toConnectionTarget';
 import { isSafeCommandValue } from './isSafeCommandValue';
 import type { SavedConnectionStore } from '../ports/SavedConnectionStore';
