@@ -4,6 +4,20 @@
 
 Extensão open source para VS Code que conecta aos seus bancos Postgres, MySQL e MariaDB. Os que rodam em containers Docker aparecem sozinhos, sem nenhuma configuração, e os demais você adiciona com conexão direta ou por túnel SSH. Ela mostra schemas, tabelas e colunas na barra lateral, desenha o diagrama do banco, executa queries, exporta dados e schema, e entrega o schema para a IA que você já usa.
 
+## Capturas de tela
+
+**Navegue e edite os dados da tabela**
+
+<p align="center"><img src="docs/screenshots/table-editor.png" alt="Aba Dados de uma tabela de pedidos, com a grade, o painel de valor e a barra de edição" width="880"></p>
+
+**Veja o diagrama do banco**
+
+<p align="center"><img src="docs/screenshots/er-diagram.png" alt="Diagrama ER com quatro tabelas e seus relacionamentos em notação pé de galinha" width="880"></p>
+
+**Transforme o resultado de uma query em gráfico**
+
+<p align="center"><img src="docs/screenshots/query-chart.png" alt="Editor SQL ao lado de um gráfico de linha de pedidos por dia, com uma série para cada status" width="880"></p>
+
 ## Recursos
 
 - **Descoberta automática**: detecta containers de Postgres, MySQL e MariaDB (incluindo PostGIS, TimescaleDB e pgvector) e lê usuário, senha e banco das variáveis de ambiente do container.
