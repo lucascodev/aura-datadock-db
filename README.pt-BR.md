@@ -33,7 +33,7 @@ Nada disso é necessário para uma conexão direta. A extensão não tem banco p
 
 1. Abra a aba **Aura DataDock DB** na barra de atividades.
 2. Conecte a um banco:
-   - **Com Docker:** suba o banco em um container e ele aparece sozinho, em até 15 segundos. Para testar, use o `docker-compose.dev.yml` deste repositório:
+   - **Com Docker:** suba o banco em um container e ele aparece sozinho, em até 15 segundos. Para testar, use o [`docker-compose.dev.yml`](docker-compose.dev.yml) deste repositório:
      ```bash
      docker compose -f docker-compose.dev.yml up -d
      ```
@@ -88,6 +88,7 @@ Na aba **Dados**:
 | Copiar a célula | `Ctrl+C` |
 | Ver ou editar um valor longo | Painel **Valor**, com JSON formatado; **Aplicar** leva o valor para a célula |
 | Gravar NULL | **NULL** na barra inferior, ou **Definir NULL** no painel |
+| Usar o padrão do banco em uma linha nova | **Padrão** na barra inferior |
 | Adicionar uma linha | **+ Adicionar**; coluna sem valor usa o default do banco, e `*` marca as obrigatórias |
 | Duplicar linhas | **Duplicar**; copia os valores para novas linhas, sem colunas geradas e sem chave primária com default |
 | Selecionar linhas | Clique no número da linha; `Ctrl` alterna e `Shift` seleciona um intervalo |

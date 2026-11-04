@@ -33,7 +33,7 @@ None of this is needed for a direct connection. The extension has no database of
 
 1. Open the **Aura DataDock DB** tab in the activity bar.
 2. Connect to a database:
-   - **With Docker:** start the database in a container and it shows up on its own, within 15 seconds. To try it out, use the `docker-compose.dev.yml` in this repository:
+   - **With Docker:** start the database in a container and it shows up on its own, within 15 seconds. To try it out, use the [`docker-compose.dev.yml`](docker-compose.dev.yml) in this repository:
      ```bash
      docker compose -f docker-compose.dev.yml up -d
      ```
@@ -88,6 +88,7 @@ In the **Data** tab:
 | Copy the cell | `Ctrl+C` |
 | View or edit a long value | **Value** panel, with formatted JSON; **Apply** sends the value to the cell |
 | Write NULL | **NULL** in the bottom bar, or **Set NULL** in the panel |
+| Use the database default in a new row | **Default** in the bottom bar |
 | Add a row | **+ Add**; a column without a value uses the database default, and `*` marks the required ones |
 | Duplicate rows | **Duplicate**; copies the values to new rows, without generated columns and without a primary key that has a default |
 | Select rows | Click the row number; `Ctrl` toggles and `Shift` selects a range |
@@ -149,7 +150,7 @@ Statements in sequence run one at a time and stop at the first error, with one r
 After running a query, switch from **Grid** to **Chart** in the results panel. The extension suggests a chart from the shape of the result, and you change the type and the columns in the fields above it.
 
 ```sql
-SELECT date_trunc('day', created_at) AS dia, status, count(*) AS total
+SELECT date_trunc('day', created_at) AS day, status, count(*) AS total
 FROM orders
 GROUP BY 1, 2
 ORDER BY 1;
