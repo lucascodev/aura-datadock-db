@@ -21,8 +21,8 @@ import {
 import type { PostgresColumnRow, PostgresConstraintRow, PostgresIndexRow, PostgresTableRow } from '../model/postgresSchemaRows';
 import { toPostgresSsl } from './toPostgresSsl';
 import { isViewRelation, toPostgresSchema } from './toPostgresSchema';
+import { CONNECT_TIMEOUT_MS } from '../../constants/connectTimeout';
 
-const CONNECT_TIMEOUT_MS = 10_000;
 const APPLICATION_NAME = 'Aura DataDock DB';
 const READ_ONLY_SESSION_SQL = 'SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY';
 const READ_ONLY_TRANSACTION_SQL = 'BEGIN TRANSACTION READ ONLY';

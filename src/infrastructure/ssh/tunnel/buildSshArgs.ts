@@ -2,8 +2,7 @@ import { isSafeCommandValue } from '../../../application/connections/saved/valid
 import type { SshSettings } from '../../../domain/connection/model/SshSettings';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { TunnelEndpoint } from '../model/TunnelEndpoint';
-
-export const LOOPBACK_ADDRESS = '127.0.0.1';
+import { LOOPBACK_ADDRESS } from '../constants/loopbackAddress';
 
 const BASE_OPTIONS = ['-o', 'ExitOnForwardFailure=yes', '-o', 'BatchMode=yes', '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=3'];
 

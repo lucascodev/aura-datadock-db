@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { detectDatabaseKind } from '../../../src/infrastructure/docker/discovery/detectDatabaseKind';
 import { resolveCredentials } from '../../../src/infrastructure/docker/discovery/resolveCredentials';
 import { findDriver, findDriverByImage, findDriverByScheme, getDriver, listDrivers } from '../../../src/drivers/catalog/driverCatalog';
-import { ADAPTER_FACTORIES } from '../../../src/infrastructure/database/factory/adapterFactories';
+import { ADAPTER_FACTORIES } from '../../../src/infrastructure/database/constants/adapterFactories';
 import { quoteIdentifier, quoteTable } from '../../../src/drivers/catalog/quoteIdentifier';
 
 describe('driver catalog', () => {
