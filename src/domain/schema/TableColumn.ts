@@ -4,4 +4,6 @@ export interface TableColumn {
   readonly nullable: boolean;
   readonly isPrimaryKey: boolean;
   readonly defaultValue?: string;
+  readonly generationClause?: string;
+  readonly isComputed?: boolean;
 }

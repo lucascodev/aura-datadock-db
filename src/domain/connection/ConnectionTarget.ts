@@ -1,0 +1,30 @@
+import type { ConnectionTls } from './ConnectionTls';
+import type { DriverId } from '../driver/DriverId';
+import type { SshSettings } from './SshSettings';
+
+export type CredentialSource = 'container-env' | 'secret-storage' | 'missing';
+
+export type ConnectionSourceKind = 'docker' | 'saved';
+
+export interface ConnectionTarget {
+  readonly id: string;
+  readonly key: string;
+  readonly name: string;
+  readonly detail: string;
+  readonly source: ConnectionSourceKind;
+  readonly kind: DriverId;
+  readonly host?: string;
+  readonly port?: number;
+  readonly user: string;
+  readonly password?: string;
+  readonly database?: string;
+  readonly credentialSource: CredentialSource;
+  readonly isRemote: boolean;
+  readonly isReadOnly: boolean;
+  readonly tls: ConnectionTls;
+  readonly ssh?: SshSettings;
+}
+
+export function isReachable(target: ConnectionTarget): boolean {
+  return target.host !== undefined && target.port !== undefined;
+}
