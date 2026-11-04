@@ -22,7 +22,7 @@ import { ContainerDiscovery } from '../infrastructure/docker/discovery/Container
 import { DockerClient } from '../infrastructure/docker/client/DockerClient';
 import { resolveDockerEndpoint } from '../infrastructure/docker/client/resolveDockerEndpoint';
 import { registerMcpProvider } from '../presentation/vscode/mcp/registerMcpProvider';
-import { openAdapter } from '../infrastructure/ssh/openAdapter';
+import { openAdapter } from '../infrastructure/ssh/tunnel/openAdapter';
 import { ConnectionFormPanel } from '../presentation/vscode/panels/connection/ConnectionFormPanel';
 import { DiagramPanels } from '../presentation/vscode/panels/diagram/DiagramPanels';
 import { HistoryTreeProvider } from '../presentation/vscode/tree/providers/HistoryTreeProvider';

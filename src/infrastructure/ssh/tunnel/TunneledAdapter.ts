@@ -1,10 +1,10 @@
-import type { DatabaseAdapter } from '../../domain/database/ports/DatabaseAdapter';
-import type { NamespaceSchema } from '../../domain/schema/model/NamespaceSchema';
-import type { ParameterizedStatement } from '../../domain/database/model/ParameterizedStatement';
-import type { QueryResult } from '../../domain/database/model/QueryResult';
-import type { RowBatch } from '../../domain/database/model/RowBatch';
-import type { TableRef } from '../../domain/schema/model/TableRef';
-import type { SshTunnel } from './SshTunnel';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
+import type { QueryResult } from '../../../domain/database/model/QueryResult';
+import type { RowBatch } from '../../../domain/database/model/RowBatch';
+import type { TableRef } from '../../../domain/schema/model/TableRef';
+import type { SshTunnel } from '../model/SshTunnel';
 
 export class TunneledAdapter implements DatabaseAdapter {
   constructor(

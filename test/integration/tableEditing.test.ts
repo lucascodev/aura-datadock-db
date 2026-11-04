@@ -10,7 +10,7 @@ import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAd
 import type { DriverId } from '../../src/domain/driver/model/DriverId';
 import type { RowBatch } from '../../src/domain/database/model/RowBatch';
 import type { TableDefinition } from '../../src/domain/schema/model/TableDefinition';
-import { openAdapter } from '../../src/infrastructure/ssh/openAdapter';
+import { openAdapter } from '../../src/infrastructure/ssh/tunnel/openAdapter';
 
 interface Engine {
   readonly kind: DriverId;

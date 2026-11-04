@@ -1,7 +1,7 @@
-import { isSafeCommandValue } from '../../application/connections/saved/validateConnectionInput';
-import type { SshSettings } from '../../domain/connection/model/SshSettings';
-import { l10n } from '../../domain/i18n/translation/l10n';
-import type { TunnelEndpoint } from './TunnelEndpoint';
+import { isSafeCommandValue } from '../../../application/connections/saved/validateConnectionInput';
+import type { SshSettings } from '../../../domain/connection/model/SshSettings';
+import { l10n } from '../../../domain/i18n/translation/l10n';
+import type { TunnelEndpoint } from '../model/TunnelEndpoint';
 
 export const LOOPBACK_ADDRESS = '127.0.0.1';
 

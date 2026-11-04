@@ -1,6 +1,6 @@
 import { request } from 'node:http';
-import type { DockerContainerDetails, DockerContainerSummary } from './DockerContainer';
-import type { DockerEndpoint } from './DockerEndpoint';
+import type { DockerContainerDetails, DockerContainerSummary } from '../model/DockerContainer';
+import type { DockerEndpoint } from '../model/DockerEndpoint';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import { DockerUnavailableError } from '../errors/DockerUnavailableError';
 

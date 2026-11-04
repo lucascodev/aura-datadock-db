@@ -12,7 +12,7 @@ import { isReachable } from '../domain/connection/rules/isReachable';
 import { ContainerDiscovery } from '../infrastructure/docker/discovery/ContainerDiscovery';
 import { DockerClient } from '../infrastructure/docker/client/DockerClient';
 import { resolveDockerEndpoint } from '../infrastructure/docker/client/resolveDockerEndpoint';
-import { openAdapter } from '../infrastructure/ssh/openAdapter';
+import { openAdapter } from '../infrastructure/ssh/tunnel/openAdapter';
 
 const MAX_ROWS = Number(process.env.DATADOCK_MAX_ROWS ?? 200);
 const MAX_RESPONSE_CHARS = 60_000;

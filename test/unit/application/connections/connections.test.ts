@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { toMysqlSsl } from '../../../../src/infrastructure/database/mysql/toMysqlSsl';
-import { toPostgresSsl } from '../../../../src/infrastructure/database/postgres/toPostgresSsl';
+import { toMysqlSsl } from '../../../../src/infrastructure/database/mysql/adapter/toMysqlSsl';
+import { toPostgresSsl } from '../../../../src/infrastructure/database/postgres/adapter/toPostgresSsl';
 import type { ConnectionInput } from '../../../../src/application/connections/model/ConnectionInput';
 import { explainConnectionFailure } from '../../../../src/application/connections/guidance/explainConnectionFailure';
 import { isLocalHost } from '../../../../src/application/connections/guidance/isLocalHost';

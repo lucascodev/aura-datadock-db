@@ -4,7 +4,7 @@ import type { ConnectionTarget } from '../../../domain/connection/model/Connecti
 import { TLS_OFF } from '../../../domain/connection/model/ConnectionTls';
 import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
-import type { DockerContainerSummary } from '../client/DockerContainer';
+import type { DockerContainerSummary } from '../model/DockerContainer';
 import { detectDatabaseKind } from './detectDatabaseKind';
 import type { DockerClient } from '../client/DockerClient';
 import { parseEnv, resolveCredentials } from './resolveCredentials';

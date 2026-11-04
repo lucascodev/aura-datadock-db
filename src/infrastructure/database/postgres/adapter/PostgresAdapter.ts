@@ -1,14 +1,14 @@
 import { Client, types, type ClientConfig, type CustomTypesConfig, type FieldDef } from 'pg';
 import Cursor from 'pg-cursor';
-import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
-import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
-import { type CellValue, type ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
-import { assertExpectedRows } from '../../../domain/database/rules/assertExpectedRows';
-import type { QueryResult } from '../../../domain/database/model/QueryResult';
-import type { RowBatch } from '../../../domain/database/model/RowBatch';
-import type { TableRef } from '../../../domain/schema/model/TableRef';
-import { quoteTable } from '../../../drivers/catalog/quoteIdentifier';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import { type CellValue, type ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
+import { assertExpectedRows } from '../../../../domain/database/rules/assertExpectedRows';
+import type { QueryResult } from '../../../../domain/database/model/QueryResult';
+import type { RowBatch } from '../../../../domain/database/model/RowBatch';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
+import { quoteTable } from '../../../../drivers/catalog/quoteIdentifier';
 import {
   BACKEND_PID_SQL,
   CANCEL_BACKEND_SQL,
@@ -17,8 +17,8 @@ import {
   LIST_INDEXES_SQL,
   LIST_NAMESPACES_SQL,
   LIST_TABLES_SQL,
-} from './postgresCatalogQueries';
-import type { PostgresColumnRow, PostgresConstraintRow, PostgresIndexRow, PostgresTableRow } from './postgresSchemaRows';
+} from '../constants/postgresCatalogQueries';
+import type { PostgresColumnRow, PostgresConstraintRow, PostgresIndexRow, PostgresTableRow } from '../model/postgresSchemaRows';
 import { toPostgresSsl } from './toPostgresSsl';
 import { isViewRelation, toPostgresSchema } from './toPostgresSchema';
 

@@ -1,9 +1,9 @@
-import type { DriverId } from '../../../domain/driver/model/DriverId';
-import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
-import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import type { TableIndex } from '../../../domain/schema/model/TableIndex';
-import type { MysqlForeignKeyRow, MysqlIndexRow, MysqlSchemaRows } from './mysqlSchemaRows';
+import type { DriverId } from '../../../../domain/driver/model/DriverId';
+import type { ForeignKey } from '../../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
+import type { TableIndex } from '../../../../domain/schema/model/TableIndex';
+import type { MysqlForeignKeyRow, MysqlIndexRow, MysqlSchemaRows } from '../model/mysqlSchemaRows';
 import { normalizeMysqlDefault } from './normalizeMysqlDefault';
 
 const PRIMARY_INDEX_NAME = 'PRIMARY';

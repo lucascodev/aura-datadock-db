@@ -1,11 +1,11 @@
 import { spawn, type ChildProcess } from 'node:child_process';
 import { connect, createServer } from 'node:net';
-import type { SshSettings } from '../../domain/connection/model/SshSettings';
+import type { SshSettings } from '../../../domain/connection/model/SshSettings';
 import { buildSshArgs, LOOPBACK_ADDRESS } from './buildSshArgs';
-import type { TunnelEndpoint } from './TunnelEndpoint';
+import type { TunnelEndpoint } from '../model/TunnelEndpoint';
 import { explainSshFailure } from './explainSshFailure';
-import { l10n } from '../../domain/i18n/translation/l10n';
-import type { SshTunnelOptions, SshTunnel } from './SshTunnel';
+import { l10n } from '../../../domain/i18n/translation/l10n';
+import type { SshTunnelOptions, SshTunnel } from '../model/SshTunnel';
 
 const READY_TIMEOUT_MS = 20_000;
 const READY_POLL_MS = 150;

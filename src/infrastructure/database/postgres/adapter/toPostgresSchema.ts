@@ -1,8 +1,8 @@
-import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/model/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import type { PostgresColumnRow, PostgresConstraintRow, PostgresSchemaRows } from './postgresSchemaRows';
+import type { ForeignKey } from '../../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
+import type { PostgresColumnRow, PostgresConstraintRow, PostgresSchemaRows } from '../model/postgresSchemaRows';
 
 const REFERENTIAL_ACTIONS: Readonly<Record<string, string | undefined>> = {
   c: 'CASCADE',

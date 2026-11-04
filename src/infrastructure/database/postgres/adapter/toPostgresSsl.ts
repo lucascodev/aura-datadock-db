@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import type { ConnectionOptions as TlsConnectionOptions } from 'node:tls';
-import type { ConnectionTls } from '../../../domain/connection/model/ConnectionTls';
+import type { ConnectionTls } from '../../../../domain/connection/model/ConnectionTls';
 
 export function toPostgresSsl(tls: ConnectionTls): boolean | TlsConnectionOptions {
   switch (tls.mode) {

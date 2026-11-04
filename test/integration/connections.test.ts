@@ -12,10 +12,10 @@ import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAd
 import type { RowBatch } from '../../src/domain/database/model/RowBatch';
 import type { SavedConnection } from '../../src/domain/connection/model/SavedConnection';
 import type { SshSettings } from '../../src/domain/connection/model/SshSettings';
-import { openAdapter } from '../../src/infrastructure/ssh/openAdapter';
-import { openSshTunnel } from '../../src/infrastructure/ssh/openSshTunnel';
-import type { SshTunnelOptions } from '../../src/infrastructure/ssh/SshTunnel';
-import { TunneledAdapter } from '../../src/infrastructure/ssh/TunneledAdapter';
+import { openAdapter } from '../../src/infrastructure/ssh/tunnel/openAdapter';
+import { openSshTunnel } from '../../src/infrastructure/ssh/tunnel/openSshTunnel';
+import type { SshTunnelOptions } from '../../src/infrastructure/ssh/model/SshTunnel';
+import { TunneledAdapter } from '../../src/infrastructure/ssh/tunnel/TunneledAdapter';
 
 const {
   DATADOCK_TEST_POSTGRES_TLS_PORT: tlsPort,

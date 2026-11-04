@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { normalizeMysqlDefault } from '../../../../src/infrastructure/database/mysql/normalizeMysqlDefault';
+import { normalizeMysqlDefault } from '../../../../src/infrastructure/database/mysql/adapter/normalizeMysqlDefault';
 
 describe('normalizeMysqlDefault', () => {
   it.each([
