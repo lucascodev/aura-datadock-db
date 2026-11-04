@@ -1,4 +1,5 @@
 import { createConnection as createStreamingConnection } from 'mysql2';
+import type { Readable } from 'node:stream';
 import mysql, { type Connection, type ConnectionOptions, type FieldPacket, type ResultSetHeader, type RowDataPacket } from 'mysql2/promise';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
@@ -21,6 +22,12 @@ import { CONNECT_TIMEOUT_MS } from '../../constants/connectTimeout';
 const SYSTEM_DATABASES = new Set(['information_schema', 'mysql', 'performance_schema', 'sys']);
 const RESET_SELECT_LIMIT_SQL = 'SET SESSION sql_select_limit = DEFAULT';
 const READ_ONLY_SESSION_SQL = 'SET SESSION TRANSACTION READ ONLY';
+
+interface OpenRowStream {
+  readonly close: () => void;
+  readonly rows: Readable;
+  readonly readColumns: () => readonly string[];
+}
 
 type RawResult = RowDataPacket[] | RowDataPacket[][] | ResultSetHeader;
 type RawFields = FieldPacket[] | FieldPacket[][] | undefined;
@@ -157,6 +164,28 @@ export class MysqlAdapter implements DatabaseAdapter {
   }
 
   async *streamRows(statement: ParameterizedStatement, batchSize: number): AsyncIterable<RowBatch> {
+    const { close, rows: stream, readColumns } = this.openRowStream(statement, batchSize);
+
+    try {
+      let rows: unknown[][] = [];
+      let hasYielded = false;
+      for await (const row of stream) {
+        rows.push(row as unknown[]);
+        if (rows.length === batchSize) {
+          yield { columns: readColumns(), rows };
+          hasYielded = true;
+          rows = [];
+        }
+      }
+      if (rows.length > 0 || !hasYielded) {
+        yield { columns: readColumns(), rows };
+      }
+    } finally {
+      close();
+    }
+  }
+
+  private openRowStream(statement: ParameterizedStatement, batchSize: number): OpenRowStream {
     const dedicated = createStreamingConnection(this.connectionOptions);
     if (this.isSessionReadOnly) {
       dedicated.query(READ_ONLY_SESSION_SQL);
@@ -168,24 +197,7 @@ export class MysqlAdapter implements DatabaseAdapter {
     query.once('fields', (fields: FieldPacket[]) => {
       columns = fields.map((field) => field.name);
     });
-
-    try {
-      let rows: unknown[][] = [];
-      let hasYielded = false;
-      for await (const row of stream) {
-        rows.push(row as unknown[]);
-        if (rows.length === batchSize) {
-          yield { columns, rows };
-          hasYielded = true;
-          rows = [];
-        }
-      }
-      if (rows.length > 0 || !hasYielded) {
-        yield { columns, rows };
-      }
-    } finally {
-      dedicated.destroy();
-    }
+    return { close: () => dedicated.destroy(), rows: stream, readColumns: () => columns };
   }
 
   async enforceReadOnly(): Promise<void> {
