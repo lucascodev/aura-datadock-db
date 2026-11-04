@@ -122,8 +122,9 @@ Nada é gravado até **Salvar**, que aplica tudo em uma transação: se uma alte
 
 - Um único comando de leitura mostra o resultado na própria grade, só para leitura, até **Voltar à tabela**. Ele traz no máximo o tamanho da página.
 - Qualquer outra coisa segue o caminho de uma query normal, com as mesmas confirmações, e o resultado aparece no painel de resultados.
+- **Gráfico** roda uma única query de leitura e abre o resultado como gráfico no painel de resultados.
 
-A expressão do filtro é SQL escrito por você, e só pode ser um único comando de leitura. Essa checagem analisa o texto e não enxerga o efeito de uma função chamada dentro da expressão. Em uma conexão somente leitura, o próprio banco bloqueia a escrita; nas demais, o risco é o mesmo de escrever a query no editor.
+A expressão do filtro é só a condição de um `WHERE`, como `id > 10`, sem `SELECT` nem `;`. Para rodar uma query inteira, use **Mostrar SQL**. A condição é SQL escrito por você, e só pode ler. Essa checagem analisa o texto e não enxerga o efeito de uma função chamada dentro da expressão. Em uma conexão somente leitura, o próprio banco bloqueia a escrita; nas demais, o risco é o mesmo de escrever a query no editor.
 
 Cada linha é identificada pela chave primária, e cada alteração precisa afetar exatamente uma linha. Se outra pessoa tiver removido a linha, nada é salvo. Por outro lado, se duas pessoas editarem a mesma linha, vale a última gravação.
 
@@ -161,7 +162,7 @@ Comandos em sequência rodam um por vez e param no primeiro erro, com um resulta
 
 ### Gráficos
 
-Depois de rodar uma query, troque de **Grade** para **Gráfico** no painel de resultados. A extensão sugere um gráfico pelo formato do resultado, e você troca o tipo e as colunas nos campos acima dele.
+Depois de rodar uma query, troque de **Grade** para **Gráfico** no painel de resultados. Na tela da tabela, use **Gráfico** no painel de **Mostrar SQL**. A extensão sugere um gráfico pelo formato do resultado, e você troca o tipo e as colunas nos campos acima dele.
 
 ```sql
 SELECT date_trunc('day', created_at) AS dia, status, count(*) AS total
