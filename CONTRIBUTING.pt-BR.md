@@ -26,6 +26,7 @@ Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Pos
 - Cada arquivo fica em uma subpasta do seu assunto. Uma pasta tem arquivos ou subpastas, nunca os dois, e no máximo 8 arquivos. Os testes em `test/architecture/` garantem essas regras.
 - As pastas seguem camada, depois contexto, depois tipo, como em `application/query/model/`. `model/` guarda contratos, `ports/` interfaces para o lado de fora, `errors/` classes de erro e `constants/` dados compartilhados. As demais pastas têm nome de assunto e guardam lógica.
 - Um tipo usado por outro arquivo tem arquivo próprio, com o nome do conceito. Um tipo usado só no próprio arquivo fica nele, sem `export`.
+- Uma constante usada em um arquivo fica nele. A usada por mais de um arquivo vai para `constants/`, e a mesma informação nunca se repete. Valores iguais por coincidência continuam separados.
 - Toda regra nova em `application` ou `infrastructure/docker` vem acompanhada de teste em `test/unit/`, na mesma árvore de `src`.
 - Mudanças em SQL de adapter vêm com teste em `test/integration/`, que roda contra bancos reais.
 
@@ -46,7 +47,7 @@ Tudo o que muda de um banco para outro fica em `src/drivers/` e `src/infrastruct
 1. Crie `src/drivers/<banco>/descriptor.ts` com um `DriverDescriptor`: nome, porta padrão, esquemas de connection string, dialeto e, se houver imagem oficial, a descoberta no Docker.
 2. Registre a descrição em `src/drivers/catalog/driverDescriptors.ts`. O banco já aparece no formulário de conexão.
 3. Crie `src/infrastructure/database/<banco>/adapter/<Banco>Adapter.ts` implementando `DatabaseAdapter`, se o protocolo for novo. Bancos compatíveis podem reaproveitar um adapter, como o MariaDB faz com o `MysqlAdapter`.
-4. Registre o adapter em `src/infrastructure/database/factory/adapterFactories.ts`.
+4. Registre o adapter em `src/infrastructure/database/constants/adapterFactories.ts`.
 5. Inclua o banco em `docker-compose.test.yml`, `scripts/runIntegrationTests.mjs` e nas listas `engines` de `test/integration/adapters.test.ts` e `test/integration/tableEditing.test.ts`. Essa é a suíte de contrato que todo driver precisa passar.
 6. Adicione o banco na lista do README, nas duas versões.
 

@@ -26,6 +26,7 @@ Open the folder in VS Code and press `F5`. The `docker-compose.dev.yml` starts a
 - Each file lives in a subfolder of its subject. A folder has files or subfolders, never both, and at most 8 files. The tests in `test/architecture/` enforce these rules.
 - Folders follow layer, then context, then kind, as in `application/query/model/`. `model/` holds contracts, `ports/` interfaces to the outside, `errors/` error classes and `constants/` shared data. Other folders are named after a subject and hold logic.
 - A type used by another file has a file of its own, named after the concept. A type used only in its file stays there, without `export`.
+- A constant used in one file stays there. One used by more than one file goes to `constants/`, and the same information is never repeated. Values that are equal by coincidence stay separate.
 - Every new rule in `application` or `infrastructure/docker` comes with a test in `test/unit/`, in the same tree as `src`.
 - Changes to adapter SQL come with a test in `test/integration/`, which runs against real databases.
 
@@ -46,7 +47,7 @@ Everything that changes from one database to another lives in `src/drivers/` and
 1. Create `src/drivers/<database>/descriptor.ts` with a `DriverDescriptor`: name, default port, connection string schemes, dialect and, if there is an official image, Docker discovery.
 2. Register the descriptor in `src/drivers/catalog/driverDescriptors.ts`. The database already appears in the connection form.
 3. Create `src/infrastructure/database/<database>/adapter/<Database>Adapter.ts` implementing `DatabaseAdapter`, if the protocol is new. Compatible databases can reuse an adapter, as MariaDB does with `MysqlAdapter`.
-4. Register the adapter in `src/infrastructure/database/factory/adapterFactories.ts`.
+4. Register the adapter in `src/infrastructure/database/constants/adapterFactories.ts`.
 5. Include the database in `docker-compose.test.yml`, `scripts/runIntegrationTests.mjs` and in the `engines` lists of `test/integration/adapters.test.ts` and `test/integration/tableEditing.test.ts`. That is the contract suite every driver must pass.
 6. Add the database to the README list, in both versions.
 
