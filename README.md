@@ -284,6 +284,10 @@ Then press `F5` in VS Code to open a window with the extension loaded. Other com
 
 The code organization is explained in [docs/architecture.md](docs/architecture.md) and the contribution guide is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Sponsor
+
+If this extension helps you, you can support its development on [GitHub Sponsors](https://github.com/sponsors/lucascodev).
+
 ## License
 
 [MIT](LICENSE). The extension bundles open source packages, with their own licenses, listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
