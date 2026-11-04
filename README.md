@@ -1,91 +1,262 @@
-# Aura DataDock
+# Aura DataDock DB
 
-Extensão open source para VS Code que encontra os bancos de dados rodando em containers Docker e conecta sem nenhuma configuração. Ela lê as credenciais que a própria imagem usa para criar o banco, mostra schemas, tabelas e colunas na barra lateral, executa queries e entrega o schema para a IA que você já usa.
+**English** | [Português (Brasil)](README.pt-BR.md)
 
-## Recursos
+Open source VS Code extension that connects to your Postgres, MySQL and MariaDB databases. Databases running in Docker containers show up on their own, with no configuration, and you add the rest with a direct connection or an SSH tunnel. It shows schemas, tables and columns in the sidebar, draws the database diagram, runs queries, exports data and schema, and hands the schema to the AI you already use.
 
-- **Descoberta automática**: detecta containers de Postgres, MySQL e MariaDB (incluindo PostGIS, TimescaleDB e pgvector) e lê usuário, senha e banco das variáveis de ambiente do container.
-- **Explorador na barra lateral**: container, schema, tabelas e colunas, com chave primária e tipo de cada coluna.
-- **Editor de queries**: `Ctrl+Enter` executa a seleção ou o arquivo inteiro e o resultado aparece em uma grade ao lado.
-- **Proteções**: modo somente leitura, confirmação antes de `DROP`, `TRUNCATE`, `ALTER` e de `DELETE` ou `UPDATE` sem `WHERE`.
-- **IA para gerar SQL**: descreva o que precisa e a extensão escreve a query a partir do schema real. Funciona com os modelos do VS Code (GitHub Copilot), Anthropic, OpenAI ou Ollama local.
-- **Servidor MCP somente leitura**: agentes como o modo agente do VS Code, Claude Code e Cursor conseguem listar bancos, ler o schema e rodar consultas de leitura.
+## Features
 
-## Requisitos
+- **Automatic discovery**: detects Postgres, MySQL and MariaDB containers (including PostGIS, TimescaleDB and pgvector) and reads the user, password and database from the container's environment variables.
+- **Saved connections**: local or remote databases, with TLS, SSH tunnel and connection string. Docker is optional.
+- **DB Schema section**: schemas, tables, views, columns, indexes and foreign keys of the selected connection, with a filter and menu actions.
+- **Table screen**: Properties, Data and Diagram tabs. Edit cells, add, duplicate and delete rows, filter by SQL expression, view the data as a grid, text or record, and run SQL below the grid, with writes in a transaction.
+- **Drivers**: PostgreSQL, MySQL and MariaDB, with an architecture ready for new databases.
+- **ER diagram**: tables and relationships in crow's foot notation, with cardinality derived from the constraints, at the levels all columns, keys only and entities only.
+- **Query editor**: runs the selection, the statement under the cursor or the whole file, with table and column autocomplete, `EXPLAIN`, cancellation and history. Each file is bound to its database.
+- **Results grid**: one tab per statement, sorting, filtering, copying a cell, row or column, and smooth scrolling with many rows.
+- **Charts**: view a query result as a line, area, bar, pie, scatter with regression, histogram, boxplot or heatmap, and export it as PNG or SVG.
+- **Export**: results and whole tables as CSV, JSON, NDJSON, Markdown and SQL `INSERT`; schema as DDL, Mermaid, DBML and JSON; diagram as SVG and PNG.
+- **Safeguards**: read-only globally or per connection, confirmation before `DROP`, `TRUNCATE`, `ALTER` and `DELETE` or `UPDATE` without `WHERE`, and confirmation of any write on a remote database.
+- **AI to generate SQL**: describe what you need and the extension writes the query from the real schema, including foreign keys. Works with VS Code models (GitHub Copilot), Anthropic, OpenAI or a local Ollama.
+- **Read-only MCP server**: agents such as VS Code agent mode, Claude Code and Cursor can list databases, read the schema and run read queries.
+- **English and Brazilian Portuguese interface**: the interface is available in English and Brazilian Portuguese and follows the VS Code display language.
 
-- VS Code 1.101 ou superior
-- Docker em execução (Docker Desktop, Docker Engine, Colima ou Podman com socket compatível)
-- A porta do banco publicada para o host, por exemplo `-p 5432:5432`
+## Requirements
 
-## Como usar
+- VS Code 1.101 or later
+- For automatic discovery: Docker running (Docker Desktop, Docker Engine, Colima or Podman with a compatible socket) and the database port published to the host, for example `-p 5432:5432`
+- For SSH tunnel: the OpenSSH `ssh` command on the `PATH`, which already ships with Windows 10 or later, macOS and most Linux distributions
 
-1. Suba um banco em container, por exemplo com o `docker-compose.dev.yml` deste repositório:
-   ```bash
-   docker compose -f docker-compose.dev.yml up -d
-   ```
-2. Abra a aba **Aura DataDock** na barra de atividades. Os containers aparecem automaticamente e a lista se atualiza a cada 15 segundos.
-3. Clique em uma tabela para ver os dados, ou use **New Query** no container para abrir um editor SQL.
-4. Use **Generate SQL with AI** no topo da aba para escrever uma query em linguagem natural.
+None of this is needed for a direct connection. The extension has no database of its own and no external service.
 
-Se a senha do container vier de um arquivo de secret (`POSTGRES_PASSWORD_FILE`, por exemplo), a extensão pede a senha uma vez e guarda no cofre do sistema operacional.
+## Usage
 
-## Configurações
+1. Open the **Aura DataDock DB** tab in the activity bar.
+2. Connect to a database:
+   - **With Docker:** start the database in a container and it shows up on its own, within 15 seconds. To try it out, use the `docker-compose.dev.yml` in this repository:
+     ```bash
+     docker compose -f docker-compose.dev.yml up -d
+     ```
+   - **Without Docker or for a remote database:** click **Add New Connection**.
+3. Click the connection. The **DB Schema** section shows its schemas and tables.
+4. Click a table to view and edit its data, or use **New Query** on the connection to open a SQL editor.
+5. Use **Show ER Diagram** on the connection or on the schema to see the diagram.
+6. Use **Generate SQL with AI** at the top of the tab to write a query in natural language.
 
-| Configuração | Padrão | Descrição |
+If the container password comes from a secret file (`POSTGRES_PASSWORD_FILE`, for example), click the container to enter the password. It is stored in the operating system's keychain.
+
+### Adding a connection
+
+The **Add New Connection** form has three tabs. Paste a connection string (`postgres://`, `mysql://`, `mariadb://`) to fill in the fields, and use **Test Connection** before saving.
+
+| Tab | What it configures |
+| --- | --- |
+| **Connection** | Name, database type, host, port, user, password and database |
+| **Security** | TLS and read-only |
+| **SSH** | SSH tunnel: host, port, user, key and jump host |
+
+TLS modes:
+
+| Mode | What it does | When it is the default |
 | --- | --- | --- |
-| `auraDataDock.readOnly` | `false` | Bloqueia qualquer comando de escrita, na extensão e na própria sessão do banco |
-| `auraDataDock.confirmDestructiveQueries` | `true` | Pede confirmação antes de comandos destrutivos |
-| `auraDataDock.maxRows` | `500` | Limite de linhas exibidas no resultado |
-| `auraDataDock.dockerHost` | vazio | Endpoint do Docker; vazio usa `DOCKER_HOST` ou o padrão do sistema |
-| `auraDataDock.ai.provider` | `vscode` | `vscode`, `anthropic`, `openai` ou `ollama` |
-| `auraDataDock.ai.model` | vazio | Modelo do provedor; vazio usa o padrão |
-| `auraDataDock.ai.ollamaUrl` | `http://localhost:11434` | Endereço do Ollama |
-| `auraDataDock.mcp.enabled` | `true` | Expõe os bancos para agentes via MCP |
+| **Off** | No encryption | Local host or SSH tunnel connection |
+| **Required** | Encrypts, without validating the certificate | Never |
+| **Verified** | Encrypts and validates the certificate | Remote host |
 
-Chaves de API são salvas com o comando **Aura DataDock: Set AI Provider API Key** e ficam no cofre do sistema, nunca no `settings.json`.
+For databases such as Amazon RDS, the **Verified** mode needs the provider's CA file. For MySQL over an SSH tunnel, it validates the certificate chain but not the host name, because the driver does not allow setting the real name.
 
-## Privacidade
+The tunnel uses the system `ssh`, so your `~/.ssh/config`, keys, `ssh-agent` and `known_hosts` apply. Three limitations:
 
-- Para gerar SQL, só a estrutura do banco (tabelas, colunas e tipos) é enviada ao modelo. Dados das linhas nunca saem da sua máquina.
-- Com o provedor `ollama`, nada sai da sua máquina.
-- A extensão não coleta telemetria.
+- Password login is not supported. Keys with a passphrase must be in the `ssh-agent`.
+- An unknown server must be accepted once, by connecting from the terminal. The extension does not accept host keys on its own.
+- The database host is resolved by the SSH server, so `localhost` means the server itself.
 
-## Usando o servidor MCP fora do VS Code
+### Editing data
 
-No VS Code o servidor é registrado automaticamente. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows:
+Clicking a table opens a tab with three parts:
 
-```bash
-claude mcp add aura-datadock -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-0.1.0\dist\mcp-server.js"
+- **Properties**: columns, indexes, references in both directions and the DDL, with **Copy** and **Open in Editor**.
+- **Data**: the rows, paginated on the server (`auraDataDockDb.table.pageSize`).
+- **Diagram**: the table and its direct neighbors. Double-click opens the neighbor.
+
+In the **Data** tab:
+
+| Action | How |
+| --- | --- |
+| Edit a cell | Double-click, `Enter` or `F2`; `Enter` confirms, `Tab` moves to the next editable column and `Esc` cancels |
+| Move the selection | Arrow keys and `PageUp`/`PageDown` |
+| Copy the cell | `Ctrl+C` |
+| View or edit a long value | **Value** panel, with formatted JSON; **Apply** sends the value to the cell |
+| Write NULL | **NULL** in the bottom bar, or **Set NULL** in the panel |
+| Add a row | **+ Add**; a column without a value uses the database default, and `*` marks the required ones |
+| Duplicate rows | **Duplicate**; copies the values to new rows, without generated columns and without a primary key that has a default |
+| Select rows | Click the row number; `Ctrl` toggles and `Shift` selects a range |
+| Delete rows | `Delete` or **− Delete**, on the selected rows or on the row of the current cell; repeating undoes the mark |
+| Sort | Click the header: ascending, descending, no order |
+| Filter by a column | Column ▾ menu: by the selected cell's value, contains, `IS NULL`, `IS NOT NULL` |
+| Filter by expression | Write the `WHERE` in the field at the top and press `Enter`; `Ctrl+Space` suggests columns and operators |
+| Adjust the width | Drag the header border |
+| Switch the view | **Grid**, **Text** (a text table, easy to copy) or **Record** (one row at a time), on the left |
+| Change the page size | Field next to **Export data** |
+| See what will run | **Preview SQL** |
+| Save | **Save** or `Ctrl+S` |
+
+Nothing is written until **Save**, which applies everything in one transaction: if a change fails, none is saved and they stay pending. Changes survive page switches. If you close the tab with pending changes, the extension offers to reopen it with them.
+
+**Show SQL** opens the screen's `SELECT` below the grid, which you can edit and run with `Ctrl+Enter`:
+
+- A single read statement shows the result in the grid itself, read-only, until **Back to Table**. It returns at most the page size.
+- Anything else follows the path of a normal query, with the same confirmations, and the result appears in the results panel.
+
+The filter expression is SQL you write, and it can only be a single read statement. That check analyzes the text and does not see the effect of a function called inside the expression. On a read-only connection, the database itself blocks writes; on the others, the risk is the same as writing the query in the editor.
+
+Each row is identified by its primary key, and each change must affect exactly one row. If someone else removed the row, nothing is saved. On the other hand, if two people edit the same row, the last write wins.
+
+Limits:
+
+- A table without a primary key accepts only new rows, and the order may change between pages.
+- Views and read-only connections cannot be edited.
+- Generated, identity `ALWAYS` and binary columns are read-only.
+- Complex types, such as array and JSON, are edited as text in the database format.
+
+### Changing the structure
+
+The tree menu has **Create Table**, **Add Column**, **Rename Table**, **Rename Column**, **Drop Column**, **Create Index**, **Truncate Table** and **Drop Table**. These actions do not run anything on their own: they open the SQL in an editor, for you to review and run with `Ctrl+Enter`, going through the same safeguards as any query.
+
+### Remote databases
+
+A remote database may be production, so:
+
+- New remote connections come as **read-only**. The protection applies in the extension and in the database session.
+- Without read-only, **any write asks for confirmation**, even with `auraDataDockDb.confirmDestructiveQueries` turned off.
+- A saved connection **never becomes the active connection on its own**. It is only used after you choose it.
+- The tree, the editor and the status bar show when the database is remote.
+
+### Running queries
+
+| Action | How |
+| --- | --- |
+| Run the selection or the statement under the cursor | `Ctrl+Enter` (`Cmd+Enter` on macOS) or **Run** above the statement |
+| Run all statements in the file | `Ctrl+Shift+Enter` (`Cmd+Shift+Enter` on macOS) |
+| See the execution plan | **Explain** above the statement |
+| Cancel | **Cancel** in the results panel or **Aura DataDock DB: Cancel Running Query** |
+| Change the file's database | Click the database name at the top of the file or in the status bar |
+
+Statements in sequence run one at a time and stop at the first error, with one result per statement. Each one is confirmed separately; to group them, use `BEGIN` and `COMMIT` in the file itself. Double-click a cell to open the full value in an editor, with formatted JSON.
+
+### Charts
+
+After running a query, switch from **Grid** to **Chart** in the results panel. The extension suggests a chart from the shape of the result, and you change the type and the columns in the fields above it.
+
+```sql
+SELECT date_trunc('day', created_at) AS dia, status, count(*) AS total
+FROM orders
+GROUP BY 1, 2
+ORDER BY 1;
 ```
 
-Ferramentas disponíveis:
+This query becomes a line chart by day, with one series for each `status`.
 
-| Ferramenta | O que faz |
+| The result has | Suggestion |
 | --- | --- |
-| `list_databases` | Lista os bancos encontrados nos containers e se podem ser consultados |
-| `describe_schema` | Retorna tabelas e colunas de um banco |
-| `run_query` | Executa uma consulta de leitura e devolve as linhas em JSON |
+| 1 row and 1 value | The number, highlighted |
+| Date and number | Line |
+| Category and number | Bars |
+| Two categories and number | Heatmap |
+| Two numbers | Scatter, with optional trend line and R² |
+| One number across many rows | Histogram |
 
-O servidor recusa qualquer comando de escrita e ainda abre a sessão do banco em modo somente leitura.
+Area, pie and boxplot are available in the **Chart** field. **PNG** and **SVG** save the chart with a light background.
 
-## Desenvolvimento
+The chart uses the rows the query returned and warns you, above it, when:
+
+- the result was cut off by `auraDataDockDb.maxRows`, because the chart is partial. Prefer aggregating with `GROUP BY`;
+- there are rows with `NULL` or values that are not numbers, which are left out;
+- there are repeated rows for the same position, which are summed;
+- there are too many series: above 8, or 3 in the scatter, the extra ones become **Other**;
+- an integer is too large to be drawn exactly. The grid still shows the exact value.
+
+The grid filter does not apply to the chart. Dates appear as the database returned them, without time zone conversion.
+
+### Diagram
+
+Drag the tables to arrange them, use the mouse wheel to zoom and drag the background to pan. Positions are saved per container and schema, and **Auto layout** goes back to the automatic arrangement. Click a table to highlight its relationships and double-click to open its data.
+
+Relationships come from the foreign keys declared in the database. A foreign key to another schema does not draw a line: the column appears as `FK` and the target is in the column tooltip.
+
+### Export
+
+- **Query result**: choose the format in the grid and use **Save…** or **Copy**. All returned rows go, up to the `auraDataDockDb.maxRows` limit, regardless of the grid's filter and sorting.
+- **Whole table**: **Export Table…** in the table menu. Data is read in batches and written straight to the file, with progress and cancellation, without the `maxRows` limit.
+- **Filtered rows**: **Export data** in the **Data** tab. It exports all rows that match the screen's filters and sorting, the same way, and not just the current page.
+- **Schema**: **Export Schema…** on the container, on the schema or in the diagram menu. **Show DDL** in the table menu opens the DDL in an editor.
+- **Diagram**: the diagram's **Export…** menu, as SVG or PNG, always with a light background.
+
+The DDL is generated from the database catalog and includes columns, primary and foreign keys, indexes, defaults and views. Triggers, check constraints, functions and custom types are not included, and materialized views come out as plain views. For a full backup, use `pg_dump` or `mysqldump`.
+
+## Settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `auraDataDockDb.readOnly` | `false` | Blocks any write statement on all connections, in the extension and in the database session itself |
+| `auraDataDockDb.connections` | `[]` | Saved connections, without passwords. Only applies in user settings; manage it through the form |
+| `auraDataDockDb.confirmDestructiveQueries` | `true` | Asks for confirmation before destructive statements |
+| `auraDataDockDb.maxRows` | `500` | Limit of rows shown in the result |
+| `auraDataDockDb.table.pageSize` | `100` | Rows per page in the data editor |
+| `auraDataDockDb.codeLens.enabled` | `true` | Shows the file's database and the Run and Explain actions in SQL files |
+| `auraDataDockDb.history.maxEntries` | `200` | How many queries to keep in the history; `0` turns it off |
+| `auraDataDockDb.dockerHost` | empty | Docker endpoint; empty uses `DOCKER_HOST` or the system default |
+| `auraDataDockDb.ai.provider` | `vscode` | `vscode`, `anthropic`, `openai` or `ollama` |
+| `auraDataDockDb.ai.model` | empty | Provider model; empty uses the default |
+| `auraDataDockDb.ai.ollamaUrl` | `http://localhost:11434` | Ollama address |
+| `auraDataDockDb.mcp.enabled` | `true` | Exposes the databases to agents through MCP |
+
+API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** command and, like passwords, are kept in the system keychain, never in `settings.json`.
+
+## Privacy
+
+- To generate SQL, only the database structure (tables, columns, types and keys) is sent to the model. Row data never leaves your machine.
+- With the `ollama` provider, nothing leaves your machine.
+- The history keeps the query text locally, in VS Code storage. Set `auraDataDockDb.history.maxEntries` to `0` if they may contain sensitive data.
+- The extension collects no telemetry.
+
+## Using the MCP server outside VS Code
+
+In VS Code the server is registered automatically. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows:
+
+```bash
+claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.0\dist\mcp-server.js"
+```
+
+Available tools:
+
+| Tool | What it does |
+| --- | --- |
+| `list_databases` | Lists the databases found in containers and whether they can be queried |
+| `describe_schema` | Returns the tables, columns and foreign keys of a database |
+| `run_query` | Runs one read query at a time and returns the rows as JSON |
+
+The server rejects any write statement and also opens the database session in read-only mode. It only sees databases in Docker containers: saved connections are not available to agents.
+
+## Development
 
 ```bash
 npm install
 npm run watch
 ```
 
-Depois pressione `F5` no VS Code para abrir uma janela com a extensão carregada. Outros comandos:
+Then press `F5` in VS Code to open a window with the extension loaded. Other commands:
 
-| Comando | Descrição |
+| Command | Description |
 | --- | --- |
-| `npm run build` | Gera `dist/extension.js` e `dist/mcp-server.js` com esbuild |
-| `npm run typecheck` | Verifica os tipos com TypeScript |
-| `npm test` | Roda os testes com Vitest |
-| `npm run package` | Gera o arquivo `.vsix` |
+| `npm run build` | Builds the extension, the MCP server and the webviews into `dist/` with esbuild |
+| `npm run typecheck` | Type-checks the extension and the webviews with TypeScript |
+| `npm test` | Runs the tests with Vitest |
+| `npm run test:integration` | Starts temporary databases in Docker and tests the adapters against them |
+| `npm run package` | Builds the `.vsix` file |
 
-A organização do código está explicada em [docs/arquitetura.md](docs/arquitetura.md) e o passo a passo para contribuir em [CONTRIBUTING.md](CONTRIBUTING.md).
+The code organization is explained in [docs/architecture.md](docs/architecture.md) and the contribution guide is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Licença
+## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). The extension bundles open source packages, with their own licenses, listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

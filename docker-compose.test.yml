@@ -1,0 +1,107 @@
+name: aura-datadock-db-test
+
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: datadock
+      POSTGRES_PASSWORD: datadock
+      POSTGRES_DB: shop
+    ports:
+      - "127.0.0.1:55432:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    volumes:
+      - ./docs/seed/postgres.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "datadock", "-d", "shop"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: datadock
+      MYSQL_DATABASE: shop
+    ports:
+      - "127.0.0.1:53306:3306"
+    tmpfs:
+      - /var/lib/mysql
+    volumes:
+      - ./docs/seed/mysql.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-pdatadock", "--silent"]
+      interval: 1s
+      timeout: 3s
+      retries: 90
+
+  mariadb:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: datadock
+      MARIADB_DATABASE: shop
+    ports:
+      - "127.0.0.1:53307:3306"
+    tmpfs:
+      - /var/lib/mysql
+    volumes:
+      - ./docs/seed/mysql.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 1s
+      timeout: 3s
+      retries: 90
+
+  postgres-tls:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: datadock
+      POSTGRES_PASSWORD: datadock
+      POSTGRES_DB: shop
+    ports:
+      - "127.0.0.1:55433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    entrypoint:
+      - sh
+      - -c
+      - |
+        mkdir -p /certs
+        openssl req -x509 -nodes -newkey rsa:2048 -days 2 -subj /CN=localhost \
+          -addext subjectAltName=DNS:localhost,IP:127.0.0.1 \
+          -keyout /certs/server.key -out /certs/server.crt
+        chown postgres /certs/server.key
+        chmod 600 /certs/server.key
+        exec docker-entrypoint.sh postgres -c ssl=on -c ssl_cert_file=/certs/server.crt -c ssl_key_file=/certs/server.key
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "datadock", "-d", "shop"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
+
+  sshd:
+    image: alpine:3.21
+    environment:
+      AUTHORIZED_KEY: ${DATADOCK_TEST_SSH_PUBLIC_KEY:-}
+    ports:
+      - "127.0.0.1:52222:22"
+    command:
+      - sh
+      - -c
+      - |
+        apk add --no-cache openssh-server > /dev/null
+        ssh-keygen -A
+        adduser -D -s /bin/sh tunnel
+        echo 'tunnel:not-used-for-login' | chpasswd
+        mkdir -p /home/tunnel/.ssh
+        printf '%s\n' "$$AUTHORIZED_KEY" > /home/tunnel/.ssh/authorized_keys
+        chown -R tunnel /home/tunnel/.ssh
+        chmod 700 /home/tunnel/.ssh
+        chmod 600 /home/tunnel/.ssh/authorized_keys
+        exec /usr/sbin/sshd -D -e -o AllowTcpForwarding=yes -o PasswordAuthentication=no
+    healthcheck:
+      test: ["CMD", "nc", "-z", "127.0.0.1", "22"]
+      interval: 1s
+      timeout: 3s
+      retries: 60
