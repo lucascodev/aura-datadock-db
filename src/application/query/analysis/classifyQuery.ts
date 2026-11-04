@@ -2,14 +2,7 @@ import type { DriverId } from '../../../domain/driver/DriverId';
 import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
 import { splitStatements } from './splitStatements';
 import { l10n } from '../../../domain/i18n/l10n';
-
-export type QueryRisk = 'read' | 'write' | 'destructive';
-
-export interface QueryClassification {
-  readonly risk: QueryRisk;
-  readonly reasons: string[];
-  readonly statementCount: number;
-}
+import type { QueryRisk, QueryClassification } from './QueryClassification';
 
 const RISK_ORDER: readonly QueryRisk[] = ['read', 'write', 'destructive'];
 const READ_KEYWORDS = new Set(['select', 'with', 'show', 'explain', 'describe', 'desc', 'values', 'table']);

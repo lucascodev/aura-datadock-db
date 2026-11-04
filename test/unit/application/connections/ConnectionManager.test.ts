@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { ConnectionManager, MissingPasswordError } from '../../../../src/application/connections/lifecycle/ConnectionManager';
+import { ConnectionManager } from '../../../../src/application/connections/lifecycle/ConnectionManager';
+import { MissingPasswordError } from '../../../../src/application/connections/errors/MissingPasswordError';
 import type { ConnectionSource } from '../../../../src/domain/connection/ConnectionSource';
 import type { ConnectionTarget } from '../../../../src/domain/connection/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../src/domain/database/DatabaseAdapter';

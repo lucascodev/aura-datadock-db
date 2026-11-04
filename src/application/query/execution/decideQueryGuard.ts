@@ -1,4 +1,4 @@
-import type { QueryRisk } from '../analysis/classifyQuery';
+import type { QueryRisk } from '../analysis/QueryClassification';
 
 export type QueryGuardDecision = 'allow' | 'confirm' | 'block';
 

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { resolveProtectionSetting } from '../../../../application/settings/resolveProtectionSetting';
-import { classifyQuery, type QueryClassification } from '../../../../application/query/analysis/classifyQuery';
+import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
+import type { QueryClassification } from '../../../../application/query/analysis/QueryClassification';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { runStatements } from '../../../../application/query/execution/runStatements';
 import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';

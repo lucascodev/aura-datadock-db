@@ -1,6 +1,7 @@
 import { open, rm } from 'node:fs/promises';
 import * as vscode from 'vscode';
-import { writeRowBatches, type WriteRowBatchesResult } from '../../../../application/export/encoders/encodeRows';
+import { writeRowBatches } from '../../../../application/export/encoders/encodeRows';
+import type { WriteRowBatchesResult } from '../../../../application/export/encoders/WriteRowBatchesResult';
 import type { RowExportFormat } from '../../../../application/export/formats/RowExportFormat';
 import { ROW_EXPORT_FORMATS } from '../../../../application/export/formats/rowExportFormats';
 import { buildTableSelect } from '../../../../application/editing/browsing/buildTablePageQuery';

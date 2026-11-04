@@ -1,4 +1,4 @@
-import type { TableEditability } from '../../../../../application/editing/rows/describeEditability';
+import type { TableEditability } from '../../../../../application/editing/rows/TableEditability';
 import { duplicateRowValues } from '../../../../../application/editing/rows/duplicateRow';
 import { addInsert, clearInsertValue, editCell, editInsert, findUpdate, isMarkedForDeletion, removeInsert, toggleDeletion } from '../../../../../application/editing/rows/pendingChanges';
 import type { CellValues, RowChange } from '../../../../../application/editing/rows/RowChange';

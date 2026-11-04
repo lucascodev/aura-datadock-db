@@ -1,11 +1,7 @@
 import type { QueryHistoryEntry } from './QueryHistoryEntry';
+import type { KeyValueStore } from '../ports/KeyValueStore';
 
 const STORAGE_KEY = 'auraDataDockDb.queryHistory';
-
-export interface KeyValueStore {
-  get<T>(key: string): T | undefined;
-  update(key: string, value: unknown): PromiseLike<void>;
-}
 
 type HistoryListener = () => void;
 

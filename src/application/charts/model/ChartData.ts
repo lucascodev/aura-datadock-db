@@ -1,6 +1,6 @@
-import type { BoxplotStats } from '../statistics/computeBoxplot';
-import type { HistogramBin } from '../statistics/computeHistogram';
-import type { LinearRegression } from '../statistics/computeLinearRegression';
+import type { BoxplotStats } from '../statistics/BoxplotStats';
+import type { HistogramBin } from '../statistics/HistogramBin';
+import type { LinearRegression } from '../statistics/LinearRegression';
 import type { ChartNotice } from './ChartNotice';
 
 export type CartesianAxisType = 'category' | 'time' | 'value';

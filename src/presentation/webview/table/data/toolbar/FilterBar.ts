@@ -1,4 +1,5 @@
-import { applyFilterCompletion, suggestFilterCompletions, type FilterCompletions, type FilterSuggestion } from '../../../../../application/editing/browsing/suggestFilterCompletions';
+import { applyFilterCompletion, suggestFilterCompletions } from '../../../../../application/editing/browsing/suggestFilterCompletions';
+import type { FilterCompletions, FilterSuggestion } from '../../../../../application/editing/browsing/FilterCompletions';
 import { FILTER_OPERATORS } from '../../../../../application/editing/browsing/tableFilters';
 import type { DriverId } from '../../../../../domain/driver/DriverId';
 import { createElement } from '../../../shared/createElement';

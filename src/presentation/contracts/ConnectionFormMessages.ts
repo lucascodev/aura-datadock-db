@@ -1,5 +1,5 @@
 import type { ConnectionInput } from '../../application/connections/saved/ConnectionInput';
-import type { ConnectionFieldErrors } from '../../application/connections/saved/validateConnectionInput';
+import type { ConnectionFieldErrors } from '../../application/connections/saved/ConnectionValidation';
 
 export type ConnectionFileField = 'caFile' | 'sshIdentityFile';
 

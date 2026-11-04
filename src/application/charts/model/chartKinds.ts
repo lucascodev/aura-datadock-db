@@ -1,18 +1,6 @@
 import type { ChartKind } from './ChartKind';
 import { l10n } from '../../../domain/i18n/l10n';
-
-export type XRole = 'any' | 'number' | 'none';
-export type YRole = 'many' | 'one' | 'none';
-export type GroupRole = 'optional' | 'required' | 'none';
-
-export interface ChartKindDefinition {
-  readonly id: ChartKind;
-  readonly label: () => string;
-  readonly x: XRole;
-  readonly y: YRole;
-  readonly group: GroupRole;
-  readonly groupLabel: () => string;
-}
+import type { ChartKindDefinition } from './ChartKindDefinition';
 
 export const CHART_KINDS: readonly ChartKindDefinition[] = [
   { id: 'line', label: () => l10n.t('Line'), x: 'any', y: 'many', group: 'optional', groupLabel: () => l10n.t('Series') },
