@@ -26,10 +26,12 @@ const connections = new ConnectionManager(
 
 const server = new McpServer({ name: 'aura-datadock-db', version: '0.1.0' });
 
-server.tool(
+server.registerTool(
   'list_databases',
-  'Lists databases running in local Docker containers (Postgres, MySQL, MariaDB) and whether they can be queried.',
-  {},
+  {
+    description: 'Lists databases running in local Docker containers (Postgres, MySQL, MariaDB) and whether they can be queried.',
+    inputSchema: {},
+  },
   async () => {
     const targets = await connections.refresh();
     const dockerError = connections.getSourceError('docker');
@@ -52,12 +54,14 @@ server.tool(
   },
 );
 
-server.tool(
+server.registerTool(
   'describe_schema',
-  'Returns tables, columns and foreign keys of a container database. Use it before writing queries.',
   {
-    container: z.string().describe('Container name from list_databases'),
-    namespace: z.string().optional().describe('Schema (Postgres) or database (MySQL) to restrict the output'),
+    description: 'Returns tables, columns and foreign keys of a container database. Use it before writing queries.',
+    inputSchema: {
+      container: z.string().describe('Container name from list_databases'),
+      namespace: z.string().optional().describe('Schema (Postgres) or database (MySQL) to restrict the output'),
+    },
   },
   async ({ container, namespace }) => {
     const target = await requireTarget(container);
@@ -66,12 +70,14 @@ server.tool(
   },
 );
 
-server.tool(
+server.registerTool(
   'run_query',
-  `Runs a read-only SQL query (SELECT, WITH, SHOW, EXPLAIN) and returns up to ${MAX_ROWS} rows as JSON. Writes are rejected.`,
   {
-    container: z.string().describe('Container name from list_databases'),
-    sql: z.string().describe('SQL in the dialect of the container engine'),
+    description: `Runs a read-only SQL query (SELECT, WITH, SHOW, EXPLAIN) and returns up to ${MAX_ROWS} rows as JSON. Writes are rejected.`,
+    inputSchema: {
+      container: z.string().describe('Container name from list_databases'),
+      sql: z.string().describe('SQL in the dialect of the container engine'),
+    },
   },
   async ({ container, sql }) => {
     const target = await requireTarget(container);
