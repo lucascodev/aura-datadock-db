@@ -1,7 +1,7 @@
 {
-  "name": "aura-datadock",
-  "displayName": "Aura DataDock: Docker Database Explorer with AI",
-  "description": "Find databases running in Docker containers, connect with zero configuration, run queries and let AI agents explore your schema.",
+  "name": "aura-datadock-db",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
   "version": "0.1.0",
   "publisher": "lucascodev",
   "author": {
@@ -10,10 +10,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lucascodev/aura-datadock"
+    "url": "https://github.com/lucascodev/aura-datadock-db"
   },
   "bugs": {
-    "url": "https://github.com/lucascodev/aura-datadock/issues"
+    "url": "https://github.com/lucascodev/aura-datadock-db/issues"
   },
   "keywords": [
     "docker",
@@ -23,7 +23,11 @@
     "mariadb",
     "sql",
     "mcp",
-    "ai"
+    "ai",
+    "er diagram",
+    "erd",
+    "export",
+    "ssh"
   ],
   "categories": [
     "Other",
@@ -41,151 +45,570 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "auraDataDock",
-          "title": "Aura DataDock",
-          "icon": "$(database)"
+          "id": "auraDataDockDb",
+          "title": "Aura DataDock DB",
+          "icon": "media/activity-bar.svg"
         }
       ]
     },
     "views": {
-      "auraDataDock": [
+      "auraDataDockDb": [
         {
-          "id": "auraDataDock.connections",
-          "name": "Containers"
+          "id": "auraDataDockDb.connections",
+          "name": "%view.connections.name%"
+        },
+        {
+          "id": "auraDataDockDb.schema",
+          "name": "%view.schema.name%"
+        },
+        {
+          "id": "auraDataDockDb.history",
+          "name": "%view.history.name%"
         }
       ]
     },
     "viewsWelcome": [
       {
-        "view": "auraDataDock.connections",
-        "contents": "No database containers found.\nStart a Postgres, MySQL or MariaDB container and refresh.\n[Refresh](command:auraDataDock.refresh)"
+        "view": "auraDataDockDb.connections",
+        "contents": "%viewsWelcome.connections.contents%"
+      },
+      {
+        "view": "auraDataDockDb.history",
+        "contents": "%viewsWelcome.history.contents%"
+      },
+      {
+        "view": "auraDataDockDb.schema",
+        "contents": "%viewsWelcome.schema.contents%"
       }
     ],
     "commands": [
       {
-        "command": "auraDataDock.refresh",
-        "title": "Refresh",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.refresh",
+        "title": "%command.refresh.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(refresh)"
       },
       {
-        "command": "auraDataDock.selectConnection",
-        "title": "Select Active Connection",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.selectConnection",
+        "title": "%command.selectConnection.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(plug)"
       },
       {
-        "command": "auraDataDock.newQuery",
-        "title": "New Query",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.newQuery",
+        "title": "%command.newQuery.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(new-file)"
       },
       {
-        "command": "auraDataDock.runQuery",
-        "title": "Run Query",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.runQuery",
+        "title": "%command.runQuery.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(play)"
       },
       {
-        "command": "auraDataDock.openTable",
-        "title": "Open Table",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.openTable",
+        "title": "%command.openTable.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(table)"
       },
       {
-        "command": "auraDataDock.setPassword",
-        "title": "Set Password",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.setPassword",
+        "title": "%command.setPassword.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(key)"
       },
       {
-        "command": "auraDataDock.generateSql",
-        "title": "Generate SQL with AI",
-        "category": "Aura DataDock",
+        "command": "auraDataDockDb.generateSql",
+        "title": "%command.generateSql.title%",
+        "category": "Aura DataDock DB",
         "icon": "$(sparkle)"
       },
       {
-        "command": "auraDataDock.setAiApiKey",
-        "title": "Set AI Provider API Key",
-        "category": "Aura DataDock"
+        "command": "auraDataDockDb.setAiApiKey",
+        "title": "%command.setAiApiKey.title%",
+        "category": "Aura DataDock DB"
+      },
+      {
+        "command": "auraDataDockDb.runFile",
+        "title": "%command.runFile.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "auraDataDockDb.runStatementAt",
+        "title": "%command.runStatementAt.title%",
+        "category": "Aura DataDock DB"
+      },
+      {
+        "command": "auraDataDockDb.explainQuery",
+        "title": "%command.explainQuery.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(telescope)"
+      },
+      {
+        "command": "auraDataDockDb.cancelQuery",
+        "title": "%command.cancelQuery.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "auraDataDockDb.showDiagram",
+        "title": "%command.showDiagram.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "auraDataDockDb.exportSchema",
+        "title": "%command.exportSchema.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(export)"
+      },
+      {
+        "command": "auraDataDockDb.exportTable",
+        "title": "%command.exportTable.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(export)"
+      },
+      {
+        "command": "auraDataDockDb.showTableDdl",
+        "title": "%command.showTableDdl.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(code)"
+      },
+      {
+        "command": "auraDataDockDb.copySelect",
+        "title": "%command.copySelect.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "auraDataDockDb.openHistoryEntry",
+        "title": "%command.openHistoryEntry.title%",
+        "category": "Aura DataDock DB"
+      },
+      {
+        "command": "auraDataDockDb.clearHistory",
+        "title": "%command.clearHistory.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "auraDataDockDb.addConnection",
+        "title": "%command.addConnection.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(add)"
+      },
+      {
+        "command": "auraDataDockDb.editConnection",
+        "title": "%command.editConnection.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "auraDataDockDb.removeConnection",
+        "title": "%command.removeConnection.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "auraDataDockDb.disconnect",
+        "title": "%command.disconnect.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(debug-disconnect)"
+      },
+      {
+        "command": "auraDataDockDb.activateConnection",
+        "title": "%command.activateConnection.title%",
+        "category": "Aura DataDock DB"
+      },
+      {
+        "command": "auraDataDockDb.filterSchema",
+        "title": "%command.filterSchema.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "auraDataDockDb.addRow",
+        "title": "%command.addRow.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(add)"
+      },
+      {
+        "command": "auraDataDockDb.newTableQuery",
+        "title": "%command.newTableQuery.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "auraDataDockDb.createTable",
+        "title": "%command.createTable.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "auraDataDockDb.addColumn",
+        "title": "%command.addColumn.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(add)"
+      },
+      {
+        "command": "auraDataDockDb.renameTable",
+        "title": "%command.renameTable.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "auraDataDockDb.truncateTable",
+        "title": "%command.truncateTable.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "auraDataDockDb.dropTable",
+        "title": "%command.dropTable.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "auraDataDockDb.renameColumn",
+        "title": "%command.renameColumn.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "auraDataDockDb.dropColumn",
+        "title": "%command.dropColumn.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "auraDataDockDb.createIndex",
+        "title": "%command.createIndex.title%",
+        "category": "Aura DataDock DB",
+        "icon": "$(list-ordered)"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "auraDataDock.refresh",
-          "when": "view == auraDataDock.connections",
+          "command": "auraDataDockDb.addConnection",
+          "when": "view == auraDataDockDb.connections",
+          "group": "navigation@1"
+        },
+        {
+          "command": "auraDataDockDb.newQuery",
+          "when": "view == auraDataDockDb.connections",
+          "group": "navigation@2"
+        },
+        {
+          "command": "auraDataDockDb.generateSql",
+          "when": "view == auraDataDockDb.connections",
+          "group": "navigation@3"
+        },
+        {
+          "command": "auraDataDockDb.refresh",
+          "when": "view == auraDataDockDb.connections",
+          "group": "navigation@4"
+        },
+        {
+          "command": "auraDataDockDb.clearHistory",
+          "when": "view == auraDataDockDb.history",
           "group": "navigation"
         },
         {
-          "command": "auraDataDock.generateSql",
-          "when": "view == auraDataDock.connections",
-          "group": "navigation"
+          "command": "auraDataDockDb.filterSchema",
+          "when": "view == auraDataDockDb.schema",
+          "group": "navigation@1"
+        },
+        {
+          "command": "auraDataDockDb.createTable",
+          "when": "view == auraDataDockDb.schema",
+          "group": "navigation@2"
+        },
+        {
+          "command": "auraDataDockDb.showDiagram",
+          "when": "view == auraDataDockDb.schema",
+          "group": "navigation@3"
+        },
+        {
+          "command": "auraDataDockDb.refresh",
+          "when": "view == auraDataDockDb.schema",
+          "group": "navigation@4"
         }
       ],
       "view/item/context": [
         {
-          "command": "auraDataDock.newQuery",
-          "when": "view == auraDataDock.connections && viewItem =~ /^container/",
+          "command": "auraDataDockDb.newQuery",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-/",
           "group": "inline"
         },
         {
-          "command": "auraDataDock.setPassword",
-          "when": "view == auraDataDock.connections && viewItem =~ /^container/"
+          "command": "auraDataDockDb.showDiagram",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "group": "inline"
         },
         {
-          "command": "auraDataDock.openTable",
-          "when": "view == auraDataDock.connections && viewItem == table",
+          "command": "auraDataDockDb.newQuery",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "group": "1_connection@1"
+        },
+        {
+          "command": "auraDataDockDb.showDiagram",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "group": "1_connection@2"
+        },
+        {
+          "command": "auraDataDockDb.exportSchema",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "group": "1_connection@3"
+        },
+        {
+          "command": "auraDataDockDb.disconnect",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "group": "2_manage@1"
+        },
+        {
+          "command": "auraDataDockDb.setPassword",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-/",
+          "group": "2_manage@2"
+        },
+        {
+          "command": "auraDataDockDb.editConnection",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-saved-/",
+          "group": "2_manage@3"
+        },
+        {
+          "command": "auraDataDockDb.removeConnection",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-saved-/",
+          "group": "2_manage@4"
+        },
+        {
+          "command": "auraDataDockDb.createTable",
+          "when": "view == auraDataDockDb.schema && viewItem == namespace",
           "group": "inline"
+        },
+        {
+          "command": "auraDataDockDb.createTable",
+          "when": "view == auraDataDockDb.schema && viewItem == namespace",
+          "group": "1_schema@1"
+        },
+        {
+          "command": "auraDataDockDb.showDiagram",
+          "when": "view == auraDataDockDb.schema && viewItem == namespace",
+          "group": "1_schema@2"
+        },
+        {
+          "command": "auraDataDockDb.exportSchema",
+          "when": "view == auraDataDockDb.schema && viewItem == namespace",
+          "group": "1_schema@3"
+        },
+        {
+          "command": "auraDataDockDb.addRow",
+          "when": "view == auraDataDockDb.schema && viewItem == table",
+          "group": "inline"
+        },
+        {
+          "command": "auraDataDockDb.openTable",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "1_data@1"
+        },
+        {
+          "command": "auraDataDockDb.addRow",
+          "when": "view == auraDataDockDb.schema && viewItem == table",
+          "group": "1_data@2"
+        },
+        {
+          "command": "auraDataDockDb.newTableQuery",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "1_data@3"
+        },
+        {
+          "command": "auraDataDockDb.addColumn",
+          "when": "view == auraDataDockDb.schema && viewItem == table",
+          "group": "2_structure@1"
+        },
+        {
+          "command": "auraDataDockDb.renameTable",
+          "when": "view == auraDataDockDb.schema && viewItem == table",
+          "group": "2_structure@2"
+        },
+        {
+          "command": "auraDataDockDb.showTableDdl",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "2_structure@3"
+        },
+        {
+          "command": "auraDataDockDb.exportTable",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "3_export@1"
+        },
+        {
+          "command": "auraDataDockDb.copySelect",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "3_export@2"
+        },
+        {
+          "command": "auraDataDockDb.truncateTable",
+          "when": "view == auraDataDockDb.schema && viewItem == table",
+          "group": "4_danger@1"
+        },
+        {
+          "command": "auraDataDockDb.dropTable",
+          "when": "view == auraDataDockDb.schema && viewItem =~ /^(table|view)$/",
+          "group": "4_danger@2"
+        },
+        {
+          "command": "auraDataDockDb.renameColumn",
+          "when": "view == auraDataDockDb.schema && viewItem == column",
+          "group": "1_column@1"
+        },
+        {
+          "command": "auraDataDockDb.createIndex",
+          "when": "view == auraDataDockDb.schema && viewItem == column",
+          "group": "1_column@2"
+        },
+        {
+          "command": "auraDataDockDb.dropColumn",
+          "when": "view == auraDataDockDb.schema && viewItem == column",
+          "group": "2_danger@1"
         }
       ],
       "editor/title": [
         {
-          "command": "auraDataDock.runQuery",
+          "command": "auraDataDockDb.runQuery",
+          "when": "editorLangId == sql",
+          "group": "navigation"
+        },
+        {
+          "command": "auraDataDockDb.runFile",
+          "when": "editorLangId == sql",
+          "group": "navigation"
+        },
+        {
+          "command": "auraDataDockDb.explainQuery",
           "when": "editorLangId == sql",
           "group": "navigation"
         }
       ],
       "commandPalette": [
         {
-          "command": "auraDataDock.openTable",
+          "command": "auraDataDockDb.openTable",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.exportTable",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.showTableDdl",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.copySelect",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.runStatementAt",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.openHistoryEntry",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.editConnection",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.removeConnection",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.disconnect",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.activateConnection",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.addRow",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.newTableQuery",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.addColumn",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.renameTable",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.truncateTable",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.dropTable",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.renameColumn",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.dropColumn",
+          "when": "false"
+        },
+        {
+          "command": "auraDataDockDb.createIndex",
           "when": "false"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "auraDataDock.runQuery",
+        "command": "auraDataDockDb.runQuery",
         "key": "ctrl+enter",
         "mac": "cmd+enter",
+        "when": "editorTextFocus && editorLangId == sql"
+      },
+      {
+        "command": "auraDataDockDb.runFile",
+        "key": "ctrl+shift+enter",
+        "mac": "cmd+shift+enter",
         "when": "editorTextFocus && editorLangId == sql"
       }
     ],
     "configuration": {
-      "title": "Aura DataDock",
+      "title": "Aura DataDock DB",
       "properties": {
-        "auraDataDock.readOnly": {
+        "auraDataDockDb.readOnly": {
           "type": "boolean",
           "default": false,
-          "description": "Block every statement that writes to the database."
+          "description": "%setting.readOnly.description%"
         },
-        "auraDataDock.confirmDestructiveQueries": {
+        "auraDataDockDb.confirmDestructiveQueries": {
           "type": "boolean",
           "default": true,
-          "description": "Ask for confirmation before DROP, TRUNCATE, ALTER and DELETE/UPDATE without WHERE."
+          "description": "%setting.confirmDestructiveQueries.description%"
         },
-        "auraDataDock.maxRows": {
+        "auraDataDockDb.maxRows": {
           "type": "number",
           "default": 500,
           "minimum": 1,
-          "description": "Maximum number of rows shown in the results panel."
+          "description": "%setting.maxRows.description%"
         },
-        "auraDataDock.dockerHost": {
+        "auraDataDockDb.dockerHost": {
           "type": "string",
           "default": "",
-          "description": "Docker Engine endpoint. Leave empty to use DOCKER_HOST or the platform default (unix socket or Windows named pipe)."
+          "description": "%setting.dockerHost.description%"
         },
-        "auraDataDock.ai.provider": {
+        "auraDataDockDb.ai.provider": {
           "type": "string",
           "enum": [
             "vscode",
@@ -194,35 +617,62 @@
             "ollama"
           ],
           "enumDescriptions": [
-            "Language models available in VS Code (for example GitHub Copilot). No API key needed.",
-            "Anthropic API with your own key.",
-            "OpenAI API with your own key.",
-            "Local models through Ollama."
+            "%setting.ai.provider.enum.vscode%",
+            "%setting.ai.provider.enum.anthropic%",
+            "%setting.ai.provider.enum.openai%",
+            "%setting.ai.provider.enum.ollama%"
           ],
           "default": "vscode",
-          "description": "Which AI provider powers the AI features."
+          "description": "%setting.ai.provider.description%"
         },
-        "auraDataDock.ai.model": {
+        "auraDataDockDb.ai.model": {
           "type": "string",
           "default": "",
-          "description": "Model id for the selected provider. Leave empty to use the provider default."
+          "description": "%setting.ai.model.description%"
         },
-        "auraDataDock.ai.ollamaUrl": {
+        "auraDataDockDb.ai.ollamaUrl": {
           "type": "string",
           "default": "http://localhost:11434",
-          "description": "Base URL of the Ollama server."
+          "description": "%setting.ai.ollamaUrl.description%"
         },
-        "auraDataDock.mcp.enabled": {
+        "auraDataDockDb.mcp.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Expose discovered databases to AI agents through a read-only MCP server."
+          "description": "%setting.mcp.enabled.description%"
+        },
+        "auraDataDockDb.codeLens.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.codeLens.enabled.description%"
+        },
+        "auraDataDockDb.history.maxEntries": {
+          "type": "number",
+          "default": 200,
+          "minimum": 0,
+          "description": "%setting.history.maxEntries.description%"
+        },
+        "auraDataDockDb.connections": {
+          "type": "array",
+          "default": [],
+          "scope": "machine",
+          "items": {
+            "type": "object"
+          },
+          "markdownDescription": "%setting.connections.markdownDescription%"
+        },
+        "auraDataDockDb.table.pageSize": {
+          "type": "number",
+          "default": 100,
+          "minimum": 1,
+          "maximum": 5000,
+          "description": "%setting.table.pageSize.description%"
         }
       }
     },
     "mcpServerDefinitionProviders": [
       {
-        "id": "auraDataDock.mcp",
-        "label": "Aura DataDock"
+        "id": "auraDataDockDb.mcp",
+        "label": "Aura DataDock DB"
       }
     ]
   },
@@ -230,27 +680,35 @@
     "vscode:prepublish": "npm run build -- --production",
     "build": "node esbuild.mjs",
     "watch": "node esbuild.mjs --watch",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.webview.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "package": "vsce package --no-dependencies",
     "publish:vsce": "vsce publish --no-dependencies",
-    "publish:ovsx": "ovsx publish --no-dependencies"
+    "publish:ovsx": "ovsx publish --no-dependencies",
+    "test:integration": "node scripts/runIntegrationTests.mjs"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0",
-    "mysql2": "^3.14.0",
-    "pg": "^8.16.0",
-    "zod": "^3.25.0"
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "echarts": "^6.1.0",
+    "mysql2": "^3.24.6",
+    "pg": "^8.23.1",
+    "pg-cursor": "^2.22.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
-    "@types/pg": "^8.15.0",
-    "@types/vscode": "^1.101.0",
-    "@vscode/vsce": "^3.6.0",
-    "esbuild": "^0.25.0",
-    "ovsx": "^0.10.0",
-    "typescript": "^5.8.0",
-    "vitest": "^3.2.0"
-  }
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "@types/pg-cursor": "^2.7.2",
+    "@types/vscode": "~1.101.0",
+    "@vscode/vsce": "^4.1.0",
+    "esbuild": "^0.28.2",
+    "ovsx": "^1.3.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  },
+  "l10n": "./l10n"
 }
