@@ -26,6 +26,7 @@ export function createTableEditors(
     pageSize: () => config().get<number>('table.pageSize', 100),
     openSql: (target, sql) => openBoundDocument(getContext(), target.key, sql),
     runScript: (target, sql) => executeQuery(getContext(), target, sql),
+    runChart: (target, sql) => executeQuery(getContext(), target, sql, true),
     exportRows: (target, table, statement) => exportRows(getContext(), target, table, statement),
     openTable: (target, table) => openTableOf(getContext(), target, table),
     copyText: (text) => vscode.env.clipboard.writeText(text),

@@ -58,6 +58,7 @@ export type TableEditorWebviewMessage =
   | { readonly type: 'save'; readonly changes: readonly RowChange[] }
   | { readonly type: 'preview'; readonly changes: readonly RowChange[] }
   | { readonly type: 'runSql'; readonly sql: string; readonly limit: number }
+  | { readonly type: 'chartSql'; readonly sql: string }
   | { readonly type: 'openSql'; readonly sql: string }
   | { readonly type: 'copyText'; readonly text: string }
   | { readonly type: 'exportData'; readonly selection: TableRowSelection }

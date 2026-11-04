@@ -7,6 +7,10 @@ export function createSqlPanel(screen: TableScreen): SqlPanel {
       screen.setBusy();
       screen.host.postMessage({ type: 'runSql', sql, limit: screen.state.limit });
     },
+    onChart: (sql) => {
+      screen.setBusy();
+      screen.host.postMessage({ type: 'chartSql', sql });
+    },
     onOpenInEditor: (sql) => screen.openSql(sql),
     onCopy: (text) => screen.copy(text),
     onBackToTable: () => screen.loadPage(),

@@ -142,6 +142,8 @@ export class TableEditorPanel {
         return this.preview(message.changes);
       case 'runSql':
         return this.runSql(message.sql, message.limit);
+      case 'chartSql':
+        return this.runChart(message.sql);
       case 'openSql':
         return this.dependencies.openSql(this.target, `${message.sql}\n`);
       case 'copyText':
@@ -206,6 +208,20 @@ export class TableEditorPanel {
         type: 'customResult',
         result: { sql: statement.text, columns: result.columns, rows: toCellRows(result.rows), isTruncated: result.truncated, durationMs: result.durationMs },
       });
+    } catch (error) {
+      this.post({ type: 'failed', message: toMessage(error) });
+    }
+  }
+
+  private async runChart(sql: string): Promise<void> {
+    try {
+      const classification = classifyQuery(sql, this.target.kind);
+      if (classification.statementCount !== 1 || classification.risk !== 'read') {
+        this.post({ type: 'failed', message: l10n.t('A chart needs a single query that reads data.') });
+        return;
+      }
+      const hasRun = await this.dependencies.runChart(this.target, sql);
+      this.post(hasRun ? { type: 'scriptFinished' } : { type: 'failed', message: '' });
     } catch (error) {
       this.post({ type: 'failed', message: toMessage(error) });
     }

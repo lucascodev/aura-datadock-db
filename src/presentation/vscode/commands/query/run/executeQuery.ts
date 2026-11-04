@@ -11,7 +11,7 @@ import type { ConnectionTarget } from '../../../../../domain/connection/model/Co
 import type { DataDockContext } from '../../model/DataDockContext';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 
-export async function executeQuery(context: DataDockContext, target: ConnectionTarget, sql: string): Promise<boolean> {
+export async function executeQuery(context: DataDockContext, target: ConnectionTarget, sql: string, opensAsChart = false): Promise<boolean> {
   const classification = classifyQuery(sql, target.kind);
   if (!(await isAllowedToRun(context, target, classification))) {
     return false;
@@ -28,7 +28,7 @@ export async function executeQuery(context: DataDockContext, target: ConnectionT
       { location: vscode.ProgressLocation.Window, title: l10n.t('Running query on {0}', target.name) },
       () => runOnConnection(context, target, sql, controller),
     );
-    context.results.showOutcomes(target.name, target.kind, outcomes);
+    context.results.showOutcomes(target.name, target.kind, outcomes, opensAsChart);
     logOutcomes(context, target, outcomes);
     await context.history.add(summarizeOutcomes(sql, target, executedAt, outcomes));
     if (classification.risk !== 'read') {
