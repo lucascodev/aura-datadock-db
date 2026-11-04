@@ -1,19 +1,10 @@
 import { quantile } from './quantile';
+import type { BoxplotStats } from './BoxplotStats';
 
 const LOWER_QUARTILE = 0.25;
 const MEDIAN = 0.5;
 const UPPER_QUARTILE = 0.75;
 const WHISKER_RANGE = 1.5;
-
-export interface BoxplotStats {
-  readonly lowerWhisker: number;
-  readonly q1: number;
-  readonly median: number;
-  readonly q3: number;
-  readonly upperWhisker: number;
-  readonly outliers: readonly number[];
-  readonly count: number;
-}
 
 export function computeBoxplot(values: readonly number[]): BoxplotStats | undefined {
   if (values.length === 0) {

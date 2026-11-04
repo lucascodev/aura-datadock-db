@@ -1,10 +1,5 @@
 import { SQL_KEYWORDS } from './sqlKeywords';
-
-export interface TableReference {
-  readonly namespace?: string;
-  readonly name: string;
-  readonly alias?: string;
-}
+import type { TableReference } from './TableReference';
 
 const IDENTIFIER = '(?:"[^"]+"|`[^`]+`|[A-Za-z_][\\w$]*)';
 const TABLE_REFERENCE = new RegExp(

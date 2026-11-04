@@ -3,12 +3,13 @@ import type { ParameterizedStatement } from '../../../domain/database/Parameteri
 import type { TableDefinition } from '../../../domain/schema/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
-import { bound, joinParts, toStatement, type TemplatePart } from '../../sql/statementTemplate';
+import { bound, joinParts, toStatement } from '../../sql/statementTemplate';
+import type { TemplatePart } from '../../sql/TemplatePart';
 import type { TableFilter, TablePageRequest, TableRowSelection } from './tableFilters';
 import { validateWhereExpression } from './validateWhereExpression';
 import { l10n } from '../../../domain/i18n/l10n';
 
-export interface TablePageQuery {
+interface TablePageQuery {
   readonly page: ParameterizedStatement;
   readonly count: ParameterizedStatement;
 }

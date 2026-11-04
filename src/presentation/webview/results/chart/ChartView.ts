@@ -15,7 +15,7 @@ import { l10n } from '../../../../domain/i18n/l10n';
 
 const FALLBACK_KIND: ChartKind = 'bar';
 
-export interface ChartViewCallbacks {
+interface ChartViewCallbacks {
   onConfigChange(config: ChartConfig): void;
   onSaveImage(format: 'png' | 'svg', content: string): void;
 }

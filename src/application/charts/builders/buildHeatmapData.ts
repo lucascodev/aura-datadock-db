@@ -5,7 +5,7 @@ import type { ChartInput } from '../model/ChartInput';
 import type { ColumnKind } from '../model/ColumnKind';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { orderLabels } from '../support/compareAxisValues';
-import { createTally, tallyNotices } from '../support/RowTally';
+import { createTally, tallyNotices } from '../support/createRowTally';
 import { l10n } from '../../../domain/i18n/l10n';
 
 export function buildHeatmapData(input: ChartInput, config: ChartConfig, xKind: ColumnKind, yKind: ColumnKind): HeatmapChartData | EmptyChartData {

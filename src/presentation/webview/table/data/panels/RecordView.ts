@@ -1,9 +1,10 @@
 import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
 import { l10n } from '../../../../../domain/i18n/l10n';
 import { createElement } from '../../../shared/createElement';
-import type { CellPosition, DataTabState } from '../state/DataTabState';
+import type { DataTabState } from '../state/DataTabState';
+import type { CellPosition } from '../model/CellPosition';
 
-export interface RecordViewCallbacks {
+interface RecordViewCallbacks {
   onCommit(position: CellPosition, value: CellValue): void;
   onMove(delta: number): void;
   onSelectField(position: CellPosition): void;

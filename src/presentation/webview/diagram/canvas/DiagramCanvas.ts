@@ -3,14 +3,15 @@ import { measureDiagram, renderDiagramMarkup } from '../../../../application/dia
 import { routeEdge } from '../../../../application/diagram/layout/routeEdge';
 import { LIVE_PALETTE } from './livePalette';
 import { relatedEdges, relatedTableNames } from './relatedTables';
-import { centerOn, fitToView, zoomAt, type ViewportTransform } from './Viewport';
+import { centerOn, fitToView, zoomAt } from './Viewport';
+import type { ViewportTransform } from './ViewportTransform';
 
 const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const CLICK_MOVE_TOLERANCE = 4;
 const SEARCH_FOCUS_SCALE = 1;
 
-export interface DiagramCanvasCallbacks {
+interface DiagramCanvasCallbacks {
   readonly onTableMoved: (tableName: string, position: DiagramPoint) => void;
   readonly onTableOpened: (tableName: string) => void;
   readonly onZoomChanged: (scale: number) => void;

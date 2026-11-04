@@ -1,19 +1,8 @@
 import type { DriverId } from '../../../domain/driver/DriverId';
 import { quoteIfNeeded } from '../../sql/quoteIfNeeded';
+import type { FilterSuggestion, FilterCompletions } from './FilterCompletions';
 
-export interface FilterSuggestion {
-  readonly label: string;
-  readonly insertText: string;
-  readonly detail?: string;
-}
-
-export interface FilterCompletions {
-  readonly wordStart: number;
-  readonly wordEnd: number;
-  readonly suggestions: readonly FilterSuggestion[];
-}
-
-export interface FilterColumn {
+interface FilterColumn {
   readonly name: string;
   readonly dataType: string;
 }

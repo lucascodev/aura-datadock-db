@@ -1,11 +1,5 @@
 import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-
-export interface IncomingReference {
-  readonly name: string;
-  readonly table: string;
-  readonly columns: readonly string[];
-  readonly referencedColumns: readonly string[];
-}
+import type { IncomingReference } from './IncomingReference';
 
 export function findIncomingReferences(schema: NamespaceSchema, tableName: string): IncomingReference[] {
   return schema.tables.flatMap((table) =>

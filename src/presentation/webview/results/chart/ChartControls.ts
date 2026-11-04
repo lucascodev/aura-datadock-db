@@ -8,13 +8,13 @@ import { l10n } from '../../../../domain/i18n/l10n';
 const NO_COLUMN = '';
 const MIN_BINS = 1;
 
-export interface ChartControlsCallbacks {
+interface ChartControlsCallbacks {
   onKindChange(kind: ChartKind): void;
   onConfigChange(config: ChartConfig): void;
   onExport(format: 'png' | 'svg'): void;
 }
 
-export interface ChartControlsState {
+interface ChartControlsState {
   readonly config: ChartConfig;
   readonly columns: readonly ColumnInfo[];
   readonly canUseStat: boolean;

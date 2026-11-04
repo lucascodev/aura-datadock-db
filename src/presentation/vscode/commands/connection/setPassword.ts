@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
-import { passwordSecretName, type DataDockContext } from '../registry/DataDockContext';
+import { type DataDockContext } from '../registry/DataDockContext';
+import { passwordSecretName } from '../registry/passwordSecretName';
 import { pickConnection } from '../registry/pickConnection';
 import { l10n } from '../../../../domain/i18n/l10n';
 

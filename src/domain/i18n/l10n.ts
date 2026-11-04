@@ -1,7 +1,5 @@
-export interface L10nCatalog {
-  readonly locale: string;
-  readonly messages?: Readonly<Record<string, string>>;
-}
+import type { L10nCatalog } from './L10nCatalog';
+
 
 type L10nArgument = string | number | boolean;
 

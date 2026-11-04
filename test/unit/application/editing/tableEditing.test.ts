@@ -24,7 +24,7 @@ import {
   toggleDeletion,
 } from '../../../../src/application/editing/rows/pendingChanges';
 import type { TableDefinition } from '../../../../src/domain/schema/TableDefinition';
-import { assertExpectedRows } from '../../../../src/domain/database/ParameterizedStatement';
+import { assertExpectedRows } from '../../../../src/domain/database/assertExpectedRows';
 import { auditLog, customers, orderItems, orders, paidOrders } from '../../../fixtures/shopSchema';
 
 const key = { id: '1' };

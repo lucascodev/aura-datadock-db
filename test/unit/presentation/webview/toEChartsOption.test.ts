@@ -4,7 +4,8 @@ import type { ChartConfig } from '../../../../src/application/charts/model/Chart
 import type { DrawableChartData } from '../../../../src/application/charts/model/ChartData';
 import type { ChartCell } from '../../../../src/application/charts/model/ChartInput';
 import { createAxisFormatter, formatAxisNumber, formatFullNumber } from '../../../../src/presentation/webview/chart/echarts/formatChartNumber';
-import { toEChartsOption, type EChartsOptionRecord } from '../../../../src/presentation/webview/chart/echarts/toEChartsOption';
+import { toEChartsOption } from '../../../../src/presentation/webview/chart/echarts/toEChartsOption';
+import type { EChartsOptionRecord } from '../../../../src/presentation/webview/chart/echarts/EChartsOptionRecord';
 import { DARK_PALETTE, LIGHT_PALETTE } from '../../../../src/presentation/webview/chart/palette/chartPalettes';
 
 function draw(columns: string[], rows: ChartCell[][], config: Partial<ChartConfig>, isExport = false, renderTooltip: (content: unknown) => unknown = (content) => content) {

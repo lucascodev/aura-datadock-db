@@ -2,7 +2,7 @@ import type { TlsMode } from '../../../domain/connection/ConnectionTls';
 import type { DriverId } from '../../../domain/driver/DriverId';
 import { findDriverByScheme } from '../../../drivers/catalog/driverCatalog';
 
-export interface ParsedConnectionString {
+interface ParsedConnectionString {
   readonly kind: DriverId;
   readonly host: string;
   readonly port: string;

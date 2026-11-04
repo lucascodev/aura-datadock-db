@@ -8,7 +8,7 @@ import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdent
 
 const SEQUENCE_DEFAULT = /nextval\('([^']+)'/;
 
-export interface RenderDdlOptions {
+interface RenderDdlOptions {
   readonly tableNames?: readonly string[];
 }
 

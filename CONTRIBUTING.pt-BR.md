@@ -24,6 +24,7 @@ Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Pos
 - Dependências apontam só para dentro, como descrito em [docs/architecture.pt-BR.md](docs/architecture.pt-BR.md). `vscode` só aparece em `presentation/vscode` e em `main`, para o resto continuar utilizável pelo servidor MCP.
 - O código em `presentation/webview` roda no navegador: não importa `vscode` nem APIs do Node, e fala com a extensão só por mensagens.
 - Cada arquivo fica em uma subpasta do seu assunto. Uma pasta tem arquivos ou subpastas, nunca os dois, e no máximo 8 arquivos. Os testes em `test/architecture/` garantem essas regras.
+- Um tipo usado por outro arquivo tem arquivo próprio, com o nome do conceito. Um tipo usado só no próprio arquivo fica nele, sem `export`. Portas ficam em `ports/` e cada classe de erro em `errors/`, ou ao lado de quem as usa quando a pasta só tem arquivos.
 - Toda regra nova em `application` ou `infrastructure/docker` vem acompanhada de teste em `test/unit/`, na mesma árvore de `src`.
 - Mudanças em SQL de adapter vêm com teste em `test/integration/`, que roda contra bancos reais.
 

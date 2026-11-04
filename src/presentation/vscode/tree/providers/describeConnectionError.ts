@@ -1,4 +1,4 @@
-import { MissingPasswordError } from '../../../../application/connections/lifecycle/ConnectionManager';
+import { MissingPasswordError } from '../../../../application/connections/errors/MissingPasswordError';
 import { MessageNode } from '../nodes/MessageNode';
 import { l10n } from '../../../../domain/i18n/l10n';
 

@@ -1,5 +1,6 @@
 import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import { DiagramPanel, diagramPositionsPrefix, type DiagramPanelDependencies } from './DiagramPanel';
+import { DiagramPanel, diagramPositionsPrefix } from './DiagramPanel';
+import type { DiagramPanelDependencies } from './DiagramPanelDependencies';
 
 export class DiagramPanels {
   private readonly panels = new Map<string, DiagramPanel>();

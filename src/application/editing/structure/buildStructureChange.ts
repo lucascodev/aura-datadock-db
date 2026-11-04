@@ -5,7 +5,7 @@ import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdent
 
 type TableLocation = Pick<TableRef, 'namespace' | 'name'>;
 
-export interface NewColumn {
+interface NewColumn {
   readonly name: string;
   readonly dataType: string;
   readonly isNullable: boolean;

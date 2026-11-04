@@ -5,7 +5,8 @@ import type { ConnectionInput } from '../../../../src/application/connections/sa
 import { explainConnectionFailure } from '../../../../src/application/connections/guidance/explainConnectionFailure';
 import { isLocalHost } from '../../../../src/application/connections/guidance/isLocalHost';
 import { parseConnectionString } from '../../../../src/application/connections/saved/parseConnectionString';
-import { SavedConnections, type SavedConnectionStore } from '../../../../src/application/connections/saved/SavedConnections';
+import { SavedConnections } from '../../../../src/application/connections/saved/SavedConnections';
+import type { SavedConnectionStore } from '../../../../src/application/connections/ports/SavedConnectionStore';
 import { suggestProtection } from '../../../../src/application/connections/guidance/suggestProtection';
 import { toConnectionTarget } from '../../../../src/application/connections/saved/toConnectionTarget';
 import { validateConnectionInput } from '../../../../src/application/connections/saved/validateConnectionInput';

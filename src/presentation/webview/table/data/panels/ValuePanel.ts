@@ -1,12 +1,13 @@
 import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
 import { createElement } from '../../../shared/createElement';
 import { l10n } from '../../../../../domain/i18n/l10n';
-import type { CellPosition, DataTabState } from '../state/DataTabState';
+import type { DataTabState } from '../state/DataTabState';
+import type { CellPosition } from '../model/CellPosition';
 
 const JSON_START = /^[[{]/;
 const JSON_INDENT = 2;
 
-export interface ValuePanelCallbacks {
+interface ValuePanelCallbacks {
   onCommit(position: CellPosition, value: CellValue): void;
   onSetNull(): void;
 }

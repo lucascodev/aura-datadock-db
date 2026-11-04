@@ -1,6 +1,5 @@
 import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-
-export type SchemaLoader = (targetId: string, namespace: string) => Promise<NamespaceSchema>;
+import type { SchemaLoader } from '../ports/SchemaLoader';
 
 interface CacheEntry {
   readonly schema: Promise<NamespaceSchema>;

@@ -2,7 +2,7 @@ import type { ConnectionTls } from './ConnectionTls';
 import type { DriverId } from '../driver/DriverId';
 import type { SshSettings } from './SshSettings';
 
-export type CredentialSource = 'container-env' | 'secret-storage' | 'missing';
+type CredentialSource = 'container-env' | 'secret-storage' | 'missing';
 
 export type ConnectionSourceKind = 'docker' | 'saved';
 
@@ -24,8 +24,4 @@ export interface ConnectionTarget {
   readonly isReadOnly: boolean;
   readonly tls: ConnectionTls;
   readonly ssh?: SshSettings;
-}
-
-export function isReachable(target: ConnectionTarget): boolean {
-  return target.host !== undefined && target.port !== undefined;
 }

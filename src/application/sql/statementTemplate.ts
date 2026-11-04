@@ -2,12 +2,7 @@ import type { DriverId } from '../../domain/driver/DriverId';
 import type { CellValue, ParameterizedStatement } from '../../domain/database/ParameterizedStatement';
 import { getDriver } from '../../drivers/catalog/driverCatalog';
 import { toSqlLiteral } from './toSqlLiteral';
-
-export interface BoundValue {
-  readonly value: CellValue;
-}
-
-export type TemplatePart = string | BoundValue;
+import type { BoundValue, TemplatePart } from './TemplatePart';
 
 export function bound(value: CellValue): BoundValue {
   return { value };

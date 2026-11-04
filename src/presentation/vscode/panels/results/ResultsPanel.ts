@@ -5,7 +5,8 @@ import type { RowExportFormatId } from '../../../../application/export/formats/R
 import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
 import type { DriverId } from '../../../../domain/driver/DriverId';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
-import { saveImageFile, type ImageFormat } from '../shared/saveImageFile';
+import { saveImageFile } from '../shared/saveImageFile';
+import type { ImageFormat } from '../shared/ImageFormat';
 import type { ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../../contracts/ResultsMessages';
 import { toResultSetView } from './toResultSetView';
 import { l10n } from '../../../../domain/i18n/l10n';

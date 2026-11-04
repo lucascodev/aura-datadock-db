@@ -4,11 +4,7 @@ import type { SavedConnection } from '../../../domain/connection/SavedConnection
 import { findDriver } from '../../../drivers/catalog/driverCatalog';
 import { toConnectionTarget } from './toConnectionTarget';
 import { isSafeCommandValue } from './validateConnectionInput';
-
-export interface SavedConnectionStore {
-  read(): readonly unknown[];
-  write(connections: readonly SavedConnection[]): PromiseLike<void>;
-}
+import type { SavedConnectionStore } from '../ports/SavedConnectionStore';
 
 const TLS_MODES = new Set(['off', 'required', 'verified']);
 

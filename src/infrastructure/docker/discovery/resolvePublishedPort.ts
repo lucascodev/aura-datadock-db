@@ -1,6 +1,6 @@
 import type { DockerPort } from '../client/DockerContainer';
 
-export interface PublishedAddress {
+interface PublishedAddress {
   readonly host: string;
   readonly port: number;
 }

@@ -1,6 +1,8 @@
 import type { ResultColumnView } from '../../../contracts/ResultsMessages';
 import { createElement } from '../../shared/createElement';
-import { filterRows, nextSort, sortRows, type ResultRow, type SortState } from './orderRows';
+import { filterRows, nextSort, sortRows } from './orderRows';
+import type { ResultRow } from './ResultRow';
+import type { SortState } from './SortState';
 import { l10n } from '../../../../domain/i18n/l10n';
 
 const ROW_HEIGHT = 24;
@@ -13,12 +15,12 @@ const COLUMN_PADDING = 28;
 const ROW_NUMBER_WIDTH = 56;
 const NULL_LABEL = 'NULL';
 
-export interface CellSelection {
+interface CellSelection {
   readonly rowIndex: number;
   readonly columnIndex: number;
 }
 
-export interface ResultGridCallbacks {
+interface ResultGridCallbacks {
   readonly onSelectionChange: (selection: CellSelection | undefined) => void;
   readonly onOpenValue: (text: string) => void;
   readonly onCountChange: (visibleRows: number) => void;

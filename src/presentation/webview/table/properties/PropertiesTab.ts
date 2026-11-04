@@ -5,7 +5,7 @@ import { Tabs } from '../../shared/Tabs';
 
 type PropertiesSection = 'columns' | 'indexes' | 'references' | 'ddl';
 
-export interface PropertiesTabCallbacks {
+interface PropertiesTabCallbacks {
   onCopy(text: string): void;
   onOpenSql(sql: string): void;
   onOpenTable(table: string): void;

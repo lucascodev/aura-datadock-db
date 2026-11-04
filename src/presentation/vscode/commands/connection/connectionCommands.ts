@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
-import { savedPasswordSecretName, type DataDockContext } from '../registry/DataDockContext';
+import { type DataDockContext } from '../registry/DataDockContext';
+import { savedPasswordSecretName } from '../registry/passwordSecretName';
 import { l10n } from '../../../../domain/i18n/l10n';
 
 export function addConnection(context: DataDockContext): void {

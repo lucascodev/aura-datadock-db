@@ -4,7 +4,8 @@ import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarg
 import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import type { DriverId } from '../../../domain/driver/DriverId';
 import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import { assertExpectedRows, type ParameterizedStatement } from '../../../domain/database/ParameterizedStatement';
+import { type ParameterizedStatement } from '../../../domain/database/ParameterizedStatement';
+import { assertExpectedRows } from '../../../domain/database/assertExpectedRows';
 import type { QueryResult } from '../../../domain/database/QueryResult';
 import type { RowBatch } from '../../../domain/database/RowBatch';
 import type { TableRef } from '../../../domain/schema/TableRef';

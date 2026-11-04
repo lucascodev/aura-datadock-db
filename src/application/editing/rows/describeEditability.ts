@@ -3,13 +3,7 @@ import type { TableColumn } from '../../../domain/schema/TableColumn';
 import type { TableDefinition } from '../../../domain/schema/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { l10n } from '../../../domain/i18n/l10n';
-
-export interface TableEditability {
-  readonly canInsert: boolean;
-  readonly canUpdate: boolean;
-  readonly canDelete: boolean;
-  readonly notice?: string;
-}
+import type { TableEditability } from './TableEditability';
 
 const NOT_EDITABLE: TableEditability = { canInsert: false, canUpdate: false, canDelete: false };
 

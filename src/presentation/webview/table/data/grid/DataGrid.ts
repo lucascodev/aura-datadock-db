@@ -3,7 +3,10 @@ import { l10n } from '../../../../../domain/i18n/l10n';
 import type { TableColumnView } from '../../../../contracts/TableEditorMessages';
 import { createElement } from '../../../shared/createElement';
 import { columnTypeBadge } from './columnTypeBadge';
-import type { CellPosition, DataTabState, DisplayRow, RowSelectionGesture } from '../state/DataTabState';
+import type { DataTabState } from '../state/DataTabState';
+import type { RowSelectionGesture } from '../model/RowSelectionGesture';
+import type { DisplayRow } from '../model/DisplayRow';
+import type { CellPosition } from '../model/CellPosition';
 
 const NULL_LABEL = '[NULL]';
 const ROW_NUMBER_WIDTH = 52;
@@ -14,7 +17,7 @@ const COLUMN_PADDING = 64;
 const WIDTH_SAMPLE_ROWS = 50;
 const PAGE_ROWS = 10;
 
-export interface DataGridCallbacks {
+interface DataGridCallbacks {
   onActiveCellChange(): void;
   onCommitCell(position: CellPosition, value: CellValue): void;
   onSelectionChange(): void;

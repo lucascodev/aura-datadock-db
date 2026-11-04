@@ -1,17 +1,17 @@
-import type { BoxplotStats } from '../statistics/computeBoxplot';
-import type { HistogramBin } from '../statistics/computeHistogram';
-import type { LinearRegression } from '../statistics/computeLinearRegression';
+import type { BoxplotStats } from '../statistics/BoxplotStats';
+import type { HistogramBin } from '../statistics/HistogramBin';
+import type { LinearRegression } from '../statistics/LinearRegression';
 import type { ChartNotice } from './ChartNotice';
 
 export type CartesianAxisType = 'category' | 'time' | 'value';
 export type CartesianSeriesKind = 'line' | 'area' | 'bar';
 
-export interface CartesianSeries {
+interface CartesianSeries {
   readonly name: string;
   readonly values: readonly (number | null)[];
 }
 
-export interface ScatterSeries {
+interface ScatterSeries {
   readonly name: string;
   readonly points: readonly (readonly [number, number])[];
 }
@@ -75,7 +75,7 @@ export interface HeatmapChartData extends ChartDataBase {
   readonly max: number;
 }
 
-export interface StatChartData extends ChartDataBase {
+interface StatChartData extends ChartDataBase {
   readonly form: 'stat';
   readonly label: string;
   readonly value: string;

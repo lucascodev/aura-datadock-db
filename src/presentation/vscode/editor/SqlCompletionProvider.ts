@@ -21,7 +21,7 @@ const SORT_PREFIXES: Readonly<Record<CompletionSuggestionKind, string>> = {
   keyword: '3',
 };
 
-export interface SqlCompletionDependencies {
+interface SqlCompletionDependencies {
   connectionFor(document: vscode.TextDocument): ConnectionTarget | undefined;
   isBusy(): boolean;
   listNamespaces(targetId: string): Promise<string[]>;

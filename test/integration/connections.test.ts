@@ -13,7 +13,8 @@ import type { RowBatch } from '../../src/domain/database/RowBatch';
 import type { SavedConnection } from '../../src/domain/connection/SavedConnection';
 import type { SshSettings } from '../../src/domain/connection/SshSettings';
 import { openAdapter } from '../../src/infrastructure/ssh/openAdapter';
-import { openSshTunnel, type SshTunnelOptions } from '../../src/infrastructure/ssh/SshTunnel';
+import { openSshTunnel } from '../../src/infrastructure/ssh/openSshTunnel';
+import type { SshTunnelOptions } from '../../src/infrastructure/ssh/SshTunnel';
 import { TunneledAdapter } from '../../src/infrastructure/ssh/TunneledAdapter';
 
 const {

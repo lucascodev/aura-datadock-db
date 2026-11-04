@@ -1,18 +1,14 @@
 import type { RowBatch } from '../../../domain/database/RowBatch';
 import type { RowEncoder } from './RowEncoder';
+import type { WriteRowBatchesResult } from './WriteRowBatchesResult';
 
 export function encodeRows(encoder: RowEncoder, { columns, rows }: RowBatch): string {
   return [encoder.begin(columns), ...rows.map((row) => encoder.encode(row)), encoder.end()].join('');
 }
 
-export interface WriteRowBatchesOptions {
+interface WriteRowBatchesOptions {
   readonly signal?: AbortSignal;
   readonly onProgress?: (rowCount: number) => void;
-}
-
-export interface WriteRowBatchesResult {
-  readonly rowCount: number;
-  readonly isComplete: boolean;
 }
 
 export async function writeRowBatches(

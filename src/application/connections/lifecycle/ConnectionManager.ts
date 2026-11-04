@@ -1,17 +1,12 @@
-import { isReachable, type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import { type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import { isReachable } from '../../../domain/connection/isReachable';
 import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
 import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import { explainConnectionFailure } from '../guidance/explainConnectionFailure';
 import { l10n } from '../../../domain/i18n/l10n';
-
-export interface PasswordStore {
-  get(target: ConnectionTarget): PromiseLike<string | undefined>;
-}
-
-export interface ConnectionManagerOptions {
-  readonly readOnly: (target: ConnectionTarget) => boolean;
-  readonly openAdapter: (target: ConnectionTarget) => DatabaseAdapter | Promise<DatabaseAdapter>;
-}
+import type { PasswordStore } from '../ports/PasswordStore';
+import type { ConnectionManagerOptions } from './ConnectionManagerOptions';
+import { MissingPasswordError } from '../errors/MissingPasswordError';
 
 type Listener = () => void;
 
@@ -176,11 +171,4 @@ export class ConnectionManager {
 
 function canBecomeActiveAutomatically(target: ConnectionTarget): boolean {
   return target.source === 'docker' && isReachable(target) && target.password !== undefined;
-}
-
-export class MissingPasswordError extends Error {
-  constructor(readonly target: ConnectionTarget) {
-    super(l10n.t('No password found for {0}. Use "Aura DataDock DB: Set Password".', target.name));
-    this.name = 'MissingPasswordError';
-  }
 }

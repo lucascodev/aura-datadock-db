@@ -1,6 +1,6 @@
 import { createElement } from '../../../shared/createElement';
 
-export interface ColumnMenuItem {
+interface ColumnMenuItem {
   readonly label: string;
   readonly isEnabled?: boolean;
   onSelect(): void;

@@ -4,7 +4,8 @@ import type { ConnectionInput } from '../../../../application/connections/saved/
 import { explainConnectionFailure } from '../../../../application/connections/guidance/explainConnectionFailure';
 import type { SavedConnections } from '../../../../application/connections/saved/SavedConnections';
 import { toConnectionTarget } from '../../../../application/connections/saved/toConnectionTarget';
-import { validateConnectionInput, type ConnectionValidation } from '../../../../application/connections/saved/validateConnectionInput';
+import { validateConnectionInput } from '../../../../application/connections/saved/validateConnectionInput';
+import type { ConnectionValidation } from '../../../../application/connections/saved/ConnectionValidation';
 import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/DatabaseAdapter';
 import type { SavedConnection } from '../../../../domain/connection/SavedConnection';
@@ -15,7 +16,7 @@ import { l10n } from '../../../../domain/i18n/l10n';
 const VIEW_TYPE = 'auraDataDockDb.connectionForm';
 const TEST_CONNECTION_ID = 'connection-test';
 
-export interface ConnectionFormDependencies {
+interface ConnectionFormDependencies {
   readonly extensionUri: vscode.Uri;
   readonly saved: SavedConnections;
   openAdapter(target: ConnectionTarget): Promise<DatabaseAdapter>;

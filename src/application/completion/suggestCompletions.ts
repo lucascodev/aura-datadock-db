@@ -5,10 +5,11 @@ import { quoteIfNeeded } from '../sql/quoteIfNeeded';
 import { statementAtOffset } from '../query/analysis/statementAtOffset';
 import { scanStatements } from '../query/analysis/splitStatements';
 import type { CompletionSuggestion } from './CompletionSuggestion';
-import { parseTableReferences, unquote, type TableReference } from './parseTableReferences';
+import { parseTableReferences, unquote } from './parseTableReferences';
+import type { TableReference } from './TableReference';
 import { SQL_KEYWORDS } from './sqlKeywords';
 
-export interface CompletionRequest {
+interface CompletionRequest {
   readonly sql: string;
   readonly offset: number;
   readonly kind: DriverId;

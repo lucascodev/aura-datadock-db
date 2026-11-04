@@ -11,6 +11,7 @@ import { l10n } from '../../../../domain/i18n/l10n';
 import type { ChartPalette } from '../palette/ChartPalette';
 import { createAxisFormatter, formatAxisNumber, formatBinEdge, formatFullNumber } from './formatChartNumber';
 import type { TooltipContent } from './TooltipContent';
+import type { EChartsOptionRecord } from './EChartsOptionRecord';
 
 const BAR_MAX_WIDTH = 24;
 const BAR_RADIUS = [4, 4, 0, 0];
@@ -27,9 +28,7 @@ const LEGEND_FROM_SERIES = 2;
 const MIN_LABELED_SHARE = 5;
 const DEFAULT_LEFT_MARGIN = 16;
 
-export type EChartsOptionRecord = Record<string, unknown>;
-
-export interface OptionContext {
+interface OptionContext {
   readonly palette: ChartPalette;
   readonly isExport: boolean;
   renderTooltip(content: TooltipContent): unknown;

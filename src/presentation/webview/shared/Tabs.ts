@@ -1,6 +1,6 @@
 import { createElement } from './createElement';
 
-export interface TabDefinition<TabId extends string> {
+interface TabDefinition<TabId extends string> {
   readonly id: TabId;
   readonly label: string;
   readonly content: readonly HTMLElement[];

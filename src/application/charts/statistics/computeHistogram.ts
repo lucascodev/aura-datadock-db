@@ -1,15 +1,10 @@
 import { quantile } from './quantile';
+import type { HistogramBin } from './HistogramBin';
 
 const MAX_AUTOMATIC_BINS = 50;
 const MAX_BINS = 200;
 const LOWER_QUARTILE = 0.25;
 const UPPER_QUARTILE = 0.75;
-
-export interface HistogramBin {
-  readonly from: number;
-  readonly to: number;
-  readonly count: number;
-}
 
 function sturgesBins(count: number): number {
   return Math.ceil(Math.log2(count)) + 1;

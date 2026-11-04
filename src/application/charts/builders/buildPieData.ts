@@ -4,7 +4,7 @@ import type { EmptyChartData, PieChartData } from '../model/ChartData';
 import type { ChartInput } from '../model/ChartInput';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { foldByWeight, otherLabel } from '../support/foldByWeight';
-import { createTally, tallyNotices } from '../support/RowTally';
+import { createTally, tallyNotices } from '../support/createRowTally';
 import { l10n } from '../../../domain/i18n/l10n';
 
 const MAX_SLICES = 6;

@@ -1,7 +1,7 @@
-import type { TableEditability } from '../../application/editing/rows/describeEditability';
+import type { TableEditability } from '../../application/editing/rows/TableEditability';
 import type { RowChange } from '../../application/editing/rows/RowChange';
 import type { TablePageRequest, TableRowSelection } from '../../application/editing/browsing/tableFilters';
-import type { IncomingReference } from '../../application/schema/relationships/findIncomingReferences';
+import type { IncomingReference } from '../../application/schema/relationships/IncomingReference';
 import type { NamespaceSchema } from '../../domain/schema/NamespaceSchema';
 import type { CellValue } from '../../domain/database/ParameterizedStatement';
 import type { TableDefinition } from '../../domain/schema/TableDefinition';

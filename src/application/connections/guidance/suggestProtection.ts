@@ -1,7 +1,7 @@
 import type { TlsMode } from '../../../domain/connection/ConnectionTls';
 import { isLocalHost } from './isLocalHost';
 
-export interface SuggestedProtection {
+interface SuggestedProtection {
   readonly tlsMode: TlsMode;
   readonly isReadOnly: boolean;
 }
