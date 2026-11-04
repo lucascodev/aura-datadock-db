@@ -28,6 +28,7 @@ Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Pos
 - Um tipo usado por outro arquivo tem arquivo próprio, com o nome do conceito. Um tipo usado só no próprio arquivo fica nele, sem `export`.
 - Uma constante usada em um arquivo fica nele. A usada por mais de um arquivo vai para `constants/`, e a mesma informação nunca se repete. Valores iguais por coincidência continuam separados.
 - Um arquivo exporta uma função, com o nome do arquivo. Uma auxiliar fica privada quando serve só a essa função; a usada por várias funções ganha arquivo próprio.
+- No máximo 5 funções por arquivo, 30 linhas por função ou método e 20 métodos por classe. Uma função devolve o resultado em vez de alterar um parâmetro.
 - Toda regra nova em `application` ou `infrastructure/docker` vem acompanhada de teste em `test/unit/`, na mesma árvore de `src`.
 - Mudanças em SQL de adapter vêm com teste em `test/integration/`, que roda contra bancos reais.
 

@@ -28,6 +28,7 @@ Open the folder in VS Code and press `F5`. The `docker-compose.dev.yml` starts a
 - A type used by another file has a file of its own, named after the concept. A type used only in its file stays there, without `export`.
 - A constant used in one file stays there. One used by more than one file goes to `constants/`, and the same information is never repeated. Values that are equal by coincidence stay separate.
 - A file exports one function, with the name of the file. A helper stays private when it serves only that function; one used by several functions gets a file of its own.
+- At most 5 functions per file, 30 lines per function or method and 20 methods per class. A function returns its result instead of changing a parameter.
 - Every new rule in `application` or `infrastructure/docker` comes with a test in `test/unit/`, in the same tree as `src`.
 - Changes to adapter SQL come with a test in `test/integration/`, which runs against real databases.
 

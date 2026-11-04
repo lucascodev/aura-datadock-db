@@ -75,6 +75,8 @@ A file that exports a function or a class exports no types: a type used elsewher
 
 A file exports one function, named after the file, so a path says what it does. `main/extension.ts` is the exception, because VS Code expects `activate` and `deactivate` together, and so is the translation module, where `l10n` and `useL10nCatalog` share the active catalog.
 
+`test/architecture/functionLimits.test.ts` also limits files to 5 functions, functions and methods to 30 lines and classes to 20 methods. For now it covers `domain`, `drivers`, `application` and `infrastructure`; `presentation` and `main` are the next step.
+
 The tests in `test/architecture/` read the imports of all of `src` and fail if any of these rules is broken, including in `import type`, because an imported type also couples.
 
 When the inner layer needs something from outside, it receives it by injection, and only `main` knows the implementation. The `ConnectionManager` receives `openAdapter`, the `ConnectionFormPanel` too, and the commands ask for the AI provider through `DataDockContext.createAiProvider`.
