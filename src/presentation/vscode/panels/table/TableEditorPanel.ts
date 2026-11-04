@@ -130,34 +130,26 @@ export class TableEditorPanel {
       case 'ready':
         this.postInit();
         return;
-      case 'loadPage':
-        await this.loadPage(message.request);
-        return;
       case 'pendingChanged':
         this.pending = message.changes;
         this.updateTitle();
         return;
+      case 'loadPage':
+        return this.loadPage(message.request);
       case 'save':
-        await this.save(message.changes);
-        return;
+        return this.save(message.changes);
       case 'preview':
-        await this.preview(message.changes);
-        return;
+        return this.preview(message.changes);
       case 'runSql':
-        await this.runSql(message.sql, message.limit);
-        return;
+        return this.runSql(message.sql, message.limit);
       case 'openSql':
-        await this.dependencies.openSql(this.target, `${message.sql}\n`);
-        return;
+        return this.dependencies.openSql(this.target, `${message.sql}\n`);
       case 'copyText':
-        await this.dependencies.copyText(message.text);
-        return;
+        return this.dependencies.copyText(message.text);
       case 'exportData':
-        await this.exportData(message.selection);
-        return;
+        return this.exportData(message.selection);
       case 'openTable':
-        await this.dependencies.openTable(this.target, { namespace: this.table.namespace, name: message.table });
-        return;
+        return this.dependencies.openTable(this.target, { namespace: this.table.namespace, name: message.table });
     }
   }
 
