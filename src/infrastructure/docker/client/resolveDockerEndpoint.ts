@@ -2,10 +2,7 @@ import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { posix } from 'node:path';
 import { l10n } from '../../../domain/i18n/l10n';
-
-export type DockerEndpoint =
-  | { readonly type: 'socket'; readonly socketPath: string }
-  | { readonly type: 'tcp'; readonly host: string; readonly port: number };
+import type { DockerEndpoint } from './DockerEndpoint';
 
 const WINDOWS_PIPE = '\\\\.\\pipe\\docker_engine';
 

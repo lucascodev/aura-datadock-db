@@ -1,15 +1,11 @@
 import { isSafeCommandValue } from '../../application/connections/saved/validateConnectionInput';
 import type { SshSettings } from '../../domain/connection/SshSettings';
 import { l10n } from '../../domain/i18n/l10n';
+import type { TunnelEndpoint } from './TunnelEndpoint';
 
 export const LOOPBACK_ADDRESS = '127.0.0.1';
 
 const BASE_OPTIONS = ['-o', 'ExitOnForwardFailure=yes', '-o', 'BatchMode=yes', '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=3'];
-
-export interface TunnelEndpoint {
-  readonly host: string;
-  readonly port: number;
-}
 
 export function buildSshArgs(settings: SshSettings, destination: TunnelEndpoint, localPort: number, extraArgs: readonly string[] = []): string[] {
   assertSafe(settings.host, 'SSH host');

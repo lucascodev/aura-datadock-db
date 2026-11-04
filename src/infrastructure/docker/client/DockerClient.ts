@@ -1,7 +1,8 @@
 import { request } from 'node:http';
 import type { DockerContainerDetails, DockerContainerSummary } from './DockerContainer';
-import type { DockerEndpoint } from './resolveDockerEndpoint';
+import type { DockerEndpoint } from './DockerEndpoint';
 import { l10n } from '../../../domain/i18n/l10n';
+import { DockerUnavailableError } from '../errors/DockerUnavailableError';
 
 const REQUEST_TIMEOUT_MS = 5000;
 
@@ -47,12 +48,5 @@ export class DockerClient {
       req.on('error', (error) => reject(new DockerUnavailableError(error)));
       req.end();
     });
-  }
-}
-
-export class DockerUnavailableError extends Error {
-  constructor(cause: Error) {
-    super(l10n.t('Could not reach the Docker Engine. Is Docker running? ({0})', cause.message));
-    this.name = 'DockerUnavailableError';
   }
 }

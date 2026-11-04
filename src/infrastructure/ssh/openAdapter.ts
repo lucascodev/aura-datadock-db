@@ -2,7 +2,8 @@ import { createAdapter } from '../database/factory/createAdapter';
 import type { ConnectionTarget } from '../../domain/connection/ConnectionTarget';
 import type { DatabaseAdapter } from '../../domain/database/DatabaseAdapter';
 import { LOOPBACK_ADDRESS } from './buildSshArgs';
-import { openSshTunnel, type SshTunnel, type SshTunnelOptions } from './SshTunnel';
+import { openSshTunnel } from './openSshTunnel';
+import type { SshTunnel, SshTunnelOptions } from './SshTunnel';
 import { TunneledAdapter } from './TunneledAdapter';
 import { l10n } from '../../domain/i18n/l10n';
 
