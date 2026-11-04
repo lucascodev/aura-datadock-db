@@ -1,0 +1,63 @@
+import { losesPrecision } from '../../inference/losesPrecision';
+import { parseChartNumber } from '../../inference/parseChartNumber';
+import type { ChartConfig } from '../../model/config/ChartConfig';
+import type { BoxplotChartData, BoxplotGroup, EmptyChartData } from '../../model/data/ChartData';
+import type { ChartInput } from '../../model/config/ChartInput';
+import type { RowTally } from '../../model/data/RowTally';
+import { computeBoxplot } from '../../statistics/computeBoxplot';
+import { columnIndex } from '../../support/columns/columnIndex';
+import { labelOf } from '../../support/columns/labelOf';
+import { foldByWeight } from '../../support/folding/foldByWeight';
+import { moveOtherLast } from '../../support/folding/moveOtherLast';
+import { createTally } from '../../support/tally/createTally';
+import { tallyNotices } from '../../support/tally/tallyNotices';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
+
+const MAX_GROUPS = 30;
+
+interface GroupedValues {
+  readonly byGroup: ReadonlyMap<string, number[]>;
+  readonly tally: RowTally;
+}
+
+function readGroupValues(input: ChartInput, config: ChartConfig): GroupedValues {
+  const tally = createTally();
+  const valueIndex = columnIndex(input, config.y[0]);
+  const groupIndex = columnIndex(input, config.group);
+  const byGroup = new Map<string, number[]>();
+  for (const row of input.rows) {
+    const value = parseChartNumber(row[valueIndex]);
+    if (value === undefined) {
+      tally.unusable++;
+      continue;
+    }
+    tally.isApproximate ||= losesPrecision(row[valueIndex]);
+    const name = groupIndex >= 0 ? labelOf(row[groupIndex]) : config.y[0];
+    byGroup.set(name, [...(byGroup.get(name) ?? []), value]);
+  }
+  return { byGroup, tally };
+}
+
+function foldGroups(byGroup: ReadonlyMap<string, number[]>): { folded: Map<string, number[]>; foldedCount: number } {
+  const fold = foldByWeight(new Map([...byGroup].map(([name, values]) => [name, values.length])), MAX_GROUPS);
+  const folded = new Map<string, number[]>();
+  for (const [name, values] of byGroup) {
+    const target = fold.resolve(name);
+    folded.set(target, [...(folded.get(target) ?? []), ...values]);
+  }
+  return { folded, foldedCount: fold.foldedCount };
+}
+
+export function buildBoxplotData(input: ChartInput, config: ChartConfig): BoxplotChartData | EmptyChartData {
+  const { byGroup, tally } = readGroupValues(input, config);
+  if (byGroup.size === 0) {
+    return { form: 'empty', reason: l10n.t('This column has no numbers to summarize.'), notices: tallyNotices(tally) };
+  }
+
+  const { folded, foldedCount } = foldGroups(byGroup);
+  const groups = moveOtherLast([...folded.keys()]).flatMap((name): BoxplotGroup[] => {
+    const stats = computeBoxplot(folded.get(name) ?? []);
+    return stats ? [{ name, stats }] : [];
+  });
+  return { form: 'boxplot', valueName: config.y[0], groupName: config.group, groups, notices: tallyNotices({ ...tally, folded: foldedCount }) };
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildChartData } from '../../../../src/application/charts/builders/buildChartData';
+import { buildChartData } from '../../../../src/application/charts/builders/chart/buildChartData';
 import type { ChartConfig } from '../../../../src/application/charts/model/config/ChartConfig';
 import type { DrawableChartData } from '../../../../src/application/charts/model/data/ChartData';
 import type { ChartCell } from '../../../../src/application/charts/model/config/ChartInput';
