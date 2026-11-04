@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { encodeRows } from '../../../../application/export/encoders/encodeRows';
+import { encodeRows } from '../../../../application/export/encoders/writing/encodeRows';
 import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
 import type { RowExportFormatId } from '../../../../application/export/model/RowExportFormat';
 import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';

@@ -2,7 +2,8 @@ import { buildDiagram } from '../../../application/diagram/building/buildDiagram
 import type { DiagramDetail, DiagramModel, DiagramPoint, DiagramPositions } from '../../../application/diagram/model/DiagramModel';
 import { EXPORT_PALETTE } from '../../../application/diagram/constants/exportPalette';
 import { layoutDiagram } from '../../../application/diagram/layout/layoutDiagram';
-import { measureExportSize, renderDiagramSvg } from '../../../application/diagram/render/renderDiagramSvg';
+import { measureExportSize } from '../../../application/diagram/render/measureExportSize';
+import { renderDiagramSvg } from '../../../application/diagram/render/renderDiagramSvg';
 import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 import type { DiagramHostMessage, DiagramWebviewMessage, SchemaExportFormatView } from '../../contracts/DiagramMessages';
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';

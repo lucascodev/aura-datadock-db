@@ -1,5 +1,4 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import type { TableColumn } from '../../../domain/schema/model/TableColumn';
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { l10n } from '../../../domain/i18n/translation/l10n';
@@ -21,11 +20,6 @@ export function describeEditability(table: TableDefinition, kind: DriverId, isRe
     return { canInsert: true, canUpdate: false, canDelete: false, notice: l10n.t('The primary key of this table has a binary column: rows can be added, but not edited or deleted here.') };
   }
   return { canInsert: true, canUpdate: true, canDelete: true };
-}
-
-export function isColumnEditable(column: TableColumn, kind: DriverId): boolean {
-  const isAlwaysGenerated = column.generationClause?.includes('ALWAYS') ?? false;
-  return !column.isComputed && !isAlwaysGenerated && !getDriver(kind).dialect.isBinaryType(column.dataType);
 }
 
 function hasBinaryKeyColumn(table: TableDefinition, kind: DriverId): boolean {

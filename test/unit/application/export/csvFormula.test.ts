@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { createCsvEncoder } from '../../../../src/application/export/encoders/createCsvEncoder';
-import { encodeRows } from '../../../../src/application/export/encoders/encodeRows';
+import { createCsvEncoder } from '../../../../src/application/export/encoders/formats/createCsvEncoder';
+import { encodeRows } from '../../../../src/application/export/encoders/writing/encodeRows';
 
 function encodeCell(value: unknown): string {
   return encodeRows(createCsvEncoder(), { columns: ['a'], rows: [[value]] }).split('\r\n').slice(1).join('\r\n').replace(/\r\n$/, '');

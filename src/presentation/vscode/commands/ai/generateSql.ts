@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import { buildTextToSqlPrompt, extractSql } from '../../../../application/ai/prompts/buildTextToSqlPrompt';
+import { buildTextToSqlPrompt } from '../../../../application/ai/prompts/buildTextToSqlPrompt';
+import { extractSql } from '../../../../application/ai/prompts/extractSql';
 import { describeSchema } from '../../../../application/schema/loading/describeSchema';
 import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';

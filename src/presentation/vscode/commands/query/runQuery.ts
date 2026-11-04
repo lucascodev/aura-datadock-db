@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { buildExplain } from '../../../../application/query/analysis/buildExplain';
 import { statementAtOffset } from '../../../../application/query/analysis/statementAtOffset';
-import { scanStatements } from '../../../../application/query/analysis/splitStatements';
+import { scanStatements } from '../../../../application/query/analysis/scanStatements';
 import type { DataDockContext } from '../model/DataDockContext';
 import { executeQuery } from './executeQuery';
 import { resolveDocumentConnection } from '../registry/pickConnection';

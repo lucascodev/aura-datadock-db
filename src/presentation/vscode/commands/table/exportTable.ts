@@ -1,10 +1,10 @@
 import { open, rm } from 'node:fs/promises';
 import * as vscode from 'vscode';
-import { writeRowBatches } from '../../../../application/export/encoders/encodeRows';
+import { writeRowBatches } from '../../../../application/export/encoders/writing/writeRowBatches';
 import type { WriteRowBatchesResult } from '../../../../application/export/model/WriteRowBatchesResult';
 import type { RowExportFormat } from '../../../../application/export/model/RowExportFormat';
 import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
-import { buildTableSelect } from '../../../../application/editing/browsing/buildTablePageQuery';
+import { buildTableSelect } from '../../../../application/editing/tableQuery/buildTableSelect';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';

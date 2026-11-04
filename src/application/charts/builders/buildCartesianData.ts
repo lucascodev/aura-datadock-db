@@ -1,12 +1,17 @@
-import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
+import { losesPrecision } from '../inference/losesPrecision';
+import { parseChartNumber } from '../inference/parseChartNumber';
 import type { ChartConfig } from '../model/config/ChartConfig';
 import type { CartesianAxisType, CartesianChartData, CartesianSeriesKind, EmptyChartData } from '../model/data/ChartData';
 import type { ChartInput } from '../model/config/ChartInput';
 import type { ColumnKind } from '../model/config/ColumnKind';
-import { columnIndex, labelOf } from '../support/columnAccess';
-import { axisPosition, orderLabels } from '../support/compareAxisValues';
-import { foldByWeight, otherLabel } from '../support/foldByWeight';
-import { createTally, tallyNotices } from '../support/createRowTally';
+import { columnIndex } from '../support/columns/columnIndex';
+import { labelOf } from '../support/columns/labelOf';
+import { axisPosition } from '../support/axis/axisPosition';
+import { orderLabels } from '../support/axis/orderLabels';
+import { foldByWeight } from '../support/folding/foldByWeight';
+import { otherLabel } from '../support/folding/otherLabel';
+import { createTally } from '../support/tally/createTally';
+import { tallyNotices } from '../support/tally/tallyNotices';
 import type { RowTally } from '../model/data/RowTally';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 

@@ -1,10 +1,12 @@
-import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
+import { losesPrecision } from '../inference/losesPrecision';
+import { parseChartNumber } from '../inference/parseChartNumber';
 import type { ChartConfig } from '../model/config/ChartConfig';
 import type { EmptyChartData, HistogramChartData } from '../model/data/ChartData';
 import type { ChartInput } from '../model/config/ChartInput';
 import { computeHistogram } from '../statistics/computeHistogram';
-import { columnIndex } from '../support/columnAccess';
-import { createTally, tallyNotices } from '../support/createRowTally';
+import { columnIndex } from '../support/columns/columnIndex';
+import { createTally } from '../support/tally/createTally';
+import { tallyNotices } from '../support/tally/tallyNotices';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function buildHistogramData(input: ChartInput, config: ChartConfig): HistogramChartData | EmptyChartData {

@@ -1,6 +1,7 @@
 import type { TableReference } from '../model/TableReference';
 import { IDENTIFIER } from '../constants/sqlIdentifierPattern';
 import { RESERVED_WORDS } from '../../sql/constants/reservedWords';
+import { unquote } from './unquote';
 
 const TABLE_REFERENCE = new RegExp(
   `\\b(?:from|join|update|into)\\s+(${IDENTIFIER})(?:\\s*\\.\\s*(${IDENTIFIER}))?(?:\\s+(?:as\\s+)?(${IDENTIFIER}))?`,
@@ -18,9 +19,4 @@ export function parseTableReferences(sql: string): TableReference[] {
       alias: alias && !RESERVED_WORDS.has(alias.toLowerCase()) ? alias : undefined,
     };
   });
-}
-
-export function unquote(identifier: string): string {
-  const first = identifier[0];
-  return first === '"' || first === '`' ? identifier.slice(1, -1) : identifier;
 }

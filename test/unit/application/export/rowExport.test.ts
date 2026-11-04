@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { createCsvEncoder } from '../../../../src/application/export/encoders/createCsvEncoder';
-import { createJsonEncoder, createNdjsonEncoder } from '../../../../src/application/export/encoders/createJsonEncoder';
-import { createMarkdownEncoder } from '../../../../src/application/export/encoders/createMarkdownEncoder';
-import { createSqlInsertEncoder } from '../../../../src/application/export/encoders/createSqlInsertEncoder';
-import { encodeRows, writeRowBatches } from '../../../../src/application/export/encoders/encodeRows';
+import { createCsvEncoder } from '../../../../src/application/export/encoders/formats/createCsvEncoder';
+import { createJsonEncoder } from '../../../../src/application/export/encoders/formats/createJsonEncoder';
+import { createNdjsonEncoder } from '../../../../src/application/export/encoders/formats/createNdjsonEncoder';
+import { createMarkdownEncoder } from '../../../../src/application/export/encoders/formats/createMarkdownEncoder';
+import { createSqlInsertEncoder } from '../../../../src/application/export/encoders/formats/createSqlInsertEncoder';
+import { encodeRows } from '../../../../src/application/export/encoders/writing/encodeRows';
+import { writeRowBatches } from '../../../../src/application/export/encoders/writing/writeRowBatches';
 import { ROW_EXPORT_FORMATS } from '../../../../src/application/export/constants/rowExportFormats';
 import { uniqueColumnNames } from '../../../../src/application/format/text/uniqueColumnNames';
 import type { RowBatch } from '../../../../src/domain/database/model/RowBatch';

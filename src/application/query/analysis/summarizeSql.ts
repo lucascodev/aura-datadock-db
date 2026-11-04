@@ -1,4 +1,4 @@
-import { scanStatements } from './splitStatements';
+import { scanStatements } from './scanStatements';
 
 export function summarizeSql(sql: string, maxCharacters: number): string {
   const firstStatement = scanStatements(sql)[0]?.text ?? sql;

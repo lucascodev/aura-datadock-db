@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { extractSql } from '../../../../src/application/ai/prompts/buildTextToSqlPrompt';
+import { extractSql } from '../../../../src/application/ai/prompts/extractSql';
 
 describe('extractSql', () => {
   it('removes markdown fences', () => {

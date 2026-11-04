@@ -1,14 +1,12 @@
 import * as vscode from 'vscode';
-import {
-  buildAddColumn,
-  buildCreateIndex,
-  buildCreateTable,
-  buildDropColumn,
-  buildDropTable,
-  buildRenameColumn,
-  buildRenameTable,
-  buildTruncateTable,
-} from '../../../../application/editing/structure/buildStructureChange';
+import { buildAddColumn } from '../../../../application/editing/structure/buildAddColumn';
+import { buildCreateIndex } from '../../../../application/editing/structure/buildCreateIndex';
+import { buildCreateTable } from '../../../../application/editing/structure/buildCreateTable';
+import { buildDropColumn } from '../../../../application/editing/structure/buildDropColumn';
+import { buildDropTable } from '../../../../application/editing/structure/buildDropTable';
+import { buildRenameColumn } from '../../../../application/editing/structure/buildRenameColumn';
+import { buildRenameTable } from '../../../../application/editing/structure/buildRenameTable';
+import { buildTruncateTable } from '../../../../application/editing/structure/buildTruncateTable';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { getDriver } from '../../../../drivers/catalog/driverCatalog';

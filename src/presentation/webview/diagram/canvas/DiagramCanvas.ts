@@ -1,5 +1,6 @@
 import type { DiagramEdge, DiagramModel, DiagramPoint, DiagramPositions, DiagramTable } from '../../../../application/diagram/model/DiagramModel';
-import { measureDiagram, renderDiagramMarkup } from '../../../../application/diagram/render/renderDiagramSvg';
+import { measureDiagram } from '../../../../application/diagram/render/measureDiagram';
+import { renderDiagramMarkup } from '../../../../application/diagram/render/renderDiagramMarkup';
 import { routeEdge } from '../../../../application/diagram/layout/routeEdge';
 import { LIVE_PALETTE } from '../constants/livePalette';
 import { relatedEdges, relatedTableNames } from './relatedTables';

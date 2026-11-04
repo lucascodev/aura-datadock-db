@@ -3,9 +3,12 @@ import type { ParameterizedStatement } from '../../../domain/database/model/Para
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
-import { describeEditability, isColumnEditable } from './describeEditability';
+import { describeEditability } from './describeEditability';
+import { isColumnEditable } from './isColumnEditable';
 import type { CellValues, RowChange } from '../model/RowChange';
-import { bound, joinParts, toStatement } from '../../sql/building/statementTemplate';
+import { bound } from '../../sql/building/bound';
+import { joinParts } from '../../sql/building/joinParts';
+import { toStatement } from '../../sql/building/toStatement';
 import type { TemplatePart } from '../../sql/model/TemplatePart';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 

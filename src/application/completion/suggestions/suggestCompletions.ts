@@ -3,9 +3,10 @@ import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSche
 import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { quoteIfNeeded } from '../../sql/building/quoteIfNeeded';
 import { statementAtOffset } from '../../query/analysis/statementAtOffset';
-import { scanStatements } from '../../query/analysis/splitStatements';
+import { scanStatements } from '../../query/analysis/scanStatements';
 import type { CompletionSuggestion } from '../model/CompletionSuggestion';
-import { parseTableReferences, unquote } from './parseTableReferences';
+import { parseTableReferences } from './parseTableReferences';
+import { unquote } from './unquote';
 import type { TableReference } from '../model/TableReference';
 import { SQL_KEYWORDS } from '../../sql/constants/sqlKeywords';
 import { IDENTIFIER } from '../constants/sqlIdentifierPattern';

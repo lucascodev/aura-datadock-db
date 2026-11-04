@@ -1,10 +1,10 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createAdapter } from '../../src/infrastructure/database/factory/createAdapter';
-import { encodeRows } from '../../src/application/export/encoders/encodeRows';
-import { createCsvEncoder } from '../../src/application/export/encoders/createCsvEncoder';
+import { encodeRows } from '../../src/application/export/encoders/writing/encodeRows';
+import { createCsvEncoder } from '../../src/application/export/encoders/formats/createCsvEncoder';
 import { buildRelationships } from '../../src/application/schema/relationships/buildRelationships';
 import { renderDdl } from '../../src/application/schema/rendering/renderDdl';
-import { scanStatements } from '../../src/application/query/analysis/splitStatements';
+import { scanStatements } from '../../src/application/query/analysis/scanStatements';
 import type { ConnectionTarget } from '../../src/domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
 import type { DriverId } from '../../src/domain/driver/model/DriverId';

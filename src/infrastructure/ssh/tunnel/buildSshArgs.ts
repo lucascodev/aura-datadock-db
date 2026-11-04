@@ -1,4 +1,4 @@
-import { isSafeCommandValue } from '../../../application/connections/saved/validateConnectionInput';
+import { isSafeCommandValue } from '../../../application/connections/saved/isSafeCommandValue';
 import type { SshSettings } from '../../../domain/connection/model/SshSettings';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { TunnelEndpoint } from '../model/TunnelEndpoint';

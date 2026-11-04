@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { scanStatements } from '../../../application/query/analysis/splitStatements';
+import { scanStatements } from '../../../application/query/analysis/scanStatements';
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 

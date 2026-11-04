@@ -1,6 +1,6 @@
 import { buildChartData } from '../../../../application/charts/builders/buildChartData';
 import { adaptConfig } from '../../../../application/charts/inference/adaptConfig';
-import { describeColumns } from '../../../../application/charts/inference/inferColumnKind';
+import { describeColumns } from '../../../../application/charts/inference/describeColumns';
 import { suggestChart } from '../../../../application/charts/inference/suggestChart';
 import type { ChartConfig } from '../../../../application/charts/model/config/ChartConfig';
 import type { ChartData, DrawableChartData } from '../../../../application/charts/model/data/ChartData';

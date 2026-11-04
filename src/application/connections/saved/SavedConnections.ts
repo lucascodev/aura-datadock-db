@@ -3,7 +3,7 @@ import type { ConnectionTarget } from '../../../domain/connection/model/Connecti
 import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
 import { findDriver } from '../../../drivers/catalog/driverCatalog';
 import { toConnectionTarget } from './toConnectionTarget';
-import { isSafeCommandValue } from './validateConnectionInput';
+import { isSafeCommandValue } from './isSafeCommandValue';
 import type { SavedConnectionStore } from '../ports/SavedConnectionStore';
 
 const TLS_MODES = new Set(['off', 'required', 'verified']);

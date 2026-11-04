@@ -6,7 +6,7 @@ import { decideQueryGuard } from '../../../../application/query/execution/decide
 import { runStatements } from '../../../../application/query/execution/runStatements';
 import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import { summarizeOutcomes } from '../../../../application/query/execution/summarizeOutcomes';
-import { scanStatements } from '../../../../application/query/analysis/splitStatements';
+import { scanStatements } from '../../../../application/query/analysis/scanStatements';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
