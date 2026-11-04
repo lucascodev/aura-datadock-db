@@ -8,7 +8,14 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 
 ### Adicionado
 
+- Destaque de sintaxe e autocomplete no campo de filtro e no painel de **Mostrar SQL** da tela da tabela.
 - Link para o GitHub Sponsors no repositório, no README e na página da extensão.
+- Uma query inteira digitada no campo de filtro agora vai para o painel de **Mostrar SQL** e roda a partir dele.
+
+### Corrigido
+
+- **Gráfico** na tela da tabela não recarrega mais a tabela, o que podia trazer de volta o erro de um filtro anterior.
+- Esvaziar o campo de filtro agora esquece o filtro, para que uma atualização depois não use um filtro que já não está na tela.
 
 ## [0.1.4] - 2026-11-04
 

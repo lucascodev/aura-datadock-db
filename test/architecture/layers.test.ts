@@ -14,6 +14,8 @@ const NO_LIBRARIES = /^$/;
 const EVERY_LIBRARY = /./;
 const ECHARTS_LIBRARY = /^echarts(\/.*)?$/;
 const ECHARTS_FOLDER = 'presentation/webview/chart/echarts/';
+const CODEMIRROR_LIBRARY = /^(@codemirror\/[\w-]+|@lezer\/highlight)$/;
+const CODEMIRROR_FOLDER = 'presentation/webview/table/sqlField/';
 
 const RULES: readonly LayerRule[] = [
   { layer: 'domain', mayImport: [], allowedLibraries: NO_LIBRARIES },
@@ -30,8 +32,8 @@ function layerOf(sourcePath: string): Layer | undefined {
   return RULES.find(({ layer }) => sourcePath.startsWith(`${layer}/`))?.layer;
 }
 
-function isEChartsAllowedIn(sourcePath: string, specifier: string): boolean {
-  return ECHARTS_LIBRARY.test(specifier) && sourcePath.startsWith(ECHARTS_FOLDER);
+function isConfinedLibraryAllowedIn(sourcePath: string, specifier: string): boolean {
+  return (ECHARTS_LIBRARY.test(specifier) && sourcePath.startsWith(ECHARTS_FOLDER)) || (CODEMIRROR_LIBRARY.test(specifier) && sourcePath.startsWith(CODEMIRROR_FOLDER));
 }
 
 function isRelative(specifier: string): boolean {
@@ -44,7 +46,7 @@ function findViolations(rule: LayerRule): string[] {
     const from = toSourcePath(file);
     return readImports(file).flatMap((specifier) => {
       if (!isRelative(specifier)) {
-        return rule.allowedLibraries.test(specifier) || isEChartsAllowedIn(from, specifier) ? [] : [`${from} -> library ${specifier}`];
+        return rule.allowedLibraries.test(specifier) || isConfinedLibraryAllowedIn(from, specifier) ? [] : [`${from} -> library ${specifier}`];
       }
       const to = posix.join(posix.dirname(from), specifier);
       const target = layerOf(to);

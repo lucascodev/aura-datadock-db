@@ -274,7 +274,8 @@ describe('TableEditorPanel', () => {
       await currentPanel().receive({ type: 'chartSql', sql: 'SELECT status, count(*) FROM orders GROUP BY 1' });
 
       expect(dependencies.runChart).toHaveBeenCalledWith(localTarget, 'SELECT status, count(*) FROM orders GROUP BY 1');
-      expect(messagesOf('scriptFinished')).toHaveLength(1);
+      expect(messagesOf('chartFinished')).toHaveLength(1);
+      expect(messagesOf('scriptFinished')).toEqual([]);
     });
 
     it.each(['DELETE FROM orders WHERE id = 1', 'SELECT 1; SELECT 2', 'DROP TABLE orders'])('does not run %s', async (sql) => {
@@ -293,7 +294,7 @@ describe('TableEditorPanel', () => {
       await editors.show(localTarget, orders);
       await currentPanel().receive({ type: 'chartSql', sql: 'SELECT 1' });
 
-      expect(messagesOf('scriptFinished')).toEqual([]);
+      expect(messagesOf('chartFinished')).toEqual([]);
       expect(messagesOf('failed')).toEqual([{ type: 'failed', message: '' }]);
     });
   });

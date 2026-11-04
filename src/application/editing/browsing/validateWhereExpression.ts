@@ -2,8 +2,8 @@ import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { classifyQuery } from '../../query/analysis/classification/classifyQuery';
 import { scanStatements } from '../../query/analysis/statements/scanStatements';
 import { l10n } from '../../../domain/i18n/translation/l10n';
+import { isWholeQuery } from './isWholeQuery';
 
-const WHOLE_QUERY_START = /^(?:select|with)\b/i;
 const WHERE_PREFIX = 'SELECT 1 WHERE ';
 const LINE_AFTER_EXPRESSION = '\n1';
 
@@ -17,11 +17,6 @@ export function validateWhereExpression(kind: DriverId, expression: string): voi
   if (classifyQuery(`${WHERE_PREFIX}${expression}`, kind).risk !== 'read') {
     throw new Error(l10n.t('The filter can only read data. If this is the name of a column, write it in quotes.'));
   }
-}
-
-function isWholeQuery(kind: DriverId, expression: string): boolean {
-  const [statement] = scanStatements(expression, kind);
-  return statement !== undefined && WHOLE_QUERY_START.test(statement.sanitized);
 }
 
 function hasStatementTerminator(kind: DriverId, expression: string): boolean {

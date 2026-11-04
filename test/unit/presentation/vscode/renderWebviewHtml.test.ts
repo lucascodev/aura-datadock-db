@@ -24,6 +24,22 @@ describe('renderWebviewHtml', () => {
     expect(render()).not.toContain('data-l10n');
   });
 
+  it('allows only the stylesheet of the extension by default', () => {
+    const html = render();
+    expect(html).toContain('style-src source;');
+    expect(html).not.toContain('data-style-nonce');
+  });
+
+  it('authorizes editor styles with a nonce of their own, never with unsafe-inline', () => {
+    const html = renderWebviewHtml(webview as never, Uri as never, { ...page, allowsEditorStyles: true });
+    const styleNonce = /data-style-nonce="([^"]+)"/.exec(html)?.[1];
+    const scriptNonce = /script-src 'nonce-([^']+)'/.exec(html)?.[1];
+    expect(styleNonce).toBeTruthy();
+    expect(styleNonce).not.toBe(scriptNonce);
+    expect(html).toContain(`style-src source 'nonce-${styleNonce}'`);
+    expect(html).not.toContain('unsafe-inline');
+  });
+
   it('sends the catalog escaped, so a translation cannot break the page', () => {
     l10n.bundle = { Save: 'Salvar "agora" <já>' };
     const html = render();

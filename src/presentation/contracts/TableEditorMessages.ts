@@ -49,6 +49,7 @@ export type TableEditorHostMessage =
   | { readonly type: 'saved'; readonly affectedRows: number }
   | { readonly type: 'customResult'; readonly result: CustomResultView }
   | { readonly type: 'scriptFinished' }
+  | { readonly type: 'chartFinished' }
   | { readonly type: 'failed'; readonly message: string };
 
 export type TableEditorWebviewMessage =

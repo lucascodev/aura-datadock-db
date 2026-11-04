@@ -123,36 +123,108 @@ input, select, textarea {
 .where-input {
   box-sizing: border-box;
   width: 100%;
-  font-family: var(--vscode-editor-font-family);
 }
 
-.suggestions {
-  position: absolute;
-  z-index: 20;
-  top: 100%;
-  left: 0;
-  min-width: 260px;
-  max-height: 220px;
+.where-input .cm-editor .cm-scroller {
+  overflow-x: hidden;
+  max-height: 7em;
+}
+
+.where-input .cm-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.where-input .cm-content { padding: 2px 0; }
+
+.where-input .cm-line:has(.cm-placeholder) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.where-input .cm-placeholder {
+  display: inline !important;
+  word-break: normal;
+}
+
+.where-input,
+.sql-editor {
+  border: 1px solid var(--vscode-input-border, var(--vscode-panel-border));
+  color: var(--vscode-input-foreground);
+  background: var(--vscode-input-background);
+}
+
+.where-input:focus-within,
+.sql-editor:focus-within {
+  border-color: var(--vscode-focusBorder);
+}
+
+.where-input .cm-editor,
+.sql-editor .cm-editor {
+  height: 100%;
+  outline: none !important;
+  color: inherit;
+  background: transparent;
+}
+
+.where-input .cm-scroller,
+.sql-editor .cm-scroller {
   overflow: auto;
-  border: 1px solid var(--vscode-editorSuggestWidget-border, var(--vscode-panel-border));
-  background: var(--vscode-editorSuggestWidget-background, var(--vscode-editorWidget-background));
-}
-
-.suggestion {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 2px 8px;
-  cursor: pointer;
   font-family: var(--vscode-editor-font-family);
+  font-size: var(--vscode-editor-font-size);
+  line-height: 1.4;
 }
 
-.suggestion.highlighted {
-  color: var(--vscode-list-activeSelectionForeground);
-  background: var(--vscode-list-activeSelectionBackground);
+.where-input .cm-content,
+.sql-editor .cm-content { caret-color: var(--vscode-editorCursor-foreground, var(--vscode-input-foreground)); }
+
+.where-input .cm-content ::selection,
+.sql-editor .cm-content ::selection { background: var(--vscode-editor-selectionBackground); }
+
+.where-input .cm-placeholder,
+.sql-editor .cm-placeholder { color: var(--vscode-input-placeholderForeground) !important; }
+
+.tok-keyword { color: var(--vscode-debugTokenExpression-boolean, var(--vscode-charts-blue)); }
+.tok-string,
+.tok-string2 { color: var(--vscode-debugTokenExpression-string, var(--vscode-charts-orange)); }
+.tok-number { color: var(--vscode-debugTokenExpression-number, var(--vscode-charts-green)); }
+.tok-bool,
+.tok-atom,
+.tok-literal { color: var(--vscode-debugTokenExpression-boolean, var(--vscode-charts-blue)); }
+.tok-typeName { color: var(--vscode-debugTokenExpression-name, var(--vscode-charts-purple)); }
+.tok-comment {
+  color: var(--vscode-descriptionForeground);
+  font-style: italic;
 }
 
-.suggestion-detail { opacity: 0.7; }
+.cm-tooltip.cm-tooltip-autocomplete {
+  border: 1px solid var(--vscode-editorSuggestWidget-border, var(--vscode-panel-border)) !important;
+  color: var(--vscode-editorSuggestWidget-foreground, var(--vscode-foreground)) !important;
+  background: var(--vscode-editorSuggestWidget-background, var(--vscode-editorWidget-background)) !important;
+}
+
+.cm-tooltip.cm-tooltip-autocomplete > ul {
+  font-family: var(--vscode-editor-font-family) !important;
+  font-size: var(--vscode-editor-font-size);
+}
+
+.cm-tooltip.cm-tooltip-autocomplete > ul > li[aria-selected] {
+  color: var(--vscode-editorSuggestWidget-selectedForeground, var(--vscode-list-activeSelectionForeground)) !important;
+  background: var(--vscode-editorSuggestWidget-selectedBackground, var(--vscode-list-activeSelectionBackground)) !important;
+}
+
+.cm-tooltip-autocomplete .cm-completionMatchedText {
+  color: var(--vscode-editorSuggestWidget-highlightForeground, var(--vscode-focusBorder));
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cm-tooltip-autocomplete .cm-completionDetail {
+  margin-left: 12px;
+  opacity: 0.7;
+  font-style: normal;
+}
 
 .chips {
   display: flex;
@@ -520,10 +592,6 @@ input, select, textarea {
 .sql-editor {
   flex: 1;
   min-height: 0;
-  resize: none;
-  font-family: var(--vscode-editor-font-family);
-  font-size: var(--vscode-editor-font-size);
-  white-space: pre;
 }
 
 .column-menu {

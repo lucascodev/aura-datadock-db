@@ -8,7 +8,14 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 ### Added
 
+- Syntax highlighting and autocomplete in the filter field and in the **Show SQL** panel of the table screen.
 - Link to GitHub Sponsors in the repository, in the README and on the extension page.
+- A whole query typed in the filter field now moves to the **Show SQL** panel and runs from it.
+
+### Fixed
+
+- **Chart** on the table screen no longer reloads the table, which could bring back the error of an earlier filter.
+- Emptying the filter field now forgets the filter, so a later refresh does not use a filter that is no longer on the screen.
 
 ## [0.1.4] - 2026-11-04
 

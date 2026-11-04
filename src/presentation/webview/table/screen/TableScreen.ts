@@ -7,6 +7,7 @@ import { DATA_VIEW_MODES } from '../constants/dataViewModes';
 import type { DataGrid } from '../data/grid/DataGrid';
 import { DataTabState } from '../data/state/DataTabState';
 import type { BottomBar } from '../data/toolbar/BottomBar';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
 import type { FilterBar } from '../data/toolbar/FilterBar';
 import type { RecordView } from '../data/panels/RecordView';
 import type { SqlPanel } from '../data/panels/SqlPanel';
@@ -75,6 +76,17 @@ export class TableScreen {
   loadPage(offset = this.state.offset): void {
     this.setBusy();
     this.host.postMessage({ type: 'loadPage', request: this.state.view.request(offset) });
+  }
+
+  setSchema(schema: NamespaceSchema): void {
+    this.filterBar.setSchema(schema);
+    this.sqlPanel.setSchema(schema);
+  }
+
+  runWholeQuery(sql: string): void {
+    this.state.isSqlPanelOpen = true;
+    this.sqlPanel.runText(sql);
+    this.render();
   }
 
   setBusy(): void {

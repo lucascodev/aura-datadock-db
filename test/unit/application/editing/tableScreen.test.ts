@@ -6,11 +6,22 @@ import { duplicateRowValues } from '../../../../src/application/editing/rows/dup
 import { renderTextTable } from '../../../../src/application/editing/browsing/renderTextTable';
 import { applyFilterCompletion } from '../../../../src/application/editing/browsing/applyFilterCompletion';
 import { suggestFilterCompletions } from '../../../../src/application/editing/browsing/suggestFilterCompletions';
+import { isWholeQuery } from '../../../../src/application/editing/browsing/isWholeQuery';
 import { validateWhereExpression } from '../../../../src/application/editing/browsing/validateWhereExpression';
 import { findIncomingReferences } from '../../../../src/application/schema/relationships/findIncomingReferences';
 import { orders, shopSchema } from '../../../fixtures/shopSchema';
 
 const request = { offset: 0, limit: 100, filters: [] };
+
+describe('isWholeQuery', () => {
+  it.each(['SELECT 1', 'select id from orders;', '/* note */ SELECT 1', '-- note\nSELECT 1', 'WITH x AS (SELECT 1) SELECT * FROM x'])('recognizes %s', (text) => {
+    expect(isWholeQuery('postgres', text)).toBe(true);
+  });
+
+  it.each(['', "status = 'paid'", 'selected = true', 'EXISTS (SELECT 1)', '"select" = 1', 'DELETE FROM orders'])('does not take %s for a query', (text) => {
+    expect(isWholeQuery('postgres', text)).toBe(false);
+  });
+});
 
 describe('validateWhereExpression', () => {
   it.each([
