@@ -31,8 +31,8 @@ const webviewBundle = {
 rmSync('dist', { recursive: true, force: true });
 
 const contexts = await Promise.all([
-  esbuild.context({ ...nodeBundle, entryPoints: ['src/main/extension.ts'], outfile: 'dist/extension.js' }),
-  esbuild.context({ ...nodeBundle, entryPoints: ['src/main/mcpServer.ts'], outfile: 'dist/mcp-server.js' }),
+  esbuild.context({ ...nodeBundle, entryPoints: ['src/main/entry/extension.ts'], outfile: 'dist/extension.js' }),
+  esbuild.context({ ...nodeBundle, entryPoints: ['src/main/entry/mcpServer.ts'], outfile: 'dist/mcp-server.js' }),
   esbuild.context({ ...webviewBundle, entryPoints: ['src/presentation/webview/results/main.ts'], outfile: 'dist/webview/results.js' }),
   esbuild.context({ ...webviewBundle, entryPoints: ['src/presentation/webview/diagram/main.ts'], outfile: 'dist/webview/diagram.js' }),
   esbuild.context({ ...webviewBundle, entryPoints: ['src/presentation/webview/connection/main.ts'], outfile: 'dist/webview/connection.js' }),
