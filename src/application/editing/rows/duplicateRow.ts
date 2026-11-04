@@ -1,0 +1,13 @@
+import type { CellValue } from '../../../domain/database/ParameterizedStatement';
+import type { CellValues } from './RowChange';
+
+export interface DuplicableColumn {
+  readonly name: string;
+  readonly isEditable: boolean;
+  readonly isPrimaryKey: boolean;
+}
+
+export function duplicateRowValues(columns: readonly DuplicableColumn[], row: readonly CellValue[]): CellValues {
+  const copied = columns.flatMap((column, index): [string, CellValue][] => (column.isEditable && !column.isPrimaryKey ? [[column.name, row[index]]] : []));
+  return Object.fromEntries(copied);
+}

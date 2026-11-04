@@ -1,4 +1,6 @@
+import type { DriverId } from '../../../domain/driver/DriverId';
 import { splitStatements } from './splitStatements';
+import { l10n } from '../../../domain/i18n/l10n';
 
 export type QueryRisk = 'read' | 'write' | 'destructive';
 
@@ -15,8 +17,8 @@ const ROW_CHANGING_KEYWORDS = new Set(['delete', 'update']);
 const WRITE_INSIDE_READ = /\b(insert|update|delete|merge|upsert|truncate|drop|alter|create|into)\b/;
 const WHERE_CLAUSE = /\bwhere\b/;
 
-export function classifyQuery(sql: string): QueryClassification {
-  const statements = splitStatements(sql);
+export function classifyQuery(sql: string, kind?: DriverId): QueryClassification {
+  const statements = splitStatements(sql, kind);
   const reasons: string[] = [];
   const risk = statements
     .map((statement) => classifyStatement(normalize(statement), reasons))
@@ -33,17 +35,17 @@ function classifyStatement(statement: string, reasons: string[]): QueryRisk {
     if (!WRITE_INSIDE_READ.test(statement)) {
       return 'read';
     }
-    reasons.push(`${label} statement contains a write operation`);
+    reasons.push(l10n.t('{0} statement contains a write operation', label));
     return 'write';
   }
 
   if (SCHEMA_CHANGING_KEYWORDS.has(keyword)) {
-    reasons.push(`${label} changes or removes database objects`);
+    reasons.push(l10n.t('{0} changes or removes database objects', label));
     return 'destructive';
   }
 
   if (ROW_CHANGING_KEYWORDS.has(keyword) && !WHERE_CLAUSE.test(statement)) {
-    reasons.push(`${label} without WHERE affects every row`);
+    reasons.push(l10n.t('{0} without WHERE affects every row', label));
     return 'destructive';
   }
 

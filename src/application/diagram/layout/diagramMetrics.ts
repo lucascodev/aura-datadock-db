@@ -1,0 +1,14 @@
+export const HEADER_HEIGHT = 32;
+export const ROW_HEIGHT = 22;
+export const BOTTOM_PADDING = 4;
+export const CHARACTER_WIDTH = 7.3;
+export const HORIZONTAL_PADDING = 12;
+export const BADGE_WIDTH = 24;
+export const COLUMN_GAP = 20;
+export const MIN_TABLE_WIDTH = 150;
+export const MAX_TABLE_WIDTH = 460;
+export const MAX_LABEL_CHARACTERS = 32;
+export const MAX_TYPE_CHARACTERS = 28;
+export const FONT_SIZE = 12;
+export const HEADER_FONT_SIZE = 13;
+export const CORNER_RADIUS = 6;
