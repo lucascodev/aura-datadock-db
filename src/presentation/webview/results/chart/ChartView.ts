@@ -9,7 +9,7 @@ import type { ChartKind } from '../../../../application/charts/model/config/Char
 import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';
 import { createElement } from '../../shared/dom/createElement';
 import type { ChartRenderer } from '../../chart/ports/ChartRenderer';
-import { renderChartControls } from './ChartControls';
+import { renderChartControls } from './renderChartControls';
 import { loadChartModule } from './loadChartModule';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

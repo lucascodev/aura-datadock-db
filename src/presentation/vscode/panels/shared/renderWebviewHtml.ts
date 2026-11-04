@@ -1,5 +1,5 @@
-import { randomBytes } from 'node:crypto';
 import * as vscode from 'vscode';
+import { randomBytes } from 'node:crypto';
 import { escapeMarkup } from '../../../../application/format/text/escapeMarkup';
 
 interface WebviewPage {
@@ -39,8 +39,4 @@ export function renderWebviewHtml(webview: vscode.Webview, extensionUri: vscode.
   <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;
-}
-
-export function webviewResourceRoots(extensionUri: vscode.Uri): vscode.Uri[] {
-  return [vscode.Uri.joinPath(extensionUri, 'dist', 'webview'), vscode.Uri.joinPath(extensionUri, 'media', 'webview')];
 }

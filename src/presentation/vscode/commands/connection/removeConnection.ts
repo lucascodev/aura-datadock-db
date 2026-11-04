@@ -1,19 +1,8 @@
 import * as vscode from 'vscode';
 import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
-import { type DataDockContext } from '../model/DataDockContext';
-import { savedPasswordSecretName } from '../registry/passwordSecretName';
+import type { DataDockContext } from '../model/DataDockContext';
+import { savedPasswordSecretName } from '../registry/savedPasswordSecretName';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
-
-export function addConnection(context: DataDockContext): void {
-  context.connectionForm.open();
-}
-
-export function editConnection(context: DataDockContext, node: ConnectionNode): void {
-  const connection = context.savedConnections.find(node.target.id);
-  if (connection) {
-    context.connectionForm.open(connection);
-  }
-}
 
 export async function removeConnection(context: DataDockContext, node: ConnectionNode): Promise<void> {
   const { target } = node;
@@ -32,11 +21,4 @@ export async function removeConnection(context: DataDockContext, node: Connectio
   await context.diagrams.forgetPositions(target);
   context.schemas.invalidate(target.id);
   await context.refresh();
-}
-
-export async function disconnect(context: DataDockContext, node: ConnectionNode): Promise<void> {
-  await context.connections.close(node.target.id);
-  context.schemas.invalidate(node.target.id);
-  await context.refresh();
-  vscode.window.setStatusBarMessage(l10n.t('Disconnected from {0}', node.target.name), 3000);
 }

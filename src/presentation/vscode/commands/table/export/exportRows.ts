@@ -1,37 +1,19 @@
-import { open, rm } from 'node:fs/promises';
 import * as vscode from 'vscode';
-import { writeRowBatches } from '../../../../application/export/encoders/writing/writeRowBatches';
-import type { WriteRowBatchesResult } from '../../../../application/export/model/WriteRowBatchesResult';
-import type { RowExportFormat } from '../../../../application/export/model/RowExportFormat';
-import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
-import { buildTableSelect } from '../../../../application/editing/tableQuery/buildTableSelect';
-import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
-import type { ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
-import type { TableRef } from '../../../../domain/schema/model/TableRef';
-import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../model/DataDockContext';
-import { l10n } from '../../../../domain/i18n/translation/l10n';
+import { open, rm } from 'node:fs/promises';
+import { writeRowBatches } from '../../../../../application/export/encoders/writing/writeRowBatches';
+import type { WriteRowBatchesResult } from '../../../../../application/export/model/WriteRowBatchesResult';
+import type { RowExportFormat } from '../../../../../application/export/model/RowExportFormat';
+import { ROW_EXPORT_FORMATS } from '../../../../../application/export/constants/rowExportFormats';
+import type { ConnectionTarget } from '../../../../../domain/connection/model/ConnectionTarget';
+import type { ParameterizedStatement } from '../../../../../domain/database/model/ParameterizedStatement';
+import type { TableRef } from '../../../../../domain/schema/model/TableRef';
+import type { DataDockContext } from '../../model/DataDockContext';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
+import { reportFailure } from './reportFailure';
 
 const BATCH_SIZE = 1000;
 
 type TableLocation = Pick<TableRef, 'namespace' | 'name'>;
-
-export async function exportTable(context: DataDockContext, node: TableNode): Promise<void> {
-  const target = context.connections.getTarget(node.targetId);
-  if (!target) {
-    return;
-  }
-  try {
-    const schema = await context.schemas.get(target.id, node.table.namespace);
-    const table = schema.tables.find((candidate) => candidate.name === node.table.name);
-    if (!table) {
-      throw new Error(l10n.t('The table {0} was not found. Refresh the view.', node.table.name));
-    }
-    await exportRows(context, target, node.table, buildTableSelect(table, target.kind, { filters: [] }));
-  } catch (error) {
-    reportFailure(context, target, error);
-  }
-}
 
 export async function exportRows(context: DataDockContext, target: ConnectionTarget, table: TableLocation, statement: ParameterizedStatement): Promise<void> {
   const picked = await vscode.window.showQuickPick(
@@ -57,12 +39,6 @@ export async function exportRows(context: DataDockContext, target: ConnectionTar
   } catch (error) {
     reportFailure(context, target, error);
   }
-}
-
-function reportFailure(context: DataDockContext, target: ConnectionTarget, error: unknown): void {
-  const message = error instanceof Error ? error.message : String(error);
-  context.output.error(`[${target.name}] Export failed: ${message}`);
-  vscode.window.showErrorMessage(l10n.t('Export failed: {0}', message));
 }
 
 function streamToFile(

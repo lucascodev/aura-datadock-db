@@ -9,7 +9,7 @@ import type { DiagramHostMessage, DiagramWebviewMessage, SchemaExportFormatView 
 import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/host/readL10nCatalog';
 import { createElement } from '../shared/dom/createElement';
-import { connectToHost } from '../shared/host/vscodeApi';
+import { connectToHost } from '../shared/host/connectToHost';
 import { DiagramCanvas } from './canvas/DiagramCanvas';
 import { rasterizeSvg } from './export/rasterizeSvg';
 import { ZOOM_STEP } from './constants/zoomStep';

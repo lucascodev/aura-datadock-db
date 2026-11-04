@@ -9,7 +9,8 @@ import type { ConnectionValidation } from '../../../../application/connections/m
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
 import type { SavedConnection } from '../../../../domain/connection/model/SavedConnection';
-import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
+import { renderWebviewHtml } from '../shared/renderWebviewHtml';
+import { webviewResourceRoots } from '../shared/webviewResourceRoots';
 import type { ConnectionFileField, ConnectionFormHostMessage, ConnectionFormWebviewMessage } from '../../../contracts/ConnectionFormMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 

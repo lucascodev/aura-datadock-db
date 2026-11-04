@@ -4,7 +4,8 @@ import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/row
 import type { RowExportFormatId } from '../../../../application/export/model/RowExportFormat';
 import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import type { DriverId } from '../../../../domain/driver/model/DriverId';
-import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
+import { renderWebviewHtml } from '../shared/renderWebviewHtml';
+import { webviewResourceRoots } from '../shared/webviewResourceRoots';
 import { saveImageFile } from '../shared/saveImageFile';
 import type { ImageFormat } from '../model/ImageFormat';
 import type { ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../../contracts/ResultsMessages';

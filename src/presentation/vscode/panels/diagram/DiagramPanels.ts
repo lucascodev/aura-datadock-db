@@ -1,5 +1,6 @@
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
-import { DiagramPanel, diagramPositionsPrefix } from './DiagramPanel';
+import { DiagramPanel } from './DiagramPanel';
+import { diagramPositionsPrefix } from './diagramPositionsPrefix';
 import type { DiagramPanelDependencies } from '../model/DiagramPanelDependencies';
 
 export class DiagramPanels {

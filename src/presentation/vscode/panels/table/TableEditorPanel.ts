@@ -18,21 +18,15 @@ import type { DatabaseAdapter } from '../../../../domain/database/ports/Database
 import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
 import type { CellValue, ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
 import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
-import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
+import { renderWebviewHtml } from '../shared/renderWebviewHtml';
+import { webviewResourceRoots } from '../shared/webviewResourceRoots';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage, TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { TableEditorDependencies, TableEditorOptions } from '../model/TableEditorDependencies';
+import { findTable } from './findTable';
 
 const VIEW_TYPE = 'auraDataDockDb.tableEditor';
 const PENDING_TITLE_PREFIX = '● ';
-
-export function findTable(schema: NamespaceSchema, tableName: string): TableDefinition {
-  const table = schema.tables.find((candidate) => candidate.name === tableName);
-  if (!table) {
-    throw new Error(l10n.t('The table {0} was not found. Refresh the view.', tableName));
-  }
-  return table;
-}
 
 export class TableEditorPanel {
   private readonly panel: vscode.WebviewPanel;

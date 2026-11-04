@@ -1,6 +1,8 @@
 import type { ResultColumnView } from '../../../contracts/ResultsMessages';
 import { createElement } from '../../shared/dom/createElement';
-import { filterRows, nextSort, sortRows } from './orderRows';
+import { filterRows } from './filterRows';
+import { nextSort } from './nextSort';
+import { sortRows } from './sortRows';
 import type { ResultRow } from '../model/ResultRow';
 import type { SortState } from '../model/SortState';
 import { l10n } from '../../../../domain/i18n/translation/l10n';

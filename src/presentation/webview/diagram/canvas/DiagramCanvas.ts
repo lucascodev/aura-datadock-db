@@ -3,8 +3,11 @@ import { measureDiagram } from '../../../../application/diagram/render/measureDi
 import { renderDiagramMarkup } from '../../../../application/diagram/render/renderDiagramMarkup';
 import { routeEdge } from '../../../../application/diagram/layout/routeEdge';
 import { LIVE_PALETTE } from '../constants/livePalette';
-import { relatedEdges, relatedTableNames } from './relatedTables';
-import { centerOn, fitToView, zoomAt } from './Viewport';
+import { relatedEdges } from './relatedEdges';
+import { relatedTableNames } from './relatedTableNames';
+import { centerOn } from './centerOn';
+import { fitToView } from './fitToView';
+import { zoomAt } from './zoomAt';
 import type { ViewportTransform } from '../model/ViewportTransform';
 
 const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
