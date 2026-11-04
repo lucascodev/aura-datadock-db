@@ -231,7 +231,7 @@ Chaves de API são salvas com o comando **Aura DataDock DB: Definir chave de API
 
 ## Usando o servidor MCP fora do VS Code
 
-No VS Code, ligue `auraDataDockDb.mcp.enabled` nas configurações de usuário para registrar o servidor. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows:
+No VS Code, ligue `auraDataDockDb.mcp.enabled` nas configurações de usuário para registrar o servidor. Para usar em outros clientes, aponte para o arquivo `dist/mcp-server.js` da extensão instalada. Exemplo com Claude Code no Windows, em que `0.1.0` é a versão instalada:
 
 ```bash
 claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.0\dist\mcp-server.js"

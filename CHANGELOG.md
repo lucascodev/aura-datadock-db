@@ -4,7 +4,7 @@
 
 All notable changes to this project are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.0] - 2026-11-04
 
 ### Added
 
@@ -37,6 +37,12 @@ All notable changes to this project are recorded here. The format follows [Keep 
 - Query history in the sidebar.
 - Foreign keys in the explorer, in the MCP `describe_schema` tool and in the context sent to the AI.
 - Integration tests of the adapters against real databases (`npm run test:integration`).
+- Automatic discovery of Postgres, MySQL and MariaDB containers, reading the credentials from the container.
+- Explorer of schemas, tables and columns in the sidebar.
+- Query editor with execution via `Ctrl+Enter` and a results panel.
+- Read-only mode and confirmation of destructive statements.
+- SQL generation with AI through VS Code models, Anthropic, OpenAI or Ollama.
+- Read-only MCP server with the `list_databases`, `describe_schema` and `run_query` tools.
 
 ### Changed
 
@@ -69,14 +75,3 @@ All notable changes to this project are recorded here. The format follows [Keep 
 - Dates without time zone in Postgres appeared shifted, converted to UTC.
 - Columns appeared with generic types such as `ARRAY` and `USER-DEFINED` in Postgres.
 - SQL analysis did not respect the dialect: in Postgres, a `#` JSON operator or a backslash in a string could hide a following statement from the risk classification.
-
-## [0.1.0]
-
-### Added
-
-- Automatic discovery of Postgres, MySQL and MariaDB containers, reading the credentials from the container.
-- Explorer of schemas, tables and columns in the sidebar.
-- Query editor with execution via `Ctrl+Enter` and a results panel.
-- Read-only mode and confirmation of destructive statements.
-- SQL generation with AI through VS Code models, Anthropic, OpenAI or Ollama.
-- Read-only MCP server with the `list_databases`, `describe_schema` and `run_query` tools.
