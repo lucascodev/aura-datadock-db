@@ -1,6 +1,6 @@
-import type { TableReference } from '../model/TableReference';
-import { IDENTIFIER } from '../constants/sqlIdentifierPattern';
-import { RESERVED_WORDS } from '../../sql/constants/reservedWords';
+import type { TableReference } from '../../model/TableReference';
+import { IDENTIFIER } from '../../constants/sqlIdentifierPattern';
+import { RESERVED_WORDS } from '../../../sql/constants/reservedWords';
 import { unquote } from './unquote';
 
 const TABLE_REFERENCE = new RegExp(

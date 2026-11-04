@@ -1,4 +1,4 @@
-import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
+import { renderDdl } from '../../../../application/schema/rendering/ddl/renderDdl';
 import type { TableNode } from '../../tree/nodes/TableNode';
 import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from '../query/editor/openBoundDocument';

@@ -3,10 +3,10 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import { ConnectionManager } from '../application/connections/lifecycle/ConnectionManager';
 import { describeSchema } from '../application/schema/loading/describeSchema';
-import { classifyQuery } from '../application/query/analysis/classifyQuery';
+import { classifyQuery } from '../application/query/analysis/classification/classifyQuery';
 import { formatValue } from '../application/format/text/formatValue';
 import { uniqueColumnNames } from '../application/format/text/uniqueColumnNames';
-import { scanStatements } from '../application/query/analysis/scanStatements';
+import { scanStatements } from '../application/query/analysis/statements/scanStatements';
 import { type ConnectionTarget } from '../domain/connection/model/ConnectionTarget';
 import { isReachable } from '../domain/connection/rules/isReachable';
 import { ContainerDiscovery } from '../infrastructure/docker/discovery/ContainerDiscovery';

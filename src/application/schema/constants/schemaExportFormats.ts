@@ -1,6 +1,6 @@
-import { renderDbml } from '../rendering/renderDbml';
-import { renderDdl } from '../rendering/renderDdl';
-import { renderMermaidEr } from '../rendering/renderMermaidEr';
+import { renderDbml } from '../rendering/dbml/renderDbml';
+import { renderDdl } from '../rendering/ddl/renderDdl';
+import { renderMermaidEr } from '../rendering/mermaid/renderMermaidEr';
 import type { SchemaExportFormat } from '../model/SchemaExportFormat';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 

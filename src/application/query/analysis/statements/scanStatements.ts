@@ -1,7 +1,7 @@
-import type { DriverId } from '../../../domain/driver/model/DriverId';
-import type { SqlDialect } from '../../../domain/driver/model/SqlDialect';
-import { getDriver } from '../../../drivers/catalog/getDriver';
-import type { SqlStatement } from '../model/SqlStatement';
+import type { DriverId } from '../../../../domain/driver/model/DriverId';
+import type { SqlDialect } from '../../../../domain/driver/model/SqlDialect';
+import { getDriver } from '../../../../drivers/catalog/getDriver';
+import type { SqlStatement } from '../../model/SqlStatement';
 
 const STRING_PLACEHOLDER = " '?' ";
 

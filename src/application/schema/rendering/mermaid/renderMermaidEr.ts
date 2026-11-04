@@ -1,8 +1,9 @@
-import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/model/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
-import { buildRelationships } from '../relationships/buildRelationships';
-import type { Relationship } from '../model/Relationship';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
+import { buildRelationships } from '../../relationships/buildRelationships';
+import type { Relationship } from '../../model/Relationship';
+import { entityName } from './entityName';
 
 const NON_WORD_CHARACTERS = /\W+/g;
 const INDENT = '  ';
@@ -35,10 +36,6 @@ function renderRelationship(relationship: Relationship): string {
   const childSide = relationship.cardinality === 'one-to-one' ? 'o|' : 'o{';
   const label = relationship.childColumns.join(', ').replace(/"/g, "'");
   return `${INDENT}${entityName(relationship.parentTable)} ${parentSide}--${childSide} ${entityName(relationship.childTable)} : "${label}"`;
-}
-
-function entityName(name: string): string {
-  return /^\w+$/.test(name) ? name : `"${name.replace(/"/g, "'")}"`;
 }
 
 function toWord(text: string): string {

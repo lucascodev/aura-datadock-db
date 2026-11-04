@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { parseTableReferences } from '../../../../src/application/completion/suggestions/parseTableReferences';
-import { suggestCompletions } from '../../../../src/application/completion/suggestions/suggestCompletions';
+import { parseTableReferences } from '../../../../src/application/completion/suggestions/lookup/parseTableReferences';
+import { suggestCompletions } from '../../../../src/application/completion/suggestions/complete/suggestCompletions';
 import type { NamespaceSchema } from '../../../../src/domain/schema/model/NamespaceSchema';
 import { shopSchema } from '../../../fixtures/shopSchema';
 

@@ -1,4 +1,4 @@
-import { buildExplain } from '../../../../../application/query/analysis/buildExplain';
+import { buildExplain } from '../../../../../application/query/analysis/statements/buildExplain';
 import type { DataDockContext } from '../../model/DataDockContext';
 import { requireEditor } from './requireEditor';
 import { runFromEditor } from './runFromEditor';

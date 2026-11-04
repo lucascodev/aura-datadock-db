@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { buildRelationships } from '../../../../src/application/schema/relationships/buildRelationships';
-import { renderDbml } from '../../../../src/application/schema/rendering/renderDbml';
-import { renderDdl } from '../../../../src/application/schema/rendering/renderDdl';
-import { renderMermaidEr } from '../../../../src/application/schema/rendering/renderMermaidEr';
+import { renderDbml } from '../../../../src/application/schema/rendering/dbml/renderDbml';
+import { renderDdl } from '../../../../src/application/schema/rendering/ddl/renderDdl';
+import { renderMermaidEr } from '../../../../src/application/schema/rendering/mermaid/renderMermaidEr';
 import { SchemaCache } from '../../../../src/application/schema/loading/SchemaCache';
 import { SCHEMA_EXPORT_FORMATS } from '../../../../src/application/schema/constants/schemaExportFormats';
 import { describeSchema } from '../../../../src/application/schema/loading/describeSchema';

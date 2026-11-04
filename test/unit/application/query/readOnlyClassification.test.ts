@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { classifyQuery } from '../../../../src/application/query/analysis/classifyQuery';
-import { scanStatements } from '../../../../src/application/query/analysis/scanStatements';
+import { classifyQuery } from '../../../../src/application/query/analysis/classification/classifyQuery';
+import { scanStatements } from '../../../../src/application/query/analysis/statements/scanStatements';
 
 describe('conditional comments', () => {
   it.each(['mysql', 'mariadb'] as const)('reads their content as SQL on %s', (kind) => {

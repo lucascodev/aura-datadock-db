@@ -1,5 +1,5 @@
 import type { DriverId } from '../../../domain/driver/model/DriverId';
-import { classifyQuery } from '../../query/analysis/classifyQuery';
+import { classifyQuery } from '../../query/analysis/classification/classifyQuery';
 import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function validateWhereExpression(kind: DriverId, expression: string): void {
