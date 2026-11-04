@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import { isReachable, type ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import { type ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import { isReachable } from '../../../../domain/connection/isReachable';
 import type { DataDockContext } from './DataDockContext';
 import { l10n } from '../../../../domain/i18n/l10n';
 

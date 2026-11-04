@@ -25,7 +25,3 @@ export interface ConnectionTarget {
   readonly tls: ConnectionTls;
   readonly ssh?: SshSettings;
 }
-
-export function isReachable(target: ConnectionTarget): boolean {
-  return target.host !== undefined && target.port !== undefined;
-}

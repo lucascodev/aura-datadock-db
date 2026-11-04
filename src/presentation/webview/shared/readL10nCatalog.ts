@@ -1,4 +1,4 @@
-import type { L10nCatalog } from '../../../domain/i18n/l10n';
+import type { L10nCatalog } from '../../../domain/i18n/L10nCatalog';
 
 export function readL10nCatalog(): L10nCatalog {
   const { l10n: serializedMessages } = document.body.dataset;

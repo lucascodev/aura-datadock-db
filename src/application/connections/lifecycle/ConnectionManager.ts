@@ -1,4 +1,5 @@
-import { isReachable, type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import { type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import { isReachable } from '../../../domain/connection/isReachable';
 import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
 import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
 import { explainConnectionFailure } from '../guidance/explainConnectionFailure';
