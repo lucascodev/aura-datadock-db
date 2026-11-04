@@ -1,7 +1,7 @@
 import type { RowEncoder } from '../model/RowEncoder';
 import { toExportText } from './toExportValue';
+import { NULL_TEXT } from '../../format/constants/displayText';
 
-const NULL_LABEL = 'NULL';
 
 export function createMarkdownEncoder(): RowEncoder {
   return {
@@ -16,7 +16,7 @@ function renderLine(cells: readonly string[]): string {
 }
 
 function renderCell(value: unknown): string {
-  return value === null || value === undefined ? NULL_LABEL : escapeCell(toExportText(value));
+  return value === null || value === undefined ? NULL_TEXT : escapeCell(toExportText(value));
 }
 
 function escapeCell(text: string): string {

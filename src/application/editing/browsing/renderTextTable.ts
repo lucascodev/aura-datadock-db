@@ -1,8 +1,8 @@
 import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
+import { ELLIPSIS } from '../../format/constants/displayText';
+import { NULL_PLACEHOLDER } from '../../format/constants/displayText';
 
-const NULL_TEXT = '[NULL]';
 const MAX_CELL_CHARACTERS = 80;
-const ELLIPSIS = '…';
 
 export function renderTextTable(columns: readonly string[], rows: readonly (readonly CellValue[])[]): string {
   const cells = rows.map((row) => row.map(toCellText));
@@ -14,7 +14,7 @@ export function renderTextTable(columns: readonly string[], rows: readonly (read
 
 function toCellText(value: CellValue): string {
   if (value === null) {
-    return NULL_TEXT;
+    return NULL_PLACEHOLDER;
   }
   const singleLine = value.replace(/\s*\r?\n\s*/g, ' ');
   return singleLine.length > MAX_CELL_CHARACTERS ? `${singleLine.slice(0, MAX_CELL_CHARACTERS - 1)}${ELLIPSIS}` : singleLine;

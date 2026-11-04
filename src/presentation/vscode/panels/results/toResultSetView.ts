@@ -1,4 +1,4 @@
-import { formatValue } from '../../../../application/format/formatValue';
+import { formatValue } from '../../../../application/format/text/formatValue';
 import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import type { QueryResult } from '../../../../domain/database/model/QueryResult';
 import type { ResultColumnView, ResultSetView } from '../../../contracts/ResultsMessages';

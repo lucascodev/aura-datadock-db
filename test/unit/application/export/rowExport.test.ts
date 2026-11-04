@@ -5,7 +5,7 @@ import { createMarkdownEncoder } from '../../../../src/application/export/encode
 import { createSqlInsertEncoder } from '../../../../src/application/export/encoders/createSqlInsertEncoder';
 import { encodeRows, writeRowBatches } from '../../../../src/application/export/encoders/encodeRows';
 import { ROW_EXPORT_FORMATS } from '../../../../src/application/export/constants/rowExportFormats';
-import { uniqueColumnNames } from '../../../../src/application/format/uniqueColumnNames';
+import { uniqueColumnNames } from '../../../../src/application/format/text/uniqueColumnNames';
 import type { RowBatch } from '../../../../src/domain/database/model/RowBatch';
 
 describe('createCsvEncoder', () => {

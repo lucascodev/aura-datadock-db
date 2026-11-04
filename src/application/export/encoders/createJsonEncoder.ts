@@ -1,4 +1,4 @@
-import { uniqueColumnNames } from '../../format/uniqueColumnNames';
+import { uniqueColumnNames } from '../../format/text/uniqueColumnNames';
 import type { RowEncoder } from '../model/RowEncoder';
 import { toExportValue } from './toExportValue';
 

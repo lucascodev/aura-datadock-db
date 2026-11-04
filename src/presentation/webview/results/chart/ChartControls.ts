@@ -1,4 +1,5 @@
-import { CHART_KINDS, getChartKind } from '../../../../application/charts/support/chartKinds';
+import { getChartKind } from '../../../../application/charts/support/getChartKind';
+import { CHART_KINDS } from '../../../../application/charts/constants/chartKinds';
 import type { ChartConfig } from '../../../../application/charts/model/config/ChartConfig';
 import type { ChartKind } from '../../../../application/charts/model/config/ChartKind';
 import type { ColumnInfo } from '../../../../application/charts/model/config/ColumnKind';

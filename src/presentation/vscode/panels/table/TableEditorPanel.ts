@@ -6,7 +6,7 @@ import { buildTablePageQuery, buildTableSelect } from '../../../../application/e
 import { describeEditability, isColumnEditable } from '../../../../application/editing/rows/describeEditability';
 import type { RowChange } from '../../../../application/editing/model/RowChange';
 import type { TablePageRequest, TableRowSelection } from '../../../../application/editing/model/tableFilters';
-import { formatValue } from '../../../../application/format/formatValue';
+import { formatValue } from '../../../../application/format/text/formatValue';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';

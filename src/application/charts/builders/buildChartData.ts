@@ -1,5 +1,5 @@
 import { inferColumnKind } from '../inference/inferColumnKind';
-import { getChartKind } from '../support/chartKinds';
+import { getChartKind } from '../support/getChartKind';
 import type { ChartConfig } from '../model/config/ChartConfig';
 import type { ChartData } from '../model/data/ChartData';
 import type { ChartInput } from '../model/config/ChartInput';
