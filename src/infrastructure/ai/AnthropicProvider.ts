@@ -17,21 +17,7 @@ export class AnthropicProvider implements AiProvider {
       throw new AiConfigurationError(l10n.t('Anthropic API key not set. Run "Aura DataDock DB: Set AI Provider API Key".'));
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      signal: request.signal,
-      headers: {
-        'content-type': 'application/json',
-        'x-api-key': this.apiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: this.model || DEFAULT_MODEL,
-        max_tokens: 2048,
-        system: request.system,
-        messages: [{ role: 'user', content: request.prompt }],
-      }),
-    });
+    const response = await fetch('https://api.anthropic.com/v1/messages', this.buildHttpRequest(request, this.apiKey));
 
     if (!response.ok) {
       throw new Error(l10n.t('Anthropic API error {0}: {1}', response.status, await response.text()));
@@ -42,5 +28,23 @@ export class AnthropicProvider implements AiProvider {
       .filter((block) => block.type === 'text')
       .map((block) => block.text ?? '')
       .join('');
+  }
+
+  private buildHttpRequest(request: AiRequest, apiKey: string): RequestInit {
+    return {
+      method: 'POST',
+      signal: request.signal,
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: this.model || DEFAULT_MODEL,
+        max_tokens: 2048,
+        system: request.system,
+        messages: [{ role: 'user', content: request.prompt }],
+      }),
+    };
   }
 }

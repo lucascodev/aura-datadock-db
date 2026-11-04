@@ -75,6 +75,8 @@ Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo us
 
 Um arquivo exporta uma função, com o nome do arquivo, para que o caminho diga o que ela faz. As exceções são `main/extension.ts`, porque o VS Code espera `activate` e `deactivate` juntos, e o módulo de tradução, em que `l10n` e `useL10nCatalog` compartilham o catálogo ativo.
 
+O `test/architecture/functionLimits.test.ts` também limita arquivos a 5 funções, funções e métodos a 30 linhas e classes a 20 métodos. Por enquanto, ele cobre `domain`, `drivers`, `application` e `infrastructure`; `presentation` e `main` são o próximo passo.
+
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 
 Quando a camada de dentro precisa de algo de fora, ela recebe por injeção, e só o `main` conhece a implementação. O `ConnectionManager` recebe `openAdapter`, o `ConnectionFormPanel` também, e os comandos pedem o provedor de IA por `DataDockContext.createAiProvider`.

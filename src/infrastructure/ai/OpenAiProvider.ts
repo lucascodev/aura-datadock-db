@@ -18,12 +18,23 @@ export class OpenAiProvider implements AiProvider {
       throw new AiConfigurationError(l10n.t('Set the OpenAI model id in auraDataDockDb.ai.model.'));
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', this.buildHttpRequest(request, this.apiKey));
+
+    if (!response.ok) {
+      throw new Error(l10n.t('OpenAI API error {0}: {1}', response.status, await response.text()));
+    }
+
+    const body = (await response.json()) as { choices: Array<{ message: { content: string | null } }> };
+    return body.choices[0]?.message.content ?? '';
+  }
+
+  private buildHttpRequest(request: AiRequest, apiKey: string): RequestInit {
+    return {
       method: 'POST',
       signal: request.signal,
       headers: {
         'content-type': 'application/json',
-        authorization: `Bearer ${this.apiKey}`,
+        authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: this.model,
@@ -32,13 +43,6 @@ export class OpenAiProvider implements AiProvider {
           { role: 'user', content: request.prompt },
         ],
       }),
-    });
-
-    if (!response.ok) {
-      throw new Error(l10n.t('OpenAI API error {0}: {1}', response.status, await response.text()));
-    }
-
-    const body = (await response.json()) as { choices: Array<{ message: { content: string | null } }> };
-    return body.choices[0]?.message.content ?? '';
+    };
   }
 }

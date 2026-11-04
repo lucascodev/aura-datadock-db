@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
+import { classifyQuery } from '../../../../application/query/analysis/classification/classifyQuery';
 import { selectTableNeighborhood } from '../../../../application/diagram/building/selectTableNeighborhood';
 import { buildRowChangeStatements } from '../../../../application/editing/rows/buildRowChangeStatements';
 import { buildTablePageQuery } from '../../../../application/editing/tableQuery/buildTablePageQuery';
@@ -11,8 +11,8 @@ import type { TablePageRequest, TableRowSelection } from '../../../../applicatio
 import { formatValue } from '../../../../application/format/text/formatValue';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';
-import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
-import { scanStatements } from '../../../../application/query/analysis/scanStatements';
+import { renderDdl } from '../../../../application/schema/rendering/ddl/renderDdl';
+import { scanStatements } from '../../../../application/query/analysis/statements/scanStatements';
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
 import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';

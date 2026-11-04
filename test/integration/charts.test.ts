@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { buildChartData } from '../../src/application/charts/builders/buildChartData';
+import { buildChartData } from '../../src/application/charts/builders/chart/buildChartData';
 import { describeColumns } from '../../src/application/charts/inference/describeColumns';
 import { suggestChart } from '../../src/application/charts/inference/suggestChart';
 import type { ChartInput } from '../../src/application/charts/model/config/ChartInput';

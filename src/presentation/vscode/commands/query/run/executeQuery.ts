@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
 import { resolveProtectionSetting } from '../../../../../application/settings/resolveProtectionSetting';
-import { classifyQuery } from '../../../../../application/query/analysis/classifyQuery';
+import { classifyQuery } from '../../../../../application/query/analysis/classification/classifyQuery';
 import type { QueryClassification } from '../../../../../application/query/model/QueryClassification';
 import { decideQueryGuard } from '../../../../../application/query/execution/decideQueryGuard';
 import { runStatements } from '../../../../../application/query/execution/runStatements';
 import type { StatementOutcome } from '../../../../../application/query/model/StatementOutcome';
 import { summarizeOutcomes } from '../../../../../application/query/execution/summarizeOutcomes';
-import { scanStatements } from '../../../../../application/query/analysis/scanStatements';
+import { scanStatements } from '../../../../../application/query/analysis/statements/scanStatements';
 import type { ConnectionTarget } from '../../../../../domain/connection/model/ConnectionTarget';
 import type { DataDockContext } from '../../model/DataDockContext';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';

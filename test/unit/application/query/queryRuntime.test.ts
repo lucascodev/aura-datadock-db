@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { buildExplain } from '../../../../src/application/query/analysis/buildExplain';
+import { buildExplain } from '../../../../src/application/query/analysis/statements/buildExplain';
 import { QueryDocumentBindings } from '../../../../src/application/query/documents/QueryDocumentBindings';
 import { QueryHistory } from '../../../../src/application/query/history/QueryHistory';
 import type { KeyValueStore } from '../../../../src/application/query/ports/KeyValueStore';
@@ -7,7 +7,7 @@ import type { QueryHistoryEntry } from '../../../../src/application/query/model/
 import { QueryRunTracker } from '../../../../src/application/query/execution/QueryRunTracker';
 import { runStatements } from '../../../../src/application/query/execution/runStatements';
 import { summarizeOutcomes } from '../../../../src/application/query/execution/summarizeOutcomes';
-import { summarizeSql } from '../../../../src/application/query/analysis/summarizeSql';
+import { summarizeSql } from '../../../../src/application/query/analysis/statements/summarizeSql';
 import type { QueryResult } from '../../../../src/domain/database/model/QueryResult';
 
 const emptyResult: QueryResult = { columns: ['a'], rows: [[1]], truncated: false, durationMs: 5 };

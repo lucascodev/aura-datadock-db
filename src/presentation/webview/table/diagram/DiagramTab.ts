@@ -1,5 +1,5 @@
 import { buildDiagram } from '../../../../application/diagram/building/buildDiagram';
-import { layoutDiagram } from '../../../../application/diagram/layout/layoutDiagram';
+import { layoutDiagram } from '../../../../application/diagram/layout/placement/layoutDiagram';
 import type { TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { DiagramCanvas } from '../../diagram/canvas/DiagramCanvas';

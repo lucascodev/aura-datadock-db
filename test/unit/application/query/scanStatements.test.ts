@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { classifyQuery } from '../../../../src/application/query/analysis/classifyQuery';
-import { statementAtOffset } from '../../../../src/application/query/analysis/statementAtOffset';
-import { scanStatements } from '../../../../src/application/query/analysis/scanStatements';
-import { splitStatements } from '../../../../src/application/query/analysis/splitStatements';
+import { classifyQuery } from '../../../../src/application/query/analysis/classification/classifyQuery';
+import { statementAtOffset } from '../../../../src/application/query/analysis/statements/statementAtOffset';
+import { scanStatements } from '../../../../src/application/query/analysis/statements/scanStatements';
+import { splitStatements } from '../../../../src/application/query/analysis/statements/splitStatements';
 
 describe('scanStatements', () => {
   it('keeps the original text and offsets of each statement', () => {

@@ -3,8 +3,8 @@ import { createAdapter } from '../../src/infrastructure/database/factory/createA
 import { encodeRows } from '../../src/application/export/encoders/writing/encodeRows';
 import { createCsvEncoder } from '../../src/application/export/encoders/formats/createCsvEncoder';
 import { buildRelationships } from '../../src/application/schema/relationships/buildRelationships';
-import { renderDdl } from '../../src/application/schema/rendering/renderDdl';
-import { scanStatements } from '../../src/application/query/analysis/scanStatements';
+import { renderDdl } from '../../src/application/schema/rendering/ddl/renderDdl';
+import { scanStatements } from '../../src/application/query/analysis/statements/scanStatements';
 import type { ConnectionTarget } from '../../src/domain/connection/model/ConnectionTarget';
 import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
 import type { DriverId } from '../../src/domain/driver/model/DriverId';
