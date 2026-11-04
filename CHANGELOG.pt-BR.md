@@ -4,7 +4,7 @@
 
 Todas as mudanças relevantes deste projeto são registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
-## [Não lançado]
+## [0.1.0] - 2026-11-04
 
 ### Adicionado
 
@@ -37,6 +37,12 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 - Histórico de queries na barra lateral.
 - Chaves estrangeiras no explorador, na ferramenta `describe_schema` do MCP e no contexto enviado à IA.
 - Testes de integração dos adapters contra bancos reais (`npm run test:integration`).
+- Descoberta automática de containers Postgres, MySQL e MariaDB com leitura das credenciais do container.
+- Explorador de schemas, tabelas e colunas na barra lateral.
+- Editor de queries com execução por `Ctrl+Enter` e painel de resultados.
+- Modo somente leitura e confirmação de comandos destrutivos.
+- Geração de SQL com IA via modelos do VS Code, Anthropic, OpenAI ou Ollama.
+- Servidor MCP somente leitura com as ferramentas `list_databases`, `describe_schema` e `run_query`.
 
 ### Alterado
 
@@ -69,14 +75,3 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 - Datas sem fuso no Postgres apareciam deslocadas, convertidas para UTC.
 - Colunas apareciam com tipos genéricos como `ARRAY` e `USER-DEFINED` no Postgres.
 - A análise de SQL não respeitava o dialeto: no Postgres, um `#` de operador JSON ou uma barra invertida em string podia esconder um comando seguinte da classificação de risco.
-
-## [0.1.0]
-
-### Adicionado
-
-- Descoberta automática de containers Postgres, MySQL e MariaDB com leitura das credenciais do container.
-- Explorador de schemas, tabelas e colunas na barra lateral.
-- Editor de queries com execução por `Ctrl+Enter` e painel de resultados.
-- Modo somente leitura e confirmação de comandos destrutivos.
-- Geração de SQL com IA via modelos do VS Code, Anthropic, OpenAI ou Ollama.
-- Servidor MCP somente leitura com as ferramentas `list_databases`, `describe_schema` e `run_query`.
