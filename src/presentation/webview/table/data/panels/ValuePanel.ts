@@ -2,7 +2,7 @@ import type { CellValue } from '../../../../../domain/database/model/Parameteriz
 import { createElement } from '../../../shared/dom/createElement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { DataTabState } from '../state/DataTabState';
-import type { CellPosition } from '../model/CellPosition';
+import type { CellPosition } from '../../../../../application/editing/grid/model/CellPosition';
 
 const JSON_START = /^[[{]/;
 const JSON_INDENT = 2;
@@ -46,8 +46,8 @@ export class ValuePanel {
       return;
     }
     const column = this.state.displayColumns.find((candidate) => candidate.name === activeCell.column);
-    const value = this.state.cellValue(activeCell);
-    const isEditable = this.state.isCellEditable(activeCell);
+    const value = this.state.display.cellValue(activeCell);
+    const isEditable = this.state.display.isCellEditable(activeCell);
 
     this.shownPosition = activeCell;
     this.shownText = formatForReading(value);
@@ -56,7 +56,7 @@ export class ValuePanel {
     this.editor.value = this.shownText;
     this.editor.readOnly = !isEditable;
     this.saveButton.disabled = true;
-    this.nullButton.disabled = !this.state.canSetNull();
+    this.nullButton.disabled = !this.state.display.canSetNull();
   }
 
   private showEmpty(): void {

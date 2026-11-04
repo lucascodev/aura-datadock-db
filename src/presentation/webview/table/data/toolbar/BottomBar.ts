@@ -55,7 +55,7 @@ export class BottomBar {
     this.firstButton = createButton('|◀', l10n.t('First page'), () => callbacks.onGoTo(0));
     this.previousButton = createButton('◀', l10n.t('Previous page'), () => callbacks.onGoTo(Math.max(0, this.state.offset - this.state.limit)));
     this.nextButton = createButton('▶', l10n.t('Next page'), () => callbacks.onGoTo(this.state.offset + this.state.limit));
-    this.lastButton = createButton('▶|', l10n.t('Last page'), () => callbacks.onGoTo(this.state.lastOffset()));
+    this.lastButton = createButton('▶|', l10n.t('Last page'), () => callbacks.onGoTo(this.state.paging.lastOffset()));
     this.exportButton = createButton(l10n.t('Export data'), l10n.t('Export every row matching the current filters'), callbacks.onExport);
 
     this.limitInput.type = 'number';
@@ -80,23 +80,23 @@ export class BottomBar {
     this.saveButton.disabled = pendingCount === 0 || state.isBusy;
     this.cancelButton.disabled = pendingCount === 0;
     this.previewButton.disabled = pendingCount === 0;
-    this.editButton.disabled = !state.activeCell || !state.isCellEditable(state.activeCell);
+    this.editButton.disabled = !state.activeCell || !state.display.isCellEditable(state.activeCell);
     this.addButton.disabled = isCustom || !state.editability.canInsert;
-    this.duplicateButton.disabled = !state.canDuplicate();
-    this.deleteButton.disabled = !state.canDelete();
-    this.nullButton.disabled = !state.canSetNull();
-    this.defaultButton.disabled = !state.canUseDefault();
-    this.firstButton.disabled = !state.canGoPrevious();
-    this.previousButton.disabled = !state.canGoPrevious();
-    this.nextButton.disabled = !state.canGoNext();
-    this.lastButton.disabled = !state.canGoLast();
+    this.duplicateButton.disabled = !state.editing.canDuplicate();
+    this.deleteButton.disabled = !state.editing.canDelete();
+    this.nullButton.disabled = !state.display.canSetNull();
+    this.defaultButton.disabled = !state.display.canUseDefault();
+    this.firstButton.disabled = !state.paging.canGoPrevious();
+    this.previousButton.disabled = !state.paging.canGoPrevious();
+    this.nextButton.disabled = !state.paging.canGoNext();
+    this.lastButton.disabled = !state.paging.canGoLast();
     this.exportButton.disabled = isCustom;
     this.limitInput.disabled = isCustom;
     if (document.activeElement !== this.limitInput) {
       this.limitInput.value = String(state.limit);
     }
     this.rangeLabel.textContent = isCustom ? '' : describeRange(state);
-    this.statusLabel.textContent = state.rowCountLabel();
+    this.statusLabel.textContent = state.display.rowCountLabel();
   }
 }
 

@@ -36,125 +36,125 @@ describe('DataTabState', () => {
     });
 
     it('keeps the active column when the page changes', () => {
-      state.selectCell({ rowId: row2, column: 'email' });
+      state.selection.selectCell({ rowId: row2, column: 'email' });
       state.applyPage({ ...request, offset: 3 }, [['4', 'D', 'd@x', '1']], 1, '');
       expect(state.activeCell).toEqual({ rowId: JSON.stringify({ id: '4' }), column: 'email' });
     });
 
     it('numbers the rows by their position in the table', () => {
       state.applyPage({ ...request, offset: 200 }, rows, 1, '');
-      expect(state.displayRows().map((row) => row.label)).toEqual(['201', '202', '203']);
+      expect(state.display.displayRows().map((row) => row.label)).toEqual(['201', '202', '203']);
     });
 
     it('describes what was fetched', () => {
-      expect(state.rowCountLabel()).toMatch(/^3 row\(s\) fetched - 0\.005s, on \d{4}-\d{2}-\d{2} at \d{2}:\d{2}:\d{2}$/);
+      expect(state.display.rowCountLabel()).toMatch(/^3 row\(s\) fetched - 0\.005s, on \d{4}-\d{2}-\d{2} at \d{2}:\d{2}:\d{2}$/);
     });
   });
 
   describe('editing', () => {
     it('overlays an edit on the row, and marks the column', () => {
-      state.commitCell({ rowId: row1, column: 'name' }, 'Ana Souza');
-      const [row] = state.displayRows();
+      state.editing.commitCell({ rowId: row1, column: 'name' }, 'Ana Souza');
+      const [row] = state.display.displayRows();
       expect(row.values[1]).toBe('Ana Souza');
       expect(row.changedColumns.has('name')).toBe(true);
     });
 
     it('forgets an edit that goes back to the original', () => {
-      state.commitCell({ rowId: row1, column: 'name' }, 'x');
-      state.commitCell({ rowId: row1, column: 'name' }, 'Ana');
+      state.editing.commitCell({ rowId: row1, column: 'name' }, 'x');
+      state.editing.commitCell({ rowId: row1, column: 'name' }, 'Ana');
       expect(state.changes).toEqual([]);
     });
 
     it('keeps edits across pages', () => {
-      state.commitCell({ rowId: row1, column: 'name' }, 'x');
+      state.editing.commitCell({ rowId: row1, column: 'name' }, 'x');
       state.applyPage({ ...request, offset: 3 }, [['4', 'D', 'd@x', '1']], 1, '');
       expect(state.changes).toHaveLength(1);
       state.applyPage(request, rows, 1, '');
-      expect(state.displayRows()[0].values[1]).toBe('x');
+      expect(state.display.displayRows()[0].values[1]).toBe('x');
     });
 
     it('refuses read-only columns', () => {
-      state.commitCell({ rowId: row1, column: 'total' }, '99');
+      state.editing.commitCell({ rowId: row1, column: 'total' }, '99');
       expect(state.changes).toEqual([]);
     });
 
     it('refuses everything without permission to update', () => {
       state.editability = { canInsert: true, canUpdate: false, canDelete: false };
-      expect(state.isCellEditable({ rowId: row1, column: 'name' })).toBe(false);
+      expect(state.display.isCellEditable({ rowId: row1, column: 'name' })).toBe(false);
     });
 
     it('does not edit a row marked for deletion', () => {
-      state.selectCell({ rowId: row1, column: 'name' });
-      state.deleteTargetRows();
-      expect(state.isCellEditable({ rowId: row1, column: 'name' })).toBe(false);
+      state.selection.selectCell({ rowId: row1, column: 'name' });
+      state.editing.deleteTargetRows();
+      expect(state.display.isCellEditable({ rowId: row1, column: 'name' })).toBe(false);
     });
 
     it('sets NULL only where the column allows it', () => {
-      state.selectCell({ rowId: row1, column: 'email' });
-      expect(state.canSetNull()).toBe(false);
-      state.selectCell({ rowId: row1, column: 'name' });
-      expect(state.canSetNull()).toBe(true);
-      state.setActiveNull();
-      expect(state.displayRows()[0].values[1]).toBeNull();
+      state.selection.selectCell({ rowId: row1, column: 'email' });
+      expect(state.display.canSetNull()).toBe(false);
+      state.selection.selectCell({ rowId: row1, column: 'name' });
+      expect(state.display.canSetNull()).toBe(true);
+      state.editing.setActiveNull();
+      expect(state.display.displayRows()[0].values[1]).toBeNull();
     });
 
     it('finds the next editable cell, skipping read-only ones', () => {
-      expect(state.nextEditableCell({ rowId: row1, column: 'id' })).toEqual({ rowId: row1, column: 'name' });
-      expect(state.nextEditableCell({ rowId: row1, column: 'email' })).toBeUndefined();
+      expect(state.selection.nextEditableCell({ rowId: row1, column: 'id' })).toEqual({ rowId: row1, column: 'name' });
+      expect(state.selection.nextEditableCell({ rowId: row1, column: 'email' })).toBeUndefined();
     });
   });
 
   describe('new rows', () => {
     it('shows them first, with the default marked and the first editable cell active', () => {
-      state.addRow();
-      const [row] = state.displayRows();
+      state.editing.addRow();
+      const [row] = state.display.displayRows();
       expect(row).toMatchObject({ isNew: true, label: '+' });
       expect(row.values).toEqual([undefined, undefined, undefined, undefined]);
       expect(state.activeCell).toEqual({ rowId: row.rowId, column: 'name' });
     });
 
     it('fills and returns to the default', () => {
-      state.addRow();
+      state.editing.addRow();
       const position = state.activeCell as { rowId: string; column: string };
-      state.commitCell(position, 'New');
-      expect(state.displayRows()[0].values[1]).toBe('New');
-      state.useDefaultForActive();
-      expect(state.displayRows()[0].values[1]).toBeUndefined();
+      state.editing.commitCell(position, 'New');
+      expect(state.display.displayRows()[0].values[1]).toBe('New');
+      state.editing.useDefaultForActive();
+      expect(state.display.displayRows()[0].values[1]).toBeUndefined();
     });
 
     it('accepts NULL in a nullable column', () => {
-      state.addRow();
-      state.setActiveNull();
-      expect(state.displayRows()[0].values[1]).toBeNull();
+      state.editing.addRow();
+      state.editing.setActiveNull();
+      expect(state.display.displayRows()[0].values[1]).toBeNull();
     });
 
     it('removes a new row instead of marking it for deletion', () => {
-      state.addRow();
-      state.deleteTargetRows();
+      state.editing.addRow();
+      state.editing.deleteTargetRows();
       expect(state.changes).toEqual([]);
     });
   });
 
   describe('duplicating', () => {
     it('copies the values into new rows, without the key or read-only columns', () => {
-      state.selectCell({ rowId: row2, column: 'name' });
-      state.duplicateTargetRows();
+      state.selection.selectCell({ rowId: row2, column: 'name' });
+      state.editing.duplicateTargetRows();
       expect(state.changes).toHaveLength(1);
       expect(state.changes[0]).toMatchObject({ type: 'insert', values: { name: null, email: 'b@x' } });
       expect((state.changes[0] as { values: object }).values).not.toHaveProperty('id');
     });
 
     it('duplicates every selected row', () => {
-      state.selectRow(row1, { isToggle: false, isRange: false });
-      state.selectRow(row3, { isToggle: true, isRange: false });
-      state.duplicateTargetRows();
+      state.selection.selectRow(row1, { isToggle: false, isRange: false });
+      state.selection.selectRow(row3, { isToggle: true, isRange: false });
+      state.editing.duplicateTargetRows();
       expect(state.changes).toHaveLength(2);
     });
 
     it('keeps the database default of a new row instead of turning it into NULL', () => {
-      state.addRow();
-      state.commitCell(state.activeCell as { rowId: string; column: string }, 'Copy');
-      state.duplicateTargetRows();
+      state.editing.addRow();
+      state.editing.commitCell(state.activeCell as { rowId: string; column: string }, 'Copy');
+      state.editing.duplicateTargetRows();
       const [, duplicate] = state.changes;
       expect(duplicate).toMatchObject({ type: 'insert', values: { name: 'Copy' } });
       expect((duplicate as { values: object }).values).not.toHaveProperty('email');
@@ -162,38 +162,38 @@ describe('DataTabState', () => {
 
     it('is not offered without permission to insert', () => {
       state.editability = { canInsert: false, canUpdate: false, canDelete: false };
-      expect(state.canDuplicate()).toBe(false);
+      expect(state.editing.canDuplicate()).toBe(false);
     });
   });
 
   describe('selection and deletion', () => {
     it('selects one row, toggles with Ctrl and extends with Shift', () => {
-      state.selectRow(row1, { isToggle: false, isRange: false });
+      state.selection.selectRow(row1, { isToggle: false, isRange: false });
       expect([...state.selectedRowIds]).toEqual([row1]);
-      state.selectRow(row2, { isToggle: true, isRange: false });
+      state.selection.selectRow(row2, { isToggle: true, isRange: false });
       expect(state.selectedRowIds.size).toBe(2);
-      state.selectRow(row2, { isToggle: true, isRange: false });
+      state.selection.selectRow(row2, { isToggle: true, isRange: false });
       expect(state.selectedRowIds.size).toBe(1);
-      state.selectRow(row1, { isToggle: false, isRange: false });
-      state.selectRow(row3, { isToggle: false, isRange: true });
+      state.selection.selectRow(row1, { isToggle: false, isRange: false });
+      state.selection.selectRow(row3, { isToggle: false, isRange: true });
       expect([...state.selectedRowIds]).toEqual([row1, row2, row3]);
     });
 
     it('deletes the selected rows, or the active row without a selection', () => {
-      state.selectCell({ rowId: row2, column: 'name' });
-      state.deleteTargetRows();
+      state.selection.selectCell({ rowId: row2, column: 'name' });
+      state.editing.deleteTargetRows();
       expect(state.changes).toEqual([{ type: 'delete', key: { id: '2' } }]);
 
-      state.selectRow(row1, { isToggle: false, isRange: false });
-      state.selectRow(row3, { isToggle: true, isRange: false });
-      state.deleteTargetRows();
+      state.selection.selectRow(row1, { isToggle: false, isRange: false });
+      state.selection.selectRow(row3, { isToggle: true, isRange: false });
+      state.editing.deleteTargetRows();
       expect(state.changes).toHaveLength(3);
     });
 
     it('undoes a deletion when repeated', () => {
-      state.selectCell({ rowId: row2, column: 'name' });
-      state.deleteTargetRows();
-      state.deleteTargetRows();
+      state.selection.selectCell({ rowId: row2, column: 'name' });
+      state.editing.deleteTargetRows();
+      state.editing.deleteTargetRows();
       expect(state.changes).toEqual([]);
     });
 
@@ -201,91 +201,91 @@ describe('DataTabState', () => {
       state.primaryKey = [];
       state.editability = { canInsert: true, canUpdate: false, canDelete: false };
       state.applyPage(request, rows, 1, '');
-      expect(state.canDelete()).toBe(false);
-      state.deleteTargetRows();
+      expect(state.editing.canDelete()).toBe(false);
+      state.editing.deleteTargetRows();
       expect(state.changes).toEqual([]);
     });
   });
 
   describe('keyboard movement', () => {
     it('moves between cells, stopping at the edges', () => {
-      state.moveActive(1, 1);
+      state.selection.moveActive(1, 1);
       expect(state.activeCell).toEqual({ rowId: row2, column: 'name' });
-      state.moveActive(-5, -5);
+      state.selection.moveActive(-5, -5);
       expect(state.activeCell).toEqual({ rowId: row1, column: 'id' });
-      state.moveActive(99, 99);
+      state.selection.moveActive(99, 99);
       expect(state.activeCell).toEqual({ rowId: row3, column: 'total' });
     });
 
     it('does nothing without rows', () => {
       state.applyPage(request, [], 1, '');
-      expect(() => state.moveActive(1, 1)).not.toThrow();
+      expect(() => state.selection.moveActive(1, 1)).not.toThrow();
       expect(state.activeCell).toBeUndefined();
     });
   });
 
   describe('sorting and filtering', () => {
     it('cycles the sort: ascending, descending, none', () => {
-      state.cycleSort('name');
+      state.view.cycleSort('name');
       expect(state.sort).toEqual({ column: 'name', isDescending: false });
-      state.cycleSort('name');
+      state.view.cycleSort('name');
       expect(state.sort).toEqual({ column: 'name', isDescending: true });
-      state.cycleSort('name');
+      state.view.cycleSort('name');
       expect(state.sort).toBeUndefined();
     });
 
     it('asks for the chosen filters and expression', () => {
-      state.addFilter({ column: 'name', operator: 'equals', value: 'x' });
+      state.view.addFilter({ column: 'name', operator: 'equals', value: 'x' });
       state.whereExpression = 'id > 1';
-      expect(state.request(30)).toEqual({ offset: 30, limit: 3, sort: undefined, filters: [{ column: 'name', operator: 'equals', value: 'x' }], whereExpression: 'id > 1' });
-      state.removeFilter(0);
+      expect(state.view.request(30)).toEqual({ offset: 30, limit: 3, sort: undefined, filters: [{ column: 'name', operator: 'equals', value: 'x' }], whereExpression: 'id > 1' });
+      state.view.removeFilter(0);
       expect(state.filters).toEqual([]);
     });
 
     it('sends no expression when it is empty', () => {
-      expect(state.selection().whereExpression).toBeUndefined();
+      expect(state.view.selection().whereExpression).toBeUndefined();
     });
   });
 
   describe('paging', () => {
     it('knows the next page from a full page while the total is unknown', () => {
-      expect(state.canGoNext()).toBe(true);
+      expect(state.paging.canGoNext()).toBe(true);
       state.applyPage(request, rows.slice(0, 2), 1, '');
-      expect(state.canGoNext()).toBe(false);
+      expect(state.paging.canGoNext()).toBe(false);
     });
 
     it('uses the total when known', () => {
       state.total = 3;
-      expect(state.canGoNext()).toBe(false);
+      expect(state.paging.canGoNext()).toBe(false);
       state.total = 10;
-      expect(state.canGoNext()).toBe(true);
-      expect(state.canGoLast()).toBe(true);
-      expect(state.lastOffset()).toBe(9);
+      expect(state.paging.canGoNext()).toBe(true);
+      expect(state.paging.canGoLast()).toBe(true);
+      expect(state.paging.lastOffset()).toBe(9);
     });
 
     it('has a last page at the start for an exact multiple', () => {
       state.total = 6;
-      expect(state.lastOffset()).toBe(3);
+      expect(state.paging.lastOffset()).toBe(3);
     });
 
     it('does not go back from the first page', () => {
-      expect(state.canGoPrevious()).toBe(false);
+      expect(state.paging.canGoPrevious()).toBe(false);
       state.applyPage({ ...request, offset: 3 }, rows, 1, '');
-      expect(state.canGoPrevious()).toBe(true);
+      expect(state.paging.canGoPrevious()).toBe(true);
     });
 
     it('keeps the limit within bounds', () => {
-      state.setLimit(0);
+      state.view.setLimit(0);
       expect(state.limit).toBe(1);
-      state.setLimit(1_000_000);
+      state.view.setLimit(1_000_000);
       expect(state.limit).toBe(5000);
-      state.setLimit(Number.NaN);
+      state.view.setLimit(Number.NaN);
       expect(state.limit).toBe(5000);
     });
 
     it('does not page while busy', () => {
       state.isBusy = true;
-      expect(state.canGoNext()).toBe(false);
+      expect(state.paging.canGoNext()).toBe(false);
     });
   });
 
@@ -298,19 +298,19 @@ describe('DataTabState', () => {
 
     it('shows its own columns and rows', () => {
       expect(state.displayColumns.map((item) => item.name)).toEqual(['a', 'b']);
-      expect(state.displayRows().map((row) => row.values)).toEqual(custom.rows);
+      expect(state.display.displayRows().map((row) => row.values)).toEqual(custom.rows);
       expect(state.activeCell?.column).toBe('a');
     });
 
     it('allows nothing to be edited, added, duplicated or deleted', () => {
-      expect(state.isCellEditable({ rowId: 'row:0', column: 'a' })).toBe(false);
-      expect(state.canDuplicate()).toBe(false);
-      expect(state.canDelete()).toBe(false);
-      expect(state.canGoNext()).toBe(false);
+      expect(state.display.isCellEditable({ rowId: 'row:0', column: 'a' })).toBe(false);
+      expect(state.editing.canDuplicate()).toBe(false);
+      expect(state.editing.canDelete()).toBe(false);
+      expect(state.paging.canGoNext()).toBe(false);
     });
 
     it('says when more rows are available', () => {
-      expect(state.rowCountLabel()).toContain('more available');
+      expect(state.display.rowCountLabel()).toContain('more available');
     });
 
     it('goes back to the table on the next page, keeping pending changes', () => {
@@ -324,16 +324,16 @@ describe('DataTabState', () => {
   });
 
   it('remembers the width of a column', () => {
-    state.setWidth('name', 240);
-    expect(state.getWidth('name')).toBe(240);
-    expect(state.getWidth('email')).toBeUndefined();
+    state.view.setWidth('name', 240);
+    expect(state.view.getWidth('name')).toBe(240);
+    expect(state.view.getWidth('email')).toBeUndefined();
   });
 
   describe('record view', () => {
     it('moves between records and tells the position', () => {
-      expect(state.recordPosition()).toEqual({ index: 0, count: 3 });
-      state.moveRecord(1);
-      expect(state.recordPosition().index).toBe(1);
+      expect(state.display.recordPosition()).toEqual({ index: 0, count: 3 });
+      state.selection.moveRecord(1);
+      expect(state.display.recordPosition().index).toBe(1);
     });
   });
 });

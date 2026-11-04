@@ -3,10 +3,12 @@ import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { TableColumnView } from '../../../../contracts/TableEditorMessages';
 import { createElement } from '../../../shared/dom/createElement';
 import { columnTypeBadge } from './columnTypeBadge';
+import { displayValue } from './displayValue';
+import { openCellEditor } from './openCellEditor';
 import type { DataTabState } from '../state/DataTabState';
-import type { RowSelectionGesture } from '../model/RowSelectionGesture';
-import type { DisplayRow } from '../model/DisplayRow';
-import type { CellPosition } from '../model/CellPosition';
+import type { RowSelectionGesture } from '../../../../../application/editing/grid/model/RowSelectionGesture';
+import type { DisplayRow } from '../../../../../application/editing/grid/model/DisplayRow';
+import type { CellPosition } from '../../../../../application/editing/grid/model/CellPosition';
 import { NULL_PLACEHOLDER } from '../../../../../application/format/constants/displayText';
 import { CHARACTER_WIDTH } from '../../../shared/constants/gridMetrics';
 
@@ -16,6 +18,15 @@ const MAX_INITIAL_COLUMN_WIDTH = 320;
 const COLUMN_PADDING = 64;
 const WIDTH_SAMPLE_ROWS = 50;
 const PAGE_ROWS = 10;
+
+const NAVIGATION_MOVES: ReadonlyMap<string, { readonly columnDelta: number; readonly rowDelta: number }> = new Map([
+  ['ArrowUp', { columnDelta: 0, rowDelta: -1 }],
+  ['ArrowDown', { columnDelta: 0, rowDelta: 1 }],
+  ['ArrowLeft', { columnDelta: -1, rowDelta: 0 }],
+  ['ArrowRight', { columnDelta: 1, rowDelta: 0 }],
+  ['PageUp', { columnDelta: 0, rowDelta: -PAGE_ROWS }],
+  ['PageDown', { columnDelta: 0, rowDelta: PAGE_ROWS }],
+]);
 
 interface DataGridCallbacks {
   onActiveCellChange(): void;
@@ -42,7 +53,7 @@ export class DataGrid {
   render(): void {
     const { scrollTop, scrollLeft } = this.element;
     const columns = this.state.displayColumns;
-    const rows = this.state.displayRows();
+    const rows = this.state.display.displayRows();
     const table = createElement('table', { className: 'grid' }, [this.renderColumnGroup(columns, rows), this.renderHead(columns), createElement('tbody', {}, rows.map((row) => this.renderRow(row, columns)))]);
     table.style.width = `${ROW_NUMBER_WIDTH + columns.reduce((sum, column) => sum + this.widthOf(column, rows), 0)}px`;
     this.element.replaceChildren(table);
@@ -56,14 +67,19 @@ export class DataGrid {
 
   startEdit(position: CellPosition): void {
     const cell = this.findCell(position);
-    if (!cell || !this.state.isCellEditable(position)) {
+    if (!cell || !this.state.display.isCellEditable(position)) {
       return;
     }
-    this.openEditor(cell, position);
+    openCellEditor(cell, position, this.state.display.cellValue(position), {
+      commit: (target, value) => this.callbacks.onCommitCell(target, value),
+      findNext: (from) => this.state.selection.nextEditableCell(from),
+      moveTo: (next) => this.moveEditorTo(next),
+      restoreFocus: () => this.element.focus({ preventScroll: true }),
+    });
   }
 
   private widthOf(column: TableColumnView, rows: readonly DisplayRow[]): number {
-    const stored = this.state.getWidth(column.name);
+    const stored = this.state.view.getWidth(column.name);
     if (stored !== undefined) {
       return stored;
     }
@@ -137,7 +153,7 @@ export class DataGrid {
       const width = Math.max(MIN_COLUMN_WIDTH, startWidth + moveEvent.clientX - startX);
       element.style.width = `${width}px`;
       table.style.width = `${startTableWidth + width - startWidth}px`;
-      this.state.setWidth(column.name, width);
+      this.state.view.setWidth(column.name, width);
     };
     const handleUp = () => {
       resizer.removeEventListener('pointermove', handleMove);
@@ -151,7 +167,7 @@ export class DataGrid {
     const number = createElement('td', { className: 'row-number', text: row.label });
     number.addEventListener('mousedown', (event) => {
       event.preventDefault();
-      this.state.selectRow(row.rowId, { isToggle: event.ctrlKey || event.metaKey, isRange: event.shiftKey } satisfies RowSelectionGesture);
+      this.state.selection.selectRow(row.rowId, { isToggle: event.ctrlKey || event.metaKey, isRange: event.shiftKey } satisfies RowSelectionGesture);
       this.element.focus();
       this.applySelectionClasses();
       this.callbacks.onSelectionChange();
@@ -184,7 +200,7 @@ export class DataGrid {
   private selectCell(position: CellPosition, cell: HTMLElement): void {
     this.element.querySelector('td.active')?.classList.remove('active');
     cell.classList.add('active');
-    this.state.selectCell(position);
+    this.state.selection.selectCell(position);
     this.element.focus({ preventScroll: true });
     this.callbacks.onActiveCellChange();
   }
@@ -202,7 +218,7 @@ export class DataGrid {
   }
 
   private moveAndReveal(columnDelta: number, rowDelta: number): void {
-    this.state.moveActive(columnDelta, rowDelta);
+    this.state.selection.moveActive(columnDelta, rowDelta);
     this.element.querySelector('td.active')?.classList.remove('active');
     const cell = this.state.activeCell ? this.findCell(this.state.activeCell) : undefined;
     cell?.classList.add('active');
@@ -218,7 +234,7 @@ export class DataGrid {
     } else if (isCommand && event.key.toLowerCase() === 'c') {
       event.preventDefault();
       if (this.state.activeCell) {
-        this.callbacks.onCopy(this.state.cellValue(this.state.activeCell) ?? '');
+        this.callbacks.onCopy(this.state.display.cellValue(this.state.activeCell) ?? '');
       }
     } else if (this.handleNavigationKey(event.key)) {
       event.preventDefault();
@@ -226,25 +242,12 @@ export class DataGrid {
   }
 
   private handleNavigationKey(key: string): boolean {
+    const move = NAVIGATION_MOVES.get(key);
+    if (move) {
+      this.moveAndReveal(move.columnDelta, move.rowDelta);
+      return true;
+    }
     switch (key) {
-      case 'ArrowUp':
-        this.moveAndReveal(0, -1);
-        return true;
-      case 'ArrowDown':
-        this.moveAndReveal(0, 1);
-        return true;
-      case 'ArrowLeft':
-        this.moveAndReveal(-1, 0);
-        return true;
-      case 'ArrowRight':
-        this.moveAndReveal(1, 0);
-        return true;
-      case 'PageUp':
-        this.moveAndReveal(0, -PAGE_ROWS);
-        return true;
-      case 'PageDown':
-        this.moveAndReveal(0, PAGE_ROWS);
-        return true;
       case 'Enter':
       case 'F2':
         if (this.state.activeCell) {
@@ -259,57 +262,11 @@ export class DataGrid {
     }
   }
 
-  private openEditor(cell: HTMLElement, position: CellPosition): void {
-    const value = this.state.cellValue(position);
-    const input = createElement('input', { className: 'cell-input' });
-    input.value = value ?? '';
-    let isFinished = false;
-
-    const finish = (shouldCommit: boolean, next?: CellPosition) => {
-      if (isFinished) {
-        return;
-      }
-      isFinished = true;
-      if (shouldCommit && input.value !== (value ?? '')) {
-        this.callbacks.onCommitCell(position, input.value);
-      } else {
-        cell.textContent = displayValue(value);
-      }
-      if (next) {
-        this.state.selectCell(next);
-        this.callbacks.onActiveCellChange();
-        this.element.querySelector('td.active')?.classList.remove('active');
-        const nextCell = this.findCell(next);
-        nextCell?.classList.add('active');
-        this.startEdit(next);
-      } else {
-        this.element.focus({ preventScroll: true });
-      }
-    };
-
-    input.addEventListener('keydown', (event) => {
-      event.stopPropagation();
-      if (event.key === 'Enter') {
-        finish(true);
-      } else if (event.key === 'Escape') {
-        finish(false);
-      } else if (event.key === 'Tab') {
-        event.preventDefault();
-        finish(true, this.state.nextEditableCell(position));
-      }
-    });
-    input.addEventListener('blur', () => finish(true));
-    input.addEventListener('mousedown', (event) => event.stopPropagation());
-    input.addEventListener('dblclick', (event) => event.stopPropagation());
-    cell.replaceChildren(input);
-    input.focus();
-    input.select();
+  private moveEditorTo(next: CellPosition): void {
+    this.state.selection.selectCell(next);
+    this.callbacks.onActiveCellChange();
+    this.element.querySelector('td.active')?.classList.remove('active');
+    this.findCell(next)?.classList.add('active');
+    this.startEdit(next);
   }
-}
-
-function displayValue(value: CellValue | undefined): string {
-  if (value === undefined) {
-    return l10n.t('default');
-  }
-  return value ?? NULL_PLACEHOLDER;
 }
