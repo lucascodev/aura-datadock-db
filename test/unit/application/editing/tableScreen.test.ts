@@ -20,8 +20,28 @@ describe('validateWhereExpression', () => {
     "note = 'please delete; this'",
     "status = 'x' -- comment; with semicolon",
     'id IN (SELECT id FROM orders)',
+    'EXISTS (SELECT 1 FROM orders)',
+    'selected = true',
+    'with_tax > 1',
+    `"select" = 1`,
+    "status = 'x' -- trailing;",
   ])('accepts %s', (expression) => {
     expect(() => validateWhereExpression('postgres', expression)).not.toThrow();
+  });
+
+  it.each([
+    'SELECT 1',
+    'select id from orders;',
+    '  SELECT 1',
+    '/* note */ SELECT 1',
+    '-- note\nSELECT 1',
+    'WITH x AS (SELECT 1) SELECT * FROM x',
+  ])('explains that %s is a whole query', (expression) => {
+    expect(() => validateWhereExpression('postgres', expression)).toThrow(/only takes a condition/);
+  });
+
+  it.each(['id = 1;', 'id = 1; -- note', ';'])('refuses the semicolon in %s', (expression) => {
+    expect(() => validateWhereExpression('postgres', expression)).toThrow(/single expression/);
   });
 
   it.each(['1 = 1; DROP TABLE orders', 'id = 1; SELECT 2'])('refuses a second statement in %s', (expression) => {

@@ -122,8 +122,9 @@ Nothing is written until **Save**, which applies everything in one transaction: 
 
 - A single read statement shows the result in the grid itself, read-only, until **Back to Table**. It returns at most the page size.
 - Anything else follows the path of a normal query, with the same confirmations, and the result appears in the results panel.
+- **Chart** runs a single read statement and opens the result as a chart in the results panel.
 
-The filter expression is SQL you write, and it can only be a single read statement. That check analyzes the text and does not see the effect of a function called inside the expression. On a read-only connection, the database itself blocks writes; on the others, the risk is the same as writing the query in the editor.
+The filter expression is only the condition of a `WHERE`, such as `id > 10`, without `SELECT` or `;`. To run a whole query, use **Show SQL**. The condition is SQL you write, and it can only read. That check analyzes the text and does not see the effect of a function called inside the expression. On a read-only connection, the database itself blocks writes; on the others, the risk is the same as writing the query in the editor.
 
 Each row is identified by its primary key, and each change must affect exactly one row. If someone else removed the row, nothing is saved. On the other hand, if two people edit the same row, the last write wins.
 
@@ -161,7 +162,7 @@ Statements in sequence run one at a time and stop at the first error, with one r
 
 ### Charts
 
-After running a query, switch from **Grid** to **Chart** in the results panel. The extension suggests a chart from the shape of the result, and you change the type and the columns in the fields above it.
+After running a query, switch from **Grid** to **Chart** in the results panel. On the table screen, use **Chart** in the **Show SQL** panel. The extension suggests a chart from the shape of the result, and you change the type and the columns in the fields above it.
 
 ```sql
 SELECT date_trunc('day', created_at) AS day, status, count(*) AS total

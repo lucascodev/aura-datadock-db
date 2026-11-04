@@ -16,6 +16,7 @@ export interface TableEditorDependencies {
   pageSize(): number;
   openSql(target: ConnectionTarget, sql: string): Promise<void>;
   runScript(target: ConnectionTarget, sql: string): Promise<boolean>;
+  runChart(target: ConnectionTarget, sql: string): Promise<boolean>;
   exportRows(target: ConnectionTarget, table: Pick<TableRef, 'namespace' | 'name'>, statement: ParameterizedStatement): Promise<void>;
   openTable(target: ConnectionTarget, table: Pick<TableRef, 'namespace' | 'name'>): Promise<void>;
   copyText(text: string): PromiseLike<void>;

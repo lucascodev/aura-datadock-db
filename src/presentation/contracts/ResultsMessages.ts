@@ -24,7 +24,7 @@ export interface ExportFormatView {
 
 export type ResultsViewState =
   | { readonly phase: 'running'; readonly connectionName: string; readonly sql: string }
-  | { readonly phase: 'done'; readonly connectionName: string; readonly results: readonly ResultSetView[]; readonly exportFormats: readonly ExportFormatView[] };
+  | { readonly phase: 'done'; readonly connectionName: string; readonly opensAsChart?: boolean; readonly results: readonly ResultSetView[]; readonly exportFormats: readonly ExportFormatView[] };
 
 export type ResultsHostMessage = { readonly type: 'state'; readonly state: ResultsViewState };
 

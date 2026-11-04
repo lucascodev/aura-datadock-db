@@ -4,6 +4,7 @@ import type { DataTabState } from '../state/DataTabState';
 
 interface SqlPanelCallbacks {
   onRun(sql: string): void;
+  onChart(sql: string): void;
   onOpenInEditor(sql: string): void;
   onCopy(sql: string): void;
   onBackToTable(): void;
@@ -34,6 +35,7 @@ export class SqlPanel {
     this.element = createElement('div', { className: 'sql-panel' }, [
       createElement('div', { className: 'sql-actions' }, [
         createElement('button', { text: l10n.t('▶ Run'), title: l10n.t('Run this SQL (Ctrl+Enter)'), onClick: () => this.run() }),
+        createElement('button', { className: 'secondary', text: l10n.t('Chart'), title: l10n.t('Run this query and show the result as a chart'), onClick: () => this.chart() }),
         this.backButton,
         createElement('button', { className: 'secondary', text: l10n.t('Reset'), title: l10n.t('Go back to the SQL of this view'), onClick: () => this.reset() }),
         createElement('button', { className: 'secondary', text: l10n.t('Copy'), onClick: () => this.callbacks.onCopy(this.editor.value) }),
@@ -54,6 +56,12 @@ export class SqlPanel {
   private run(): void {
     if (this.editor.value.trim()) {
       this.callbacks.onRun(this.editor.value);
+    }
+  }
+
+  private chart(): void {
+    if (this.editor.value.trim()) {
+      this.callbacks.onChart(this.editor.value);
     }
   }
 

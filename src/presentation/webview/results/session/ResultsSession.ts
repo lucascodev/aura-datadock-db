@@ -2,6 +2,7 @@ import type { ChartConfig } from '../../../../application/charts/model/config/Ch
 import type { ExportFormatView, ResultSetView, ResultsViewState } from '../../../contracts/ResultsMessages';
 import type { ChartView } from '../chart/ChartView';
 import type { ResultView } from '../model/ResultView';
+import { nextResultView } from './nextResultView';
 
 interface SavedChart {
   readonly columnsKey: string;
@@ -40,6 +41,7 @@ export class ResultsSession {
   receive(state: ResultsViewState): void {
     this.currentState = state;
     this.currentResultIndex = state.phase === 'done' ? defaultResultIndex(state.results) : 0;
+    this.currentView = nextResultView(this.currentView, state);
   }
 
   selectResult(index: number): void {

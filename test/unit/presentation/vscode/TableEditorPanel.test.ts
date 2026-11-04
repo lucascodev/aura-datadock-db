@@ -51,6 +51,7 @@ function setup(overrides: Partial<TableEditorDependencies> = {}, table = orders)
     pageSize: () => 100,
     openSql: vi.fn(async () => undefined),
     runScript: vi.fn(async () => true),
+    runChart: vi.fn(async () => true),
     exportRows: vi.fn(async () => undefined),
     openTable: vi.fn(async () => undefined),
     copyText: vi.fn(async () => undefined),
@@ -264,6 +265,37 @@ describe('TableEditorPanel', () => {
 
     expect(dependencies.openSql).toHaveBeenCalledWith(localTarget, expect.stringContaining(`SET "status" = 'paid'`));
     expect(adapter.applyStatements).not.toHaveBeenCalled();
+  });
+
+  describe('showing a chart from the panel below the rows', () => {
+    it('runs a single read through the protected path', async () => {
+      const { dependencies, editors } = setup();
+      await editors.show(localTarget, orders);
+      await currentPanel().receive({ type: 'chartSql', sql: 'SELECT status, count(*) FROM orders GROUP BY 1' });
+
+      expect(dependencies.runChart).toHaveBeenCalledWith(localTarget, 'SELECT status, count(*) FROM orders GROUP BY 1');
+      expect(messagesOf('scriptFinished')).toHaveLength(1);
+    });
+
+    it.each(['DELETE FROM orders WHERE id = 1', 'SELECT 1; SELECT 2', 'DROP TABLE orders'])('does not run %s', async (sql) => {
+      const { dependencies, editors } = setup();
+      await editors.show(localTarget, orders);
+      await currentPanel().receive({ type: 'chartSql', sql });
+
+      expect(dependencies.runChart).not.toHaveBeenCalled();
+      expect(dependencies.runScript).not.toHaveBeenCalled();
+      expect(messagesOf('failed')).toEqual([{ type: 'failed', message: 'A chart needs a single query that reads data.' }]);
+    });
+
+    it('does not claim that it ran when the person declined it', async () => {
+      const { dependencies, editors } = setup();
+      vi.mocked(dependencies.runChart).mockResolvedValue(false);
+      await editors.show(localTarget, orders);
+      await currentPanel().receive({ type: 'chartSql', sql: 'SELECT 1' });
+
+      expect(messagesOf('scriptFinished')).toEqual([]);
+      expect(messagesOf('failed')).toEqual([{ type: 'failed', message: '' }]);
+    });
   });
 
   describe('running SQL from the panel below the rows', () => {

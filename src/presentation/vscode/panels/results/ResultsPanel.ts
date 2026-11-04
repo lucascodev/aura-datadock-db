@@ -30,12 +30,13 @@ export class ResultsPanel {
     this.reveal(l10n.t('Running · {0}', connectionName));
   }
 
-  showOutcomes(connectionName: string, kind: DriverId, outcomes: readonly StatementOutcome[]): void {
+  showOutcomes(connectionName: string, kind: DriverId, outcomes: readonly StatementOutcome[], opensAsChart = false): void {
     this.outcomes = outcomes;
     this.kind = kind;
     this.publish({
       phase: 'done',
       connectionName,
+      opensAsChart,
       results: outcomes.map(toResultSetView),
       exportFormats: ROW_EXPORT_FORMATS.map(({ id, label }) => ({ id, label: label() })),
     });

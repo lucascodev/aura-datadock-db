@@ -4,6 +4,16 @@
 
 Todas as mudanças relevantes deste projeto são registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Adicionado
+
+- Botão **Gráfico** no painel de **Mostrar SQL** da tela da tabela, que abre o resultado de uma query de leitura como gráfico.
+
+### Corrigido
+
+- O campo de filtro agora explica que aceita só uma condição quando recebe uma query inteira ou um `;`, em vez de mostrar um erro de sintaxe do banco.
+
 ## [0.1.3] - 2026-11-04
 
 ### Adicionado
