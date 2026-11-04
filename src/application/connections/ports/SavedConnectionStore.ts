@@ -1,4 +1,4 @@
-import type { SavedConnection } from '../../../domain/connection/SavedConnection';
+import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
 
 export interface SavedConnectionStore {
   read(): readonly unknown[];

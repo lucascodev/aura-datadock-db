@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import type { SslOptions } from 'mysql2';
-import type { ConnectionTls } from '../../../domain/connection/ConnectionTls';
+import type { ConnectionTls } from '../../../domain/connection/model/ConnectionTls';
 
 export function toMysqlSsl(tls: ConnectionTls): SslOptions | undefined {
   switch (tls.mode) {

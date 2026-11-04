@@ -1,10 +1,10 @@
 import type { RowChange } from '../../../../application/editing/rows/RowChange';
 import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../../domain/database/DatabaseAdapter';
-import type { NamespaceSchema } from '../../../../domain/schema/NamespaceSchema';
-import type { ParameterizedStatement } from '../../../../domain/database/ParameterizedStatement';
-import type { TableRef } from '../../../../domain/schema/TableRef';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import * as vscode from 'vscode';
 
 export interface TableEditorDependencies {

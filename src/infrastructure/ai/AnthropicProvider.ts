@@ -1,6 +1,6 @@
 import { type AiProvider, type AiRequest } from '../../application/ai/AiProvider';
 import { AiConfigurationError } from '../../application/ai/AiConfigurationError';
-import { l10n } from '../../domain/i18n/l10n';
+import { l10n } from '../../domain/i18n/translation/l10n';
 
 const DEFAULT_MODEL = 'claude-sonnet-5-5';
 

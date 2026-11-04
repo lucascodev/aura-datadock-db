@@ -1,7 +1,7 @@
 import type { ChartConfig } from '../../../application/charts/model/ChartConfig';
 import { summarizeSql } from '../../../application/query/analysis/summarizeSql';
 import type { ExportFormatView, ResultSetView, ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../contracts/ResultsMessages';
-import { l10n, useL10nCatalog } from '../../../domain/i18n/l10n';
+import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/readL10nCatalog';
 import { createElement } from '../shared/createElement';
 import { connectToHost } from '../shared/vscodeApi';

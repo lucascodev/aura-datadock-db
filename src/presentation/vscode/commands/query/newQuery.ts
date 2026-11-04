@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
 import type { DataDockContext } from '../registry/DataDockContext';
 import { resolveConnection } from '../registry/pickConnection';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function newQuery(context: DataDockContext, node?: ConnectionNode, initialSql = ''): Promise<void> {
   if (node) {

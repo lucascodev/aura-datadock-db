@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import type { ConnectionTarget } from '../../src/domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../src/domain/database/DatabaseAdapter';
+import type { ConnectionTarget } from '../../src/domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
 import { createAdapter } from '../../src/infrastructure/database/factory/createAdapter';
 
 const POSTGRES_PORT = process.env.DATADOCK_TEST_POSTGRES_PORT;

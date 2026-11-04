@@ -1,13 +1,13 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { ParameterizedStatement } from '../../../domain/database/ParameterizedStatement';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
 import { bound, joinParts, toStatement } from '../../sql/statementTemplate';
 import type { TemplatePart } from '../../sql/TemplatePart';
 import type { TableFilter, TablePageRequest, TableRowSelection } from './tableFilters';
 import { validateWhereExpression } from './validateWhereExpression';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 interface TablePageQuery {
   readonly page: ParameterizedStatement;

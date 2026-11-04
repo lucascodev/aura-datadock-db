@@ -11,7 +11,7 @@ import { suggestProtection } from '../../../../src/application/connections/guida
 import { toConnectionTarget } from '../../../../src/application/connections/saved/toConnectionTarget';
 import { validateConnectionInput } from '../../../../src/application/connections/saved/validateConnectionInput';
 import { decideQueryGuard } from '../../../../src/application/query/execution/decideQueryGuard';
-import type { SavedConnection } from '../../../../src/domain/connection/SavedConnection';
+import type { SavedConnection } from '../../../../src/domain/connection/model/SavedConnection';
 
 const validInput: ConnectionInput = {
   name: 'Staging',

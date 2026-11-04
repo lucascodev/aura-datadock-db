@@ -1,4 +1,4 @@
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { DiagramPanel, diagramPositionsPrefix } from './DiagramPanel';
 import type { DiagramPanelDependencies } from './DiagramPanelDependencies';
 

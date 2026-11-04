@@ -3,7 +3,7 @@ import { createJsonEncoder, createNdjsonEncoder } from '../encoders/createJsonEn
 import { createMarkdownEncoder } from '../encoders/createMarkdownEncoder';
 import { createSqlInsertEncoder } from '../encoders/createSqlInsertEncoder';
 import type { RowExportFormat } from './RowExportFormat';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export const ROW_EXPORT_FORMATS: readonly RowExportFormat[] = [
   { id: 'csv', label: () => 'CSV', extension: 'csv', createEncoder: createCsvEncoder },

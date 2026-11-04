@@ -1,7 +1,7 @@
 import type { SchemaExportFormatId } from '../../../../application/schema/rendering/SchemaExportFormat';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { NamespaceSchema } from '../../../../domain/schema/NamespaceSchema';
-import type { TableRef } from '../../../../domain/schema/TableRef';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import * as vscode from 'vscode';
 
 export interface DiagramPanelDependencies {

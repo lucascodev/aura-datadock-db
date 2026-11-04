@@ -1,4 +1,4 @@
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export type FilterOperatorId = 'equals' | 'notEquals' | 'contains' | 'startsWith' | 'greaterThan' | 'lessThan' | 'isNull' | 'isNotNull';
 

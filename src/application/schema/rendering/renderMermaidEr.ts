@@ -1,6 +1,6 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { buildRelationships } from '../relationships/buildRelationships';
 import type { Relationship } from '../relationships/Relationship';
 

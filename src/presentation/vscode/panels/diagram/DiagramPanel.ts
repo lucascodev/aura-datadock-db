@@ -3,11 +3,11 @@ import type { DiagramPositions } from '../../../../application/diagram/model/Dia
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import type { SchemaExportFormatId } from '../../../../application/schema/rendering/SchemaExportFormat';
 import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/rendering/schemaExportFormats';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { saveImageFile } from '../shared/saveImageFile';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { DiagramHostMessage, DiagramImageFormat, DiagramWebviewMessage } from '../../../contracts/DiagramMessages';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { DiagramPanelDependencies } from './DiagramPanelDependencies';
 
 const VIEW_TYPE = 'auraDataDockDb.diagram';

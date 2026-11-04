@@ -1,4 +1,4 @@
-import type { RowBatch } from '../../../domain/database/RowBatch';
+import type { RowBatch } from '../../../domain/database/model/RowBatch';
 import type { RowEncoder } from './RowEncoder';
 import type { WriteRowBatchesResult } from './WriteRowBatchesResult';
 

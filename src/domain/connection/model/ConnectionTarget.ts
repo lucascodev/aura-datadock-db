@@ -1,5 +1,5 @@
 import type { ConnectionTls } from './ConnectionTls';
-import type { DriverId } from '../driver/DriverId';
+import type { DriverId } from '../../driver/model/DriverId';
 import type { SshSettings } from './SshSettings';
 
 type CredentialSource = 'container-env' | 'secret-storage' | 'missing';

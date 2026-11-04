@@ -5,7 +5,7 @@ import { EXPORT_PALETTE } from '../../../../src/application/diagram/render/expor
 import { layoutDiagram } from '../../../../src/application/diagram/layout/layoutDiagram';
 import { measureDiagram, renderDiagramSvg } from '../../../../src/application/diagram/render/renderDiagramSvg';
 import { routeEdge } from '../../../../src/application/diagram/layout/routeEdge';
-import type { NamespaceSchema } from '../../../../src/domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../../src/domain/schema/model/NamespaceSchema';
 import { shopSchema } from '../../../fixtures/shopSchema';
 
 const tableMap = (model: DiagramModel) => new Map(model.tables.map((table) => [table.name, table]));

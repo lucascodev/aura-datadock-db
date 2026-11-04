@@ -1,8 +1,8 @@
-import type { NamespaceSchema } from '../schema/NamespaceSchema';
-import type { ParameterizedStatement } from './ParameterizedStatement';
-import type { QueryResult } from './QueryResult';
-import type { RowBatch } from './RowBatch';
-import type { TableRef } from '../schema/TableRef';
+import type { NamespaceSchema } from '../../schema/model/NamespaceSchema';
+import type { ParameterizedStatement } from '../model/ParameterizedStatement';
+import type { QueryResult } from '../model/QueryResult';
+import type { RowBatch } from '../model/RowBatch';
+import type { TableRef } from '../../schema/model/TableRef';
 
 export interface DatabaseAdapter {
   connect(): Promise<void>;

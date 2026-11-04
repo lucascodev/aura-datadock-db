@@ -7,9 +7,9 @@ import { runStatements } from '../../../../application/query/execution/runStatem
 import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
 import { summarizeOutcomes } from '../../../../application/query/execution/summarizeOutcomes';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import type { DataDockContext } from '../registry/DataDockContext';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function executeQuery(context: DataDockContext, target: ConnectionTarget, sql: string): Promise<boolean> {
   const classification = classifyQuery(sql, target.kind);

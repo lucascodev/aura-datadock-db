@@ -1,5 +1,5 @@
-import type { TlsMode } from '../../../domain/connection/ConnectionTls';
-import type { DriverId } from '../../../domain/driver/DriverId';
+import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
 
 export interface ConnectionInput {
   readonly name: string;

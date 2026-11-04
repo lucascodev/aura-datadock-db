@@ -6,7 +6,7 @@ import { renderMermaidEr } from '../../../../src/application/schema/rendering/re
 import { SchemaCache } from '../../../../src/application/schema/loading/SchemaCache';
 import { SCHEMA_EXPORT_FORMATS } from '../../../../src/application/schema/rendering/schemaExportFormats';
 import { describeSchema } from '../../../../src/application/schema/loading/describeSchema';
-import type { NamespaceSchema } from '../../../../src/domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../../src/domain/schema/model/NamespaceSchema';
 import { shopSchema } from '../../../fixtures/shopSchema';
 
 describe('buildRelationships', () => {

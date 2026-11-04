@@ -8,7 +8,7 @@ import { axisPosition, orderLabels } from '../support/compareAxisValues';
 import { foldByWeight, otherLabel } from '../support/foldByWeight';
 import { createTally, tallyNotices } from '../support/createRowTally';
 import type { RowTally } from '../support/RowTally';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const MAX_SERIES = 8;
 

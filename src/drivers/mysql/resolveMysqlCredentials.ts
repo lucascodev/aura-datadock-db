@@ -1,4 +1,4 @@
-import type { ResolvedCredentials } from '../../domain/connection/ResolvedCredentials';
+import type { ResolvedCredentials } from '../../domain/connection/model/ResolvedCredentials';
 
 export function resolveMysqlCredentials(env: Readonly<Record<string, string>>): ResolvedCredentials {
   const database = env.MYSQL_DATABASE || env.MARIADB_DATABASE || undefined;

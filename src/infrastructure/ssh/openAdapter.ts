@@ -1,11 +1,11 @@
 import { createAdapter } from '../database/factory/createAdapter';
-import type { ConnectionTarget } from '../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../domain/database/DatabaseAdapter';
+import type { ConnectionTarget } from '../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../domain/database/ports/DatabaseAdapter';
 import { LOOPBACK_ADDRESS } from './buildSshArgs';
 import { openSshTunnel } from './openSshTunnel';
 import type { SshTunnel, SshTunnelOptions } from './SshTunnel';
 import { TunneledAdapter } from './TunneledAdapter';
-import { l10n } from '../../domain/i18n/l10n';
+import { l10n } from '../../domain/i18n/translation/l10n';
 
 export async function openAdapter(target: ConnectionTarget, tunnelOptions?: SshTunnelOptions): Promise<DatabaseAdapter> {
   if (!target.ssh) {

@@ -1,4 +1,4 @@
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
 import type { StatementOutcome } from './StatementOutcome';
 
 interface RunStatementsOptions {

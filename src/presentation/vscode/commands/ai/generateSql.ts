@@ -4,7 +4,7 @@ import { describeSchema } from '../../../../application/schema/loading/describeS
 import type { DataDockContext } from '../registry/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
 import { resolveConnection } from '../registry/pickConnection';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const MAX_SCHEMA_TABLES = 80;
 

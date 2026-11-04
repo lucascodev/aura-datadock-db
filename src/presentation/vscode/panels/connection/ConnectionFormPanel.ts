@@ -6,12 +6,12 @@ import type { SavedConnections } from '../../../../application/connections/saved
 import { toConnectionTarget } from '../../../../application/connections/saved/toConnectionTarget';
 import { validateConnectionInput } from '../../../../application/connections/saved/validateConnectionInput';
 import type { ConnectionValidation } from '../../../../application/connections/saved/ConnectionValidation';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../../domain/database/DatabaseAdapter';
-import type { SavedConnection } from '../../../../domain/connection/SavedConnection';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
+import type { SavedConnection } from '../../../../domain/connection/model/SavedConnection';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { ConnectionFileField, ConnectionFormHostMessage, ConnectionFormWebviewMessage } from '../../../contracts/ConnectionFormMessages';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const VIEW_TYPE = 'auraDataDockDb.connectionForm';
 const TEST_CONNECTION_ID = 'connection-test';

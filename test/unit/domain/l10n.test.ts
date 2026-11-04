@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { l10n, useL10nCatalog } from '../../../src/domain/i18n/l10n';
+import { l10n, useL10nCatalog } from '../../../src/domain/i18n/translation/l10n';
 
 describe('l10n', () => {
   afterEach(() => useL10nCatalog({ locale: 'en' }));

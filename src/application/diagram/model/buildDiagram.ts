@@ -1,5 +1,5 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { buildRelationships } from '../../schema/relationships/buildRelationships';
 import type { Relationship } from '../../schema/relationships/Relationship';
 import {

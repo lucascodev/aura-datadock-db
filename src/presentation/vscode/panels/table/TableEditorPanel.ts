@@ -11,14 +11,14 @@ import { decideQueryGuard } from '../../../../application/query/execution/decide
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../../domain/database/DatabaseAdapter';
-import type { NamespaceSchema } from '../../../../domain/schema/NamespaceSchema';
-import type { CellValue, ParameterizedStatement } from '../../../../domain/database/ParameterizedStatement';
-import type { TableDefinition } from '../../../../domain/schema/TableDefinition';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../../domain/database/ports/DatabaseAdapter';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
+import type { CellValue, ParameterizedStatement } from '../../../../domain/database/model/ParameterizedStatement';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage, TablePropertiesView } from '../../../contracts/TableEditorMessages';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { TableEditorDependencies, TableEditorOptions } from './TableEditorDependencies';
 
 const VIEW_TYPE = 'auraDataDockDb.tableEditor';

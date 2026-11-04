@@ -1,10 +1,10 @@
 import { spawn, type ChildProcess } from 'node:child_process';
 import { connect, createServer } from 'node:net';
-import type { SshSettings } from '../../domain/connection/SshSettings';
+import type { SshSettings } from '../../domain/connection/model/SshSettings';
 import { buildSshArgs, LOOPBACK_ADDRESS } from './buildSshArgs';
 import type { TunnelEndpoint } from './TunnelEndpoint';
 import { explainSshFailure } from './explainSshFailure';
-import { l10n } from '../../domain/i18n/l10n';
+import { l10n } from '../../domain/i18n/translation/l10n';
 import type { SshTunnelOptions, SshTunnel } from './SshTunnel';
 
 const READY_TIMEOUT_MS = 20_000;

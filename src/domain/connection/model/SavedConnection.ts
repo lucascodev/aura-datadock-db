@@ -1,5 +1,5 @@
 import type { TlsMode } from './ConnectionTls';
-import type { DriverId } from '../driver/DriverId';
+import type { DriverId } from '../../driver/model/DriverId';
 import type { SshSettings } from './SshSettings';
 
 export interface SavedConnection {

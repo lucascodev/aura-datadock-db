@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import type { ConnectionManager } from '../../../../application/connections/lifecycle/ConnectionManager';
-import type { ConnectionSourceKind } from '../../../../domain/connection/ConnectionTarget';
+import type { ConnectionSourceKind } from '../../../../domain/connection/model/ConnectionTarget';
 import { ConnectionGroupNode } from '../nodes/ConnectionGroupNode';
 import { ConnectionNode } from '../nodes/ConnectionNode';
 import { MessageNode } from '../nodes/MessageNode';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type Node = ConnectionGroupNode | ConnectionNode | MessageNode;
 

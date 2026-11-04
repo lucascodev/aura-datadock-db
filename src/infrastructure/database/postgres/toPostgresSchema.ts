@@ -1,7 +1,7 @@
-import type { ForeignKey } from '../../../domain/schema/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import type { PostgresColumnRow, PostgresConstraintRow, PostgresSchemaRows } from './postgresSchemaRows';
 
 const REFERENTIAL_ACTIONS: Readonly<Record<string, string | undefined>> = {

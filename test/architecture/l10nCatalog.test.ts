@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { listSourceFiles, toSourcePath } from '../fixtures/sourceTree';
 
-const L10N_MODULE = 'domain/i18n/l10n.ts';
+const L10N_MODULE = 'domain/i18n/translation/l10n.ts';
 const BUNDLE_FILE = 'l10n/bundle.l10n.pt-br.json';
 const KEY_CALL = /l10n\.t\(\s*('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")/g;
 const ANY_CALL = /l10n\.t\(\s*([^\s])/g;

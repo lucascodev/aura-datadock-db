@@ -2,9 +2,9 @@ import type { TableEditability } from '../../application/editing/rows/TableEdita
 import type { RowChange } from '../../application/editing/rows/RowChange';
 import type { TablePageRequest, TableRowSelection } from '../../application/editing/browsing/tableFilters';
 import type { IncomingReference } from '../../application/schema/relationships/IncomingReference';
-import type { NamespaceSchema } from '../../domain/schema/NamespaceSchema';
-import type { CellValue } from '../../domain/database/ParameterizedStatement';
-import type { TableDefinition } from '../../domain/schema/TableDefinition';
+import type { NamespaceSchema } from '../../domain/schema/model/NamespaceSchema';
+import type { CellValue } from '../../domain/database/model/ParameterizedStatement';
+import type { TableDefinition } from '../../domain/schema/model/TableDefinition';
 
 export interface TableColumnView {
   readonly name: string;

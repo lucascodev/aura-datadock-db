@@ -1,8 +1,8 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { ForeignKey } from '../../../domain/schema/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
-import type { TableIndex } from '../../../domain/schema/TableIndex';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
+import type { TableIndex } from '../../../domain/schema/model/TableIndex';
 import type { MysqlForeignKeyRow, MysqlIndexRow, MysqlSchemaRows } from './mysqlSchemaRows';
 import { normalizeMysqlDefault } from './normalizeMysqlDefault';
 

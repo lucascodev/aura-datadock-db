@@ -2,7 +2,7 @@ import { renderDbml } from './renderDbml';
 import { renderDdl } from './renderDdl';
 import { renderMermaidEr } from './renderMermaidEr';
 import type { SchemaExportFormat } from './SchemaExportFormat';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export const SCHEMA_EXPORT_FORMATS: readonly SchemaExportFormat[] = [
   { id: 'ddl', label: () => 'SQL DDL', extension: 'sql', languageId: 'sql', render: (schema) => renderDdl(schema) },

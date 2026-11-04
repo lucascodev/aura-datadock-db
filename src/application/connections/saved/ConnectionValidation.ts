@@ -1,4 +1,4 @@
-import type { SavedConnection } from '../../../domain/connection/SavedConnection';
+import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
 import type { ConnectionInput } from './ConnectionInput';
 
 export type ConnectionFieldErrors = Partial<Record<keyof ConnectionInput, string>>;

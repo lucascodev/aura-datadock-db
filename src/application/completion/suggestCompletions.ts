@@ -1,6 +1,6 @@
-import type { DriverId } from '../../domain/driver/DriverId';
-import type { NamespaceSchema } from '../../domain/schema/NamespaceSchema';
-import type { TableDefinition } from '../../domain/schema/TableDefinition';
+import type { DriverId } from '../../domain/driver/model/DriverId';
+import type { NamespaceSchema } from '../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../domain/schema/model/TableDefinition';
 import { quoteIfNeeded } from '../sql/quoteIfNeeded';
 import { statementAtOffset } from '../query/analysis/statementAtOffset';
 import { scanStatements } from '../query/analysis/splitStatements';

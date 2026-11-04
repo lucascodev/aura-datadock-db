@@ -1,7 +1,7 @@
-import type { DriverDescriptor } from '../../domain/driver/DriverDescriptor';
-import type { DriverId } from '../../domain/driver/DriverId';
+import type { DriverDescriptor } from '../../domain/driver/model/DriverDescriptor';
+import type { DriverId } from '../../domain/driver/model/DriverId';
 import { DRIVER_DESCRIPTORS } from './driverDescriptors';
-import { l10n } from '../../domain/i18n/l10n';
+import { l10n } from '../../domain/i18n/translation/l10n';
 
 export function listDrivers(): readonly DriverDescriptor[] {
   return DRIVER_DESCRIPTORS;

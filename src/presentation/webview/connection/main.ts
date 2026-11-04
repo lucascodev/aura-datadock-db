@@ -1,11 +1,11 @@
 import type { ConnectionInput } from '../../../application/connections/saved/ConnectionInput';
 import { parseConnectionString } from '../../../application/connections/saved/parseConnectionString';
 import { suggestProtection } from '../../../application/connections/guidance/suggestProtection';
-import type { TlsMode } from '../../../domain/connection/ConnectionTls';
-import type { DriverId } from '../../../domain/driver/DriverId';
+import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
 import type { ConnectionFileField, ConnectionFormHostMessage, ConnectionFormWebviewMessage } from '../../contracts/ConnectionFormMessages';
-import { l10n, useL10nCatalog } from '../../../domain/i18n/l10n';
+import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/readL10nCatalog';
 import { createElement } from '../shared/createElement';
 import { connectToHost } from '../shared/vscodeApi';

@@ -1,4 +1,4 @@
-import type { L10nCatalog } from './L10nCatalog';
+import type { L10nCatalog } from '../model/L10nCatalog';
 
 
 type L10nArgument = string | number | boolean;

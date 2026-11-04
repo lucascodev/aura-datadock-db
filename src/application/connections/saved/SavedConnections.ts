@@ -1,6 +1,6 @@
-import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import type { SavedConnection } from '../../../domain/connection/SavedConnection';
+import type { ConnectionSource } from '../../../domain/connection/ports/ConnectionSource';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
 import { findDriver } from '../../../drivers/catalog/driverCatalog';
 import { toConnectionTarget } from './toConnectionTarget';
 import { isSafeCommandValue } from './validateConnectionInput';

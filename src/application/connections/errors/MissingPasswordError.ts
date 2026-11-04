@@ -1,5 +1,5 @@
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import { l10n } from '../../../domain/i18n/l10n';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export class MissingPasswordError extends Error {
   constructor(readonly target: ConnectionTarget) {

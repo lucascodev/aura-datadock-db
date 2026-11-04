@@ -1,8 +1,8 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { TableColumn } from '../../../domain/schema/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { TableColumn } from '../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { TableEditability } from './TableEditability';
 
 const NOT_EDITABLE: TableEditability = { canInsert: false, canUpdate: false, canDelete: false };

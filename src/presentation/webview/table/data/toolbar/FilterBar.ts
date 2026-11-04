@@ -1,9 +1,9 @@
 import { applyFilterCompletion, suggestFilterCompletions } from '../../../../../application/editing/browsing/suggestFilterCompletions';
 import type { FilterCompletions, FilterSuggestion } from '../../../../../application/editing/browsing/FilterCompletions';
 import { FILTER_OPERATORS } from '../../../../../application/editing/browsing/tableFilters';
-import type { DriverId } from '../../../../../domain/driver/DriverId';
+import type { DriverId } from '../../../../../domain/driver/model/DriverId';
 import { createElement } from '../../../shared/createElement';
-import { l10n } from '../../../../../domain/i18n/l10n';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { DataTabState } from '../state/DataTabState';
 
 interface FilterBarCallbacks {

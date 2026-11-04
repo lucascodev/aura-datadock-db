@@ -4,8 +4,8 @@ import { describeColumns } from '../../src/application/charts/inference/inferCol
 import { suggestChart } from '../../src/application/charts/inference/suggestChart';
 import type { ChartInput } from '../../src/application/charts/model/ChartInput';
 import { toConnectionTarget } from '../../src/application/connections/saved/toConnectionTarget';
-import type { DatabaseAdapter } from '../../src/domain/database/DatabaseAdapter';
-import type { DriverId } from '../../src/domain/driver/DriverId';
+import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
+import type { DriverId } from '../../src/domain/driver/model/DriverId';
 import { createAdapter } from '../../src/infrastructure/database/factory/createAdapter';
 import { toResultSetView } from '../../src/presentation/vscode/panels/results/toResultSetView';
 

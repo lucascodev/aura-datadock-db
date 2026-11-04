@@ -5,7 +5,7 @@ import type { ChartInput } from '../model/ChartInput';
 import { computeHistogram } from '../statistics/computeHistogram';
 import { columnIndex } from '../support/columnAccess';
 import { createTally, tallyNotices } from '../support/createRowTally';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function buildHistogramData(input: ChartInput, config: ChartConfig): HistogramChartData | EmptyChartData {
   const tally = createTally();

@@ -1,8 +1,8 @@
 import { renderTextTable } from '../../../application/editing/browsing/renderTextTable';
 import type { FilterOperatorId } from '../../../application/editing/browsing/tableFilters';
-import type { CellValue } from '../../../domain/database/ParameterizedStatement';
+import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage } from '../../contracts/TableEditorMessages';
-import { l10n, useL10nCatalog } from '../../../domain/i18n/l10n';
+import { l10n, useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/readL10nCatalog';
 import { createElement } from '../shared/createElement';
 import { Tabs } from '../shared/Tabs';

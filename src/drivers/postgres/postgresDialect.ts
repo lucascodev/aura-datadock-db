@@ -1,4 +1,4 @@
-import type { SqlDialect } from '../../domain/driver/SqlDialect';
+import type { SqlDialect } from '../../domain/driver/model/SqlDialect';
 
 export const postgresDialect: SqlDialect = {
   identifierQuote: '"',

@@ -1,4 +1,4 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 import type { IncomingReference } from './IncomingReference';
 
 export function findIncomingReferences(schema: NamespaceSchema, tableName: string): IncomingReference[] {

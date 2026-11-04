@@ -1,13 +1,13 @@
 import { Client, types, type ClientConfig, type CustomTypesConfig, type FieldDef } from 'pg';
 import Cursor from 'pg-cursor';
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import { type CellValue, type ParameterizedStatement } from '../../../domain/database/ParameterizedStatement';
-import { assertExpectedRows } from '../../../domain/database/assertExpectedRows';
-import type { QueryResult } from '../../../domain/database/QueryResult';
-import type { RowBatch } from '../../../domain/database/RowBatch';
-import type { TableRef } from '../../../domain/schema/TableRef';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import { type CellValue, type ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
+import { assertExpectedRows } from '../../../domain/database/rules/assertExpectedRows';
+import type { QueryResult } from '../../../domain/database/model/QueryResult';
+import type { RowBatch } from '../../../domain/database/model/RowBatch';
+import type { TableRef } from '../../../domain/schema/model/TableRef';
 import { quoteTable } from '../../../drivers/catalog/quoteIdentifier';
 import {
   BACKEND_PID_SQL,

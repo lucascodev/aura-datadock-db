@@ -8,7 +8,7 @@ import { QueryRunTracker } from '../../../../src/application/query/execution/Que
 import { runStatements } from '../../../../src/application/query/execution/runStatements';
 import { summarizeOutcomes } from '../../../../src/application/query/execution/summarizeOutcomes';
 import { summarizeSql } from '../../../../src/application/query/analysis/summarizeSql';
-import type { QueryResult } from '../../../../src/domain/database/QueryResult';
+import type { QueryResult } from '../../../../src/domain/database/model/QueryResult';
 
 const emptyResult: QueryResult = { columns: ['a'], rows: [[1]], truncated: false, durationMs: 5 };
 

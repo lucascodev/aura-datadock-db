@@ -11,7 +11,7 @@ import { createElement } from '../../shared/createElement';
 import type { ChartRenderer } from '../../chart/renderer/ChartRenderer';
 import { renderChartControls } from './ChartControls';
 import { loadChartModule } from './loadChartModule';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const FALLBACK_KIND: ChartKind = 'bar';
 

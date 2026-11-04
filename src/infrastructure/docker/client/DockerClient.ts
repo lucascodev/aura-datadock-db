@@ -1,7 +1,7 @@
 import { request } from 'node:http';
 import type { DockerContainerDetails, DockerContainerSummary } from './DockerContainer';
 import type { DockerEndpoint } from './DockerEndpoint';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 import { DockerUnavailableError } from '../errors/DockerUnavailableError';
 
 const REQUEST_TIMEOUT_MS = 5000;

@@ -1,6 +1,6 @@
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
-import type { ForeignKey } from '../../../domain/schema/ForeignKey';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
+import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 
 interface DescribeSchemaOptions {
   readonly maxTables: number;

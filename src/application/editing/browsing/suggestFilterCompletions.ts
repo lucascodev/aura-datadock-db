@@ -1,4 +1,4 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { quoteIfNeeded } from '../../sql/quoteIfNeeded';
 import type { FilterSuggestion, FilterCompletions } from './FilterCompletions';
 

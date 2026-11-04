@@ -1,4 +1,4 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 
 export type SchemaExportFormatId = 'ddl' | 'mermaid' | 'dbml' | 'json';
 

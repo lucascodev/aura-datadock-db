@@ -1,6 +1,6 @@
 import { type AiProvider, type AiRequest } from '../../application/ai/AiProvider';
 import { AiConfigurationError } from '../../application/ai/AiConfigurationError';
-import { l10n } from '../../domain/i18n/l10n';
+import { l10n } from '../../domain/i18n/translation/l10n';
 
 export class OpenAiProvider implements AiProvider {
   readonly label = 'OpenAI';

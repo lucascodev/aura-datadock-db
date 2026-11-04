@@ -3,7 +3,7 @@ import { createElement } from '../../shared/createElement';
 import { filterRows, nextSort, sortRows } from './orderRows';
 import type { ResultRow } from './ResultRow';
 import type { SortState } from './SortState';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const ROW_HEIGHT = 24;
 const OVERSCAN_ROWS = 20;

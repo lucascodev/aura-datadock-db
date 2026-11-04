@@ -2,15 +2,15 @@ import * as vscode from 'vscode';
 import type { ConnectionManager } from '../../../../application/connections/lifecycle/ConnectionManager';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import type { SchemaCache } from '../../../../application/schema/loading/SchemaCache';
-import type { TableDefinition } from '../../../../domain/schema/TableDefinition';
-import type { TableRef } from '../../../../domain/schema/TableRef';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import { ColumnNode } from '../nodes/ColumnNode';
 import { toErrorNode } from './describeConnectionError';
 import { MessageNode } from '../nodes/MessageNode';
 import { NamespaceNode } from '../nodes/NamespaceNode';
 import { TableNode } from '../nodes/TableNode';
 import { TableSectionNode } from '../nodes/TableSectionNode';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type SchemaNode = NamespaceNode | TableNode | TableSectionNode | ColumnNode | MessageNode;
 

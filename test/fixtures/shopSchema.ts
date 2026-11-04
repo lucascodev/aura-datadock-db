@@ -1,6 +1,6 @@
-import type { NamespaceSchema } from '../../src/domain/schema/NamespaceSchema';
-import type { TableColumn } from '../../src/domain/schema/TableColumn';
-import type { TableDefinition } from '../../src/domain/schema/TableDefinition';
+import type { NamespaceSchema } from '../../src/domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../src/domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../src/domain/schema/model/TableDefinition';
 
 function column(name: string, dataType: string, overrides: Partial<TableColumn> = {}): TableColumn {
   return { name, dataType, nullable: false, isPrimaryKey: false, ...overrides };

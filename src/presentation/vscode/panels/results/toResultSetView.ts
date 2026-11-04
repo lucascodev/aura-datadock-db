@@ -1,6 +1,6 @@
 import { formatValue } from '../../../../application/format/formatValue';
 import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
-import type { QueryResult } from '../../../../domain/database/QueryResult';
+import type { QueryResult } from '../../../../domain/database/model/QueryResult';
 import type { ResultColumnView, ResultSetView } from '../../../contracts/ResultsMessages';
 
 export function toResultSetView(outcome: StatementOutcome): ResultSetView {

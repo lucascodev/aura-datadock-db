@@ -10,14 +10,14 @@ import {
   buildTruncateTable,
 } from '../../../../application/editing/structure/buildStructureChange';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
 import { getDriver } from '../../../../drivers/catalog/driverCatalog';
 import type { ColumnNode } from '../../tree/nodes/ColumnNode';
 import type { NamespaceNode } from '../../tree/nodes/NamespaceNode';
 import type { TableNode } from '../../tree/nodes/TableNode';
 import type { DataDockContext } from '../registry/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 
 export async function createTable(context: DataDockContext, node?: NamespaceNode): Promise<void> {

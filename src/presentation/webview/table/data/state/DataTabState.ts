@@ -3,8 +3,8 @@ import { duplicateRowValues } from '../../../../../application/editing/rows/dupl
 import { addInsert, clearInsertValue, editCell, editInsert, findUpdate, isMarkedForDeletion, removeInsert, toggleDeletion } from '../../../../../application/editing/rows/pendingChanges';
 import type { CellValues, RowChange } from '../../../../../application/editing/rows/RowChange';
 import type { TableFilter, TablePageRequest, TableRowSelection, TableSort } from '../../../../../application/editing/browsing/tableFilters';
-import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
-import { l10n } from '../../../../../domain/i18n/l10n';
+import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { CustomResultView, TableColumnView } from '../../../../contracts/TableEditorMessages';
 import type { DataViewMode } from '../model/DataViewMode';
 import type { CellPosition } from '../model/CellPosition';

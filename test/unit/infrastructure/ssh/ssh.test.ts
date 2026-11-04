@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { DatabaseAdapter } from '../../../../src/domain/database/DatabaseAdapter';
+import type { DatabaseAdapter } from '../../../../src/domain/database/ports/DatabaseAdapter';
 import { buildSshArgs } from '../../../../src/infrastructure/ssh/buildSshArgs';
 import { explainSshFailure } from '../../../../src/infrastructure/ssh/explainSshFailure';
 import { openSshTunnel } from '../../../../src/infrastructure/ssh/openSshTunnel';

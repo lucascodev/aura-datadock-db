@@ -6,7 +6,7 @@ import { computeLinearRegression } from '../statistics/computeLinearRegression';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { foldByWeight, otherLabel } from '../support/foldByWeight';
 import { createTally, tallyNotices } from '../support/createRowTally';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const MAX_SERIES = 3;
 

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { TableRef } from '../../../../domain/schema/TableRef';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import type { TableNode } from '../../tree/nodes/TableNode';
 import type { DataDockContext } from '../registry/DataDockContext';
 

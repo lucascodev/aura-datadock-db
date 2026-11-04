@@ -1,5 +1,5 @@
 import type { DriverId } from './DriverId';
-import type { ResolvedCredentials } from '../connection/ResolvedCredentials';
+import type { ResolvedCredentials } from '../../connection/model/ResolvedCredentials';
 import type { SqlDialect } from './SqlDialect';
 
 interface DriverDockerSupport {

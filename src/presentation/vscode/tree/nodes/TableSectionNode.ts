@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import type { TableDefinition } from '../../../../domain/schema/TableDefinition';
-import { l10n } from '../../../../domain/i18n/l10n';
+import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type TableSection = 'columns' | 'indexes' | 'foreignKeys';
 

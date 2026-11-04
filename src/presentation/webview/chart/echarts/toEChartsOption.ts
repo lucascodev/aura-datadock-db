@@ -7,7 +7,7 @@ import type {
   PieChartData,
   ScatterChartData,
 } from '../../../../application/charts/model/ChartData';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 import type { ChartPalette } from '../palette/ChartPalette';
 import { createAxisFormatter, formatAxisNumber, formatBinEdge, formatFullNumber } from './formatChartNumber';
 import type { TooltipContent } from './TooltipContent';

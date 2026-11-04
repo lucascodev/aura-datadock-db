@@ -1,5 +1,5 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { SqlDialect } from '../../../domain/driver/SqlDialect';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { SqlDialect } from '../../../domain/driver/model/SqlDialect';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import type { SqlStatement } from './SqlStatement';
 

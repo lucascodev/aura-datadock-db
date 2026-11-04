@@ -1,5 +1,5 @@
 import type { ChartKind } from './ChartKind';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { ChartKindDefinition } from './ChartKindDefinition';
 
 export const CHART_KINDS: readonly ChartKindDefinition[] = [

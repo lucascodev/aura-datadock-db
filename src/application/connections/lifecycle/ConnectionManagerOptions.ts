@@ -1,5 +1,5 @@
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
 
 export interface ConnectionManagerOptions {
   readonly readOnly: (target: ConnectionTarget) => boolean;

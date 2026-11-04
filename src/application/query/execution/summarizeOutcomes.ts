@@ -1,4 +1,4 @@
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import type { QueryHistoryEntry } from '../history/QueryHistoryEntry';
 import type { StatementOutcome } from './StatementOutcome';
 

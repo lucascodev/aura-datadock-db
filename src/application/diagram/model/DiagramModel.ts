@@ -1,4 +1,4 @@
-import type { TableKind } from '../../../domain/schema/TableRef';
+import type { TableKind } from '../../../domain/schema/model/TableRef';
 import type { RelationshipCardinality } from '../../schema/relationships/Relationship';
 
 export type DiagramDetail = 'full' | 'keys' | 'entities';

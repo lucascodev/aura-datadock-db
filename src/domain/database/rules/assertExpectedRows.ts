@@ -1,5 +1,5 @@
-import { l10n } from '../i18n/l10n';
-import type { ParameterizedStatement } from './ParameterizedStatement';
+import { l10n } from '../../i18n/translation/l10n';
+import type { ParameterizedStatement } from '../model/ParameterizedStatement';
 
 export function assertExpectedRows(statement: ParameterizedStatement, affectedRows: number): void {
   if (statement.expectedRows !== undefined && affectedRows !== statement.expectedRows) {

@@ -1,4 +1,4 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
 
 export function selectTableNeighborhood(schema: NamespaceSchema, tableName: string): NamespaceSchema {
   const table = schema.tables.find((candidate) => candidate.name === tableName);

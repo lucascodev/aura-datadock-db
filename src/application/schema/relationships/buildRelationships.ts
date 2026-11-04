@@ -1,6 +1,6 @@
-import type { ForeignKey } from '../../../domain/schema/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import type { Relationship, RelationshipCardinality } from './Relationship';
 
 export function buildRelationships(schema: NamespaceSchema): Relationship[] {

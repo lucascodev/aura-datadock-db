@@ -12,7 +12,7 @@ import { buildHeatmapData } from './buildHeatmapData';
 import { buildHistogramData } from './buildHistogramData';
 import { buildPieData } from './buildPieData';
 import { buildScatterData } from './buildScatterData';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 function truncatedNotice(): ChartNotice {
   return {

@@ -1,9 +1,9 @@
-import { type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import { isReachable } from '../../../domain/connection/isReachable';
-import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
+import { type ConnectionSourceKind, type ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import { isReachable } from '../../../domain/connection/rules/isReachable';
+import type { ConnectionSource } from '../../../domain/connection/ports/ConnectionSource';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
 import { explainConnectionFailure } from '../guidance/explainConnectionFailure';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { PasswordStore } from '../ports/PasswordStore';
 import type { ConnectionManagerOptions } from './ConnectionManagerOptions';
 import { MissingPasswordError } from '../errors/MissingPasswordError';
