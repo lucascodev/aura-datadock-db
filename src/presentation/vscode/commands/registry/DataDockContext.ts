@@ -6,7 +6,6 @@ import type { QueryDocumentBindings } from '../../../../application/query/docume
 import type { QueryHistory } from '../../../../application/query/history/QueryHistory';
 import type { QueryRunTracker } from '../../../../application/query/execution/QueryRunTracker';
 import type { SchemaCache } from '../../../../application/schema/loading/SchemaCache';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
 import type { ConnectionFormPanel } from '../../panels/connection/ConnectionFormPanel';
 import type { DiagramPanels } from '../../panels/diagram/DiagramPanels';
 import type { ResultsPanel } from '../../panels/results/ResultsPanel';
@@ -30,12 +29,4 @@ export interface DataDockContext {
   refresh(): Promise<void>;
   config(): vscode.WorkspaceConfiguration;
   createAiProvider(): Promise<AiProvider>;
-}
-
-export function passwordSecretName(target: Pick<ConnectionTarget, 'id' | 'name' | 'source' | 'credentialScope'>): string {
-  return target.source === 'saved' ? savedPasswordSecretName(target.id) : `auraDataDockDb.password.${target.credentialScope}/${target.name}`;
-}
-
-export function savedPasswordSecretName(connectionId: string): string {
-  return `auraDataDockDb.connection.${connectionId}.password`;
 }

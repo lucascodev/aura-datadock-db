@@ -1,11 +1,6 @@
-export type SortDirection = 'ascending' | 'descending';
+import type { SortState } from './SortState';
+import type { ResultRow } from './ResultRow';
 
-export interface SortState {
-  readonly columnIndex: number;
-  readonly direction: SortDirection;
-}
-
-export type ResultRow = readonly (string | null)[];
 
 export function filterRows(rows: readonly ResultRow[], filter: string): ResultRow[] {
   const needle = filter.trim().toLowerCase();

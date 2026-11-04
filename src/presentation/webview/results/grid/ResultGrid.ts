@@ -1,6 +1,8 @@
 import type { ResultColumnView } from '../../../contracts/ResultsMessages';
 import { createElement } from '../../shared/createElement';
-import { filterRows, nextSort, sortRows, type ResultRow, type SortState } from './orderRows';
+import { filterRows, nextSort, sortRows } from './orderRows';
+import type { ResultRow } from './ResultRow';
+import type { SortState } from './SortState';
 import { l10n } from '../../../../domain/i18n/l10n';
 
 const ROW_HEIGHT = 24;

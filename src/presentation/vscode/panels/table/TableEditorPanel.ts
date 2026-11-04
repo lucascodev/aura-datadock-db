@@ -8,7 +8,6 @@ import type { RowChange } from '../../../../application/editing/rows/RowChange';
 import type { TablePageRequest, TableRowSelection } from '../../../../application/editing/browsing/tableFilters';
 import { formatValue } from '../../../../application/format/formatValue';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
-import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
 import { findIncomingReferences } from '../../../../application/schema/relationships/findIncomingReferences';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
@@ -17,34 +16,13 @@ import type { DatabaseAdapter } from '../../../../domain/database/DatabaseAdapte
 import type { NamespaceSchema } from '../../../../domain/schema/NamespaceSchema';
 import type { CellValue, ParameterizedStatement } from '../../../../domain/database/ParameterizedStatement';
 import type { TableDefinition } from '../../../../domain/schema/TableDefinition';
-import type { TableRef } from '../../../../domain/schema/TableRef';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import type { TableColumnView, TableEditorHostMessage, TableEditorWebviewMessage, TablePropertiesView } from '../../../contracts/TableEditorMessages';
 import { l10n } from '../../../../domain/i18n/l10n';
+import type { TableEditorDependencies, TableEditorOptions } from './TableEditorDependencies';
 
 const VIEW_TYPE = 'auraDataDockDb.tableEditor';
 const PENDING_TITLE_PREFIX = '● ';
-
-export interface TableEditorDependencies {
-  readonly extensionUri: vscode.Uri;
-  getAdapter(targetId: string): Promise<DatabaseAdapter>;
-  loadSchema(target: ConnectionTarget, namespace: string): Promise<NamespaceSchema>;
-  isReadOnly(target: ConnectionTarget): boolean;
-  confirmsDestructive(): boolean;
-  pageSize(): number;
-  openSql(target: ConnectionTarget, sql: string): Promise<void>;
-  runScript(target: ConnectionTarget, sql: string): Promise<boolean>;
-  exportRows(target: ConnectionTarget, table: Pick<TableRef, 'namespace' | 'name'>, statement: ParameterizedStatement): Promise<void>;
-  openTable(target: ConnectionTarget, table: Pick<TableRef, 'namespace' | 'name'>): Promise<void>;
-  copyText(text: string): PromiseLike<void>;
-  recordHistory(entry: QueryHistoryEntry): Promise<void>;
-  log(message: string): void;
-}
-
-export interface TableEditorOptions {
-  readonly restoredChanges?: readonly RowChange[];
-  readonly shouldAddRow?: boolean;
-}
 
 export function findTable(schema: NamespaceSchema, tableName: string): TableDefinition {
   const table = schema.tables.find((candidate) => candidate.name === tableName);

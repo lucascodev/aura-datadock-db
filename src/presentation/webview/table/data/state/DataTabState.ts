@@ -6,28 +6,10 @@ import type { TableFilter, TablePageRequest, TableRowSelection, TableSort } from
 import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
 import { l10n } from '../../../../../domain/i18n/l10n';
 import type { CustomResultView, TableColumnView } from '../../../../contracts/TableEditorMessages';
-
-export type DataViewMode = 'grid' | 'text' | 'record';
-
-export interface CellPosition {
-  readonly rowId: string;
-  readonly column: string;
-}
-
-export interface DisplayRow {
-  readonly rowId: string;
-  readonly label: string;
-  readonly isNew: boolean;
-  readonly isDeleted: boolean;
-  readonly isIdentified: boolean;
-  readonly values: readonly (CellValue | undefined)[];
-  readonly changedColumns: ReadonlySet<string>;
-}
-
-export interface RowSelectionGesture {
-  readonly isToggle: boolean;
-  readonly isRange: boolean;
-}
+import type { DataViewMode } from '../model/DataViewMode';
+import type { CellPosition } from '../model/CellPosition';
+import type { DisplayRow } from '../model/DisplayRow';
+import type { RowSelectionGesture } from '../model/RowSelectionGesture';
 
 const NEW_ROW_PREFIX = 'new:';
 const UNIDENTIFIED_ROW_PREFIX = 'row:';

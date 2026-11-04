@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-
-export type ImageFormat = 'png' | 'svg';
+import type { ImageFormat } from './ImageFormat';
 
 export async function saveImageFile(defaultName: string, format: ImageFormat, content: string): Promise<vscode.Uri | undefined> {
   const uri = await vscode.window.showSaveDialog({

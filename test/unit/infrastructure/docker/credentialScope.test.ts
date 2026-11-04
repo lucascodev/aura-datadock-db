@@ -2,7 +2,7 @@ import { createServer, type Server } from 'node:http';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { DockerClient } from '../../../../src/infrastructure/docker/client/DockerClient';
 import { ContainerDiscovery } from '../../../../src/infrastructure/docker/discovery/ContainerDiscovery';
-import { passwordSecretName } from '../../../../src/presentation/vscode/commands/registry/DataDockContext';
+import { passwordSecretName } from '../../../../src/presentation/vscode/commands/registry/passwordSecretName';
 
 const PUBLISHED_PORT = 55999;
 

@@ -1,8 +1,5 @@
-export interface ViewportTransform {
-  readonly x: number;
-  readonly y: number;
-  readonly scale: number;
-}
+import type { ViewportTransform } from './ViewportTransform';
+
 
 export interface ContentBounds {
   readonly left: number;

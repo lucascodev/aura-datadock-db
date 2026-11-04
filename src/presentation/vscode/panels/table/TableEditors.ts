@@ -2,7 +2,8 @@ import * as vscode from 'vscode';
 import type { RowChange } from '../../../../application/editing/rows/RowChange';
 import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
 import type { TableRef } from '../../../../domain/schema/TableRef';
-import { TableEditorPanel, type TableEditorDependencies, type TableEditorOptions } from './TableEditorPanel';
+import { TableEditorPanel } from './TableEditorPanel';
+import type { TableEditorDependencies, TableEditorOptions } from './TableEditorDependencies';
 import { l10n } from '../../../../domain/i18n/l10n';
 
 type TableLocation = Pick<TableRef, 'namespace' | 'name'>;

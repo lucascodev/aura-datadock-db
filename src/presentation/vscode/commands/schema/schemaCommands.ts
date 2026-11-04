@@ -12,8 +12,7 @@ import type { DataDockContext } from '../registry/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
 import { resolveConnection } from '../registry/pickConnection';
 import { l10n } from '../../../../domain/i18n/l10n';
-
-export type SchemaCommandArgument = ConnectionNode | NamespaceNode | undefined;
+import type { SchemaCommandArgument } from './SchemaCommandArgument';
 
 interface SchemaLocation {
   readonly target: ConnectionTarget;

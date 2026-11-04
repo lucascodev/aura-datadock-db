@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { createAiProvider } from './createAiProvider';
-import { passwordSecretName, savedPasswordSecretName, type DataDockContext } from '../presentation/vscode/commands/registry/DataDockContext';
+import { type DataDockContext } from '../presentation/vscode/commands/registry/DataDockContext';
+import { passwordSecretName, savedPasswordSecretName } from '../presentation/vscode/commands/registry/passwordSecretName';
 import { executeQuery } from '../presentation/vscode/commands/query/executeQuery';
 import { exportRows } from '../presentation/vscode/commands/table/exportTable';
 import { openBoundDocument } from '../presentation/vscode/commands/query/newQuery';

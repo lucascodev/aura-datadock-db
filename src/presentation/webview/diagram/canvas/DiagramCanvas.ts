@@ -3,7 +3,8 @@ import { measureDiagram, renderDiagramMarkup } from '../../../../application/dia
 import { routeEdge } from '../../../../application/diagram/layout/routeEdge';
 import { LIVE_PALETTE } from './livePalette';
 import { relatedEdges, relatedTableNames } from './relatedTables';
-import { centerOn, fitToView, zoomAt, type ViewportTransform } from './Viewport';
+import { centerOn, fitToView, zoomAt } from './Viewport';
+import type { ViewportTransform } from './ViewportTransform';
 
 const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
