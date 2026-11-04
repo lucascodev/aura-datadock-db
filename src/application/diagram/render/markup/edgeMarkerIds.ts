@@ -1,4 +1,4 @@
-import type { DiagramEdge } from '../model/DiagramModel';
+import type { DiagramEdge } from '../../model/DiagramModel';
 
 export function edgeMarkerIds(edge: DiagramEdge): { start: string; end: string } {
   return {

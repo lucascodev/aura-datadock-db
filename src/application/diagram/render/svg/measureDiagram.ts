@@ -1,4 +1,4 @@
-import type { DiagramModel, DiagramPositions } from '../model/DiagramModel';
+import type { DiagramModel, DiagramPositions } from '../../model/DiagramModel';
 
 export function measureDiagram(model: DiagramModel, positions: DiagramPositions): { left: number; top: number; right: number; bottom: number } {
   const placed = model.tables.filter((table) => positions[table.name]);

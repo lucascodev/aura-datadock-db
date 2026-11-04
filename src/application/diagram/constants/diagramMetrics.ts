@@ -12,3 +12,4 @@ export const MAX_TYPE_CHARACTERS = 28;
 export const FONT_SIZE = 12;
 export const HEADER_FONT_SIZE = 13;
 export const CORNER_RADIUS = 6;
+export const TEXT_BASELINE_OFFSET = 4;

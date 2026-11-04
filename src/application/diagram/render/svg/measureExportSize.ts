@@ -1,6 +1,6 @@
-import type { DiagramModel, DiagramPositions } from '../model/DiagramModel';
+import type { DiagramModel, DiagramPositions } from '../../model/DiagramModel';
 import { measureDiagram } from './measureDiagram';
-import { EXPORT_MARGIN } from '../constants/exportMargin';
+import { EXPORT_MARGIN } from '../../constants/exportMargin';
 
 export function measureExportSize(model: DiagramModel, positions: DiagramPositions): { width: number; height: number } {
   const bounds = measureDiagram(model, positions);

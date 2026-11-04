@@ -1,9 +1,9 @@
-import type { DiagramModel, DiagramPositions } from '../model/DiagramModel';
-import type { DiagramPalette } from '../model/DiagramPalette';
-import { renderDiagramMarkup } from './renderDiagramMarkup';
+import type { DiagramModel, DiagramPositions } from '../../model/DiagramModel';
+import type { DiagramPalette } from '../../model/DiagramPalette';
+import { renderDiagramMarkup } from '../markup/renderDiagramMarkup';
 import { measureExportSize } from './measureExportSize';
 import { measureDiagram } from './measureDiagram';
-import { EXPORT_MARGIN } from '../constants/exportMargin';
+import { EXPORT_MARGIN } from '../../constants/exportMargin';
 
 export function renderDiagramSvg(model: DiagramModel, positions: DiagramPositions, palette: DiagramPalette): string {
   const bounds = measureDiagram(model, positions);
