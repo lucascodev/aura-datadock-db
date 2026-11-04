@@ -14,6 +14,7 @@ const DOCUMENT_PAIRS = [
   ['README.md', 'README.pt-BR.md'],
   ['CHANGELOG.md', 'CHANGELOG.pt-BR.md'],
   ['CONTRIBUTING.md', 'CONTRIBUTING.pt-BR.md'],
+  ['SECURITY.md', 'SECURITY.pt-BR.md'],
   ['docs/architecture.md', 'docs/architecture.pt-BR.md'],
 ] as const;
 

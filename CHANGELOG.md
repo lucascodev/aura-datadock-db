@@ -4,11 +4,16 @@
 
 All notable changes to this project are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.2] - 2026-11-04
 
 ### Added
 
 - Screenshots in the README, with fictional data.
+- Security policy, with how to report a vulnerability in private.
+
+### Fixed
+
+- Details of the README: the SQL example of the charts, the link to `docker-compose.dev.yml` and the **Default** button of the data editor.
 
 ## [0.1.0] - 2026-11-04
 
