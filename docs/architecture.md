@@ -46,9 +46,8 @@ src/
     vscode/           Commands, TreeViews, panels, CodeLens and autocomplete
     webview/          Code that runs in the browser, with no access to Node or VS Code
   main/             Composition: creates the dependencies and wires everything
-    extension.ts      Extension entry point
-    mcpServer.ts      MCP server entry point
-    createAiProvider.ts   Picks the AI provider from the configuration
+    entry/            Entry points of the extension and of the MCP server
+    composition/      Creates the services, panels and views, and registers them
 ```
 
 ## Rules
@@ -73,9 +72,9 @@ Inside a layer, folders follow context and then kind. `application/query/model/`
 
 A file that exports a function or a class exports no types: a type used elsewhere has a file of its own, and a type used only in its file stays private. Each error class has a file with its name. A constant used in one file stays beside its use, and one shared by several files goes to `constants/`, so the same information has a single source.
 
-A file exports one function, named after the file, so a path says what it does. `main/extension.ts` is the exception, because VS Code expects `activate` and `deactivate` together, and so is the translation module, where `l10n` and `useL10nCatalog` share the active catalog.
+A file exports one function, named after the file, so a path says what it does. `main/entry/extension.ts` is the exception, because VS Code expects `activate` and `deactivate` together, and so is the translation module, where `l10n` and `useL10nCatalog` share the active catalog.
 
-`test/architecture/functionLimits.test.ts` also limits files to 5 functions, functions and methods to 30 lines and classes to 20 methods. For now it covers `domain`, `drivers`, `application` and `infrastructure`; `presentation` and `main` are the next step.
+`test/architecture/functionLimits.test.ts` also limits files to 5 functions, functions and methods to 30 lines and classes to 20 methods. Classes of the project do not inherit from each other: they cooperate through composition, so a class cannot escape the limit by splitting its methods across parents.
 
 The tests in `test/architecture/` read the imports of all of `src` and fail if any of these rules is broken, including in `import type`, because an imported type also couples.
 

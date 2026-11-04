@@ -46,9 +46,8 @@ src/
     vscode/           Comandos, TreeViews, painéis, CodeLens e autocomplete
     webview/          Código que roda no navegador, sem acesso a Node nem ao VS Code
   main/             Composição: cria as dependências e liga tudo
-    extension.ts      Entrada da extensão
-    mcpServer.ts      Entrada do servidor MCP
-    createAiProvider.ts   Escolhe o provedor de IA pela configuração
+    entry/            Pontos de entrada da extensão e do servidor MCP
+    composition/      Cria os serviços, painéis e views, e os registra
 ```
 
 ## Regras
@@ -73,9 +72,9 @@ Dentro de uma camada, as pastas seguem contexto e depois tipo. `application/quer
 
 Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Cada classe de erro tem um arquivo com o nome dela. Uma constante usada em um arquivo fica perto do uso, e a compartilhada por vários arquivos vai para `constants/`, para que a mesma informação tenha uma única origem.
 
-Um arquivo exporta uma função, com o nome do arquivo, para que o caminho diga o que ela faz. As exceções são `main/extension.ts`, porque o VS Code espera `activate` e `deactivate` juntos, e o módulo de tradução, em que `l10n` e `useL10nCatalog` compartilham o catálogo ativo.
+Um arquivo exporta uma função, com o nome do arquivo, para que o caminho diga o que ela faz. As exceções são `main/entry/extension.ts`, porque o VS Code espera `activate` e `deactivate` juntos, e o módulo de tradução, em que `l10n` e `useL10nCatalog` compartilham o catálogo ativo.
 
-O `test/architecture/functionLimits.test.ts` também limita arquivos a 5 funções, funções e métodos a 30 linhas e classes a 20 métodos. Por enquanto, ele cobre `domain`, `drivers`, `application` e `infrastructure`; `presentation` e `main` são o próximo passo.
+O `test/architecture/functionLimits.test.ts` também limita arquivos a 5 funções, funções e métodos a 30 linhas e classes a 20 métodos. Classes do projeto não herdam umas das outras: elas cooperam por composição, para que uma classe não escape do limite espalhando métodos entre classes-pai.
 
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 
