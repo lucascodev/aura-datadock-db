@@ -27,6 +27,7 @@ Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Pos
 - As pastas seguem camada, depois contexto, depois tipo, como em `application/query/model/`. `model/` guarda contratos, `ports/` interfaces para o lado de fora, `errors/` classes de erro e `constants/` dados compartilhados. As demais pastas têm nome de assunto e guardam lógica.
 - Um tipo usado por outro arquivo tem arquivo próprio, com o nome do conceito. Um tipo usado só no próprio arquivo fica nele, sem `export`.
 - Uma constante usada em um arquivo fica nele. A usada por mais de um arquivo vai para `constants/`, e a mesma informação nunca se repete. Valores iguais por coincidência continuam separados.
+- Um arquivo exporta uma função, com o nome do arquivo. Uma auxiliar fica privada quando serve só a essa função; a usada por várias funções ganha arquivo próprio.
 - Toda regra nova em `application` ou `infrastructure/docker` vem acompanhada de teste em `test/unit/`, na mesma árvore de `src`.
 - Mudanças em SQL de adapter vêm com teste em `test/integration/`, que roda contra bancos reais.
 

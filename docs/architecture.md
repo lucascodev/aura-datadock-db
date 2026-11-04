@@ -73,6 +73,8 @@ Inside a layer, folders follow context and then kind. `application/query/model/`
 
 A file that exports a function or a class exports no types: a type used elsewhere has a file of its own, and a type used only in its file stays private. Each error class has a file with its name. A constant used in one file stays beside its use, and one shared by several files goes to `constants/`, so the same information has a single source.
 
+A file exports one function, named after the file, so a path says what it does. `main/extension.ts` is the exception, because VS Code expects `activate` and `deactivate` together, and so is the translation module, where `l10n` and `useL10nCatalog` share the active catalog.
+
 The tests in `test/architecture/` read the imports of all of `src` and fail if any of these rules is broken, including in `import type`, because an imported type also couples.
 
 When the inner layer needs something from outside, it receives it by injection, and only `main` knows the implementation. The `ConnectionManager` receives `openAdapter`, the `ConnectionFormPanel` too, and the commands ask for the AI provider through `DataDockContext.createAiProvider`.
