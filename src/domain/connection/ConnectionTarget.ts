@@ -19,6 +19,7 @@ export interface ConnectionTarget {
   readonly password?: string;
   readonly database?: string;
   readonly credentialSource: CredentialSource;
+  readonly credentialScope?: string;
   readonly isRemote: boolean;
   readonly isReadOnly: boolean;
   readonly tls: ConnectionTls;

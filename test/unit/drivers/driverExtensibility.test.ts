@@ -29,6 +29,8 @@ const { FAKE_ADAPTER, fakeDriver } = vi.hoisted(() => {
       identifierQuote: '~',
       plainIdentifier: /^[a-z]+$/,
       hasHashComments: false,
+      hasConditionalComments: false,
+      serverSideFunctions: [],
       hasDollarQuotes: false,
       backslashEscapes: 'escape-strings-only',
       stringLiteralEscapesBackslash: false,

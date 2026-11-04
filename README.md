@@ -18,7 +18,7 @@ Open source VS Code extension that connects to your Postgres, MySQL and MariaDB 
 - **Export**: results and whole tables as CSV, JSON, NDJSON, Markdown and SQL `INSERT`; schema as DDL, Mermaid, DBML and JSON; diagram as SVG and PNG.
 - **Safeguards**: read-only globally or per connection, confirmation before `DROP`, `TRUNCATE`, `ALTER` and `DELETE` or `UPDATE` without `WHERE`, and confirmation of any write on a remote database.
 - **AI to generate SQL**: describe what you need and the extension writes the query from the real schema, including foreign keys. Works with VS Code models (GitHub Copilot), Anthropic, OpenAI or a local Ollama.
-- **Read-only MCP server**: agents such as VS Code agent mode, Claude Code and Cursor can list databases, read the schema and run read queries.
+- **MCP server for reads, off by default**: agents such as VS Code agent mode, Claude Code and Cursor can list databases, read the schema and run read queries.
 - **English and Brazilian Portuguese interface**: the interface is available in English and Brazilian Portuguese and follows the VS Code display language.
 
 ## Requirements
@@ -209,7 +209,7 @@ The DDL is generated from the database catalog and includes columns, primary and
 | `auraDataDockDb.ai.provider` | `vscode` | `vscode`, `anthropic`, `openai` or `ollama` |
 | `auraDataDockDb.ai.model` | empty | Provider model; empty uses the default |
 | `auraDataDockDb.ai.ollamaUrl` | `http://localhost:11434` | Ollama address |
-| `auraDataDockDb.mcp.enabled` | `true` | Exposes the databases to agents through MCP |
+| `auraDataDockDb.mcp.enabled` | `false` | Exposes the databases to agents through MCP. Only applies in user settings |
 
 API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** command and, like passwords, are kept in the system keychain, never in `settings.json`.
 
@@ -220,9 +220,18 @@ API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** comman
 - The history keeps the query text locally, in VS Code storage. Set `auraDataDockDb.history.maxEntries` to `0` if they may contain sensitive data.
 - The extension collects no telemetry.
 
+## Security
+
+- Settings that decide where the extension connects or sends data (`dockerHost`, `connections`, `ai.provider`, `ai.model`, `ai.ollamaUrl` and `mcp.enabled`) only apply from user settings. A repository cannot set them.
+- A repository can turn on `readOnly` and `confirmDestructiveQueries`, but cannot turn them off.
+- The extension does not run in a workspace you have not trusted.
+- Read-only mode blocks writes and known functions that act on the server, and on Postgres each read runs in a read-only transaction that is rolled back. This reduces the risk but does not replace permissions: for a sensitive database, connect with a user that can only read what it needs.
+- In CSV exports, a text cell that a spreadsheet would run as a formula starts with `'`. Other formats keep the exact value.
+- The TLS mode **Required** encrypts without validating the certificate, so use **Verified** outside a trusted network. A `tcp://` Docker endpoint is not encrypted.
+
 ## Using the MCP server outside VS Code
 
-In VS Code the server is registered automatically. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows:
+In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows:
 
 ```bash
 claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.0\dist\mcp-server.js"
@@ -236,7 +245,7 @@ Available tools:
 | `describe_schema` | Returns the tables, columns and foreign keys of a database |
 | `run_query` | Runs one read query at a time and returns the rows as JSON |
 
-The server rejects any write statement and also opens the database session in read-only mode. It only sees databases in Docker containers: saved connections are not available to agents.
+The server rejects what it classifies as a write and reads inside a read-only session. Agents see every row they read, and they use the credentials of the container, which are often an administrator. Use it with development data. It only sees databases in Docker containers: saved connections are not available to agents.
 
 ## Development
 

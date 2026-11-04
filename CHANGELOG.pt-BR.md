@@ -39,6 +39,11 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 
 ### Alterado
 
+- As configurações que escolhem onde a extensão conecta ou envia dados só valem nas configurações de usuário, e um repositório não consegue mais desligar `readOnly` nem `confirmDestructiveQueries`.
+- O servidor MCP vem desligado por padrão. A extensão não roda em workspaces não confiáveis.
+- O modo somente leitura ficou mais rígido: comentários condicionais contam como SQL, funções que agem no servidor contam como escrita e, no Postgres, cada leitura roda em uma transação somente leitura.
+- As senhas salvas de um container pertencem ao endpoint Docker dele, e um container publicado em outra máquina conta como remoto.
+- Os exports em CSV neutralizam células de texto que uma planilha executaria como fórmula.
 - Bancos são descritos em um registro de drivers, para que adicionar um novo não exija mexer no resto do código.
 - Código reorganizado em camadas (`domain`, `drivers`, `application`, `infrastructure`, `presentation` e `main`) e em subpastas por assunto, com testes que impedem dependências para fora e pastas lotadas.
 - Clicar em uma tabela abre o editor de dados, e clicar em uma conexão a seleciona em vez de expandi-la.

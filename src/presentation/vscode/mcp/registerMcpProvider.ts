@@ -15,7 +15,7 @@ export function registerMcpProvider(extension: vscode.ExtensionContext): vscode.
     onDidChangeMcpServerDefinitions: changed.event,
     provideMcpServerDefinitions: () => {
       const config = vscode.workspace.getConfiguration('auraDataDockDb');
-      if (!config.get<boolean>('mcp.enabled', true)) {
+      if (!config.get<boolean>('mcp.enabled', false)) {
         return [];
       }
       const serverPath = vscode.Uri.joinPath(extension.extensionUri, 'dist', 'mcp-server.js').fsPath;

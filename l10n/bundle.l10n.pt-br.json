@@ -437,5 +437,7 @@
   "Y axis": "Eixo Y",
   "Yes": "Sim",
   "Zoom in": "Aumentar zoom",
-  "Zoom out": "Diminuir zoom"
+  "Zoom out": "Diminuir zoom",
+  "{0} can change the server or read its files": "{0} pode alterar o servidor ou ler arquivos dele",
+  "A function called by a quoted name may change the server, so it counts as a write": "Uma função chamada por nome entre aspas pode alterar o servidor, então conta como escrita"
 }

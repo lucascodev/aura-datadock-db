@@ -1,3 +1,4 @@
+import { isLocalHost } from '../../../application/connections/guidance/isLocalHost';
 import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
 import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
 import { TLS_OFF } from '../../../domain/connection/ConnectionTls';
@@ -45,7 +46,8 @@ export class ContainerDiscovery implements ConnectionSource {
       password: credentials.password,
       database: credentials.database,
       credentialSource: credentials.password === undefined ? 'missing' : 'container-env',
-      isRemote: false,
+      credentialScope: this.docker.endpointLabel,
+      isRemote: address !== undefined && !isLocalHost(address.host),
       isReadOnly: false,
       tls: TLS_OFF,
     };

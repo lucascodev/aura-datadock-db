@@ -8,6 +8,10 @@ const REQUEST_TIMEOUT_MS = 5000;
 export class DockerClient {
   constructor(private readonly endpoint: DockerEndpoint) {}
 
+  get endpointLabel(): string {
+    return this.endpoint.type === 'socket' ? this.endpoint.socketPath : `tcp://${this.endpoint.host}:${this.endpoint.port}`;
+  }
+
   listRunningContainers(): Promise<DockerContainerSummary[]> {
     return this.get<DockerContainerSummary[]>('/containers/json');
   }

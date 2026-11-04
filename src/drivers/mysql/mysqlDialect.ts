@@ -6,6 +6,8 @@ export const mysqlDialect: SqlDialect = {
   identifierQuote: '`',
   plainIdentifier: /^[A-Za-z_][\w$]*$/,
   hasHashComments: true,
+  hasConditionalComments: true,
+  serverSideFunctions: ['load_file', 'get_lock', 'release_lock', 'release_all_locks', 'sys_exec', 'sys_eval'],
   hasDollarQuotes: false,
   backslashEscapes: 'all-strings',
   stringLiteralEscapesBackslash: true,

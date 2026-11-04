@@ -45,7 +45,7 @@
   "setting.readOnly.description": "Bloqueia todo comando que escreve no banco.",
   "setting.confirmDestructiveQueries.description": "Pede confirmação antes de DROP, TRUNCATE, ALTER e DELETE/UPDATE sem WHERE.",
   "setting.maxRows.description": "Número máximo de linhas exibidas no painel de resultados.",
-  "setting.dockerHost.description": "Endpoint do Docker Engine. Deixe vazio para usar DOCKER_HOST ou o padrão do sistema (unix socket ou named pipe do Windows).",
+  "setting.dockerHost.description": "Endpoint do Docker Engine, definido só nas configurações de usuário. Deixe vazio para usar DOCKER_HOST ou o padrão do sistema (unix socket ou named pipe do Windows). Um endpoint tcp:// não é criptografado e transporta as credenciais dos containers.",
   "setting.ai.provider.description": "Provedor usado nos recursos de IA.",
   "setting.ai.provider.enum.vscode": "Modelos de linguagem disponíveis no VS Code (por exemplo, GitHub Copilot). Não precisa de chave de API.",
   "setting.ai.provider.enum.anthropic": "API da Anthropic com a sua chave.",
@@ -53,9 +53,11 @@
   "setting.ai.provider.enum.ollama": "Modelos locais pelo Ollama.",
   "setting.ai.model.description": "ID do modelo do provedor selecionado. Deixe vazio para usar o padrão do provedor.",
   "setting.ai.ollamaUrl.description": "URL base do servidor Ollama.",
-  "setting.mcp.enabled.description": "Expõe os bancos descobertos a agentes de IA por um servidor MCP somente leitura.",
+  "setting.mcp.enabled.description": "Expõe os bancos descobertos a agentes de IA por um servidor MCP que só aceita leituras. Desligado por padrão. Conecte com um usuário de banco com permissões limitadas, porque os agentes veem os dados que leem.",
   "setting.codeLens.enabled.description": "Mostra o banco do arquivo e as ações Executar e Explicar acima de cada comando em arquivos SQL.",
   "setting.history.maxEntries.description": "Quantas queries executadas manter no histórico. Use 0 para desligar o histórico.",
   "setting.connections.markdownDescription": "Conexões de banco salvas. Gerencie com o comando **Adicionar conexão**. As senhas ficam no cofre do sistema, nunca aqui.",
-  "setting.table.pageSize.description": "Quantas linhas o editor de tabela lê por página."
+  "setting.table.pageSize.description": "Quantas linhas o editor de tabela lê por página.",
+  "capabilities.untrustedWorkspaces.description": "Um repositório pode definir configurações usadas para acessar bancos, então a extensão só roda em workspaces confiáveis.",
+  "capabilities.virtualWorkspaces.description": "A extensão precisa de acesso local ao Docker, ao SSH e a arquivos."
 }

@@ -219,6 +219,12 @@ The MCP server is built as a bundle of its own (`dist/mcp-server.js`) so any MCP
 
 The process's standard output is reserved for the protocol, so logs go to `stderr`.
 
+### Layers of read-only protection
+
+Read-only has two layers, because neither is enough alone. `classifyQuery` decides before anything is sent: it reads the content of MySQL and MariaDB conditional comments as SQL, since the server runs it, and treats the functions listed in each dialect's `serverSideFunctions` as writes. The database enforces the rest: the session is read-only, and on Postgres each read runs in `BEGIN TRANSACTION READ ONLY` followed by `ROLLBACK`, which also undoes any setting the statement changed.
+
+The list of functions cannot cover functions created by users, and superusers can read server files through paths it does not know. That is why the documentation tells users to connect to sensitive databases with a limited user.
+
 ### AI with the model the user already has
 
 `application/ai` defines a single contract (`AiProvider`) with four implementations. The default uses the VS Code models API, which takes advantage of the Copilot subscription without an API key. Since that API does not exist in derived editors such as Cursor, the providers with their own key and Ollama guarantee that AI works anywhere.

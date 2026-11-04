@@ -4,6 +4,8 @@ export interface SqlDialect {
   readonly identifierQuote: string;
   readonly plainIdentifier: RegExp;
   readonly hasHashComments: boolean;
+  readonly hasConditionalComments: boolean;
+  readonly serverSideFunctions: readonly string[];
   readonly hasDollarQuotes: boolean;
   readonly backslashEscapes: BackslashEscapes;
   readonly stringLiteralEscapesBackslash: boolean;

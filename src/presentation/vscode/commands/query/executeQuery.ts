@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { resolveProtectionSetting } from '../../../../application/settings/resolveProtectionSetting';
 import { classifyQuery, type QueryClassification } from '../../../../application/query/analysis/classifyQuery';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { runStatements } from '../../../../application/query/execution/runStatements';
@@ -43,11 +44,11 @@ export async function executeQuery(context: DataDockContext, target: ConnectionT
 
 async function isAllowedToRun(context: DataDockContext, target: ConnectionTarget, classification: QueryClassification): Promise<boolean> {
   const config = context.config();
-  const isGloballyReadOnly = config.get<boolean>('readOnly', false);
+  const isGloballyReadOnly = resolveProtectionSetting(config.inspect<boolean>('readOnly'), false);
   const decision = decideQueryGuard(classification.risk, {
     isReadOnly: isGloballyReadOnly || target.isReadOnly,
     isRemote: target.isRemote,
-    confirmsDestructive: config.get<boolean>('confirmDestructiveQueries', true),
+    confirmsDestructive: resolveProtectionSetting(config.inspect<boolean>('confirmDestructiveQueries'), true),
   });
 
   if (decision === 'block') {
