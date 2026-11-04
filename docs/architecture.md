@@ -69,6 +69,8 @@ In folders:
 - A folder has files or subfolders, never both. The only exception is each webview's `main.ts`, which is the bundle entry point.
 - At most 8 files per folder. Past that, split by subject.
 
+Contracts follow the same idea. A file that exports a function or a class exports no types: a type used elsewhere has a file of its own, and a type used only in its file stays private. A port lives in the layer that declares it, in `ports/`, and each error class has a file with its name.
+
 The tests in `test/architecture/` read the imports of all of `src` and fail if any of these rules is broken, including in `import type`, because an imported type also couples.
 
 When the inner layer needs something from outside, it receives it by injection, and only `main` knows the implementation. The `ConnectionManager` receives `openAdapter`, the `ConnectionFormPanel` too, and the commands ask for the AI provider through `DataDockContext.createAiProvider`.

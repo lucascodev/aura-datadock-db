@@ -69,6 +69,8 @@ Nas pastas:
 - Uma pasta tem arquivos ou subpastas, nunca os dois. A única exceção é o `main.ts` de cada webview, que é o ponto de entrada do bundle.
 - No máximo 8 arquivos por pasta. Ao passar disso, separe por assunto.
 
+Os contratos seguem a mesma ideia. Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Uma porta fica na camada que a declara, em `ports/`, e cada classe de erro tem um arquivo com o nome dela.
+
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 
 Quando a camada de dentro precisa de algo de fora, ela recebe por injeção, e só o `main` conhece a implementação. O `ConnectionManager` recebe `openAdapter`, o `ConnectionFormPanel` também, e os comandos pedem o provedor de IA por `DataDockContext.createAiProvider`.

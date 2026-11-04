@@ -24,6 +24,7 @@ Open the folder in VS Code and press `F5`. The `docker-compose.dev.yml` starts a
 - Dependencies point only inward, as described in [docs/architecture.md](docs/architecture.md). `vscode` only appears in `presentation/vscode` and in `main`, so the rest stays usable by the MCP server.
 - The code in `presentation/webview` runs in the browser: it does not import `vscode` or Node APIs, and talks to the extension only through messages.
 - Each file lives in a subfolder of its subject. A folder has files or subfolders, never both, and at most 8 files. The tests in `test/architecture/` enforce these rules.
+- A type used by another file has a file of its own, named after the concept. A type used only in its file stays there, without `export`. Ports go in `ports/` and each error class in `errors/`, or beside their users when the folder holds only files.
 - Every new rule in `application` or `infrastructure/docker` comes with a test in `test/unit/`, in the same tree as `src`.
 - Changes to adapter SQL come with a test in `test/integration/`, which runs against real databases.
 
