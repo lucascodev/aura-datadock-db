@@ -4,6 +4,20 @@
 
 Extensão open source para VS Code que conecta aos seus bancos Postgres, MySQL e MariaDB. Os que rodam em containers Docker aparecem sozinhos, sem nenhuma configuração, e os demais você adiciona com conexão direta ou por túnel SSH. Ela mostra schemas, tabelas e colunas na barra lateral, desenha o diagrama do banco, executa queries, exporta dados e schema, e entrega o schema para a IA que você já usa.
 
+## Capturas de tela
+
+**Navegue e edite os dados da tabela**
+
+<p align="center"><img src="docs/screenshots/table-editor.png" alt="Aba Dados de uma tabela de pedidos, com a grade, o painel de valor e a barra de edição" width="880"></p>
+
+**Veja o diagrama do banco**
+
+<p align="center"><img src="docs/screenshots/er-diagram.png" alt="Diagrama ER com quatro tabelas e seus relacionamentos em notação pé de galinha" width="880"></p>
+
+**Transforme o resultado de uma query em gráfico**
+
+<p align="center"><img src="docs/screenshots/query-chart.png" alt="Editor SQL ao lado de um gráfico de linha de pedidos por dia, com uma série para cada status" width="880"></p>
+
 ## Recursos
 
 - **Descoberta automática**: detecta containers de Postgres, MySQL e MariaDB (incluindo PostGIS, TimescaleDB e pgvector) e lê usuário, senha e banco das variáveis de ambiente do container.
@@ -33,7 +47,7 @@ Nada disso é necessário para uma conexão direta. A extensão não tem banco p
 
 1. Abra a aba **Aura DataDock DB** na barra de atividades.
 2. Conecte a um banco:
-   - **Com Docker:** suba o banco em um container e ele aparece sozinho, em até 15 segundos. Para testar, use o `docker-compose.dev.yml` deste repositório:
+   - **Com Docker:** suba o banco em um container e ele aparece sozinho, em até 15 segundos. Para testar, use o [`docker-compose.dev.yml`](docker-compose.dev.yml) deste repositório:
      ```bash
      docker compose -f docker-compose.dev.yml up -d
      ```
@@ -88,6 +102,7 @@ Na aba **Dados**:
 | Copiar a célula | `Ctrl+C` |
 | Ver ou editar um valor longo | Painel **Valor**, com JSON formatado; **Aplicar** leva o valor para a célula |
 | Gravar NULL | **NULL** na barra inferior, ou **Definir NULL** no painel |
+| Usar o padrão do banco em uma linha nova | **Padrão** na barra inferior |
 | Adicionar uma linha | **+ Adicionar**; coluna sem valor usa o default do banco, e `*` marca as obrigatórias |
 | Duplicar linhas | **Duplicar**; copia os valores para novas linhas, sem colunas geradas e sem chave primária com default |
 | Selecionar linhas | Clique no número da linha; `Ctrl` alterna e `Shift` seleciona um intervalo |

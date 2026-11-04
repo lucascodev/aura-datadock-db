@@ -4,6 +4,20 @@
 
 Open source VS Code extension that connects to your Postgres, MySQL and MariaDB databases. Databases running in Docker containers show up on their own, with no configuration, and you add the rest with a direct connection or an SSH tunnel. It shows schemas, tables and columns in the sidebar, draws the database diagram, runs queries, exports data and schema, and hands the schema to the AI you already use.
 
+## Screenshots
+
+**Browse and edit table data**
+
+<p align="center"><img src="docs/screenshots/table-editor.png" alt="Data tab of an orders table, with the grid, the value panel and the editing toolbar" width="880"></p>
+
+**See the database diagram**
+
+<p align="center"><img src="docs/screenshots/er-diagram.png" alt="ER diagram with four tables and their relationships in crow's foot notation" width="880"></p>
+
+**Turn a query result into a chart**
+
+<p align="center"><img src="docs/screenshots/query-chart.png" alt="SQL editor beside a line chart of orders per day, with one series for each status" width="880"></p>
+
 ## Features
 
 - **Automatic discovery**: detects Postgres, MySQL and MariaDB containers (including PostGIS, TimescaleDB and pgvector) and reads the user, password and database from the container's environment variables.
@@ -33,7 +47,7 @@ None of this is needed for a direct connection. The extension has no database of
 
 1. Open the **Aura DataDock DB** tab in the activity bar.
 2. Connect to a database:
-   - **With Docker:** start the database in a container and it shows up on its own, within 15 seconds. To try it out, use the `docker-compose.dev.yml` in this repository:
+   - **With Docker:** start the database in a container and it shows up on its own, within 15 seconds. To try it out, use the [`docker-compose.dev.yml`](docker-compose.dev.yml) in this repository:
      ```bash
      docker compose -f docker-compose.dev.yml up -d
      ```
@@ -88,6 +102,7 @@ In the **Data** tab:
 | Copy the cell | `Ctrl+C` |
 | View or edit a long value | **Value** panel, with formatted JSON; **Apply** sends the value to the cell |
 | Write NULL | **NULL** in the bottom bar, or **Set NULL** in the panel |
+| Use the database default in a new row | **Default** in the bottom bar |
 | Add a row | **+ Add**; a column without a value uses the database default, and `*` marks the required ones |
 | Duplicate rows | **Duplicate**; copies the values to new rows, without generated columns and without a primary key that has a default |
 | Select rows | Click the row number; `Ctrl` toggles and `Shift` selects a range |
@@ -149,7 +164,7 @@ Statements in sequence run one at a time and stop at the first error, with one r
 After running a query, switch from **Grid** to **Chart** in the results panel. The extension suggests a chart from the shape of the result, and you change the type and the columns in the fields above it.
 
 ```sql
-SELECT date_trunc('day', created_at) AS dia, status, count(*) AS total
+SELECT date_trunc('day', created_at) AS day, status, count(*) AS total
 FROM orders
 GROUP BY 1, 2
 ORDER BY 1;
