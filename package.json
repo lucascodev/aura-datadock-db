@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/lucascodev/aura-datadock-db/issues"
   },
+  "sponsor": {
+    "url": "https://github.com/sponsors/lucascodev"
+  },
   "keywords": [
     "docker",
     "database",

@@ -4,6 +4,12 @@
 
 All notable changes to this project are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Link to GitHub Sponsors in the repository, in the README and on the extension page.
+
 ## [0.1.4] - 2026-11-04
 
 ### Added

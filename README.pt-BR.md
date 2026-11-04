@@ -284,6 +284,10 @@ Depois pressione `F5` no VS Code para abrir uma janela com a extensão carregada
 
 A organização do código está explicada em [docs/architecture.pt-BR.md](docs/architecture.pt-BR.md) e o passo a passo para contribuir em [CONTRIBUTING.pt-BR.md](CONTRIBUTING.pt-BR.md).
 
+## Apoie o projeto
+
+Se esta extensão ajuda você, dá para apoiar o desenvolvimento no [GitHub Sponsors](https://github.com/sponsors/lucascodev).
+
 ## Licença
 
 [MIT](LICENSE). A extensão inclui pacotes de código aberto, com licenças próprias, listados em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
