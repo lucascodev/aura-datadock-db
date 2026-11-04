@@ -1,6 +1,6 @@
 import { useL10nCatalog } from '../../../domain/i18n/translation/l10n';
 import { readL10nCatalog } from '../shared/host/readL10nCatalog';
-import { EChartsRenderer } from './echarts/EChartsRenderer';
+import { EChartsRenderer } from './echarts/renderer/EChartsRenderer';
 import { type ChartModule } from './ports/ChartRenderer';
 import { CHART_MODULE_GLOBAL } from './constants/chartModuleGlobal';
 

@@ -2,13 +2,13 @@ import { BarChart, BoxplotChart, HeatmapChart, LineChart, PieChart, ScatterChart
 import { DataZoomComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
-import type { DrawableChartData } from '../../../../application/charts/model/data/ChartData';
-import { LIGHT_PALETTE } from '../constants/chartPalettes';
-import { readLivePalette } from '../palette/readLivePalette';
-import type { ChartRenderer } from '../ports/ChartRenderer';
+import type { DrawableChartData } from '../../../../../application/charts/model/data/ChartData';
+import { LIGHT_PALETTE } from '../../constants/chartPalettes';
+import { readLivePalette } from '../../palette/readLivePalette';
+import type { ChartRenderer } from '../../ports/ChartRenderer';
 import { createTooltipContent } from './createTooltipContent';
-import { toEChartsOption } from './toEChartsOption';
-import { PNG_DATA_PREFIX } from '../../shared/constants/pngDataPrefix';
+import { toEChartsOption } from '../options/dispatch/toEChartsOption';
+import { PNG_DATA_PREFIX } from '../../../shared/constants/pngDataPrefix';
 
 const EXPORT_WIDTH = 1200;
 const EXPORT_HEIGHT = 700;
