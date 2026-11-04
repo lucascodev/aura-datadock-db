@@ -248,10 +248,10 @@ To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 ## Using the MCP server outside VS Code
 
-In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows, where `0.1.1` is the installed version:
+In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows, where `0.1.2` is the installed version:
 
 ```bash
-claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.1\dist\mcp-server.js"
+claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.2\dist\mcp-server.js"
 ```
 
 Available tools:
