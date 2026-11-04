@@ -7,6 +7,7 @@ const STRING_PLACEHOLDER = " '?' ";
 const IDENTIFIER_PLACEHOLDER = ' _identifier_ ';
 const DOLLAR_QUOTE_TAG = /^\$(?:[A-Za-z_]\w*)?\$/;
 const WORD_CHARACTER = /\w/;
+const CONDITIONAL_COMMENT_OPENING = /^\/\*M?!\d*/;
 
 export function splitStatements(sql: string, kind?: DriverId): string[] {
   return scanStatements(sql, kind).map((statement) => statement.sanitized);
@@ -21,6 +22,7 @@ class SqlScanner {
   private sanitized = '';
   private start?: number;
   private end = 0;
+  private isInsideConditionalComment = false;
   private readonly statements: SqlStatement[] = [];
 
   constructor(
@@ -41,10 +43,12 @@ class SqlScanner {
     const next = this.sql[this.position + 1];
     const dollarTag = this.readDollarTag(char);
 
-    if ((char === '-' && next === '-') || this.startsHashComment(char)) {
+    if (this.isInsideConditionalComment && char === '*' && next === '/') {
+      this.closeConditionalComment();
+    } else if ((char === '-' && next === '-') || this.startsHashComment(char)) {
       this.skipComment('\n');
     } else if (char === '/' && next === '*') {
-      this.skipComment('*/', 2);
+      this.consumeBlockComment();
     } else if (char === "'") {
       this.skipQuoted(char, STRING_PLACEHOLDER);
     } else if (char === '"' || char === '`') {
@@ -57,6 +61,27 @@ class SqlScanner {
     } else {
       this.consumePlainCharacter(char);
     }
+  }
+
+  private consumeBlockComment(): void {
+    const opening = this.dialect?.hasConditionalComments === false ? null : CONDITIONAL_COMMENT_OPENING.exec(this.sql.slice(this.position));
+    if (!opening) {
+      this.skipComment('*/', 2);
+      return;
+    }
+    const from = this.position;
+    this.position += opening[0].length;
+    this.isInsideConditionalComment = true;
+    this.sanitized += ' ';
+    this.markSignificant(from);
+  }
+
+  private closeConditionalComment(): void {
+    const from = this.position;
+    this.position += 2;
+    this.isInsideConditionalComment = false;
+    this.sanitized += ' ';
+    this.markSignificant(from);
   }
 
   private startsHashComment(char: string): boolean {
