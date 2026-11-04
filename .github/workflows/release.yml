@@ -19,16 +19,16 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - run: npx vsce package --no-dependencies --out aura-datadock.vsix
+      - run: npx vsce package --no-dependencies --out aura-datadock-db.vsix
       - name: Publish to Visual Studio Marketplace
-        run: npx vsce publish --packagePath aura-datadock.vsix
+        run: npx vsce publish --packagePath aura-datadock-db.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
       - name: Publish to Open VSX
-        run: npx ovsx publish aura-datadock.vsix
+        run: npx ovsx publish aura-datadock-db.vsix
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
       - name: Attach package to GitHub release
-        run: gh release create "$GITHUB_REF_NAME" aura-datadock.vsix --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" aura-datadock-db.vsix --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
