@@ -18,12 +18,7 @@ export function renderWebviewHtml(webview: vscode.Webview, extensionUri: vscode.
     : '';
   const messages = vscode.l10n.bundle;
   const l10nAttribute = messages ? ` data-l10n="${escapeMarkup(JSON.stringify(messages))}"` : '';
-  const contentSecurityPolicy = [
-    `default-src 'none'`,
-    `style-src ${webview.cspSource}`,
-    `script-src 'nonce-${nonce}'`,
-    `img-src blob: data:`,
-  ].join('; ');
+  const contentSecurityPolicy = buildContentSecurityPolicy(webview, nonce);
 
   return `<!DOCTYPE html>
 <html lang="${escapeMarkup(vscode.env.language)}">
@@ -39,4 +34,13 @@ export function renderWebviewHtml(webview: vscode.Webview, extensionUri: vscode.
   <script nonce="${nonce}" src="${scriptUri}"></script>
 </body>
 </html>`;
+}
+
+function buildContentSecurityPolicy(webview: vscode.Webview, nonce: string): string {
+  return [
+    `default-src 'none'`,
+    `style-src ${webview.cspSource}`,
+    `script-src 'nonce-${nonce}'`,
+    `img-src blob: data:`,
+  ].join('; ');
 }

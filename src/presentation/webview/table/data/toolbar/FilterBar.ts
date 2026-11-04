@@ -63,7 +63,7 @@ export class FilterBar {
         text: `${text} ×`,
         title: l10n.t('Remove this filter'),
         onClick: () => {
-          this.state.removeFilter(index);
+          this.state.view.removeFilter(index);
           this.callbacks.onApply();
         },
       });

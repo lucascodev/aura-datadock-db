@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { listSourceFiles, toSourcePath } from '../fixtures/sourceTree';
 
-const EXCEPTIONS = new Set(['main/extension.ts', 'domain/i18n/translation/l10n.ts']);
+const EXCEPTIONS = new Set(['main/entry/extension.ts', 'domain/i18n/translation/l10n.ts']);
 const EXPORTED_FUNCTION = /^export (?:async )?function\*? (\w+)/gm;
 
 const sources = listSourceFiles().map((file) => ({ path: toSourcePath(file), text: readFileSync(file, 'utf8').replace(/\r\n/g, '\n') }));

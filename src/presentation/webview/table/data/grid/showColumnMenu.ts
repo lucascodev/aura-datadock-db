@@ -13,6 +13,17 @@ export function showColumnMenu(anchor: DOMRect, items: readonly ColumnMenuItem[]
 
   const menu = createElement('div', { className: 'column-menu' });
   menu.setAttribute('role', 'menu');
+  const { close, listen } = createDismissal(menu);
+  menu.append(...items.map((item) => renderMenuItem(item, close)));
+
+  document.body.append(menu);
+  menu.style.left = `${Math.min(anchor.left, window.innerWidth - menu.offsetWidth - 8)}px`;
+  menu.style.top = `${Math.min(anchor.bottom, window.innerHeight - menu.offsetHeight - 8)}px`;
+  listen();
+  menu.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus();
+}
+
+function createDismissal(menu: HTMLElement): { readonly close: () => void; readonly listen: () => void } {
   const close = () => {
     menu.remove();
     document.removeEventListener('pointerdown', handleOutside, true);
@@ -30,26 +41,24 @@ export function showColumnMenu(anchor: DOMRect, items: readonly ColumnMenuItem[]
       close();
     }
   };
+  const listen = () => {
+    document.addEventListener('pointerdown', handleOutside, true);
+    document.addEventListener('keydown', handleKey, true);
+    closeOpenMenu = close;
+  };
+  return { close, listen };
+}
 
-  menu.append(...items.map((item) => {
-    const button = createElement('button', {
-      className: 'menu-item',
-      text: item.label,
-      onClick: () => {
-        close();
-        item.onSelect();
-      },
-    });
-    button.setAttribute('role', 'menuitem');
-    button.disabled = item.isEnabled === false;
-    return button;
-  }));
-
-  document.body.append(menu);
-  menu.style.left = `${Math.min(anchor.left, window.innerWidth - menu.offsetWidth - 8)}px`;
-  menu.style.top = `${Math.min(anchor.bottom, window.innerHeight - menu.offsetHeight - 8)}px`;
-  document.addEventListener('pointerdown', handleOutside, true);
-  document.addEventListener('keydown', handleKey, true);
-  closeOpenMenu = close;
-  menu.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus();
+function renderMenuItem(item: ColumnMenuItem, close: () => void): HTMLElement {
+  const button = createElement('button', {
+    className: 'menu-item',
+    text: item.label,
+    onClick: () => {
+      close();
+      item.onSelect();
+    },
+  });
+  button.setAttribute('role', 'menuitem');
+  button.disabled = item.isEnabled === false;
+  return button;
 }

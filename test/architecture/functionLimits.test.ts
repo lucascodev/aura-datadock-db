@@ -8,8 +8,8 @@ const MAX_METHODS_PER_CLASS = 20;
 const TOP_LEVEL_FUNCTION = /^(?:export )?(?:async )?function\*? (\w+)/;
 const CLASS_START = /^(?:export )?(?:abstract )?class /;
 const METHOD_START = /^ {2}(?!if\b|for\b|while\b|switch\b|return\b|try\b|else\b|const\b|let\b)[^ /].*\)[^;=]*\{$/;
+const OWN_CLASS_INHERITANCE = /^(?:export )?(?:abstract )?class (\w+) extends (?!vscode\.|Error\b)(\w+)/gm;
 const ARRAY_PARAMETER = /^(?:export )?(?:async )?function\*? \w+\([^)]*?\b(\w+): \w+\[\]/gm;
-const NOT_YET_IN_LIMITS = /^(?:main\/|presentation\/)/;
 
 interface Measured {
   readonly path: string;
@@ -49,8 +49,7 @@ function measure(path: string, text: string): Measured {
 }
 
 const measured = listSourceFiles()
-  .map((file) => measure(toSourcePath(file), readFileSync(file, 'utf8').replace(/\r\n/g, '\n')))
-  .filter((file) => !NOT_YET_IN_LIMITS.test(file.path));
+  .map((file) => measure(toSourcePath(file), readFileSync(file, 'utf8').replace(/\r\n/g, '\n')));
 
 describe('function limits', () => {
   it(`keeps at most ${MAX_FUNCTIONS_PER_FILE} functions in a file`, () => {
@@ -68,6 +67,13 @@ describe('function limits', () => {
   it(`keeps at most ${MAX_METHODS_PER_CLASS} methods in a class`, () => {
     const crowded = measured.filter((file) => file.methods.length > MAX_METHODS_PER_CLASS).map((file) => `${file.path}: ${file.methods.length}`);
     expect(crowded).toEqual([]);
+  });
+
+  it('prefers composition to inheritance between classes of the project', () => {
+    const inherited = listSourceFiles().flatMap((file) =>
+      [...readFileSync(file, 'utf8').matchAll(OWN_CLASS_INHERITANCE)].map((match) => `${toSourcePath(file)}: ${match[1]} extends ${match[2]}`),
+    );
+    expect(inherited).toEqual([]);
   });
 
   it('does not change array parameters', () => {

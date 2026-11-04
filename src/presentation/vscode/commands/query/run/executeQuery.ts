@@ -16,13 +16,11 @@ export async function executeQuery(context: DataDockContext, target: ConnectionT
   if (!(await isAllowedToRun(context, target, classification))) {
     return false;
   }
-
   const controller = context.runs.begin();
   if (!controller) {
     vscode.window.showWarningMessage(l10n.t('Another query is still running. Cancel it first.'));
     return false;
   }
-
   const executedAt = Date.now();
   context.results.showRunning(target.name, sql);
   try {

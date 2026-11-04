@@ -6,7 +6,7 @@ import type { ChartCell } from '../../../../src/application/charts/model/config/
 import { createAxisFormatter } from '../../../../src/presentation/webview/chart/formatting/createAxisFormatter';
 import { formatAxisNumber } from '../../../../src/presentation/webview/chart/formatting/formatAxisNumber';
 import { formatFullNumber } from '../../../../src/presentation/webview/chart/formatting/formatFullNumber';
-import { toEChartsOption } from '../../../../src/presentation/webview/chart/echarts/toEChartsOption';
+import { toEChartsOption } from '../../../../src/presentation/webview/chart/echarts/options/dispatch/toEChartsOption';
 import type { EChartsOptionRecord } from '../../../../src/presentation/webview/chart/model/EChartsOptionRecord';
 import { DARK_PALETTE, LIGHT_PALETTE } from '../../../../src/presentation/webview/chart/constants/chartPalettes';
 
