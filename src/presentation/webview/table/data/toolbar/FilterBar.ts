@@ -1,11 +1,11 @@
-import { applyFilterCompletion } from '../../../../../application/editing/browsing/applyFilterCompletion';
 import { isWholeQuery } from '../../../../../application/editing/browsing/isWholeQuery';
-import { suggestFilterCompletions } from '../../../../../application/editing/browsing/suggestFilterCompletions';
-import type { FilterCompletions, FilterSuggestion } from '../../../../../application/editing/model/FilterCompletions';
 import { FILTER_OPERATORS } from '../../../../../application/editing/constants/filterOperators';
-import type { DriverId } from '../../../../../domain/driver/model/DriverId';
+import type { NamespaceSchema } from '../../../../../domain/schema/model/NamespaceSchema';
 import { createElement } from '../../../shared/dom/createElement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
+import { createFilterCompletionSource } from '../../sqlField/completion/createFilterCompletionSource';
+import { createQueryCompletionSource } from '../../sqlField/completion/createQueryCompletionSource';
+import { SqlField } from '../../sqlField/editor/SqlField';
 import type { DataTabState } from '../state/DataTabState';
 
 interface FilterBarCallbacks {
@@ -17,32 +17,34 @@ interface FilterBarCallbacks {
 
 export class FilterBar {
   readonly element: HTMLElement;
-  private readonly input = createElement('input', { className: 'where-input' });
-  private readonly suggestionList = createElement('div', { className: 'suggestions' });
+  private readonly field: SqlField;
   private readonly chips = createElement('div', { className: 'chips' });
   private readonly sqlButton = createElement('button', { className: 'secondary toggle', text: l10n.t('Show SQL'), title: l10n.t('Show the SQL of this view below the rows'), onClick: () => this.callbacks.onToggleSql() });
   private readonly valueButton = createElement('button', { className: 'secondary toggle', text: l10n.t('Value'), title: l10n.t('Show or hide the value panel'), onClick: () => this.callbacks.onToggleValue() });
-  private kind: DriverId = '';
-  private completions?: FilterCompletions;
-  private highlighted = 0;
+  private schema?: NamespaceSchema;
 
   constructor(
     private readonly state: DataTabState,
     private readonly callbacks: FilterBarCallbacks,
   ) {
-    this.input.placeholder = l10n.t('Enter an SQL expression to filter the rows (use Ctrl+Space)');
-    this.input.spellcheck = false;
-    this.input.setAttribute('aria-label', l10n.t('SQL expression to filter the rows'));
-    this.input.addEventListener('input', () => this.forgetFilterWhenEmptied());
-    this.input.addEventListener('keydown', (event) => this.handleKeyDown(event));
-    this.input.addEventListener('blur', () => this.hideSuggestions());
-    this.suggestionList.hidden = true;
-
-    const field = createElement('div', { className: 'where-field' }, [this.input, this.suggestionList]);
+    this.field = new SqlField({
+      className: 'where-input',
+      ariaLabel: l10n.t('SQL expression to filter the rows'),
+      placeholder: l10n.t('Enter an SQL expression to filter the rows (use Ctrl+Space)'),
+      wrapsLines: true,
+      submitKey: 'Enter',
+      completions: createFilterCompletionSource({
+        wholeQuery: createQueryCompletionSource(() => this.schema),
+        getKind: () => this.schema?.kind ?? '',
+        getColumns: () => this.state.columns,
+      }),
+      onChange: (value) => this.forgetFilterWhenEmptied(value),
+      onSubmit: () => this.apply(),
+    });
     this.element = createElement('div', { className: 'filter-bar' }, [
       createElement('div', { className: 'filter-row' }, [
         this.sqlButton,
-        field,
+        createElement('div', { className: 'where-field' }, [this.field.element]),
         createElement('button', { className: 'secondary', text: l10n.t('Apply'), title: l10n.t('Apply the filter (Enter)'), onClick: () => this.apply() }),
         createElement('button', { className: 'secondary', text: l10n.t('Clear'), title: l10n.t('Remove every filter'), onClick: () => this.clear() }),
         this.valueButton,
@@ -51,8 +53,9 @@ export class FilterBar {
     ]);
   }
 
-  setDriver(kind: DriverId): void {
-    this.kind = kind;
+  setSchema(schema: NamespaceSchema): void {
+    this.schema = schema;
+    this.field.setDriver(schema.kind);
   }
 
   render(): void {
@@ -74,17 +77,16 @@ export class FilterBar {
     this.chips.hidden = this.state.filters.length === 0;
   }
 
-  private forgetFilterWhenEmptied(): void {
-    if (!this.input.value.trim()) {
+  private forgetFilterWhenEmptied(value: string): void {
+    if (!value.trim()) {
       this.state.whereExpression = '';
     }
   }
 
   private apply(): void {
-    this.hideSuggestions();
-    const text = this.input.value.trim();
-    if (isWholeQuery(this.kind, text)) {
-      this.input.value = '';
+    const text = this.field.value.trim();
+    if (isWholeQuery(this.schema?.kind ?? '', text)) {
+      this.field.value = '';
       this.state.whereExpression = '';
       this.callbacks.onWholeQuery(text);
       return;
@@ -94,82 +96,9 @@ export class FilterBar {
   }
 
   private clear(): void {
-    this.input.value = '';
+    this.field.value = '';
     this.state.whereExpression = '';
     this.state.filters = [];
-    this.hideSuggestions();
     this.callbacks.onApply();
-  }
-
-  private handleKeyDown(event: KeyboardEvent): void {
-    if (event.ctrlKey && event.code === 'Space') {
-      event.preventDefault();
-      this.showSuggestions();
-    } else if (!this.suggestionList.hidden) {
-      this.handleSuggestionKey(event);
-    } else if (event.key === 'Enter') {
-      this.apply();
-    }
-  }
-
-  private handleSuggestionKey(event: KeyboardEvent): void {
-    const count = this.completions?.suggestions.length ?? 0;
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      this.highlighted = (this.highlighted + (event.key === 'ArrowDown' ? 1 : -1) + count) % count;
-      this.renderSuggestions();
-    } else if (event.key === 'Enter' || event.key === 'Tab') {
-      event.preventDefault();
-      const suggestion = this.completions?.suggestions[this.highlighted];
-      if (suggestion) {
-        this.acceptSuggestion(suggestion);
-      }
-    } else if (event.key === 'Escape') {
-      event.preventDefault();
-      this.hideSuggestions();
-    } else {
-      queueMicrotask(() => this.showSuggestions());
-    }
-  }
-
-  private showSuggestions(): void {
-    this.completions = suggestFilterCompletions(this.kind, this.input.value, this.input.selectionStart ?? this.input.value.length, this.state.columns);
-    this.highlighted = 0;
-    if (this.completions.suggestions.length === 0) {
-      this.hideSuggestions();
-      return;
-    }
-    this.renderSuggestions();
-    this.suggestionList.hidden = false;
-  }
-
-  private renderSuggestions(): void {
-    const items = (this.completions?.suggestions ?? []).map((suggestion, index) => {
-      const item = createElement('div', { className: index === this.highlighted ? 'suggestion highlighted' : 'suggestion' }, [
-        createElement('span', { text: suggestion.label }),
-        ...(suggestion.detail ? [createElement('span', { className: 'suggestion-detail', text: suggestion.detail })] : []),
-      ]);
-      item.addEventListener('mousedown', (event) => {
-        event.preventDefault();
-        this.acceptSuggestion(suggestion);
-      });
-      return item;
-    });
-    this.suggestionList.replaceChildren(...items);
-  }
-
-  private acceptSuggestion(suggestion: FilterSuggestion): void {
-    if (!this.completions) {
-      return;
-    }
-    const result = applyFilterCompletion(this.input.value, this.completions, suggestion);
-    this.input.value = result.text;
-    this.input.setSelectionRange(result.cursor, result.cursor);
-    this.hideSuggestions();
-  }
-
-  private hideSuggestions(): void {
-    this.suggestionList.hidden = true;
-    this.completions = undefined;
   }
 }

@@ -40,7 +40,7 @@ export class HostMessageReceiver {
   }
 
   private applyInit(message: InitMessage): void {
-    const { state, host, filterBar, propertiesTab, diagramTab } = this.screen;
+    const { state, host, propertiesTab, diagramTab } = this.screen;
     const isFirstInit = state.columns.length === 0;
     state.columns = message.columns;
     state.primaryKey = message.primaryKey;
@@ -49,7 +49,7 @@ export class HostMessageReceiver {
       state.limit = message.pageSize;
     }
     state.changes = state.changes.length > 0 ? state.changes : message.changes;
-    filterBar.setDriver(message.properties.diagramSchema.kind);
+    this.screen.setSchema(message.properties.diagramSchema);
     propertiesTab.render(message.properties);
     diagramTab.render(message.properties);
 

@@ -1,5 +1,8 @@
+import type { NamespaceSchema } from '../../../../../domain/schema/model/NamespaceSchema';
 import { createElement } from '../../../shared/dom/createElement';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
+import { createQueryCompletionSource } from '../../sqlField/completion/createQueryCompletionSource';
+import { SqlField } from '../../sqlField/editor/SqlField';
 import type { DataTabState } from '../state/DataTabState';
 
 interface SqlPanelCallbacks {
@@ -12,26 +15,26 @@ interface SqlPanelCallbacks {
 
 export class SqlPanel {
   readonly element: HTMLElement;
-  private readonly editor = createElement('textarea', { className: 'sql-editor' });
+  private readonly editor: SqlField;
   private readonly backButton = createElement('button', { className: 'secondary', text: l10n.t('Back to Table'), title: l10n.t('Show the rows of this table again'), onClick: () => this.callbacks.onBackToTable() });
   private isEdited = false;
+  private schema?: NamespaceSchema;
 
   constructor(
     private readonly state: DataTabState,
     private readonly callbacks: SqlPanelCallbacks,
   ) {
-    this.editor.spellcheck = false;
-    this.editor.setAttribute('aria-label', l10n.t('SQL of this view'));
-    this.editor.addEventListener('input', () => {
-      this.isEdited = this.editor.value !== this.state.pageSql;
+    this.editor = new SqlField({
+      className: 'sql-editor',
+      ariaLabel: l10n.t('SQL of this view'),
+      wrapsLines: false,
+      submitKey: 'Mod-Enter',
+      completions: createQueryCompletionSource(() => this.schema),
+      onChange: (value) => {
+        this.isEdited = value !== this.state.pageSql;
+      },
+      onSubmit: () => this.run(),
     });
-    this.editor.addEventListener('keydown', (event) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
-        event.preventDefault();
-        this.run();
-      }
-    });
-
     this.element = createElement('div', { className: 'sql-panel' }, [
       createElement('div', { className: 'sql-actions' }, [
         createElement('button', { text: l10n.t('▶ Run'), title: l10n.t('Run this SQL (Ctrl+Enter)'), onClick: () => this.run() }),
@@ -41,8 +44,13 @@ export class SqlPanel {
         createElement('button', { className: 'secondary', text: l10n.t('Copy'), onClick: () => this.callbacks.onCopy(this.editor.value) }),
         createElement('button', { className: 'secondary', text: l10n.t('Open in Editor'), title: l10n.t('Open in a SQL editor, with autocomplete'), onClick: () => this.callbacks.onOpenInEditor(this.editor.value) }),
       ]),
-      this.editor,
+      this.editor.element,
     ]);
+  }
+
+  setSchema(schema: NamespaceSchema): void {
+    this.schema = schema;
+    this.editor.setDriver(schema.kind);
   }
 
   render(): void {
@@ -54,8 +62,8 @@ export class SqlPanel {
   }
 
   runText(sql: string): void {
-    this.isEdited = true;
     this.editor.value = sql;
+    this.isEdited = true;
     this.run();
   }
 
