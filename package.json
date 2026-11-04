@@ -2,7 +2,7 @@
   "name": "aura-datadock-db",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "lucascodev",
   "author": {
     "name": "Lucas Pereira dos Reis"
