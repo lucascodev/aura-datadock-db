@@ -23,8 +23,8 @@ import {
   rowKeyId,
   toggleDeletion,
 } from '../../../../src/application/editing/rows/pendingChanges';
-import type { TableDefinition } from '../../../../src/domain/schema/TableDefinition';
-import { assertExpectedRows } from '../../../../src/domain/database/assertExpectedRows';
+import type { TableDefinition } from '../../../../src/domain/schema/model/TableDefinition';
+import { assertExpectedRows } from '../../../../src/domain/database/rules/assertExpectedRows';
 import { auditLog, customers, orderItems, orders, paidOrders } from '../../../fixtures/shopSchema';
 
 const key = { id: '1' };

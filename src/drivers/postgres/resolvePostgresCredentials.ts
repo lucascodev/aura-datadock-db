@@ -1,4 +1,4 @@
-import type { ResolvedCredentials } from '../../domain/connection/ResolvedCredentials';
+import type { ResolvedCredentials } from '../../domain/connection/model/ResolvedCredentials';
 
 export function resolvePostgresCredentials(env: Readonly<Record<string, string>>): ResolvedCredentials {
   const user = env.POSTGRES_USER || 'postgres';

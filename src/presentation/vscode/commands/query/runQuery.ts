@@ -2,10 +2,10 @@ import * as vscode from 'vscode';
 import { buildExplain } from '../../../../application/query/analysis/buildExplain';
 import { statementAtOffset } from '../../../../application/query/analysis/statementAtOffset';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { executeQuery } from './executeQuery';
 import { resolveDocumentConnection } from '../registry/pickConnection';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function runQuery(context: DataDockContext): Promise<void> {
   const editor = requireEditor();

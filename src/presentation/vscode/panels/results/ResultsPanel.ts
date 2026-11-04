@@ -1,15 +1,15 @@
 import * as vscode from 'vscode';
 import { encodeRows } from '../../../../application/export/encoders/encodeRows';
-import { ROW_EXPORT_FORMATS } from '../../../../application/export/formats/rowExportFormats';
-import type { RowExportFormatId } from '../../../../application/export/formats/RowExportFormat';
-import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
-import type { DriverId } from '../../../../domain/driver/DriverId';
+import { ROW_EXPORT_FORMATS } from '../../../../application/export/constants/rowExportFormats';
+import type { RowExportFormatId } from '../../../../application/export/model/RowExportFormat';
+import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
+import type { DriverId } from '../../../../domain/driver/model/DriverId';
 import { renderWebviewHtml, webviewResourceRoots } from '../shared/renderWebviewHtml';
 import { saveImageFile } from '../shared/saveImageFile';
-import type { ImageFormat } from '../shared/ImageFormat';
+import type { ImageFormat } from '../model/ImageFormat';
 import type { ResultsHostMessage, ResultsViewState, ResultsWebviewMessage } from '../../../contracts/ResultsMessages';
 import { toResultSetView } from './toResultSetView';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const VIEW_TYPE = 'auraDataDockDb.results';
 const CANCEL_COMMAND = 'auraDataDockDb.cancelQuery';

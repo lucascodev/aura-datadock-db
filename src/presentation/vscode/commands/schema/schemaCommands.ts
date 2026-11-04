@@ -1,18 +1,18 @@
 import * as vscode from 'vscode';
 import { chooseDefaultNamespace } from '../../../../application/schema/loading/chooseDefaultNamespace';
 import { renderDdl } from '../../../../application/schema/rendering/renderDdl';
-import type { SchemaExportFormatId } from '../../../../application/schema/rendering/SchemaExportFormat';
-import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/rendering/schemaExportFormats';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { NamespaceSchema } from '../../../../domain/schema/NamespaceSchema';
+import type { SchemaExportFormatId } from '../../../../application/schema/model/SchemaExportFormat';
+import { SCHEMA_EXPORT_FORMATS } from '../../../../application/schema/constants/schemaExportFormats';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { NamespaceSchema } from '../../../../domain/schema/model/NamespaceSchema';
 import { ConnectionNode } from '../../tree/nodes/ConnectionNode';
 import { NamespaceNode } from '../../tree/nodes/NamespaceNode';
 import type { TableNode } from '../../tree/nodes/TableNode';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from '../query/newQuery';
 import { resolveConnection } from '../registry/pickConnection';
-import { l10n } from '../../../../domain/i18n/l10n';
-import type { SchemaCommandArgument } from './SchemaCommandArgument';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
+import type { SchemaCommandArgument } from '../model/SchemaCommandArgument';
 
 interface SchemaLocation {
   readonly target: ConnectionTarget;

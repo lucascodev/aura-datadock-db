@@ -2,10 +2,10 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildChartData } from '../../src/application/charts/builders/buildChartData';
 import { describeColumns } from '../../src/application/charts/inference/inferColumnKind';
 import { suggestChart } from '../../src/application/charts/inference/suggestChart';
-import type { ChartInput } from '../../src/application/charts/model/ChartInput';
+import type { ChartInput } from '../../src/application/charts/model/config/ChartInput';
 import { toConnectionTarget } from '../../src/application/connections/saved/toConnectionTarget';
-import type { DatabaseAdapter } from '../../src/domain/database/DatabaseAdapter';
-import type { DriverId } from '../../src/domain/driver/DriverId';
+import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
+import type { DriverId } from '../../src/domain/driver/model/DriverId';
 import { createAdapter } from '../../src/infrastructure/database/factory/createAdapter';
 import { toResultSetView } from '../../src/presentation/vscode/panels/results/toResultSetView';
 

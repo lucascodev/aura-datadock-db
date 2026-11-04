@@ -1,8 +1,8 @@
-import type { SavedConnection } from '../../../domain/connection/SavedConnection';
-import type { SshSettings } from '../../../domain/connection/SshSettings';
-import type { ConnectionInput } from './ConnectionInput';
-import { l10n } from '../../../domain/i18n/l10n';
-import type { ConnectionFieldErrors, ConnectionValidation } from './ConnectionValidation';
+import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
+import type { SshSettings } from '../../../domain/connection/model/SshSettings';
+import type { ConnectionInput } from '../model/ConnectionInput';
+import { l10n } from '../../../domain/i18n/translation/l10n';
+import type { ConnectionFieldErrors, ConnectionValidation } from '../model/ConnectionValidation';
 
 const MAX_PORT = 65535;
 const HAS_WHITESPACE = /\s/;

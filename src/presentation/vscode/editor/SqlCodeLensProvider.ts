@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { scanStatements } from '../../../application/query/analysis/splitStatements';
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import { l10n } from '../../../domain/i18n/l10n';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const MAX_STATEMENT_LENSES = 200;
 

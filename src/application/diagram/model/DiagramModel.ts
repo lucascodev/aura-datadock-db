@@ -1,5 +1,5 @@
-import type { TableKind } from '../../../domain/schema/TableRef';
-import type { RelationshipCardinality } from '../../schema/relationships/Relationship';
+import type { TableKind } from '../../../domain/schema/model/TableRef';
+import type { RelationshipCardinality } from '../../schema/model/Relationship';
 
 export type DiagramDetail = 'full' | 'keys' | 'entities';
 

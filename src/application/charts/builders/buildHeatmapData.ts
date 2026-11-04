@@ -1,12 +1,12 @@
 import { losesPrecision, parseChartNumber } from '../inference/parseChartNumber';
-import type { ChartConfig } from '../model/ChartConfig';
-import type { EmptyChartData, HeatmapChartData } from '../model/ChartData';
-import type { ChartInput } from '../model/ChartInput';
-import type { ColumnKind } from '../model/ColumnKind';
+import type { ChartConfig } from '../model/config/ChartConfig';
+import type { EmptyChartData, HeatmapChartData } from '../model/data/ChartData';
+import type { ChartInput } from '../model/config/ChartInput';
+import type { ColumnKind } from '../model/config/ColumnKind';
 import { columnIndex, labelOf } from '../support/columnAccess';
 import { orderLabels } from '../support/compareAxisValues';
 import { createTally, tallyNotices } from '../support/createRowTally';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function buildHeatmapData(input: ChartInput, config: ChartConfig, xKind: ColumnKind, yKind: ColumnKind): HeatmapChartData | EmptyChartData {
   const tally = createTally();

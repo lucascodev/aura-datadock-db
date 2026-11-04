@@ -1,4 +1,4 @@
-import type { CellValue } from '../../../domain/database/ParameterizedStatement';
+import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
 
 const NULL_TEXT = '[NULL]';
 const MAX_CELL_CHARACTERS = 80;

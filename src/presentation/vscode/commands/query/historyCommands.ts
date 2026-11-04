@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import type { QueryHistoryEntry } from '../../../../application/query/history/QueryHistoryEntry';
-import type { DataDockContext } from '../registry/DataDockContext';
+import type { QueryHistoryEntry } from '../../../../application/query/model/QueryHistoryEntry';
+import type { DataDockContext } from '../model/DataDockContext';
 import { openBoundDocument } from './newQuery';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function openHistoryEntry(context: DataDockContext, entry: QueryHistoryEntry): Promise<void> {
   await openBoundDocument(context, entry.connectionKey, `${entry.sql}\n`);

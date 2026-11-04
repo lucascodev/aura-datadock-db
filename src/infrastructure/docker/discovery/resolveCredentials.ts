@@ -1,7 +1,7 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { ResolvedCredentials } from '../../../domain/connection/ResolvedCredentials';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { ResolvedCredentials } from '../../../domain/connection/model/ResolvedCredentials';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function parseEnv(entries: readonly string[] = []): Record<string, string> {
   const env: Record<string, string> = {};

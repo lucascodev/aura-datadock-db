@@ -1,7 +1,7 @@
-import { buildDiagram } from '../../../../application/diagram/model/buildDiagram';
+import { buildDiagram } from '../../../../application/diagram/building/buildDiagram';
 import { layoutDiagram } from '../../../../application/diagram/layout/layoutDiagram';
 import type { TablePropertiesView } from '../../../contracts/TableEditorMessages';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { DiagramCanvas } from '../../diagram/canvas/DiagramCanvas';
 import { createElement } from '../../shared/createElement';
 

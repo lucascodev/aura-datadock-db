@@ -1,8 +1,8 @@
-import { MysqlAdapter } from '../mysql/MysqlAdapter';
-import { PostgresAdapter } from '../postgres/PostgresAdapter';
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
-import type { DriverId } from '../../../domain/driver/DriverId';
+import { MysqlAdapter } from '../mysql/adapter/MysqlAdapter';
+import { PostgresAdapter } from '../postgres/adapter/PostgresAdapter';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
 
 type AdapterFactory = (target: ConnectionTarget) => DatabaseAdapter;
 

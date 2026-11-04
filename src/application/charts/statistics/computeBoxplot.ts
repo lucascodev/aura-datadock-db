@@ -1,5 +1,5 @@
 import { quantile } from './quantile';
-import type { BoxplotStats } from './BoxplotStats';
+import type { BoxplotStats } from '../model/statistics/BoxplotStats';
 
 const LOWER_QUARTILE = 0.25;
 const MEDIAN = 0.5;

@@ -1,4 +1,4 @@
-import type { TlsMode } from '../../../domain/connection/ConnectionTls';
+import type { TlsMode } from '../../../domain/connection/model/ConnectionTls';
 import { isLocalHost } from './isLocalHost';
 
 interface SuggestedProtection {

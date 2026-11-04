@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { RowChange } from '../../../../src/application/editing/rows/RowChange';
-import type { ConnectionTarget } from '../../../../src/domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../../../src/domain/database/DatabaseAdapter';
+import type { RowChange } from '../../../../src/application/editing/model/RowChange';
+import type { ConnectionTarget } from '../../../../src/domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../../../src/domain/database/ports/DatabaseAdapter';
 import { TableEditors } from '../../../../src/presentation/vscode/panels/table/TableEditors';
-import type { TableEditorDependencies } from '../../../../src/presentation/vscode/panels/table/TableEditorDependencies';
+import type { TableEditorDependencies } from '../../../../src/presentation/vscode/panels/model/TableEditorDependencies';
 import { createdPanels, Uri, window, type FakeWebviewPanel } from '../../../fixtures/vscodeStub';
 import { auditLog, orders, shopSchema } from '../../../fixtures/shopSchema';
 

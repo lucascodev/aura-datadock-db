@@ -1,5 +1,5 @@
 import { createElement } from '../../../shared/createElement';
-import { l10n } from '../../../../../domain/i18n/l10n';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { DataTabState } from '../state/DataTabState';
 
 interface SqlPanelCallbacks {

@@ -1,5 +1,5 @@
-import type { CellValue } from '../../../domain/database/ParameterizedStatement';
-import type { CellValues } from './RowChange';
+import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
+import type { CellValues } from '../model/RowChange';
 
 interface DuplicableColumn {
   readonly name: string;

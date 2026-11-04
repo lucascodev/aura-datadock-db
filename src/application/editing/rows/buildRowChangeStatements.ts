@@ -1,13 +1,13 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { ParameterizedStatement } from '../../../domain/database/ParameterizedStatement';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { ParameterizedStatement } from '../../../domain/database/model/ParameterizedStatement';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
 import { getDriver } from '../../../drivers/catalog/driverCatalog';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
 import { describeEditability, isColumnEditable } from './describeEditability';
-import type { CellValues, RowChange } from './RowChange';
-import { bound, joinParts, toStatement } from '../../sql/statementTemplate';
-import type { TemplatePart } from '../../sql/TemplatePart';
-import { l10n } from '../../../domain/i18n/l10n';
+import type { CellValues, RowChange } from '../model/RowChange';
+import { bound, joinParts, toStatement } from '../../sql/building/statementTemplate';
+import type { TemplatePart } from '../../sql/model/TemplatePart';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const SINGLE_ROW = 1;
 const CHANGE_ORDER: readonly RowChange['type'][] = ['delete', 'update', 'insert'];

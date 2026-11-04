@@ -1,5 +1,5 @@
-import type { DatabaseAdapter } from '../../../domain/database/DatabaseAdapter';
-import type { StatementOutcome } from './StatementOutcome';
+import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
+import type { StatementOutcome } from '../model/StatementOutcome';
 
 interface RunStatementsOptions {
   readonly maxRows: number;

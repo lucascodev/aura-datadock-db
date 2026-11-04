@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import type { ForeignKey } from '../../../../domain/schema/ForeignKey';
-import type { TableColumn } from '../../../../domain/schema/TableColumn';
-import type { TableRef } from '../../../../domain/schema/TableRef';
-import { l10n } from '../../../../domain/i18n/l10n';
+import type { ForeignKey } from '../../../../domain/schema/model/ForeignKey';
+import type { TableColumn } from '../../../../domain/schema/model/TableColumn';
+import type { TableRef } from '../../../../domain/schema/model/TableRef';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export class ColumnNode extends vscode.TreeItem {
   constructor(

@@ -1,4 +1,4 @@
-import type { DiagramPalette } from '../../../../application/diagram/render/DiagramPalette';
+import type { DiagramPalette } from '../../../../application/diagram/model/DiagramPalette';
 
 export const LIVE_PALETTE: DiagramPalette = {
   background: 'var(--vscode-editor-background)',

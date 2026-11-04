@@ -1,7 +1,7 @@
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
-import { toSqlLiteral } from '../../sql/toSqlLiteral';
-import type { RowEncoder } from './RowEncoder';
-import type { RowExportContext } from '../formats/RowExportFormat';
+import { toSqlLiteral } from '../../sql/building/toSqlLiteral';
+import type { RowEncoder } from '../model/RowEncoder';
+import type { RowExportContext } from '../model/RowExportFormat';
 
 const FALLBACK_TABLE_NAME = 'query_result';
 

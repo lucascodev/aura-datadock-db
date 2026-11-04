@@ -7,15 +7,15 @@ import { createAdapter } from '../../src/infrastructure/database/factory/createA
 import { explainConnectionFailure } from '../../src/application/connections/guidance/explainConnectionFailure';
 import { toConnectionTarget } from '../../src/application/connections/saved/toConnectionTarget';
 import { ConnectionManager } from '../../src/application/connections/lifecycle/ConnectionManager';
-import type { ConnectionTarget } from '../../src/domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../src/domain/database/DatabaseAdapter';
-import type { RowBatch } from '../../src/domain/database/RowBatch';
-import type { SavedConnection } from '../../src/domain/connection/SavedConnection';
-import type { SshSettings } from '../../src/domain/connection/SshSettings';
-import { openAdapter } from '../../src/infrastructure/ssh/openAdapter';
-import { openSshTunnel } from '../../src/infrastructure/ssh/openSshTunnel';
-import type { SshTunnelOptions } from '../../src/infrastructure/ssh/SshTunnel';
-import { TunneledAdapter } from '../../src/infrastructure/ssh/TunneledAdapter';
+import type { ConnectionTarget } from '../../src/domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
+import type { RowBatch } from '../../src/domain/database/model/RowBatch';
+import type { SavedConnection } from '../../src/domain/connection/model/SavedConnection';
+import type { SshSettings } from '../../src/domain/connection/model/SshSettings';
+import { openAdapter } from '../../src/infrastructure/ssh/tunnel/openAdapter';
+import { openSshTunnel } from '../../src/infrastructure/ssh/tunnel/openSshTunnel';
+import type { SshTunnelOptions } from '../../src/infrastructure/ssh/model/SshTunnel';
+import { TunneledAdapter } from '../../src/infrastructure/ssh/tunnel/TunneledAdapter';
 
 const {
   DATADOCK_TEST_POSTGRES_TLS_PORT: tlsPort,

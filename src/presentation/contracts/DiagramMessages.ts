@@ -1,6 +1,6 @@
 import type { DiagramPositions } from '../../application/diagram/model/DiagramModel';
-import type { SchemaExportFormatId } from '../../application/schema/rendering/SchemaExportFormat';
-import type { NamespaceSchema } from '../../domain/schema/NamespaceSchema';
+import type { SchemaExportFormatId } from '../../application/schema/model/SchemaExportFormat';
+import type { NamespaceSchema } from '../../domain/schema/model/NamespaceSchema';
 
 export interface SchemaExportFormatView {
   readonly id: SchemaExportFormatId;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { selectTableNeighborhood } from '../../../../src/application/diagram/model/selectTableNeighborhood';
+import { selectTableNeighborhood } from '../../../../src/application/diagram/building/selectTableNeighborhood';
 import { buildTablePageQuery, buildTableSelect } from '../../../../src/application/editing/browsing/buildTablePageQuery';
 import { duplicateRowValues } from '../../../../src/application/editing/rows/duplicateRow';
 import { renderTextTable } from '../../../../src/application/editing/browsing/renderTextTable';

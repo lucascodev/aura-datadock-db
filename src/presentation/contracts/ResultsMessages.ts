@@ -1,4 +1,4 @@
-import type { RowExportFormatId } from '../../application/export/formats/RowExportFormat';
+import type { RowExportFormatId } from '../../application/export/model/RowExportFormat';
 
 export interface ResultColumnView {
   readonly name: string;

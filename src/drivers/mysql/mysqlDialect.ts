@@ -1,4 +1,4 @@
-import type { SqlDialect } from '../../domain/driver/SqlDialect';
+import type { SqlDialect } from '../../domain/driver/model/SqlDialect';
 
 const BINARY_TYPE = /^(tiny|medium|long)?blob$|^(var)?binary\b|^bit\b/i;
 

@@ -1,5 +1,5 @@
-import type { CellValue } from '../../../domain/database/ParameterizedStatement';
-import type { CellValues, RowChange } from './RowChange';
+import type { CellValue } from '../../../domain/database/model/ParameterizedStatement';
+import type { CellValues, RowChange } from '../model/RowChange';
 
 export function rowKeyId(key: CellValues): string {
   return JSON.stringify(Object.entries(key).sort(([left], [right]) => left.localeCompare(right)));

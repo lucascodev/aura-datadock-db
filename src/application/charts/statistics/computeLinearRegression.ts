@@ -1,4 +1,4 @@
-import type { LinearRegression } from './LinearRegression';
+import type { LinearRegression } from '../model/statistics/LinearRegression';
 
 
 const MIN_POINTS = 2;

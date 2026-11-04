@@ -24,7 +24,8 @@ Open the folder in VS Code and press `F5`. The `docker-compose.dev.yml` starts a
 - Dependencies point only inward, as described in [docs/architecture.md](docs/architecture.md). `vscode` only appears in `presentation/vscode` and in `main`, so the rest stays usable by the MCP server.
 - The code in `presentation/webview` runs in the browser: it does not import `vscode` or Node APIs, and talks to the extension only through messages.
 - Each file lives in a subfolder of its subject. A folder has files or subfolders, never both, and at most 8 files. The tests in `test/architecture/` enforce these rules.
-- A type used by another file has a file of its own, named after the concept. A type used only in its file stays there, without `export`. Ports go in `ports/` and each error class in `errors/`, or beside their users when the folder holds only files.
+- Folders follow layer, then context, then kind, as in `application/query/model/`. `model/` holds contracts, `ports/` interfaces to the outside, `errors/` error classes and `constants/` shared data. Other folders are named after a subject and hold logic.
+- A type used by another file has a file of its own, named after the concept. A type used only in its file stays there, without `export`.
 - Every new rule in `application` or `infrastructure/docker` comes with a test in `test/unit/`, in the same tree as `src`.
 - Changes to adapter SQL come with a test in `test/integration/`, which runs against real databases.
 
@@ -44,7 +45,7 @@ Everything that changes from one database to another lives in `src/drivers/` and
 
 1. Create `src/drivers/<database>/descriptor.ts` with a `DriverDescriptor`: name, default port, connection string schemes, dialect and, if there is an official image, Docker discovery.
 2. Register the descriptor in `src/drivers/catalog/driverDescriptors.ts`. The database already appears in the connection form.
-3. Create `src/infrastructure/database/<database>/<Database>Adapter.ts` implementing `DatabaseAdapter`, if the protocol is new. Compatible databases can reuse an adapter, as MariaDB does with `MysqlAdapter`.
+3. Create `src/infrastructure/database/<database>/adapter/<Database>Adapter.ts` implementing `DatabaseAdapter`, if the protocol is new. Compatible databases can reuse an adapter, as MariaDB does with `MysqlAdapter`.
 4. Register the adapter in `src/infrastructure/database/factory/adapterFactories.ts`.
 5. Include the database in `docker-compose.test.yml`, `scripts/runIntegrationTests.mjs` and in the `engines` lists of `test/integration/adapters.test.ts` and `test/integration/tableEditing.test.ts`. That is the contract suite every driver must pass.
 6. Add the database to the README list, in both versions.
@@ -53,7 +54,7 @@ A file-based database, such as SQLite, still needs a change in the form, which t
 
 ## Translations
 
-English is the source and each English message is its own key. The code calls `l10n.t('Message {0}', value)`, from `src/domain/i18n/l10n.ts`; the first argument is always a plain string literal. Never call it at module load, because the catalog is only set in `activate()` and at the top of each webview `main.ts`: use a function or a lazy field.
+English is the source and each English message is its own key. The code calls `l10n.t('Message {0}', value)`, from `src/domain/i18n/translation/l10n.ts`; the first argument is always a plain string literal. Never call it at module load, because the catalog is only set in `activate()` and at the top of each webview `main.ts`: use a function or a lazy field.
 
 - Runtime text is translated in `l10n/bundle.l10n.pt-br.json`.
 - Texts in `package.json` use `%key%`, with `package.nls.json` and `package.nls.pt-br.json`.

@@ -1,4 +1,4 @@
-import type { TooltipContent } from './TooltipContent';
+import type { TooltipContent } from '../model/TooltipContent';
 
 export function createTooltipContent(content: TooltipContent): HTMLElement {
   const root = document.createElement('div');

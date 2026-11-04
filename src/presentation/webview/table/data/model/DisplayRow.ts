@@ -1,4 +1,4 @@
-import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
+import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
 
 export interface DisplayRow {
   readonly rowId: string;

@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { DatabaseAdapter } from '../../../../src/domain/database/DatabaseAdapter';
-import { buildSshArgs } from '../../../../src/infrastructure/ssh/buildSshArgs';
-import { explainSshFailure } from '../../../../src/infrastructure/ssh/explainSshFailure';
-import { openSshTunnel } from '../../../../src/infrastructure/ssh/openSshTunnel';
-import type { SshTunnel } from '../../../../src/infrastructure/ssh/SshTunnel';
-import { TunneledAdapter } from '../../../../src/infrastructure/ssh/TunneledAdapter';
+import type { DatabaseAdapter } from '../../../../src/domain/database/ports/DatabaseAdapter';
+import { buildSshArgs } from '../../../../src/infrastructure/ssh/tunnel/buildSshArgs';
+import { explainSshFailure } from '../../../../src/infrastructure/ssh/tunnel/explainSshFailure';
+import { openSshTunnel } from '../../../../src/infrastructure/ssh/tunnel/openSshTunnel';
+import type { SshTunnel } from '../../../../src/infrastructure/ssh/model/SshTunnel';
+import { TunneledAdapter } from '../../../../src/infrastructure/ssh/tunnel/TunneledAdapter';
 
 const destination = { host: 'db.internal', port: 5432 };
 

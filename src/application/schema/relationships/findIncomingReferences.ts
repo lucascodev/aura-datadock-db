@@ -1,5 +1,5 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { IncomingReference } from './IncomingReference';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { IncomingReference } from '../model/IncomingReference';
 
 export function findIncomingReferences(schema: NamespaceSchema, tableName: string): IncomingReference[] {
   return schema.tables.flatMap((table) =>

@@ -1,5 +1,5 @@
-import type { ChartCell, ChartInput } from '../model/ChartInput';
-import type { ColumnInfo, ColumnKind } from '../model/ColumnKind';
+import type { ChartCell, ChartInput } from '../model/config/ChartInput';
+import type { ColumnInfo, ColumnKind } from '../model/config/ColumnKind';
 import { parseChartNumber } from './parseChartNumber';
 import { parseChartTemporal } from './parseChartTemporal';
 

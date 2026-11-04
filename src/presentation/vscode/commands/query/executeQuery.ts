@@ -1,15 +1,15 @@
 import * as vscode from 'vscode';
 import { resolveProtectionSetting } from '../../../../application/settings/resolveProtectionSetting';
 import { classifyQuery } from '../../../../application/query/analysis/classifyQuery';
-import type { QueryClassification } from '../../../../application/query/analysis/QueryClassification';
+import type { QueryClassification } from '../../../../application/query/model/QueryClassification';
 import { decideQueryGuard } from '../../../../application/query/execution/decideQueryGuard';
 import { runStatements } from '../../../../application/query/execution/runStatements';
-import type { StatementOutcome } from '../../../../application/query/execution/StatementOutcome';
+import type { StatementOutcome } from '../../../../application/query/model/StatementOutcome';
 import { summarizeOutcomes } from '../../../../application/query/execution/summarizeOutcomes';
 import { scanStatements } from '../../../../application/query/analysis/splitStatements';
-import type { ConnectionTarget } from '../../../../domain/connection/ConnectionTarget';
-import type { DataDockContext } from '../registry/DataDockContext';
-import { l10n } from '../../../../domain/i18n/l10n';
+import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
+import type { DataDockContext } from '../model/DataDockContext';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function executeQuery(context: DataDockContext, target: ConnectionTarget, sql: string): Promise<boolean> {
   const classification = classifyQuery(sql, target.kind);

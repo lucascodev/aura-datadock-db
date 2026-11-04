@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { type AiProvider, type AiRequest } from '../../../application/ai/AiProvider';
-import { AiConfigurationError } from '../../../application/ai/AiConfigurationError';
-import { l10n } from '../../../domain/i18n/l10n';
+import { type AiProvider, type AiRequest } from '../../../application/ai/ports/AiProvider';
+import { AiConfigurationError } from '../../../application/ai/errors/AiConfigurationError';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export class VsCodeLmProvider implements AiProvider {
   readonly label = 'VS Code language model';

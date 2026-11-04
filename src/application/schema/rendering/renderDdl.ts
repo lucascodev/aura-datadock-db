@@ -1,9 +1,9 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
-import type { ForeignKey } from '../../../domain/schema/ForeignKey';
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
-import type { TableIndex } from '../../../domain/schema/TableIndex';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
+import type { ForeignKey } from '../../../domain/schema/model/ForeignKey';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
+import type { TableIndex } from '../../../domain/schema/model/TableIndex';
 import { quoteIdentifier, quoteTable } from '../../../drivers/catalog/quoteIdentifier';
 
 const SEQUENCE_DEFAULT = /nextval\('([^']+)'/;

@@ -3,14 +3,14 @@ import { createAdapter } from '../../src/infrastructure/database/factory/createA
 import { toConnectionTarget } from '../../src/application/connections/saved/toConnectionTarget';
 import { buildRowChangeStatements } from '../../src/application/editing/rows/buildRowChangeStatements';
 import { buildTablePageQuery, buildTableSelect } from '../../src/application/editing/browsing/buildTablePageQuery';
-import type { RowChange } from '../../src/application/editing/rows/RowChange';
-import type { TableFilter } from '../../src/application/editing/browsing/tableFilters';
-import type { ConnectionTarget } from '../../src/domain/connection/ConnectionTarget';
-import type { DatabaseAdapter } from '../../src/domain/database/DatabaseAdapter';
-import type { DriverId } from '../../src/domain/driver/DriverId';
-import type { RowBatch } from '../../src/domain/database/RowBatch';
-import type { TableDefinition } from '../../src/domain/schema/TableDefinition';
-import { openAdapter } from '../../src/infrastructure/ssh/openAdapter';
+import type { RowChange } from '../../src/application/editing/model/RowChange';
+import type { TableFilter } from '../../src/application/editing/model/tableFilters';
+import type { ConnectionTarget } from '../../src/domain/connection/model/ConnectionTarget';
+import type { DatabaseAdapter } from '../../src/domain/database/ports/DatabaseAdapter';
+import type { DriverId } from '../../src/domain/driver/model/DriverId';
+import type { RowBatch } from '../../src/domain/database/model/RowBatch';
+import type { TableDefinition } from '../../src/domain/schema/model/TableDefinition';
+import { openAdapter } from '../../src/infrastructure/ssh/tunnel/openAdapter';
 
 interface Engine {
   readonly kind: DriverId;

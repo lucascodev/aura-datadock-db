@@ -1,4 +1,4 @@
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 const UNTRUSTED_CERTIFICATE = /self[- ]signed|unable to verify|unable to get (local )?issuer|certificate|altnames|ERR_TLS/i;
 const SERVER_WITHOUT_TLS = /does not support (ssl|secure)|ssl (is )?not (enabled|supported)|ssl off/i;

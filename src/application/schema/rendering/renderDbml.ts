@@ -1,9 +1,9 @@
-import type { NamespaceSchema } from '../../../domain/schema/NamespaceSchema';
-import type { TableColumn } from '../../../domain/schema/TableColumn';
-import type { TableDefinition } from '../../../domain/schema/TableDefinition';
-import type { TableIndex } from '../../../domain/schema/TableIndex';
+import type { NamespaceSchema } from '../../../domain/schema/model/NamespaceSchema';
+import type { TableColumn } from '../../../domain/schema/model/TableColumn';
+import type { TableDefinition } from '../../../domain/schema/model/TableDefinition';
+import type { TableIndex } from '../../../domain/schema/model/TableIndex';
 import { buildRelationships } from '../relationships/buildRelationships';
-import type { Relationship } from '../relationships/Relationship';
+import type { Relationship } from '../model/Relationship';
 
 const SIMPLE_NAME = /^[A-Za-z_]\w*$/;
 const SIMPLE_TYPE = /^[A-Za-z_]\w*(\(\d+(,\s*\d+)?\))?$/;

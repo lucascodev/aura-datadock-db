@@ -69,7 +69,9 @@ Nas pastas:
 - Uma pasta tem arquivos ou subpastas, nunca os dois. A única exceção é o `main.ts` de cada webview, que é o ponto de entrada do bundle.
 - No máximo 8 arquivos por pasta. Ao passar disso, separe por assunto.
 
-Os contratos seguem a mesma ideia. Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Uma porta fica na camada que a declara, em `ports/`, e cada classe de erro tem um arquivo com o nome dela.
+Dentro de uma camada, as pastas seguem contexto e depois tipo. `application/query/model/` guarda contratos, `ports/` guarda interfaces para o lado de fora, na camada que as declara, `errors/` guarda classes de erro e `constants/` guarda dados compartilhados. As demais pastas têm nome de assunto, como `analysis/`, e guardam lógica. A camada vem primeiro para que o caminho mostre quem pode depender de quem, e o contexto vem antes do tipo para que a mudança em um assunto fique em um só lugar.
+
+Um arquivo que exporta uma função ou uma classe não exporta tipos: um tipo usado em outro lugar tem arquivo próprio, e um tipo usado só no próprio arquivo fica privado. Cada classe de erro tem um arquivo com o nome dela.
 
 Os testes em `test/architecture/` leem os imports de todo o `src` e falham se alguma dessas regras for quebrada, inclusive em `import type`, porque um tipo importado também acopla.
 

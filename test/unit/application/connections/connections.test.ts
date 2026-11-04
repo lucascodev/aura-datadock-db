@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { toMysqlSsl } from '../../../../src/infrastructure/database/mysql/toMysqlSsl';
-import { toPostgresSsl } from '../../../../src/infrastructure/database/postgres/toPostgresSsl';
-import type { ConnectionInput } from '../../../../src/application/connections/saved/ConnectionInput';
+import { toMysqlSsl } from '../../../../src/infrastructure/database/mysql/adapter/toMysqlSsl';
+import { toPostgresSsl } from '../../../../src/infrastructure/database/postgres/adapter/toPostgresSsl';
+import type { ConnectionInput } from '../../../../src/application/connections/model/ConnectionInput';
 import { explainConnectionFailure } from '../../../../src/application/connections/guidance/explainConnectionFailure';
 import { isLocalHost } from '../../../../src/application/connections/guidance/isLocalHost';
 import { parseConnectionString } from '../../../../src/application/connections/saved/parseConnectionString';
@@ -11,7 +11,7 @@ import { suggestProtection } from '../../../../src/application/connections/guida
 import { toConnectionTarget } from '../../../../src/application/connections/saved/toConnectionTarget';
 import { validateConnectionInput } from '../../../../src/application/connections/saved/validateConnectionInput';
 import { decideQueryGuard } from '../../../../src/application/query/execution/decideQueryGuard';
-import type { SavedConnection } from '../../../../src/domain/connection/SavedConnection';
+import type { SavedConnection } from '../../../../src/domain/connection/model/SavedConnection';
 
 const validInput: ConnectionInput = {
   name: 'Staging',

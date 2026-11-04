@@ -1,4 +1,4 @@
-import { l10n } from '../../../../domain/i18n/l10n';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 const MAX_CANVAS_SIZE = 16000;
 const PREFERRED_SCALE = 2;

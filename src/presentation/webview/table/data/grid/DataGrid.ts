@@ -1,5 +1,5 @@
-import type { CellValue } from '../../../../../domain/database/ParameterizedStatement';
-import { l10n } from '../../../../../domain/i18n/l10n';
+import type { CellValue } from '../../../../../domain/database/model/ParameterizedStatement';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import type { TableColumnView } from '../../../../contracts/TableEditorMessages';
 import { createElement } from '../../../shared/createElement';
 import { columnTypeBadge } from './columnTypeBadge';

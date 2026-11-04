@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import { API_KEY_PROVIDERS } from '../../../../application/ai/AiProviderKind';
-import { apiKeySecretName } from '../../../../application/ai/apiKeySecretName';
-import type { DataDockContext } from '../registry/DataDockContext';
-import { l10n } from '../../../../domain/i18n/l10n';
+import { API_KEY_PROVIDERS } from '../../../../application/ai/model/AiProviderKind';
+import { apiKeySecretName } from '../../../../application/ai/secrets/apiKeySecretName';
+import type { DataDockContext } from '../model/DataDockContext';
+import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function setAiApiKey(context: DataDockContext): Promise<void> {
   const picked = await vscode.window.showQuickPick(

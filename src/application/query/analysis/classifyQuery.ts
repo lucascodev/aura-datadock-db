@@ -1,8 +1,8 @@
-import type { DriverId } from '../../../domain/driver/DriverId';
+import type { DriverId } from '../../../domain/driver/model/DriverId';
 import { getDriver, listDrivers } from '../../../drivers/catalog/driverCatalog';
 import { splitStatements } from './splitStatements';
-import { l10n } from '../../../domain/i18n/l10n';
-import type { QueryRisk, QueryClassification } from './QueryClassification';
+import { l10n } from '../../../domain/i18n/translation/l10n';
+import type { QueryRisk, QueryClassification } from '../model/QueryClassification';
 
 const RISK_ORDER: readonly QueryRisk[] = ['read', 'write', 'destructive'];
 const READ_KEYWORDS = new Set(['select', 'with', 'show', 'explain', 'describe', 'desc', 'values', 'table']);

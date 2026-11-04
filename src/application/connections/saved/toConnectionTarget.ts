@@ -1,7 +1,7 @@
-import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
-import type { SavedConnection } from '../../../domain/connection/SavedConnection';
+import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
+import type { SavedConnection } from '../../../domain/connection/model/SavedConnection';
 import { isLocalHost } from '../guidance/isLocalHost';
-import { l10n } from '../../../domain/i18n/l10n';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function toConnectionTarget(connection: SavedConnection): ConnectionTarget {
   return {

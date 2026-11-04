@@ -1,4 +1,4 @@
-import type { DriverDescriptor } from '../../domain/driver/DriverDescriptor';
+import type { DriverDescriptor } from '../../domain/driver/model/DriverDescriptor';
 import { mysqlDialect } from '../mysql/mysqlDialect';
 import { resolveMysqlCredentials } from '../mysql/resolveMysqlCredentials';
 

@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { buildDiagram } from '../../../../src/application/diagram/model/buildDiagram';
+import { buildDiagram } from '../../../../src/application/diagram/building/buildDiagram';
 import type { DiagramModel, DiagramPositions } from '../../../../src/application/diagram/model/DiagramModel';
-import { EXPORT_PALETTE } from '../../../../src/application/diagram/render/exportPalette';
+import { EXPORT_PALETTE } from '../../../../src/application/diagram/constants/exportPalette';
 import { layoutDiagram } from '../../../../src/application/diagram/layout/layoutDiagram';
 import { measureDiagram, renderDiagramSvg } from '../../../../src/application/diagram/render/renderDiagramSvg';
 import { routeEdge } from '../../../../src/application/diagram/layout/routeEdge';
-import type { NamespaceSchema } from '../../../../src/domain/schema/NamespaceSchema';
+import type { NamespaceSchema } from '../../../../src/domain/schema/model/NamespaceSchema';
 import { shopSchema } from '../../../fixtures/shopSchema';
 
 const tableMap = (model: DiagramModel) => new Map(model.tables.map((table) => [table.name, table]));

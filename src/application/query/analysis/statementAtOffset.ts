@@ -1,4 +1,4 @@
-import type { SqlStatement } from './SqlStatement';
+import type { SqlStatement } from '../model/SqlStatement';
 
 export function statementAtOffset(statements: readonly SqlStatement[], offset: number): SqlStatement | undefined {
   const containing = statements.find((statement) => offset >= statement.start && offset <= statement.terminatorEnd);

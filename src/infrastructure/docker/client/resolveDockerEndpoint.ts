@@ -1,8 +1,8 @@
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { posix } from 'node:path';
-import { l10n } from '../../../domain/i18n/l10n';
-import type { DockerEndpoint } from './DockerEndpoint';
+import { l10n } from '../../../domain/i18n/translation/l10n';
+import type { DockerEndpoint } from '../model/DockerEndpoint';
 
 const WINDOWS_PIPE = '\\\\.\\pipe\\docker_engine';
 

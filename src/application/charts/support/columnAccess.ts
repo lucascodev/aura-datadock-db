@@ -1,5 +1,5 @@
-import type { ChartCell, ChartInput } from '../model/ChartInput';
-import { l10n } from '../../../domain/i18n/l10n';
+import type { ChartCell, ChartInput } from '../model/config/ChartInput';
+import { l10n } from '../../../domain/i18n/translation/l10n';
 
 export function nullLabel(): string {
   return l10n.t('(null)');
