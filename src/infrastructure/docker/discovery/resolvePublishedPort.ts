@@ -1,4 +1,4 @@
-import type { DockerPort } from './DockerContainer';
+import type { DockerPort } from '../client/DockerContainer';
 
 export interface PublishedAddress {
   readonly host: string;

@@ -1,35 +1,43 @@
-import type { ConnectionTarget } from '../domain/ConnectionTarget';
-import type { DatabaseKind } from '../domain/DatabaseKind';
-import type { DockerContainerSummary } from './DockerContainer';
-import { DEFAULT_PORTS, detectDatabaseKind } from './detectDatabaseKind';
-import type { DockerClient } from './DockerClient';
+import type { ConnectionSource } from '../../../domain/connection/ConnectionSource';
+import type { ConnectionTarget } from '../../../domain/connection/ConnectionTarget';
+import { TLS_OFF } from '../../../domain/connection/ConnectionTls';
+import type { DriverId } from '../../../domain/driver/DriverId';
+import { getDriver } from '../../../drivers/catalog/driverCatalog';
+import type { DockerContainerSummary } from '../client/DockerContainer';
+import { detectDatabaseKind } from './detectDatabaseKind';
+import type { DockerClient } from '../client/DockerClient';
 import { parseEnv, resolveCredentials } from './resolveCredentials';
 import { resolvePublishedPort } from './resolvePublishedPort';
 
 interface DatabaseContainer {
   readonly container: DockerContainerSummary;
-  readonly kind: DatabaseKind;
+  readonly kind: DriverId;
 }
 
-export class ContainerDiscovery {
+export class ContainerDiscovery implements ConnectionSource {
+  readonly kind = 'docker';
+
   constructor(private readonly docker: DockerClient) {}
 
   async discover(): Promise<ConnectionTarget[]> {
     const containers = await this.docker.listRunningContainers();
     const databaseContainers = containers.flatMap(toDatabaseContainer);
     const targets = await Promise.all(databaseContainers.map((entry) => this.toConnectionTarget(entry)));
-    return targets.sort((a, b) => a.containerName.localeCompare(b.containerName));
+    return targets.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   private async toConnectionTarget({ container, kind }: DatabaseContainer): Promise<ConnectionTarget> {
     const details = await this.docker.inspectContainer(container.Id);
     const credentials = resolveCredentials(kind, parseEnv(details.Config.Env));
-    const address = resolvePublishedPort(container.Ports, DEFAULT_PORTS[kind]);
+    const address = resolvePublishedPort(container.Ports, getDriver(kind).defaultPort);
+    const name = containerDisplayName(container);
 
     return {
       id: container.Id,
-      containerName: containerDisplayName(container),
-      image: container.Image,
+      key: `docker:${name}`,
+      name,
+      detail: container.Image,
+      source: 'docker',
       kind,
       host: address?.host,
       port: address?.port,
@@ -37,6 +45,9 @@ export class ContainerDiscovery {
       password: credentials.password,
       database: credentials.database,
       credentialSource: credentials.password === undefined ? 'missing' : 'container-env',
+      isRemote: false,
+      isReadOnly: false,
+      tls: TLS_OFF,
     };
   }
 }

@@ -1,4 +1,5 @@
-import { AiConfigurationError, type AiProvider, type AiRequest } from './AiProvider';
+import { AiConfigurationError, type AiProvider, type AiRequest } from '../../application/ai/AiProvider';
+import { l10n } from '../../domain/i18n/l10n';
 
 export class OllamaProvider implements AiProvider {
   readonly label = 'Ollama';
@@ -26,7 +27,7 @@ export class OllamaProvider implements AiProvider {
     });
 
     if (!response.ok) {
-      throw new Error(`Ollama error ${response.status}: ${await response.text()}`);
+      throw new Error(l10n.t('Ollama error {0}: {1}', response.status, await response.text()));
     }
 
     const body = (await response.json()) as { message?: { content?: string } };
@@ -36,12 +37,12 @@ export class OllamaProvider implements AiProvider {
   private async firstInstalledModel(): Promise<string> {
     const response = await fetch(`${this.trimmedUrl}/api/tags`).catch(() => undefined);
     if (!response?.ok) {
-      throw new AiConfigurationError(`Could not reach Ollama at ${this.baseUrl}. Is it running?`);
+      throw new AiConfigurationError(l10n.t('Could not reach Ollama at {0}. Is it running?', this.baseUrl));
     }
     const body = (await response.json()) as { models?: Array<{ name: string }> };
     const first = body.models?.[0]?.name;
     if (!first) {
-      throw new AiConfigurationError('Ollama has no models installed. Run "ollama pull <model>" first.');
+      throw new AiConfigurationError(l10n.t('Ollama has no models installed. Run "ollama pull <model>" first.'));
     }
     return first;
   }

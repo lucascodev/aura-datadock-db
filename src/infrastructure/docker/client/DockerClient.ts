@@ -1,6 +1,7 @@
 import { request } from 'node:http';
 import type { DockerContainerDetails, DockerContainerSummary } from './DockerContainer';
 import type { DockerEndpoint } from './resolveDockerEndpoint';
+import { l10n } from '../../../domain/i18n/l10n';
 
 const REQUEST_TIMEOUT_MS = 5000;
 
@@ -28,7 +29,7 @@ export class DockerClient {
         res.on('end', () => {
           const body = Buffer.concat(chunks).toString('utf8');
           if (!res.statusCode || res.statusCode >= 400) {
-            reject(new Error(`Docker API ${path} answered ${res.statusCode}: ${body}`));
+            reject(new Error(l10n.t('Docker API {0} answered {1}: {2}', path, res.statusCode ?? 0, body)));
             return;
           }
           try {
@@ -38,7 +39,7 @@ export class DockerClient {
           }
         });
       });
-      req.on('timeout', () => req.destroy(new Error('Docker API request timed out')));
+      req.on('timeout', () => req.destroy(new Error(l10n.t('Docker API request timed out'))));
       req.on('error', (error) => reject(new DockerUnavailableError(error)));
       req.end();
     });
@@ -47,7 +48,7 @@ export class DockerClient {
 
 export class DockerUnavailableError extends Error {
   constructor(cause: Error) {
-    super(`Could not reach the Docker Engine. Is Docker running? (${cause.message})`);
+    super(l10n.t('Could not reach the Docker Engine. Is Docker running? ({0})', cause.message));
     this.name = 'DockerUnavailableError';
   }
 }

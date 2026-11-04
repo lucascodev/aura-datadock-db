@@ -1,0 +1,6 @@
+import type { DriverId } from '../../../domain/driver/DriverId';
+import { findDriverByImage } from '../../../drivers/catalog/driverCatalog';
+
+export function detectDatabaseKind(image: string): DriverId | undefined {
+  return findDriverByImage(image.split('@')[0])?.id;
+}

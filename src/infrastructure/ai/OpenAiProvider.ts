@@ -1,4 +1,5 @@
-import { AiConfigurationError, type AiProvider, type AiRequest } from './AiProvider';
+import { AiConfigurationError, type AiProvider, type AiRequest } from '../../application/ai/AiProvider';
+import { l10n } from '../../domain/i18n/l10n';
 
 export class OpenAiProvider implements AiProvider {
   readonly label = 'OpenAI';
@@ -10,10 +11,10 @@ export class OpenAiProvider implements AiProvider {
 
   async complete(request: AiRequest): Promise<string> {
     if (!this.apiKey) {
-      throw new AiConfigurationError('OpenAI API key not set. Run "Aura DataDock: Set AI Provider API Key".');
+      throw new AiConfigurationError(l10n.t('OpenAI API key not set. Run "Aura DataDock DB: Set AI Provider API Key".'));
     }
     if (!this.model) {
-      throw new AiConfigurationError('Set the OpenAI model id in auraDataDock.ai.model.');
+      throw new AiConfigurationError(l10n.t('Set the OpenAI model id in auraDataDockDb.ai.model.'));
     }
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -33,7 +34,7 @@ export class OpenAiProvider implements AiProvider {
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error ${response.status}: ${await response.text()}`);
+      throw new Error(l10n.t('OpenAI API error {0}: {1}', response.status, await response.text()));
     }
 
     const body = (await response.json()) as { choices: Array<{ message: { content: string | null } }> };

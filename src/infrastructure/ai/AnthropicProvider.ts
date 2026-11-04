@@ -1,4 +1,5 @@
-import { AiConfigurationError, type AiProvider, type AiRequest } from './AiProvider';
+import { AiConfigurationError, type AiProvider, type AiRequest } from '../../application/ai/AiProvider';
+import { l10n } from '../../domain/i18n/l10n';
 
 const DEFAULT_MODEL = 'claude-sonnet-5-5';
 
@@ -12,7 +13,7 @@ export class AnthropicProvider implements AiProvider {
 
   async complete(request: AiRequest): Promise<string> {
     if (!this.apiKey) {
-      throw new AiConfigurationError('Anthropic API key not set. Run "Aura DataDock: Set AI Provider API Key".');
+      throw new AiConfigurationError(l10n.t('Anthropic API key not set. Run "Aura DataDock DB: Set AI Provider API Key".'));
     }
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -32,7 +33,7 @@ export class AnthropicProvider implements AiProvider {
     });
 
     if (!response.ok) {
-      throw new Error(`Anthropic API error ${response.status}: ${await response.text()}`);
+      throw new Error(l10n.t('Anthropic API error {0}: {1}', response.status, await response.text()));
     }
 
     const body = (await response.json()) as { content: Array<{ type: string; text?: string }> };

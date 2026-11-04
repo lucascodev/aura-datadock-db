@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { posix } from 'node:path';
+import { l10n } from '../../../domain/i18n/l10n';
 
 export type DockerEndpoint =
   | { readonly type: 'socket'; readonly socketPath: string }
@@ -25,9 +26,9 @@ export function resolveDockerEndpoint(
 
   const candidates = [
     '/var/run/docker.sock',
-    join(homedir(), '.docker', 'run', 'docker.sock'),
-    join(homedir(), '.colima', 'default', 'docker.sock'),
-    env.XDG_RUNTIME_DIR ? join(env.XDG_RUNTIME_DIR, 'podman', 'podman.sock') : undefined,
+    posix.join(homedir(), '.docker', 'run', 'docker.sock'),
+    posix.join(homedir(), '.colima', 'default', 'docker.sock'),
+    env.XDG_RUNTIME_DIR ? posix.join(env.XDG_RUNTIME_DIR, 'podman', 'podman.sock') : undefined,
   ].filter((candidate): candidate is string => candidate !== undefined);
 
   const found = candidates.find((candidate) => fileExists(candidate));
@@ -46,5 +47,5 @@ export function parseDockerHost(value: string): DockerEndpoint {
     const url = new URL(value.replace(/^tcp:/, 'http:'));
     return { type: 'tcp', host: url.hostname, port: Number(url.port || 2375) };
   }
-  throw new Error(`Unsupported Docker host: ${value}`);
+  throw new Error(l10n.t('Unsupported Docker host: {0}', value));
 }
