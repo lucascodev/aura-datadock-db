@@ -45,7 +45,7 @@
   "setting.readOnly.description": "Block every statement that writes to the database.",
   "setting.confirmDestructiveQueries.description": "Ask for confirmation before DROP, TRUNCATE, ALTER and DELETE/UPDATE without WHERE.",
   "setting.maxRows.description": "Maximum number of rows shown in the results panel.",
-  "setting.dockerHost.description": "Docker Engine endpoint. Leave empty to use DOCKER_HOST or the platform default (unix socket or Windows named pipe).",
+  "setting.dockerHost.description": "Docker Engine endpoint, set only in user settings. Leave empty to use DOCKER_HOST or the platform default (unix socket or Windows named pipe). A tcp:// endpoint is not encrypted and carries the credentials of the containers.",
   "setting.ai.provider.description": "Which AI provider powers the AI features.",
   "setting.ai.provider.enum.vscode": "Language models available in VS Code (for example GitHub Copilot). No API key needed.",
   "setting.ai.provider.enum.anthropic": "Anthropic API with your own key.",
@@ -53,9 +53,11 @@
   "setting.ai.provider.enum.ollama": "Local models through Ollama.",
   "setting.ai.model.description": "Model id for the selected provider. Leave empty to use the provider default.",
   "setting.ai.ollamaUrl.description": "Base URL of the Ollama server.",
-  "setting.mcp.enabled.description": "Expose discovered databases to AI agents through a read-only MCP server.",
+  "setting.mcp.enabled.description": "Expose discovered databases to AI agents through an MCP server that only accepts reads. Off by default. Connect with a database user that has limited permissions, because agents see the data they read.",
   "setting.codeLens.enabled.description": "Show the database of the file and Run and Explain actions above each statement in SQL files.",
   "setting.history.maxEntries.description": "How many executed queries to keep in the history. Use 0 to turn the history off.",
   "setting.connections.markdownDescription": "Saved database connections. Manage them with the **Add New Connection** command. Passwords are stored in the operating system keychain, never here.",
-  "setting.table.pageSize.description": "How many rows the table editor reads per page."
+  "setting.table.pageSize.description": "How many rows the table editor reads per page.",
+  "capabilities.untrustedWorkspaces.description": "A repository can define settings used to reach databases, so the extension only runs in trusted workspaces.",
+  "capabilities.virtualWorkspaces.description": "The extension needs local access to Docker, SSH and files."
 }

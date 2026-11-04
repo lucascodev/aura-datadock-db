@@ -14,6 +14,7 @@ import { QueryDocumentBindings } from '../application/query/documents/QueryDocum
 import { QueryHistory } from '../application/query/history/QueryHistory';
 import { QueryRunTracker } from '../application/query/execution/QueryRunTracker';
 import { SchemaCache } from '../application/schema/loading/SchemaCache';
+import { resolveProtectionSetting } from '../application/settings/resolveProtectionSetting';
 import type { ConnectionSource } from '../domain/connection/ConnectionSource';
 import { l10n, useL10nCatalog } from '../domain/i18n/l10n';
 import { ContainerDiscovery } from '../infrastructure/docker/discovery/ContainerDiscovery';
@@ -57,7 +58,7 @@ export async function activate(extension: vscode.ExtensionContext): Promise<void
   connections = new ConnectionManager(
     [savedConnections, dockerSource],
     { get: (target) => extension.secrets.get(passwordSecretName(target)) },
-    { readOnly: (target) => config().get<boolean>('readOnly', false) || target.isReadOnly, openAdapter },
+    { readOnly: (target) => resolveProtectionSetting(config().inspect<boolean>('readOnly'), false) || target.isReadOnly, openAdapter },
   );
   const manager = connections;
 
@@ -99,8 +100,8 @@ export async function activate(extension: vscode.ExtensionContext): Promise<void
     extensionUri: extension.extensionUri,
     getAdapter: (targetId) => manager.getAdapter(targetId),
     loadSchema: (target, namespace) => schemas.get(target.id, namespace),
-    isReadOnly: (target) => config().get<boolean>('readOnly', false) || target.isReadOnly,
-    confirmsDestructive: () => config().get<boolean>('confirmDestructiveQueries', true),
+    isReadOnly: (target) => resolveProtectionSetting(config().inspect<boolean>('readOnly'), false) || target.isReadOnly,
+    confirmsDestructive: () => resolveProtectionSetting(config().inspect<boolean>('confirmDestructiveQueries'), true),
     pageSize: () => config().get<number>('table.pageSize', 100),
     openSql: (target, sql) => openBoundDocument(context, target.key, sql),
     runScript: (target, sql) => executeQuery(context, target, sql),

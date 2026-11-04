@@ -37,6 +37,16 @@
   "engines": {
     "vscode": "^1.101.0"
   },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "%capabilities.untrustedWorkspaces.description%"
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "%capabilities.virtualWorkspaces.description%"
+    }
+  },
   "main": "./dist/extension.js",
   "activationEvents": [
     "onStartupFinished"
@@ -606,7 +616,8 @@
         "auraDataDockDb.dockerHost": {
           "type": "string",
           "default": "",
-          "description": "%setting.dockerHost.description%"
+          "description": "%setting.dockerHost.description%",
+          "scope": "machine"
         },
         "auraDataDockDb.ai.provider": {
           "type": "string",
@@ -623,22 +634,26 @@
             "%setting.ai.provider.enum.ollama%"
           ],
           "default": "vscode",
-          "description": "%setting.ai.provider.description%"
+          "description": "%setting.ai.provider.description%",
+          "scope": "machine"
         },
         "auraDataDockDb.ai.model": {
           "type": "string",
           "default": "",
-          "description": "%setting.ai.model.description%"
+          "description": "%setting.ai.model.description%",
+          "scope": "machine"
         },
         "auraDataDockDb.ai.ollamaUrl": {
           "type": "string",
           "default": "http://localhost:11434",
-          "description": "%setting.ai.ollamaUrl.description%"
+          "description": "%setting.ai.ollamaUrl.description%",
+          "scope": "machine"
         },
         "auraDataDockDb.mcp.enabled": {
           "type": "boolean",
-          "default": true,
-          "description": "%setting.mcp.enabled.description%"
+          "default": false,
+          "description": "%setting.mcp.enabled.description%",
+          "scope": "machine"
         },
         "auraDataDockDb.codeLens.enabled": {
           "type": "boolean",
