@@ -1,4 +1,4 @@
-# Aura DataDock DB
+<h1 align="center"><img src="docs/brand/readme-banner.png" alt="Aura DataDock DB" width="880"></h1>
 
 **English** | [Português (Brasil)](README.pt-BR.md)
 

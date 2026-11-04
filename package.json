@@ -34,6 +34,11 @@
     "Data Science",
     "AI"
   ],
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#0B1B3F",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.101.0"
   },
