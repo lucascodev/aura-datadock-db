@@ -118,7 +118,7 @@ In the **Data** tab:
 
 Nothing is written until **Save**, which applies everything in one transaction: if a change fails, none is saved and they stay pending. Changes survive page switches. If you close the tab with pending changes, the extension offers to reopen it with them.
 
-**Show SQL** opens the screen's `SELECT` below the grid, which you can edit and run with `Ctrl+Enter`:
+**Show SQL** opens the screen's `SELECT` below the grid, which you can edit and run with `Ctrl+Enter`. This panel and the filter field highlight the SQL and suggest tables, columns and keywords as you type, or with `Ctrl+Space`:
 
 - A single read statement shows the result in the grid itself, read-only, until **Back to Table**. It returns at most the page size.
 - Anything else follows the path of a normal query, with the same confirmations, and the result appears in the results panel.

@@ -118,7 +118,7 @@ Na aba **Dados**:
 
 Nada é gravado até **Salvar**, que aplica tudo em uma transação: se uma alteração falhar, nenhuma é salva e elas continuam pendentes. As alterações sobrevivem à troca de página. Se você fechar a aba com alterações pendentes, a extensão oferece reabrir com elas.
 
-**Mostrar SQL** abre embaixo da grade o `SELECT` da tela, que você pode editar e rodar com `Ctrl+Enter`:
+**Mostrar SQL** abre embaixo da grade o `SELECT` da tela, que você pode editar e rodar com `Ctrl+Enter`. Esse painel e o campo de filtro destacam o SQL e sugerem tabelas, colunas e palavras-chave enquanto você digita, ou com `Ctrl+Space`:
 
 - Um único comando de leitura mostra o resultado na própria grade, só para leitura, até **Voltar à tabela**. Ele traz no máximo o tamanho da página.
 - Qualquer outra coisa segue o caminho de uma query normal, com as mesmas confirmações, e o resultado aparece no painel de resultados.

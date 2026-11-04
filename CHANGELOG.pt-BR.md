@@ -8,6 +8,7 @@ Todas as mudanças relevantes deste projeto são registradas aqui. O formato seg
 
 ### Adicionado
 
+- Destaque de sintaxe e autocomplete no campo de filtro e no painel de **Mostrar SQL** da tela da tabela.
 - Link para o GitHub Sponsors no repositório, no README e na página da extensão.
 - Uma query inteira digitada no campo de filtro agora vai para o painel de **Mostrar SQL** e roda a partir dele.
 
