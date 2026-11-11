@@ -15,6 +15,18 @@ docker compose -f docker-compose.dev.yml up -d
 
 Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Postgres e um MySQL com tabelas de exemplo para testar. Os seeds só rodam na criação do banco; depois de alterá-los, recrie os containers com `docker compose -f docker-compose.dev.yml down -v` seguido de `up -d`.
 
+## Branches
+
+O projeto segue o git flow, mantendo nas branches os prefixos dos tipos de commit.
+
+- `main` guarda o que foi publicado, e cada versão é uma tag `vX.Y.Z` nela. Ela só recebe releases e correções urgentes.
+- `develop` reúne o trabalho da próxima versão. Abra os pull requests contra ela.
+- Uma mudança sai da `develop` em uma branch com o nome do tipo, como `feat/…`, `fix/…`, `refactor/…`, `docs/…` ou `chore/…`.
+- Uma release sai da `develop` em `chore/release-x.y.z`, que só define a versão e põe a data no changelog. Ela entra na `main`, a tag é enviada a partir da `main` depois desse merge, e a `main` volta para a `develop`.
+- Uma correção urgente de uma versão publicada sai da `main` em `fix/…`, entra na `main` e depois na `develop`.
+
+Os commits seguem o Conventional Commits, como `feat: open a chart from the table screen`, com um commit para cada mudança lógica.
+
 ## Padrões de código
 
 - Código, nomes e mensagens de commit em inglês.
