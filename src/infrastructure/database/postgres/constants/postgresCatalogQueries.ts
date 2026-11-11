@@ -1,5 +1,13 @@
 const RELATION_KINDS = `('r', 'p', 'v', 'm', 'f')`;
 
+export const LIST_DATABASES_SQL = `
+  SELECT datname AS database_name
+    FROM pg_catalog.pg_database
+   WHERE datallowconn
+     AND NOT datistemplate
+     AND pg_catalog.has_database_privilege(datname, 'CONNECT')
+   ORDER BY datname`;
+
 export const LIST_NAMESPACES_SQL = `
   SELECT nspname AS schema_name
     FROM pg_catalog.pg_namespace

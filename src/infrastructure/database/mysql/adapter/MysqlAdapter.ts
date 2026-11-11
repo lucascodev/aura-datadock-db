@@ -71,6 +71,10 @@ export class MysqlAdapter implements DatabaseAdapter {
     this.connection = undefined;
   }
 
+  listDatabases(): Promise<string[]> {
+    return this.listNamespaces();
+  }
+
   async listNamespaces(): Promise<string[]> {
     const [rows] = await this.db.query<RowDataPacket[]>('SHOW DATABASES');
     return rows.map((row) => String(row.Database)).filter((name) => !SYSTEM_DATABASES.has(name));

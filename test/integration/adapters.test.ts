@@ -120,6 +120,15 @@ describe.each(engines)('$kind adapter', (engine) => {
       return found;
     };
 
+    describe('listDatabases', () => {
+      it('lists the database of the seed and leaves templates out', async () => {
+        const databases = await adapter.listDatabases();
+        expect(databases).toContain('shop');
+        expect(databases).not.toContain('template0');
+        expect(databases).not.toContain('template1');
+      });
+    });
+
     describe('readSchema', () => {
       it('reads tables and views', () => {
         expect(schema.tables.map((candidate) => candidate.name).sort()).toEqual(
