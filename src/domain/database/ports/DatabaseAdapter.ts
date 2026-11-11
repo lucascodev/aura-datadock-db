@@ -8,6 +8,7 @@ export interface DatabaseAdapter {
   connect(): Promise<void>;
   dispose(): Promise<void>;
   onDisconnect(listener: () => void): void;
+  listDatabases(): Promise<string[]>;
   listNamespaces(): Promise<string[]>;
   listTables(namespace: string): Promise<TableRef[]>;
   readSchema(namespace: string): Promise<NamespaceSchema>;

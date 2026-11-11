@@ -358,27 +358,27 @@
       "view/item/context": [
         {
           "command": "auraDataDockDb.newQuery",
-          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-/",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^(connection-|database$)/",
           "group": "inline"
         },
         {
           "command": "auraDataDockDb.showDiagram",
-          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^(connection-.*-ready|database)$/",
           "group": "inline"
         },
         {
           "command": "auraDataDockDb.newQuery",
-          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^(connection-.*-ready|database)$/",
           "group": "1_connection@1"
         },
         {
           "command": "auraDataDockDb.showDiagram",
-          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^(connection-.*-ready|database)$/",
           "group": "1_connection@2"
         },
         {
           "command": "auraDataDockDb.exportSchema",
-          "when": "view == auraDataDockDb.connections && viewItem =~ /^connection-.*-ready$/",
+          "when": "view == auraDataDockDb.connections && viewItem =~ /^(connection-.*-ready|database)$/",
           "group": "1_connection@3"
         },
         {

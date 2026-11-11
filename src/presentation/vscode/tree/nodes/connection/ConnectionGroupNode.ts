@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import type { ConnectionSourceKind } from '../../../../domain/connection/model/ConnectionTarget';
-import { l10n } from '../../../../domain/i18n/translation/l10n';
+import type { ConnectionSourceKind } from '../../../../../domain/connection/model/ConnectionTarget';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 
 const LABELS: Readonly<Record<ConnectionSourceKind, () => string>> = {
   docker: () => 'Docker',

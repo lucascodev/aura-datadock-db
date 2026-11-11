@@ -7,11 +7,14 @@ import { l10n } from '../../../domain/i18n/translation/l10n';
 import type { PasswordStore } from '../ports/PasswordStore';
 import type { ConnectionManagerOptions } from '../ports/ConnectionManagerOptions';
 import { MissingPasswordError } from '../errors/MissingPasswordError';
+import { DatabaseTargetRegistry } from '../databases/DatabaseTargetRegistry';
+import { parseDatabaseTargetKey } from '../databases/parseDatabaseTargetKey';
 
 type Listener = () => void;
 
 export class ConnectionManager {
   private targets: ConnectionTarget[] = [];
+  private readonly databases = new DatabaseTargetRegistry();
   private readonly adapters = new Map<string, Promise<DatabaseAdapter>>();
   private readonly sourceErrors = new Map<ConnectionSourceKind, string>();
   private activeTargetId?: string;
@@ -27,8 +30,9 @@ export class ConnectionManager {
   async refresh(): Promise<ConnectionTarget[]> {
     const discovered = await this.discoverAll();
     this.targets = await Promise.all(discovered.map((target) => this.withStoredPassword(target)));
+    this.databases.rebase(this.targets);
 
-    const liveIds = new Set(this.targets.map((target) => target.id));
+    const liveIds = new Set([...this.targets.map((target) => target.id), ...this.databases.ids()]);
     for (const id of [...this.adapters.keys()]) {
       if (!liveIds.has(id)) {
         await this.close(id);
@@ -50,11 +54,16 @@ export class ConnectionManager {
   }
 
   getTarget(id: string): ConnectionTarget | undefined {
-    return this.targets.find((target) => target.id === id);
+    return this.targets.find((target) => target.id === id) ?? this.databases.get(id);
   }
 
   findByKey(key: string): ConnectionTarget | undefined {
-    return this.targets.find((target) => target.key === key);
+    return this.targets.find((target) => target.key === key) ?? this.databases.findByKey(key) ?? this.restoreDatabaseTarget(key);
+  }
+
+  resolveDatabaseTarget(serverId: string, database: string): ConnectionTarget | undefined {
+    const server = this.targets.find((target) => target.id === serverId);
+    return server ? this.databases.register(server, database) : undefined;
   }
 
   findByName(name: string): ConnectionTarget | undefined {
@@ -109,6 +118,12 @@ export class ConnectionManager {
     }
   }
 
+  async closeWithDatabases(serverId: string): Promise<string[]> {
+    const ids = [serverId, ...this.databases.idsOf(serverId)];
+    await Promise.all(ids.map((id) => this.close(id)));
+    return ids;
+  }
+
   async closeAll(): Promise<void> {
     await Promise.all([...this.adapters.keys()].map((id) => this.close(id)));
   }
@@ -130,6 +145,12 @@ export class ConnectionManager {
       this.sourceErrors.set(this.sources[index].kind, reason instanceof Error ? reason.message : String(reason));
       return [];
     });
+  }
+
+  private restoreDatabaseTarget(key: string): ConnectionTarget | undefined {
+    const parsed = parseDatabaseTargetKey(key);
+    const server = parsed && this.targets.find((target) => target.key === parsed.serverKey);
+    return server && parsed ? this.databases.register(server, parsed.database) : undefined;
   }
 
   private async open(target: ConnectionTarget, onDisconnect: () => void): Promise<DatabaseAdapter> {

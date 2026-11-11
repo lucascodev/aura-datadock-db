@@ -1,5 +1,5 @@
 import { MissingPasswordError } from '../../../../application/connections/errors/MissingPasswordError';
-import { MessageNode } from '../nodes/MessageNode';
+import { MessageNode } from '../nodes/shared/MessageNode';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export function toErrorNode(error: unknown): MessageNode {

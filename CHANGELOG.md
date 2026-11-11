@@ -4,6 +4,12 @@
 
 All notable changes to this project are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- A Postgres connection expands into every database on the server. Click a database to open its schemas, run queries, see the diagram or export the schema. Before, only the database from `POSTGRES_DB` was visible, which left containers that create several databases looking empty.
+
 ## [0.1.5] - 2026-11-04
 
 ### Added

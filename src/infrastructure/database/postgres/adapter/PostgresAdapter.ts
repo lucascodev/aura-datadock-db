@@ -9,7 +9,7 @@ import type { QueryResult } from '../../../../domain/database/model/QueryResult'
 import type { RowBatch } from '../../../../domain/database/model/RowBatch';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
 import { quoteTable } from '../../../../drivers/catalog/quoteTable';
-import { BACKEND_PID_SQL, CANCEL_BACKEND_SQL, LIST_COLUMNS_SQL, LIST_CONSTRAINTS_SQL, LIST_INDEXES_SQL, LIST_NAMESPACES_SQL, LIST_TABLES_SQL } from '../constants/postgresCatalogQueries';
+import { BACKEND_PID_SQL, CANCEL_BACKEND_SQL, LIST_COLUMNS_SQL, LIST_CONSTRAINTS_SQL, LIST_DATABASES_SQL, LIST_INDEXES_SQL, LIST_NAMESPACES_SQL, LIST_TABLES_SQL } from '../constants/postgresCatalogQueries';
 import type { PostgresColumnRow, PostgresConstraintRow, PostgresIndexRow, PostgresTableRow } from '../model/postgresSchemaRows';
 import { toPostgresSsl } from './toPostgresSsl';
 import { isViewRelation } from './isViewRelation';
@@ -72,6 +72,11 @@ export class PostgresAdapter implements DatabaseAdapter {
 
   async dispose(): Promise<void> {
     await this.client.end();
+  }
+
+  async listDatabases(): Promise<string[]> {
+    const result = await this.client.query<{ database_name: string }>(LIST_DATABASES_SQL);
+    return result.rows.map((row) => row.database_name);
   }
 
   async listNamespaces(): Promise<string[]> {

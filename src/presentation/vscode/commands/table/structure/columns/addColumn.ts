@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { buildAddColumn } from '../../../../../../application/editing/structure/buildAddColumn';
 import type { ConnectionTarget } from '../../../../../../domain/connection/model/ConnectionTarget';
 import { getDriver } from '../../../../../../drivers/catalog/getDriver';
-import type { TableNode } from '../../../../tree/nodes/TableNode';
+import type { TableNode } from '../../../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { l10n } from '../../../../../../domain/i18n/translation/l10n';
 import { askName } from '../shared/askName';

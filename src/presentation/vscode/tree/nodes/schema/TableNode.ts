@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import type { TableRef } from '../../../../domain/schema/model/TableRef';
-import { l10n } from '../../../../domain/i18n/translation/l10n';
+import type { TableRef } from '../../../../../domain/schema/model/TableRef';
+import { l10n } from '../../../../../domain/i18n/translation/l10n';
 
 export class TableNode extends vscode.TreeItem {
   constructor(

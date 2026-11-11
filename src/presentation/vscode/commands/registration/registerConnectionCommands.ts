@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
 import { addConnection } from '../connection/addConnection';
 import { disconnect } from '../connection/disconnect';
 import { editConnection } from '../connection/editConnection';

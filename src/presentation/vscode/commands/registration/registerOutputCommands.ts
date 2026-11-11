@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { TableNode } from '../../tree/nodes/TableNode';
+import type { TableNode } from '../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../model/DataDockContext';
 import type { SchemaCommandArgument } from '../model/SchemaCommandArgument';
 import { copySelect } from '../schema/copySelect';

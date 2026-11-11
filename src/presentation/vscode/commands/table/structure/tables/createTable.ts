@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { buildCreateTable } from '../../../../../../application/editing/structure/buildCreateTable';
 import { chooseDefaultNamespace } from '../../../../../../application/schema/loading/chooseDefaultNamespace';
 import type { ConnectionTarget } from '../../../../../../domain/connection/model/ConnectionTarget';
-import type { NamespaceNode } from '../../../../tree/nodes/NamespaceNode';
+import type { NamespaceNode } from '../../../../tree/nodes/schema/NamespaceNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { l10n } from '../../../../../../domain/i18n/translation/l10n';
 import { askName } from '../shared/askName';

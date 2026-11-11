@@ -1,4 +1,4 @@
-import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
 import type { DataDockContext } from '../model/DataDockContext';
 
 export function editConnection(context: DataDockContext, node: ConnectionNode): void {

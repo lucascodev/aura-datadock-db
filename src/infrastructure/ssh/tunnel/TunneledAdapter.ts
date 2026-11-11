@@ -29,6 +29,10 @@ export class TunneledAdapter implements DatabaseAdapter {
     this.tunnel.onClose(listener);
   }
 
+  listDatabases(): Promise<string[]> {
+    return this.inner.listDatabases();
+  }
+
   listNamespaces(): Promise<string[]> {
     return this.inner.listNamespaces();
   }
