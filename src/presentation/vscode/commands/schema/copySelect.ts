@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { TableNode } from '../../tree/nodes/TableNode';
+import type { TableNode } from '../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 import { showError } from './showError';

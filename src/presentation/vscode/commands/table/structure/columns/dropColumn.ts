@@ -1,5 +1,5 @@
 import { buildDropColumn } from '../../../../../../application/editing/structure/buildDropColumn';
-import type { ColumnNode } from '../../../../tree/nodes/ColumnNode';
+import type { ColumnNode } from '../../../../tree/nodes/schema/ColumnNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { openReview } from '../shared/openReview';
 

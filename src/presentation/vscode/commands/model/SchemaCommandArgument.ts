@@ -1,4 +1,4 @@
-import { ConnectionNode } from '../../tree/nodes/ConnectionNode';
-import { NamespaceNode } from '../../tree/nodes/NamespaceNode';
+import { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
+import { NamespaceNode } from '../../tree/nodes/schema/NamespaceNode';
 
 export type SchemaCommandArgument = ConnectionNode | NamespaceNode | undefined;

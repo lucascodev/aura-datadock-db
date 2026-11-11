@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { TableNode } from '../../../../tree/nodes/TableNode';
+import type { TableNode } from '../../../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { openBoundDocument } from '../../../query/editor/openBoundDocument';
 

@@ -1,4 +1,4 @@
-import type { ConnectionNode } from '../../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../../tree/nodes/connection/ConnectionNode';
 import type { DataDockContext } from '../../model/DataDockContext';
 import { resolveConnection } from '../../registry/resolveConnection';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';

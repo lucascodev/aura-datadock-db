@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
 import { type DataDockContext } from '../model/DataDockContext';
 import { passwordSecretName } from '../registry/passwordSecretName';
 import { pickConnection } from '../registry/pickConnection';

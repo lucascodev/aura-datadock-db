@@ -4,12 +4,12 @@ import { chooseDefaultNamespace } from '../../../../application/schema/loading/c
 import type { SchemaCache } from '../../../../application/schema/loading/SchemaCache';
 import type { TableDefinition } from '../../../../domain/schema/model/TableDefinition';
 import type { TableRef } from '../../../../domain/schema/model/TableRef';
-import { ColumnNode } from '../nodes/ColumnNode';
+import { ColumnNode } from '../nodes/schema/ColumnNode';
 import { toErrorNode } from './toErrorNode';
-import { MessageNode } from '../nodes/MessageNode';
-import { NamespaceNode } from '../nodes/NamespaceNode';
-import { TableNode } from '../nodes/TableNode';
-import { TableSectionNode } from '../nodes/TableSectionNode';
+import { MessageNode } from '../nodes/shared/MessageNode';
+import { NamespaceNode } from '../nodes/schema/NamespaceNode';
+import { TableNode } from '../nodes/schema/TableNode';
+import { TableSectionNode } from '../nodes/schema/TableSectionNode';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type SchemaNode = NamespaceNode | TableNode | TableSectionNode | ColumnNode | MessageNode;

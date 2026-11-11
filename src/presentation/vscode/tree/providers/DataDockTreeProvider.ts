@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
 import type { ConnectionManager } from '../../../../application/connections/lifecycle/ConnectionManager';
 import type { ConnectionSourceKind } from '../../../../domain/connection/model/ConnectionTarget';
-import { ConnectionGroupNode } from '../nodes/ConnectionGroupNode';
-import { ConnectionNode } from '../nodes/ConnectionNode';
-import { MessageNode } from '../nodes/MessageNode';
+import { ConnectionGroupNode } from '../nodes/connection/ConnectionGroupNode';
+import { ConnectionNode } from '../nodes/connection/ConnectionNode';
+import { MessageNode } from '../nodes/shared/MessageNode';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 type Node = ConnectionGroupNode | ConnectionNode | MessageNode;

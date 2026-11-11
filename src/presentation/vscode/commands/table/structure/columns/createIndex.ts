@@ -1,5 +1,5 @@
 import { buildCreateIndex } from '../../../../../../application/editing/structure/buildCreateIndex';
-import type { ColumnNode } from '../../../../tree/nodes/ColumnNode';
+import type { ColumnNode } from '../../../../tree/nodes/schema/ColumnNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { openReview } from '../shared/openReview';
 

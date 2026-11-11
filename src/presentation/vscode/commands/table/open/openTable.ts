@@ -1,4 +1,4 @@
-import type { TableNode } from '../../../tree/nodes/TableNode';
+import type { TableNode } from '../../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../../model/DataDockContext';
 import { openTableOf } from './openTableOf';
 

@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
 import { generateSql } from '../ai/generateSql';
 import { setAiApiKey } from '../ai/setAiApiKey';
 import { setPassword } from '../connection/setPassword';

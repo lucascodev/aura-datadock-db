@@ -1,5 +1,5 @@
 import { buildDropTable } from '../../../../../../application/editing/structure/buildDropTable';
-import type { TableNode } from '../../../../tree/nodes/TableNode';
+import type { TableNode } from '../../../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../../../model/DataDockContext';
 import { openReview } from '../shared/openReview';
 

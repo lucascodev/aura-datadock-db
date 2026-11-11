@@ -1,6 +1,6 @@
 import type { ConnectionTarget } from '../../../../domain/connection/model/ConnectionTarget';
-import { ConnectionNode } from '../../tree/nodes/ConnectionNode';
-import { NamespaceNode } from '../../tree/nodes/NamespaceNode';
+import { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
+import { NamespaceNode } from '../../tree/nodes/schema/NamespaceNode';
 import type { DataDockContext } from '../model/DataDockContext';
 import { resolveConnection } from '../registry/resolveConnection';
 import type { SchemaCommandArgument } from '../model/SchemaCommandArgument';

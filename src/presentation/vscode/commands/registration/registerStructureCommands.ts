@@ -1,7 +1,7 @@
 import type * as vscode from 'vscode';
-import type { ColumnNode } from '../../tree/nodes/ColumnNode';
-import type { NamespaceNode } from '../../tree/nodes/NamespaceNode';
-import type { TableNode } from '../../tree/nodes/TableNode';
+import type { ColumnNode } from '../../tree/nodes/schema/ColumnNode';
+import type { NamespaceNode } from '../../tree/nodes/schema/NamespaceNode';
+import type { TableNode } from '../../tree/nodes/schema/TableNode';
 import type { DataDockContext } from '../model/DataDockContext';
 import { addColumn } from '../table/structure/columns/addColumn';
 import { createIndex } from '../table/structure/columns/createIndex';

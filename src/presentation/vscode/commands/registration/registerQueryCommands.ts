@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { ConnectionNode } from '../../tree/nodes/ConnectionNode';
+import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
 import { cancelQuery } from '../connection/cancelQuery';
 import type { DataDockContext } from '../model/DataDockContext';
 import { newQuery } from '../query/editor/newQuery';
