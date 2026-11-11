@@ -25,6 +25,48 @@ The project follows git flow, keeping the branch prefixes of its commit types.
 - A release starts from `develop` in `chore/release-x.y.z`, which only sets the version and dates the changelog. It merges into `main`, the tag is pushed from `main` after that merge, and `main` then merges back into `develop`.
 - An urgent fix for a published version starts from `main` in `fix/…`, merges into `main` and then into `develop`.
 
+Where each branch starts and where it ends:
+
+```mermaid
+flowchart LR
+  change{What is the change?}
+  change -->|Feature, fix, refactor or docs| work["feat/… fix/… from develop"] --> intoDevelop[Pull request into develop]
+  change -->|New version| release["chore/release-x.y.z from develop"] --> intoMain[Pull request into main]
+  change -->|Urgent fix to a published version| hotfix["fix/… from main"] --> intoMain
+  intoMain --> tag["Tag vX.Y.Z pushed from main"] --> back[main merges back into develop]
+```
+
+The same flow over time, from a change to its release and an urgent fix after it:
+
+```mermaid
+gitGraph
+  commit id: "0.1.6" tag: "v0.1.6"
+  branch develop
+  checkout develop
+  branch feat/new-screen
+  checkout feat/new-screen
+  commit id: "feat: open the new screen"
+  commit id: "docs: describe the new screen"
+  checkout develop
+  merge feat/new-screen
+  branch chore/release-0.1.7
+  checkout chore/release-0.1.7
+  commit id: "chore: release version 0.1.7"
+  checkout main
+  merge chore/release-0.1.7 tag: "v0.1.7"
+  checkout develop
+  merge main
+  checkout main
+  branch fix/urgent
+  checkout fix/urgent
+  commit id: "fix: correct the urgent bug"
+  commit id: "chore: release version 0.1.8"
+  checkout main
+  merge fix/urgent tag: "v0.1.8"
+  checkout develop
+  merge main
+```
+
 Commits follow Conventional Commits, such as `feat: open a chart from the table screen`, with one commit for each logical change.
 
 ## Code standards

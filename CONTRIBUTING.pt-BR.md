@@ -25,6 +25,50 @@ O projeto segue o git flow, mantendo nas branches os prefixos dos tipos de commi
 - Uma release sai da `develop` em `chore/release-x.y.z`, que só define a versão e põe a data no changelog. Ela entra na `main`, a tag é enviada a partir da `main` depois desse merge, e a `main` volta para a `develop`.
 - Uma correção urgente de uma versão publicada sai da `main` em `fix/…`, entra na `main` e depois na `develop`.
 
+De onde cada branch sai e onde ela termina:
+
+```mermaid
+flowchart LR
+  change{Qual é a mudança?}
+  change -->|Funcionalidade, correção, refatoração ou docs| work["feat/… fix/… a partir da develop"] --> intoDevelop[Pull request para a develop]
+  change -->|Nova versão| release["chore/release-x.y.z a partir da develop"] --> intoMain[Pull request para a main]
+  change -->|Correção urgente de uma versão publicada| hotfix["fix/… a partir da main"] --> intoMain
+  intoMain --> tag["Tag vX.Y.Z enviada a partir da main"] --> back[main volta para a develop]
+```
+
+O mesmo fluxo ao longo do tempo, de uma mudança até a release e uma correção urgente depois dela:
+
+```mermaid
+gitGraph
+  commit id: "0.1.6" tag: "v0.1.6"
+  branch develop
+  checkout develop
+  branch feat/new-screen
+  checkout feat/new-screen
+  commit id: "feat: open the new screen"
+  commit id: "docs: describe the new screen"
+  checkout develop
+  merge feat/new-screen
+  branch chore/release-0.1.7
+  checkout chore/release-0.1.7
+  commit id: "chore: release version 0.1.7"
+  checkout main
+  merge chore/release-0.1.7 tag: "v0.1.7"
+  checkout develop
+  merge main
+  checkout main
+  branch fix/urgent
+  checkout fix/urgent
+  commit id: "fix: correct the urgent bug"
+  commit id: "chore: release version 0.1.8"
+  checkout main
+  merge fix/urgent tag: "v0.1.8"
+  checkout develop
+  merge main
+```
+
+Os nomes dos commits ficam em inglês, como no repositório.
+
 Os commits seguem o Conventional Commits, como `feat: open a chart from the table screen`, com um commit para cada mudança lógica.
 
 ## Padrões de código
