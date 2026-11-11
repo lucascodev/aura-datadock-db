@@ -13,6 +13,7 @@ export interface DriverDescriptor {
   readonly defaultPort: number;
   readonly connectionSchemes: readonly string[];
   readonly defaultNamespace?: string;
+  readonly isConnectionScopedToDatabase?: boolean;
   readonly dialect: SqlDialect;
   readonly docker?: DriverDockerSupport;
 }

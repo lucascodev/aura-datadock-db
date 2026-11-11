@@ -3,6 +3,7 @@ import { type ConnectionTarget } from '../../../../../domain/connection/model/Co
 import { isReachable } from '../../../../../domain/connection/rules/isReachable';
 import { getDriver } from '../../../../../drivers/catalog/getDriver';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
+import { chooseConnectionCollapsibleState } from './chooseConnectionCollapsibleState';
 
 export class ConnectionNode extends vscode.TreeItem {
   constructor(
@@ -10,7 +11,7 @@ export class ConnectionNode extends vscode.TreeItem {
     isActive: boolean,
   ) {
     const ready = isReachable(target) && target.password !== undefined;
-    super(target.name, vscode.TreeItemCollapsibleState.None);
+    super(target.name, chooseConnectionCollapsibleState(target, ready));
 
     this.id = `connection:${target.id}`;
     this.contextValue = `connection-${target.source}-${describeState(target, ready)}`;

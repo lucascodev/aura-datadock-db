@@ -4,8 +4,8 @@ import type { DataDockContext } from '../model/DataDockContext';
 import { l10n } from '../../../../domain/i18n/translation/l10n';
 
 export async function disconnect(context: DataDockContext, node: ConnectionNode): Promise<void> {
-  await context.connections.close(node.target.id);
-  context.schemas.invalidate(node.target.id);
+  const closedIds = await context.connections.closeWithDatabases(node.target.id);
+  closedIds.forEach((id) => context.schemas.invalidate(id));
   await context.refresh();
   vscode.window.setStatusBarMessage(l10n.t('Disconnected from {0}', node.target.name), 3000);
 }

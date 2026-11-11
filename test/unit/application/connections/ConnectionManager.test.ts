@@ -202,6 +202,85 @@ describe('ConnectionManager', () => {
     });
   });
 
+  describe('databases of a server', () => {
+    const server: ConnectionTarget = { ...target, database: 'app' };
+
+    function createWithSource(discover: () => Promise<ConnectionTarget[]>, openAdapter = () => createFakeAdapter().adapter) {
+      return new ConnectionManager([source('docker', discover)], { get: async () => undefined }, { readOnly: () => false, openAdapter });
+    }
+
+    it('reuses the server connection for its own database', async () => {
+      const manager = await createManager([server], []);
+      expect(manager.resolveDatabaseTarget(server.id, 'app')).toBe(manager.getTarget(server.id));
+    });
+
+    it('opens another database on its own connection', async () => {
+      const serverAdapter = createFakeAdapter();
+      const databaseAdapter = createFakeAdapter();
+      const openAdapter = vi.fn().mockReturnValueOnce(serverAdapter.adapter).mockReturnValueOnce(databaseAdapter.adapter);
+      const manager = createWithSource(async () => [server], openAdapter);
+      await manager.refresh();
+
+      const reports = manager.resolveDatabaseTarget(server.id, 'reports');
+      await manager.getAdapter(server.id);
+
+      expect(reports).toMatchObject({ database: 'reports', parentId: server.id, name: 'db/reports' });
+      expect(await manager.getAdapter(reports!.id)).toBe(databaseAdapter.adapter);
+      expect(openAdapter).toHaveBeenLastCalledWith(expect.objectContaining({ database: 'reports', password: 'p' }));
+    });
+
+    it('can make a database the active connection', async () => {
+      const manager = await createManager([server], []);
+      manager.setActive(manager.resolveDatabaseTarget(server.id, 'reports')!.id);
+      expect(manager.activeTarget?.database).toBe('reports');
+    });
+
+    it('keeps the active database across refreshes and follows the server password', async () => {
+      let password = 'old';
+      const manager = createWithSource(async () => [{ ...server, password }]);
+      await manager.refresh();
+      manager.setActive(manager.resolveDatabaseTarget(server.id, 'reports')!.id);
+
+      password = 'new';
+      await manager.refresh();
+
+      expect(manager.activeTarget).toMatchObject({ database: 'reports', password: 'new' });
+    });
+
+    it('forgets the databases of a server that is gone', async () => {
+      let targets = [server];
+      const manager = createWithSource(async () => targets);
+      await manager.refresh();
+      const reports = manager.resolveDatabaseTarget(server.id, 'reports')!;
+
+      targets = [];
+      await manager.refresh();
+
+      expect(manager.getTarget(reports.id)).toBeUndefined();
+    });
+
+    it('finds a database by its key even before it was opened in this session', async () => {
+      const manager = await createManager([server], []);
+      expect(manager.findByKey('docker:db#reports')).toMatchObject({ database: 'reports', parentId: server.id });
+      expect(manager.findByKey('docker:other#reports')).toBeUndefined();
+    });
+
+    it('closes the databases together with their server', async () => {
+      const serverAdapter = createFakeAdapter();
+      const databaseAdapter = createFakeAdapter();
+      const manager = await createManager([server], [serverAdapter, databaseAdapter]);
+      await manager.getAdapter(server.id);
+      const reports = manager.resolveDatabaseTarget(server.id, 'reports')!;
+      await manager.getAdapter(reports.id);
+
+      const closed = await manager.closeWithDatabases(server.id);
+
+      expect(closed).toEqual([server.id, reports.id]);
+      expect(serverAdapter.adapter.dispose).toHaveBeenCalledTimes(1);
+      expect(databaseAdapter.adapter.dispose).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('change notifications', () => {
     it('notifies only when something changed', async () => {
       let targets = [target];

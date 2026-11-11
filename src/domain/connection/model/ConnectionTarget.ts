@@ -9,6 +9,7 @@ export type ConnectionSourceKind = 'docker' | 'saved';
 export interface ConnectionTarget {
   readonly id: string;
   readonly key: string;
+  readonly parentId?: string;
   readonly name: string;
   readonly detail: string;
   readonly source: ConnectionSourceKind;

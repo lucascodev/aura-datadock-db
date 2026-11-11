@@ -1,10 +1,10 @@
-import type { ConnectionNode } from '../../../tree/nodes/connection/ConnectionNode';
+import type { TargetNode } from '../../model/TargetNode';
 import type { DataDockContext } from '../../model/DataDockContext';
 import { resolveConnection } from '../../registry/resolveConnection';
 import { l10n } from '../../../../../domain/i18n/translation/l10n';
 import { openBoundDocument } from './openBoundDocument';
 
-export async function newQuery(context: DataDockContext, node?: ConnectionNode, initialSql = ''): Promise<void> {
+export async function newQuery(context: DataDockContext, node?: TargetNode, initialSql = ''): Promise<void> {
   if (node) {
     context.connections.setActive(node.target.id);
   }

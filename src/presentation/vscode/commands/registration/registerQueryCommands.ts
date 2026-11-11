@@ -1,5 +1,5 @@
 import type * as vscode from 'vscode';
-import type { ConnectionNode } from '../../tree/nodes/connection/ConnectionNode';
+import type { TargetNode } from '../model/TargetNode';
 import { cancelQuery } from '../connection/cancelQuery';
 import type { DataDockContext } from '../model/DataDockContext';
 import { newQuery } from '../query/editor/newQuery';
@@ -11,7 +11,7 @@ import { registerCommand } from './registerCommand';
 
 export function registerQueryCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('newQuery', (node?: ConnectionNode) => newQuery(context, node)),
+    registerCommand('newQuery', (node?: TargetNode) => newQuery(context, node)),
     registerCommand('runQuery', () => runQuery(context)),
     registerCommand('runFile', () => runFile(context)),
     registerCommand('runStatementAt', (uri: vscode.Uri, offset: number, shouldExplain?: boolean) => runStatementAt(context, uri, offset, shouldExplain)),

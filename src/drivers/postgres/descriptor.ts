@@ -8,6 +8,7 @@ export const postgresDriver: DriverDescriptor = {
   defaultPort: 5432,
   connectionSchemes: ['postgres', 'postgresql'],
   defaultNamespace: 'public',
+  isConnectionScopedToDatabase: true,
   dialect: postgresDialect,
   docker: {
     imagePatterns: [/(^|\/)(postgres|postgis|timescaledb|pgvector|supabase\/postgres)/i],
