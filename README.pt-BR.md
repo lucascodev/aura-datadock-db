@@ -22,6 +22,7 @@ Extensão open source para VS Code que conecta aos seus bancos Postgres, MySQL e
 
 - **Descoberta automática**: detecta containers de Postgres, MySQL e MariaDB (incluindo PostGIS, TimescaleDB e pgvector) e lê usuário, senha e banco das variáveis de ambiente do container.
 - **Conexões salvas**: bancos locais ou remotos, com TLS, túnel SSH e connection string. O Docker é opcional.
+- **Todos os bancos do servidor**: uma conexão Postgres se expande nos bancos do servidor, então um container que cria vários bancos mostra todos eles.
 - **Seção DB Schema**: schemas, tabelas, views, colunas, índices e chaves estrangeiras da conexão selecionada, com filtro e ações no menu.
 - **Tela de tabela**: abas Propriedades, Dados e Diagrama. Edite células, adicione, duplique e exclua linhas, filtre por expressão SQL, veja os dados em grade, texto ou registro, e rode SQL embaixo da grade, com gravação em transação.
 - **Drivers**: PostgreSQL, MySQL e MariaDB, com arquitetura pronta para novos bancos.
@@ -53,6 +54,7 @@ Nada disso é necessário para uma conexão direta. A extensão não tem banco p
      ```
    - **Sem Docker ou banco remoto:** clique em **Adicionar conexão**.
 3. Clique na conexão. A seção **Schemas** mostra os schemas e as tabelas dela.
+   No Postgres, expanda a conexão para ver todos os bancos do servidor e clique em um para abri-lo, como no DBeaver. O banco das variáveis de ambiente do container aparece como **padrão**.
 4. Clique em uma tabela para ver e editar os dados, ou use **Nova query** na conexão para abrir um editor SQL.
 5. Use **Mostrar diagrama ER** na conexão ou no schema para ver o diagrama.
 6. Use **Gerar SQL com IA** no topo da aba para escrever uma query em linguagem natural.

@@ -4,6 +4,12 @@
 
 Todas as mudanças relevantes deste projeto são registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Adicionado
+
+- Uma conexão Postgres se expande em todos os bancos do servidor. Clique em um banco para abrir os schemas dele, rodar queries, ver o diagrama ou exportar o schema. Antes só o banco do `POSTGRES_DB` aparecia, o que deixava vazios os containers que criam vários bancos.
+
 ## [0.1.5] - 2026-11-04
 
 ### Adicionado
