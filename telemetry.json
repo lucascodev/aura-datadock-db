@@ -1,0 +1,48 @@
+{
+  "events": {
+    "lucascodev.aura-datadock-db/activated": {
+      "owner": "lucascodev",
+      "comment": "The extension started. Used to count active installations."
+    },
+    "lucascodev.aura-datadock-db/command.used": {
+      "owner": "lucascodev",
+      "comment": "A command of the extension ran. Used to learn which features are used.",
+      "command": {
+        "classification": "SystemMetaData",
+        "purpose": "FeatureInsight",
+        "comment": "Identifier of the command, such as runQuery or showDiagram."
+      }
+    },
+    "lucascodev.aura-datadock-db/connection.opened": {
+      "owner": "lucascodev",
+      "comment": "A database connection opened. Never includes host, port, user, database or names.",
+      "driver": {
+        "classification": "SystemMetaData",
+        "purpose": "FeatureInsight",
+        "comment": "Database type: postgres, mysql or mariadb."
+      },
+      "source": {
+        "classification": "SystemMetaData",
+        "purpose": "FeatureInsight",
+        "comment": "Where the connection came from: docker or saved."
+      },
+      "ssh": {
+        "classification": "SystemMetaData",
+        "purpose": "FeatureInsight",
+        "comment": "Whether the connection goes through an SSH tunnel."
+      },
+      "remote": {
+        "classification": "SystemMetaData",
+        "purpose": "FeatureInsight",
+        "comment": "Whether the database is outside the local machine."
+      }
+    }
+  },
+  "commonProperties": {
+    "editor": {
+      "classification": "SystemMetaData",
+      "purpose": "FeatureInsight",
+      "comment": "Name of the editor, such as Visual Studio Code or Cursor."
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { composeContext } from '../composition/services/composeContext';
 import { createEditorProviders } from '../composition/services/createEditorProviders';
 import { createRefreshActions } from '../composition/services/createRefreshActions';
 import { createViews } from '../composition/services/createViews';
+import { createUsageReporter } from '../composition/services/createUsageReporter';
 import { createWorkspaceServices } from '../composition/services/createWorkspaceServices';
 import { updateStatusBar } from '../composition/status/updateStatusBar';
 
@@ -21,7 +22,8 @@ export async function activate(extension: vscode.ExtensionContext): Promise<void
   const output = vscode.window.createOutputChannel('Aura DataDock DB', { log: true });
   const host: HostEnvironment = { extension, output, config };
 
-  const connection = createConnectionServices(host);
+  const usage = createUsageReporter(host);
+  const connection = createConnectionServices(host, usage);
   connections = connection.manager;
   const workspace = createWorkspaceServices(host, connection.manager);
   const views = createViews(host, connection.manager, workspace);
@@ -33,12 +35,14 @@ export async function activate(extension: vscode.ExtensionContext): Promise<void
     schemaTree: views.schemaTree,
     refresh: refreshActions.refresh,
     openAdapter,
+    usage,
     createAiProvider: () => createAiProvider(config(), extension.secrets),
   });
   const providers = createEditorProviders(context, workspace);
 
   registerSubscriptions(extension, context, views, providers, refreshActions);
 
+  usage.report({ name: 'activated' });
   updateStatusBar(views.statusBar, context);
   await refreshActions.refresh();
 }

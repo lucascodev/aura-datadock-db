@@ -7,9 +7,9 @@ import { registerCommand } from './registerCommand';
 
 export function registerBrowseCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('activateConnection', (targetId: string) => context.connections.setActive(targetId)),
-    registerCommand('filterSchema', () => filterSchema(context)),
-    registerCommand('openTable', (node: TableNode) => openTable(context, node)),
-    registerCommand('addRow', (node: TableNode) => openTable(context, node, true)),
+    registerCommand(context.usage, 'activateConnection', (targetId: string) => context.connections.setActive(targetId)),
+    registerCommand(context.usage, 'filterSchema', () => filterSchema(context)),
+    registerCommand(context.usage, 'openTable', (node: TableNode) => openTable(context, node)),
+    registerCommand(context.usage, 'addRow', (node: TableNode) => openTable(context, node, true)),
   ];
 }

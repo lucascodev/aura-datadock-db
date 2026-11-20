@@ -54,6 +54,7 @@
   "setting.ai.model.description": "Model id for the selected provider. Leave empty to use the provider default.",
   "setting.ai.ollamaUrl.description": "Base URL of the Ollama server.",
   "setting.mcp.enabled.description": "Expose discovered databases to AI agents through an MCP server that only accepts reads. Off by default. Connect with a database user that has limited permissions, because agents see the data they read.",
+  "setting.telemetry.enabled.description": "Send usage statistics, such as which commands and database types are used, to help improve the extension. Hosts, names, queries and data are never sent. Also follows the telemetry.telemetryLevel setting of VS Code.",
   "setting.codeLens.enabled.description": "Show the database of the file and Run and Explain actions above each statement in SQL files.",
   "setting.history.maxEntries.description": "How many executed queries to keep in the history. Use 0 to turn the history off.",
   "setting.connections.markdownDescription": "Saved database connections. Manage them with the **Add New Connection** command. Passwords are stored in the operating system keychain, never here.",
