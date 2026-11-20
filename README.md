@@ -228,6 +228,7 @@ The DDL is generated from the database catalog and includes columns, primary and
 | `auraDataDockDb.ai.model` | empty | Provider model; empty uses the default |
 | `auraDataDockDb.ai.ollamaUrl` | `http://localhost:11434` | Ollama address |
 | `auraDataDockDb.mcp.enabled` | `false` | Exposes the databases to agents through MCP. Only applies in user settings |
+| `auraDataDockDb.telemetry.enabled` | `true` | Sends usage statistics. See [Telemetry](#telemetry) |
 
 API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** command and, like passwords, are kept in the system keychain, never in `settings.json`.
 
@@ -236,7 +237,22 @@ API keys are saved with the **Aura DataDock DB: Set AI Provider API Key** comman
 - To generate SQL, only the database structure (tables, columns, types and keys) is sent to the model. Row data never leaves your machine.
 - With the `ollama` provider, nothing leaves your machine.
 - The history keeps the query text locally, in VS Code storage. Set `auraDataDockDb.history.maxEntries` to `0` if they may contain sensitive data.
-- The extension collects no telemetry.
+- Usage statistics are described in [Telemetry](#telemetry).
+
+## Telemetry
+
+The extension sends usage statistics to [PostHog](https://posthog.com), hosted in the European Union, to learn which features and databases are used. On first use, a notice explains this and offers to turn it off.
+
+What is sent:
+
+- That the extension started.
+- The identifier of each command that runs, such as `runQuery` or `showDiagram`.
+- When a connection opens: the database type (`postgres`, `mysql` or `mariadb`), whether it came from Docker or a saved connection, and whether it uses SSH or is remote.
+- The extension version, the editor (VS Code, Cursor and others), the operating system and the anonymous machine identifier that VS Code generates.
+
+What is never sent: host, port, user, password, database, schema, table or column names, query text, row data, file paths and error messages.
+
+To turn it off, set `auraDataDockDb.telemetry.enabled` to `false`. The extension also follows the `telemetry.telemetryLevel` setting of VS Code: any value other than `all` stops the statistics. The list of events is in [telemetry.json](telemetry.json).
 
 ## Security
 
@@ -251,10 +267,10 @@ To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 ## Using the MCP server outside VS Code
 
-In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows, where `0.1.6` is the installed version:
+In VS Code, turn on `auraDataDockDb.mcp.enabled` in your user settings to register the server. To use it in other clients, point to the `dist/mcp-server.js` file of the installed extension. Example with Claude Code on Windows, where `0.1.7` is the installed version:
 
 ```bash
-claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.6\dist\mcp-server.js"
+claude mcp add aura-datadock-db -- node "%USERPROFILE%\.vscode\extensions\lucascodev.aura-datadock-db-0.1.7\dist\mcp-server.js"
 ```
 
 Available tools:

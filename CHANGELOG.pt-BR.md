@@ -4,6 +4,12 @@
 
 Todas as mudanças relevantes deste projeto são registradas aqui. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [0.1.7] - 2026-11-20
+
+### Adicionado
+
+- Estatísticas de uso enviadas ao PostHog, como quais comandos e tipos de banco são usados, nunca detalhes de conexão, queries ou dados. Um aviso no primeiro uso explica o que é coletado, e `auraDataDockDb.telemetry.enabled` ou a configuração `telemetry.telemetryLevel` do VS Code desativam o envio. Detalhes na seção Telemetria do README.
+
 ## [0.1.6] - 2026-11-11
 
 ### Adicionado

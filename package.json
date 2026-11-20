@@ -2,7 +2,7 @@
   "name": "aura-datadock-db",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "lucascodev",
   "author": {
     "name": "Lucas Pereira dos Reis"
@@ -662,6 +662,16 @@
           "default": false,
           "description": "%setting.mcp.enabled.description%",
           "scope": "machine"
+        },
+        "auraDataDockDb.telemetry.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.telemetry.enabled.description%",
+          "scope": "application",
+          "tags": [
+            "telemetry",
+            "usesOnlineServices"
+          ]
         },
         "auraDataDockDb.codeLens.enabled": {
           "type": "boolean",

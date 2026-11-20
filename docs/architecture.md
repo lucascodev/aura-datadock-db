@@ -36,11 +36,13 @@ src/
     query/            SQL analysis, execution, history and file-database binding
     schema/           Reading, relationships and rendering as DDL, Mermaid and DBML
     sql/              Literals, conditional quoting and statement templates
+    telemetry/        Usage events, how they are built, and the reporter and sink contracts
   infrastructure/   Implementations that talk to the outside world
     ai/               Anthropic, OpenAI and Ollama
     database/         One DatabaseAdapter per protocol, and the factory that picks them
     docker/           Docker Engine client and container discovery
     ssh/              Tunnel through the system ssh and the TunneledAdapter decorator
+    telemetry/        Sending usage events to PostHog
   presentation/     What the user sees and uses
     contracts/        Typed messages between the extension and the webviews
     vscode/           Commands, TreeViews, panels, CodeLens and autocomplete
@@ -239,3 +241,13 @@ The list of functions cannot cover functions created by users, and superusers ca
 The VS Code models API has no system role, so the instructions go together with the user's first message.
 
 Only the schema is sent to the model, never the content of the rows.
+
+### Usage statistics
+
+The events are a closed union, `UsageEvent`, in `application/telemetry`, so a new property only exists when someone types it there, and none of them carries names, hosts or SQL. Callers depend on the `UsageReporter` port. Two places are wrapped instead of each command: `registerCommand` reports `command.used` for every command, and the `openAdapter` that `main` gives to the `ConnectionManager` reports `connection.opened`. That event is built by `toConnectionOpenedEvent`, which keeps only the database type and how it connects, and a test checks that no name, host or credential gets through.
+
+`VsCodeUsageReporter` lives in `presentation/vscode` for the same reason as `VsCodeLmProvider`: it depends on the VS Code API. The `UsageSink` port lives in `application` even though no use case calls it. It is the contract between the sender, in `presentation/vscode`, and the `PostHogSink`, in `infrastructure`, and `application` is the innermost layer that both can import.
+
+The events go through `vscode.env.createTelemetryLogger`, which already respects `telemetry.telemetryLevel` and cleans data that looks personal, before reaching the `PostHogSink`. The sink lives in `infrastructure` and only knows `fetch`, so the PostHog choice can change without touching the rest. Unhandled errors are not forwarded, because their messages can carry names and paths.
+
+Nothing is sent while the project key is empty, outside the production mode of the extension (debugging and tests) or with `auraDataDockDb.telemetry.enabled` off. The setting has the `application` scope, so a repository cannot turn it back on.

@@ -6,6 +6,7 @@ import type { QueryDocumentBindings } from '../../../../application/query/docume
 import type { QueryHistory } from '../../../../application/query/history/QueryHistory';
 import type { QueryRunTracker } from '../../../../application/query/execution/QueryRunTracker';
 import type { SchemaCache } from '../../../../application/schema/loading/SchemaCache';
+import type { UsageReporter } from '../../../../application/telemetry/ports/UsageReporter';
 import type { ConnectionFormPanel } from '../../panels/connection/ConnectionFormPanel';
 import type { DiagramPanels } from '../../panels/diagram/DiagramPanels';
 import type { ResultsPanel } from '../../panels/results/ResultsPanel';
@@ -26,6 +27,7 @@ export interface DataDockContext {
   readonly diagrams: DiagramPanels;
   readonly tableEditors: TableEditors;
   readonly schemaTree: SchemaTreeProvider;
+  readonly usage: UsageReporter;
   refresh(): Promise<void>;
   config(): vscode.WorkspaceConfiguration;
   createAiProvider(): Promise<AiProvider>;

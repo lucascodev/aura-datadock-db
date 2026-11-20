@@ -8,8 +8,8 @@ import { registerCommand } from './registerCommand';
 
 export function registerAiCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('setPassword', (argument?: ConnectionNode | string) => setPassword(context, argument)),
-    registerCommand('generateSql', () => generateSql(context)),
-    registerCommand('setAiApiKey', () => setAiApiKey(context)),
+    registerCommand(context.usage, 'setPassword', (argument?: ConnectionNode | string) => setPassword(context, argument)),
+    registerCommand(context.usage, 'generateSql', () => generateSql(context)),
+    registerCommand(context.usage, 'setAiApiKey', () => setAiApiKey(context)),
   ];
 }

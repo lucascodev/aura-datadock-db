@@ -15,6 +15,62 @@ docker compose -f docker-compose.dev.yml up -d
 
 Abra a pasta no VS Code e pressione `F5`. O `docker-compose.dev.yml` sobe um Postgres e um MySQL com tabelas de exemplo para testar. Os seeds só rodam na criação do banco; depois de alterá-los, recrie os containers com `docker compose -f docker-compose.dev.yml down -v` seguido de `up -d`.
 
+## Branches
+
+O projeto segue o git flow, mantendo nas branches os prefixos dos tipos de commit.
+
+- `main` guarda o que foi publicado, e cada versão é uma tag `vX.Y.Z` nela. Ela só recebe releases e correções urgentes.
+- `develop` reúne o trabalho da próxima versão. Abra os pull requests contra ela.
+- Uma mudança sai da `develop` em uma branch com o nome do tipo, como `feat/…`, `fix/…`, `refactor/…`, `docs/…` ou `chore/…`.
+- Uma release sai da `develop` em `chore/release-x.y.z`, que só define a versão e põe a data no changelog. Ela entra na `main`, a tag é enviada a partir da `main` depois desse merge, e a `main` volta para a `develop`.
+- Uma correção urgente de uma versão publicada sai da `main` em `fix/…`, entra na `main` e depois na `develop`.
+
+De onde cada branch sai e onde ela termina:
+
+```mermaid
+flowchart LR
+  change{Qual é a mudança?}
+  change -->|Funcionalidade, correção, refatoração ou docs| work["feat/… fix/… a partir da develop"] --> intoDevelop[Pull request para a develop]
+  change -->|Nova versão| release["chore/release-x.y.z a partir da develop"] --> intoMain[Pull request para a main]
+  change -->|Correção urgente de uma versão publicada| hotfix["fix/… a partir da main"] --> intoMain
+  intoMain --> tag["Tag vX.Y.Z enviada a partir da main"] --> back[main volta para a develop]
+```
+
+O mesmo fluxo ao longo do tempo, de uma mudança até a release e uma correção urgente depois dela:
+
+```mermaid
+gitGraph
+  commit id: "0.1.6" tag: "v0.1.6"
+  branch develop
+  checkout develop
+  branch feat/new-screen
+  checkout feat/new-screen
+  commit id: "feat: open the new screen"
+  commit id: "docs: describe the new screen"
+  checkout develop
+  merge feat/new-screen
+  branch chore/release-0.1.7
+  checkout chore/release-0.1.7
+  commit id: "chore: release version 0.1.7"
+  checkout main
+  merge chore/release-0.1.7 tag: "v0.1.7"
+  checkout develop
+  merge main
+  checkout main
+  branch fix/urgent
+  checkout fix/urgent
+  commit id: "fix: correct the urgent bug"
+  commit id: "chore: release version 0.1.8"
+  checkout main
+  merge fix/urgent tag: "v0.1.8"
+  checkout develop
+  merge main
+```
+
+Os nomes dos commits ficam em inglês, como no repositório.
+
+Os commits seguem o Conventional Commits, como `feat: open a chart from the table screen`, com um commit para cada mudança lógica.
+
 ## Padrões de código
 
 - Código, nomes e mensagens de commit em inglês.

@@ -11,11 +11,11 @@ import { registerCommand } from './registerCommand';
 
 export function registerQueryCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('newQuery', (node?: TargetNode) => newQuery(context, node)),
-    registerCommand('runQuery', () => runQuery(context)),
-    registerCommand('runFile', () => runFile(context)),
-    registerCommand('runStatementAt', (uri: vscode.Uri, offset: number, shouldExplain?: boolean) => runStatementAt(context, uri, offset, shouldExplain)),
-    registerCommand('explainQuery', () => explainQuery(context)),
-    registerCommand('cancelQuery', () => cancelQuery(context)),
+    registerCommand(context.usage, 'newQuery', (node?: TargetNode) => newQuery(context, node)),
+    registerCommand(context.usage, 'runQuery', () => runQuery(context)),
+    registerCommand(context.usage, 'runFile', () => runFile(context)),
+    registerCommand(context.usage, 'runStatementAt', (uri: vscode.Uri, offset: number, shouldExplain?: boolean) => runStatementAt(context, uri, offset, shouldExplain)),
+    registerCommand(context.usage, 'explainQuery', () => explainQuery(context)),
+    registerCommand(context.usage, 'cancelQuery', () => cancelQuery(context)),
   ];
 }
