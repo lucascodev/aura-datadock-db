@@ -1,0 +1,53 @@
+name: Download stats
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: download-stats
+  cancel-in-progress: false
+
+env:
+  STATS_BRANCH: stats
+  STATS_DIR: stats-data
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Open the stats branch
+        run: |
+          if git ls-remote --exit-code --heads origin "$STATS_BRANCH" > /dev/null; then
+            git fetch --depth=1 origin "$STATS_BRANCH"
+            git worktree add -B "$STATS_BRANCH" "$STATS_DIR" FETCH_HEAD
+          else
+            git worktree add --detach "$STATS_DIR"
+            git -C "$STATS_DIR" checkout --orphan "$STATS_BRANCH"
+            git -C "$STATS_DIR" rm -rf --quiet .
+          fi
+
+      - name: Collect the numbers
+        run: node scripts/collectDownloadStats.mjs "$STATS_DIR/downloads.csv"
+
+      - name: Save the numbers
+        working-directory: ${{ env.STATS_DIR }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add downloads.csv
+          if git diff --cached --quiet; then
+            echo 'No change since the last run.'
+            exit 0
+          fi
+          git commit --quiet -m "chore: record download stats for $(date -u +%F)"
+          git push origin "HEAD:$STATS_BRANCH"
