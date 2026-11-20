@@ -8,7 +8,7 @@ import { VsCodeUsageReporter } from '../../../presentation/vscode/telemetry/repo
 import type { HostEnvironment } from '../model/HostEnvironment';
 
 const POSTHOG_HOST = 'https://eu.i.posthog.com';
-const POSTHOG_PROJECT_KEY: string = '';
+const POSTHOG_PROJECT_KEY: string = 'phc_CLQNNSP9oNQnrtoUe3GmkeeXWRmgPs2rB3vo3dwZeMDk';
 const SILENT_REPORTER: UsageReporter = { report: () => undefined };
 
 export function createUsageReporter(host: HostEnvironment): UsageReporter {
