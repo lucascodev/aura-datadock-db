@@ -11,10 +11,10 @@ import { registerCommand } from './registerCommand';
 
 export function registerOutputCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('exportTable', (node: TableNode) => exportTable(context, node)),
-    registerCommand('showTableDdl', (node: TableNode) => showTableDdl(context, node)),
-    registerCommand('copySelect', (node: TableNode) => copySelect(context, node)),
-    registerCommand('showDiagram', (argument: SchemaCommandArgument) => showDiagram(context, argument)),
-    registerCommand('exportSchema', (argument: SchemaCommandArgument) => exportSchema(context, argument)),
+    registerCommand(context.usage, 'exportTable', (node: TableNode) => exportTable(context, node)),
+    registerCommand(context.usage, 'showTableDdl', (node: TableNode) => showTableDdl(context, node)),
+    registerCommand(context.usage, 'copySelect', (node: TableNode) => copySelect(context, node)),
+    registerCommand(context.usage, 'showDiagram', (argument: SchemaCommandArgument) => showDiagram(context, argument)),
+    registerCommand(context.usage, 'exportSchema', (argument: SchemaCommandArgument) => exportSchema(context, argument)),
   ];
 }

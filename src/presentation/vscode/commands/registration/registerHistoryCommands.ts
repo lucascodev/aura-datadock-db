@@ -7,7 +7,7 @@ import { registerCommand } from './registerCommand';
 
 export function registerHistoryCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('openHistoryEntry', (entry: QueryHistoryEntry) => openHistoryEntry(context, entry)),
-    registerCommand('clearHistory', () => clearHistory(context)),
+    registerCommand(context.usage, 'openHistoryEntry', (entry: QueryHistoryEntry) => openHistoryEntry(context, entry)),
+    registerCommand(context.usage, 'clearHistory', () => clearHistory(context)),
   ];
 }

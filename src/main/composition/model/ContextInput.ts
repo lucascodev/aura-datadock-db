@@ -1,4 +1,5 @@
 import type { AiProvider } from '../../../application/ai/ports/AiProvider';
+import type { UsageReporter } from '../../../application/telemetry/ports/UsageReporter';
 import type { DatabaseAdapter } from '../../../domain/database/ports/DatabaseAdapter';
 import type { ConnectionTarget } from '../../../domain/connection/model/ConnectionTarget';
 import type { ConnectionServices } from './ConnectionServices';
@@ -11,6 +12,7 @@ export interface ContextInput {
   readonly connection: ConnectionServices;
   readonly workspace: WorkspaceServices;
   readonly schemaTree: Views['schemaTree'];
+  readonly usage: UsageReporter;
   refresh(): Promise<void>;
   openAdapter(target: ConnectionTarget): Promise<DatabaseAdapter>;
   createAiProvider(): Promise<AiProvider>;

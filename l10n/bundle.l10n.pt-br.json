@@ -442,5 +442,8 @@
   "Zoom in": "Aumentar zoom",
   "Zoom out": "Diminuir zoom",
   "{0} can change the server or read its files": "{0} pode alterar o servidor ou ler arquivos dele",
-  "A function called by a quoted name may change the server, so it counts as a write": "Uma função chamada por nome entre aspas pode alterar o servidor, então conta como escrita"
+  "A function called by a quoted name may change the server, so it counts as a write": "Uma função chamada por nome entre aspas pode alterar o servidor, então conta como escrita",
+  "Learn More": "Saiba mais",
+  "Turn Off": "Desativar",
+  "Aura DataDock DB sends usage statistics, such as which commands and database types are used, to improve the extension. Hosts, names, queries and data are never sent, and it follows your VS Code telemetry setting.": "O Aura DataDock DB envia estatísticas de uso, como quais comandos e tipos de banco são usados, para melhorar a extensão. Hosts, nomes, queries e dados nunca são enviados, e ele segue a sua configuração de telemetria do VS Code."
 }

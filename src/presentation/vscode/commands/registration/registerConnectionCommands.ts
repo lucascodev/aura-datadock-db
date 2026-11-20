@@ -10,14 +10,14 @@ import { registerCommand } from './registerCommand';
 
 export function registerConnectionCommands(context: DataDockContext): vscode.Disposable[] {
   return [
-    registerCommand('refresh', () => {
+    registerCommand(context.usage, 'refresh', () => {
       context.schemas.invalidate();
       return context.refresh();
     }),
-    registerCommand('addConnection', () => addConnection(context)),
-    registerCommand('editConnection', (node: ConnectionNode) => editConnection(context, node)),
-    registerCommand('removeConnection', (node: ConnectionNode) => removeConnection(context, node)),
-    registerCommand('disconnect', (node: ConnectionNode) => disconnect(context, node)),
-    registerCommand('selectConnection', () => selectConnection(context)),
+    registerCommand(context.usage, 'addConnection', () => addConnection(context)),
+    registerCommand(context.usage, 'editConnection', (node: ConnectionNode) => editConnection(context, node)),
+    registerCommand(context.usage, 'removeConnection', (node: ConnectionNode) => removeConnection(context, node)),
+    registerCommand(context.usage, 'disconnect', (node: ConnectionNode) => disconnect(context, node)),
+    registerCommand(context.usage, 'selectConnection', () => selectConnection(context)),
   ];
 }

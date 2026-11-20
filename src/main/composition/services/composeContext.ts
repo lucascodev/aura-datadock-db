@@ -27,6 +27,7 @@ export function composeContext(input: ContextInput): DataDockContext {
     refresh: input.refresh,
     config: host.config,
     createAiProvider: input.createAiProvider,
+    usage: input.usage,
   };
   return context;
 }
